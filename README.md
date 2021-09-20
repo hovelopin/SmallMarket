@@ -1,3 +1,7 @@
 # SmallMarket
 
-SmallMarket! 호진
+SmallMarket
+
+## Project [Server] Start
+
+### npm start
