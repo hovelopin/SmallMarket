@@ -1,9 +1,11 @@
 import express from 'express';
+import { body } from 'express-validator';
 import { validate } from '../middleware/validator.js';
+import * as userController from '../controller/userController.js';
 
 const router = express.Router();
 
-const validateCredential = [
+const validateCredential = [ // validate credential for signup
   body('username')
     .trim()
     .notEmpty()
@@ -15,7 +17,7 @@ const validateCredential = [
   validate,
 ];
 
-const validateSignup = [
+const validateSignup = [ // validate for signup
   ...validateCredential,
   body('name').notEmpty().withMessage('Name is missing'),
   body('email').isEmail().normalizeEmail().withMessage('Invalid email'),
@@ -23,5 +25,7 @@ const validateSignup = [
 ];
 
 // TODO: make router using controller -> userController
+
+router.post('/signup', validateSignup, userController.signup);
 
 export default router;
