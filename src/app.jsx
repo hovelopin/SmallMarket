@@ -1,9 +1,11 @@
 import Navbar from './components/navbar/navbar';
+import login from './components/login/login';
+import './index.css';
 
 function App() {
   return (
     <>
-      <Navbar></Navbar>
+      <login></login>
     </>
   );
 }
