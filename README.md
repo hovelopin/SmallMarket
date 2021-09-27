@@ -21,3 +21,6 @@ SmallMarket!
 > Login
 > 
 > Register
+
+### Error
+# Redux thunk type error
