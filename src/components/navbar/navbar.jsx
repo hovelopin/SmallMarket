@@ -7,17 +7,17 @@ const Navbar = ({ props }) => {
     <nav className={styles.navbar}>
       <ul className={styles.navbar_list}>
         <li>
-          <Link to="/login">
+          <Link to="/shop">
             <span className={styles.title}>SHOP</span>
           </Link>
         </li>
         <li>
-          <Link to="/login">
+          <Link to="/about">
             <span className={styles.title}>ABOUT</span>
           </Link>
         </li>
         <li>
-          <Link to="/login">
+          <Link to="/cart">
             <span className={styles.title}>
               <i className="fas fa-shopping-cart"></i>
               CART {cartCount}
@@ -25,11 +25,26 @@ const Navbar = ({ props }) => {
           </Link>
         </li>
         <li>
-          <Link to="/login">
+          <Link to="/">
+            <span className={styles.title}>HOME</span>
+          </Link>
+        </li>
+        <li>
+          <Link to="/items">
             <span className={styles.title}>
               <i className="fas fa-shopping-bag"></i>
               NEW ITEM
             </span>
+          </Link>
+        </li>
+        <li>
+          <Link to="/login">
+            <span className={styles.title}>LOGIN</span>
+          </Link>
+        </li>
+        <li>
+          <Link to="/register">
+            <span className={styles.title}>REGISTER</span>
           </Link>
         </li>
       </ul>
