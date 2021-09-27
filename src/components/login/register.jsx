@@ -1,6 +1,7 @@
 import React from 'react'; 
+import styles from './register.module.css';
 
-function register () {
+function Register () {
   return(
     <div className="loginWrap">
       <div className="loginIndex">
@@ -38,4 +39,4 @@ function register () {
   );
 }
 
-export default register;
+export default Register;

@@ -1,0 +1,49 @@
+
+/* register.js */
+.regContainer,
+.regContainer2,
+.regContainer3,
+.regContainer4,
+.regContainer5 {
+  display: flex;
+}
+.regId,
+.regPw,
+.regPwCheck,
+.regEmail,
+.regNickName {
+  padding-top: 10px;
+  flex-direction: row;
+  margin-left: 30px;
+}
+
+.btRegComplete {
+  margin-top: 1rem;
+  margin-left: 30px;
+  margin-bottom: 2rem;
+  width: 80%;
+  height: 35px;
+  background: black;
+  color: white;
+}
+.inputRegId,
+.inputEmail,
+.inputNickName {
+  width: 200px;
+  height: 30px;
+  margin-left: 60px;
+  outline: none;
+}
+.inputRegPw {
+  width: 200px;
+  height: 30px;
+  margin-left: 47px;
+  outline: none;
+}
+.inputPwCheck {
+  width: 200px;
+  height: 30px;
+  margin-left: 20px;
+  outline: none;
+}
+

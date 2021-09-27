@@ -1,0 +1,62 @@
+/* Login.js */
+.loginWrap {
+  /* 넓이 해결하기 */
+  width: 100%;
+  height: 680px;
+  position: relative;
+  background: gray;
+}
+.loginIndex {
+  width: 450px;
+  /* login을 감싸는 것 */
+  /* border: 1px solid black; */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background: white;
+  /* 개체를 가운데 정렬하기 위한 변환 */
+  transform: translate(-50%, -50%);
+}
+.loginIndex > h2 {
+  text-align: center;
+}
+.loginIndex > h3 {
+  margin-left: 30px;
+}
+.idInput {
+  outline: none;
+  display: block;
+  border: none;
+  border-bottom: 1px solid black;
+  padding-bottom: 0.5rem;
+  margin-left: 30px;
+  margin-right: 10px;
+  width: 80%;
+}
+.pwInput {
+  /* input값을 클릭할 때 outline을 지운다. */
+  outline: none;
+  display: block;
+  border: none;
+  border-bottom: 1px solid black;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  margin-left: 30px;
+  margin-right: 10px;
+  width: 80%;
+  /* height: 50px; */
+}
+.btLogin {
+  margin-top: 1rem;
+  margin-left: 30px;
+  width: 80%;
+  height: 35px;
+  background: black;
+  color: white;
+}
+.btReg {
+  margin: 2rem;
+  /* margin-right: 1rem; */
+  text-align: right;
+  text-decoration: underline;
+}
