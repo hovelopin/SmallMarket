@@ -11,16 +11,16 @@ SmallMarket!
 >
 > Item detail
 
-## Comple
-> Main
+## Complete
+> Main ✔
 >
-> Footer
+> Footer ✔
 >
-> Navbar
+> Navbar ✔
 >
-> Login
+> Login ✔
 > 
-> Register
+> Register ✔
 
 ### Error
-# Redux thunk type error
+# input tag error

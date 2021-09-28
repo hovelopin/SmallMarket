@@ -8,8 +8,11 @@ export default class HttpClient {
   }
 
   createAxios() {
-    return axios.create({
+    const axiosAgent = axios.create({
       baseURL: this.baseURL,
     });
+    axiosAgent.defaults.timeout = 2500;
+
+    return axiosAgent;
   }
 };

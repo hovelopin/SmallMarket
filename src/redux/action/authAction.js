@@ -11,19 +11,31 @@ const httpClient = new HttpClient(baseURL).createAxios();
 const tokenStorage = new TokenStorage();
 const authenticationService = new AuthenticateService(httpClient, tokenStorage);
 
-export async function registerRequest(username, password, email, name) {
-  const data = await authenticationService.signUp(username, password, email, name);
-  return { 
-    type: REGISTER_USER,
-    payload: data,
+export const registerRequest = (username, password, email, name) => async(dispatch) => {
+  try {
+    const data = await authenticationService.signUp(username, password, email, name);
+    dispatch(
+      {
+        type: REGISTER_USER,
+        payload: data,
+      }
+    )
+  } catch(error) {
+    console.log(error.response);
   }
 }
 
-export function loginRequest(username, password) {
-  const data = authenticationService.login(username, password);
-  return {
-    type: USER_LOGIN,
-    payload: data,
+export const loginRequest = (username, password) => async(dispatch) => {
+  try {
+    const data = await authenticationService.login(username, password);
+    dispatch (
+      {
+        type: USER_LOGIN,
+        payload: data,
+      }
+    )
+  } catch(error) {
+    console.log(error.response);
   }
 }
 

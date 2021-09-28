@@ -5,7 +5,14 @@ export default class AuthenticateService {
   }
 
   async signUp(username, password, email, name) {
-    const data = await this.httpClient.post('/user/signup', { username, password, email, name });
+    const data = await this.httpClient.post('/user/signup', 
+      {
+        username: username,
+        password: password,
+        email: email,
+        name: name,
+      }
+    );
     this.tokenStorage.saveToken(data.token);
     return data;
   }

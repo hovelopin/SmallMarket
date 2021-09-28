@@ -88,7 +88,7 @@ function Register () {
             <input 
               className="inputNickName" 
               placeholder="닉네임을 입력해주세요."
-              name={nameChangeHandler}
+              onChange={nameChangeHandler}
             >
             </input>
         </ul>
