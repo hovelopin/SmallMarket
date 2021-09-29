@@ -44,55 +44,55 @@ function Register () {
     <form 
       className={styles.loginWrap} 
       onSubmit={onSubmitHandler}>
-      <div className="loginIndex">
+      <div className={styles.loginIndex}>
         <h2> 스몰마켓 </h2>
         <h3> 회원가입 </h3>
-        <ul className="regContainer">
-          <li className="regId"> 아이디 </li>
+        <ul className={styles.regContainer}>
+          <li className={styles.regId}> 아이디 </li>
             <input 
-              className="inputRegId" 
+              className={styles.inputRegId} 
               placeholder="아이디를 입력해주세요."
               onChange={userNameChangeHandler}
             >
             </input>
         </ul>
-        <ul className="regContainer2">
-          <li className="regPw"> 비밀번호 </li>
+        <ul className={styles.regContainer2}>
+          <li className={styles.regPw}> 비밀번호 </li>
             <input 
-              className="inputRegPw" 
+              className={styles.inputRegPw} 
               placeholder="비밀번호를 입력해주세요."
               onChange={passwordChangeHandler}
             >
             </input>
         </ul>
-        <ul className="regContainer3">
-          <li className="regPwCheck"> 비밀번호확인 </li>
+        <ul className={styles.regContainer3}>
+          <li className={styles.regPwCheck}> 비밀번호확인 </li>
             <input 
-              className="inputPwCheck" 
+              className={styles.inputPwCheck} 
               placeholder="비밀번호를 한번 더 입력해주세요."
               onChange={checkPasswordChangeHandler}
             >
             </input>
         </ul>
-        <ul className="regContainer4">
-          <li className="regEmail"> 이메일 </li>
+        <ul className={styles.regContainer4}>
+          <li className={styles.regEmail}> 이메일 </li>
             <input 
-              className="inputEmail" 
+              className={styles.inputEmail} 
               placeholder="예) sungkonghoe@skhu.ac.kr" 
               onChange={emailChangeHandler}
             >
             </input>
         </ul>
-        <ul className="regContainer5">
-          <li className="regNickName"> 닉네임 </li>
+        <ul className={styles.regContainer5}>
+          <li className={styles.regNickName}> 닉네임 </li>
             <input 
-              className="inputNickName" 
+              className={styles.inputNickName} 
               placeholder="닉네임을 입력해주세요."
               onChange={nameChangeHandler}
             >
             </input>
         </ul>
-        <button className="btRegComplete"> 가입하기</button>
+        <button className={styles.btRegComplete}> 가입하기</button>
       </div>
     </form>
   );
