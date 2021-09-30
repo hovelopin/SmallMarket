@@ -24,8 +24,8 @@ const validateSignup = [ // validate for signup
   validate,
 ];
 
-// TODO: make router using controller -> userController
 
 router.post('/signup', validateSignup, userController.signup);
+router.post('/login', validateCredential, userController.login);
 
 export default router;

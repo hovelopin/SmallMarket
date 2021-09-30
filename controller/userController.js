@@ -51,6 +51,24 @@ export async function signup(request, response) { // SignUp
   response.status(200).json({ token, username });
 }
 
+export async function login(request, response) { // login
+  const { username, password } = request.body;
+  const foundUser = await userRepository.findByUsername(username);
+
+  if(!founduser) {
+    return response.status(401).json({ message: 'Invalid username or password...' });
+  }
+
+  const isPassword = await bcrypt.compare(password, foundUser.password);
+  
+  if(!isPassword) {
+    return response.status(401).json({ message: 'Invalid username or password...' });
+  }
+
+  const token = createJwtToken(foundUser.id);
+  response.status(200).json({ token, username });
+}
+
 export async function isMe(request, response) { // isMe?
   const foundUser = userRepository.findById(request.userId);
 

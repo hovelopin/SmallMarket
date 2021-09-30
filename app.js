@@ -7,11 +7,16 @@ import { sequelize } from './database/database.js'; // ORM
 import userRouter from './router/userValidateRouter.js';
 
 const app = express();
+const corsOptions = {
+    origin: config.host.client,
+    // origin: "http://localhost:3000",
+    credentials: true,
+}
 
 app.use(express.json()); // using json for http
 app.use(morgan('tiny'));
 app.use(helmet());
-app.use(cors());
+app.use(cors(corsOptions));
 
 // router
 app.use('/user', userRouter);

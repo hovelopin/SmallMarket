@@ -12,9 +12,18 @@ SmallMarket
 > signup
 
 ## TODO
-> user login
+> user login ✔
 >
-> authentication
+> authentication ✔
+>
+> Cart modeling
+
+## Complete
+> Login ✔
+>
+> SignUp ✔
+>
+>
 
 ## Project [Server] Start
 
