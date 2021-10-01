@@ -19,26 +19,18 @@
 
 ## TODO
 ```
-> Cart
->
-> Item List
->
-> Item detail
->
-> Pay
->
-> Item list
+Cart
+Item List
+Item detail
+Pay
+Item list
 ```
 
 ## Complete
 ```
-> Main ✔
->
-> Footer ✔
->
-> Navbar ✔
->
-> Login ✔
-> 
-> Register ✔
+Main ✔
+Footer ✔
+Navbar ✔
+Login ✔
+Register ✔
 ```
