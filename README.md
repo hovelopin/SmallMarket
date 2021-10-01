@@ -18,6 +18,7 @@
 - CSS: Post CSS
 
 ## TODO
+```
 > Cart
 >
 > Item List
@@ -27,8 +28,10 @@
 > Pay
 >
 > Item list
+```
 
 ## Complete
+```
 > Main ✔
 >
 > Footer ✔
@@ -38,3 +41,4 @@
 > Login ✔
 > 
 > Register ✔
+```
