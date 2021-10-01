@@ -1,0 +1,30 @@
+@value marketWhite, marketShadow, marketLightGrey from '../../common/colors.css';
+@value mediaQuery from '../../common/size.css';
+
+.cart {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  display: flex;
+  flex: 1;
+}
+
+.item {
+  flex-basis: 50%;
+  padding: 0.5em 2em;
+}
+
+.info {
+  flex-basis: 50%;
+  padding: 0.5em 2em;
+}
+
+@media screen and (max-width: mediaQuery) {
+  .container {
+    flex-direction: column;
+  }
+}
