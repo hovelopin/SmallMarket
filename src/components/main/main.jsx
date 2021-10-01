@@ -6,7 +6,7 @@ function Main() {
     <div className={styles.indexWrap}>
       <ul className={styles.indexContainer}>
         <li className={styles.indexItems}>
-          <img className={styles.indexItems_01} src="img/pix01.jpeg" ></img>
+          <img className={styles.indexItems_01} src="img/pix01.jpeg"></img>
           <h3>The MarketPlace</h3>
           <h5>Buy directly from artisans all across Morocco</h5>
         </li>
