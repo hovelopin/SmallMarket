@@ -1,0 +1,143 @@
+/* 공통 속성 */
+div {
+  margin: 0;
+}
+ul {
+  list-style: none;
+  padding-left: 0px;
+}
+/* input type 화살표 없애기 */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* product_detail.jsx */
+.productWrap {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.productImg {
+  margin-right: 50px;
+}
+.productImg2 img {
+  width: 1200px;
+  height: 500px;
+}
+.productContainer {
+  display: flex;
+}
+.productItemsList {
+  margin-bottom: 50px;
+  border-bottom: 1px solid #f4f4f4;
+}
+.productItems:nth-child(2) {
+  width: 400px;
+}
+.titleMain {
+  font-weight: 700;
+  font-size: 24px;
+}
+.titleSub {
+  display: block;
+  font-size: 14px;
+  color: #999;
+}
+.priceMain {
+  width: 200px;
+  line-height: 20px;
+}
+.priceSub,
+.totalSub {
+  font-size: 20px;
+  width: 400px;
+}
+.info_basket,
+.info_buy {
+  display: inline-block;
+  width: 180px;
+  height: 50px;
+  border: 1px solid rgba(0, 103, 214, 0.934);
+  background-color: white;
+  color: rgba(0, 103, 214, 0.934);
+  border-radius: 5px;
+}
+.info_buy {
+  margin-left: 10px;
+}
+.btQuantity {
+  background: #fff;
+  text-align: center;
+  border: 0;
+}
+.inputQuantity {
+  width: 60px;
+  text-align: center;
+  border: 0;
+}
+.QuantitySub {
+  border: 1px solid #dddfe1;
+  border-radius: 3px;
+}
+.unitMain,
+.QuantityMain {
+  color: #666;
+  margin-right: 50px;
+}
+.totalMain {
+  font-size: 12px;
+}
+.productTotalPrice {
+  text-align: right;
+}
+.product-info-wrap {
+  margin-top: 60px;
+}
+.product-nav-container {
+  display: flex;
+}
+.product-nav-items {
+  height: 60px;
+  text-align: center;
+  flex-grow: 1;
+  border: 1px solid #eee;
+  background: #fafafa;
+}
+.nav-explain {
+  display: block;
+  margin-top: 22px;
+  font-size: 16px;
+  font-weight: 700;
+  color: rgba(0, 103, 214, 0.934);
+}
+.why-wrap {
+  margin-top: 100px;
+}
+.why-title {
+  text-align: center;
+  font-weight: 500;
+  color: #666;
+  font-size: 36px;
+  margin-bottom: 100px;
+}
+.why-info-title {
+  font-size: 18px;
+  font-weight: 500;
+  margin-top: 10px;
+  color: rgba(0, 103, 214, 0.934);
+}
+.why-img img {
+  width: 40px;
+  height: 40px;
+}
+.why-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.why-items {
+  width: 350px;
+  height: 250px;
+  text-align: center;
+}
