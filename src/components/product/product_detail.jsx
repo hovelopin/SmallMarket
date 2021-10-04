@@ -1,7 +1,7 @@
-// npm react-icons --save
+// npm install react-icons --save
 // yarn add react-icons
-import { HiPlus, HiMinus } from "react-icons/hi";
-import styles from "./product_detail.module.css";
+import { HiPlus, HiMinus } from 'react-icons/hi';
+import styles from './product_detail.module.css';
 
 function ProductDetail() {
   return (
@@ -50,34 +50,34 @@ function ProductDetail() {
           </div>
         </div>
       </div>
-      <div className={styles.product - info - wrap}>
-        <ul className={styles.product - nav - container}>
-          <li className={styles.product - nav - items}>
-            <span className={styles.nav - explain}>상품설명</span>
+      <div className={styles.product_info_wrap}>
+        <ul className={styles.product_nav_container}>
+          <li className={styles.product_nav_items}>
+            <span className={styles.nav_explain}>상품설명</span>
           </li>
-          <li className={styles.product - nav - items}>
-            <span className={styles.nav - explain}>상세정보</span>
+          <li className={styles.product_nav_items}>
+            <span className={styles.nav_explain}>상세정보</span>
           </li>
-          <li className={styles.product - nav - items}>
-            <span className={styles.nav - explain}>후기</span>
+          <li className={styles.product_nav_items}>
+            <span className={styles.nav_explain}>후기</span>
           </li>
-          <li className={styles.product - nav - items}>
-            <span className={styles.nav - explain}>문의</span>
+          <li className={styles.product_nav_items}>
+            <span className={styles.nav_explain}>문의</span>
           </li>
         </ul>
       </div>
       <div className={styles.productImg2}>
         <img src="img/pix01.jpeg" alt="productIMG"></img>
       </div>
-      <div className={styles.why - wrap}>
-        <div className={styles.why - title}>WHY SmallMarket</div>
-        <div className={styles.why - container}>
-          <div className={styles.why - items}>
-            <div className={styles.why - img}>
-              <img src="img/pix01.jpeg" alt="why-imgs"></img>
+      <div className={styles.why_wrap}>
+        <div className={styles.why_title}>WHY SmallMarket</div>
+        <div className={styles.why_container}>
+          <div className={styles.why_items}>
+            <div className={styles.why_img}>
+              <img src="img/pix01.jpeg" alt="why_imgs"></img>
             </div>
-            <div className={styles.why - info}>
-              <div className={styles.why - info - title}>깐깐한 상품위원회</div>
+            <div className={styles.why_info}>
+              <div className={styles.why_info_title}>깐깐한 상품위원회</div>
               <div>
                 <p>
                   나와 내 가족이 먹고 쓸 상품을 고르는
@@ -91,14 +91,12 @@ function ProductDetail() {
               </div>
             </div>
           </div>
-          <div className={styles.why - items}>
-            <div className={styles.why - img}>
-              <img src="img/pix01.jpeg" alt="why-imgs"></img>
+          <div className={styles.why_items}>
+            <div className={styles.why_img}>
+              <img src="img/pix01.jpeg" alt="why_imgs"></img>
             </div>
-            <div className={styles.why - info}>
-              <div className={styles.why - info - title}>
-                차별화된 SmallMarket
-              </div>
+            <div className={styles.why_info}>
+              <div className={styles.why_info_title}>차별화된 SmallMarket</div>
               <div>
                 <p>
                   전국 각지와 해외의 훌륭한 생산자가
@@ -111,12 +109,12 @@ function ProductDetail() {
               </div>
             </div>
           </div>
-          <div className={styles.why - items}>
-            <div className={styles.why - img}>
-              <img src="img/pix01.jpeg" alt="why-imgs"></img>
+          <div className={styles.why_items}>
+            <div className={styles.why_img}>
+              <img src="img/pix01.jpeg" alt="why_imgs"></img>
             </div>
-            <div className={styles.why - info}>
-              <div className={styles.why - info - title}>신선한 배송</div>
+            <div className={styles.why_info}>
+              <div className={styles.why_info_title}>신선한 배송</div>
               <div>
                 <p>
                   온라인 업계 최초로 산지에서 문 앞까지
@@ -130,12 +128,12 @@ function ProductDetail() {
               </div>
             </div>
           </div>
-          <div className={styles.why - items}>
-            <div className={styles.why - img}>
-              <img src="img/pix01.jpeg" alt="why-imgs"></img>
+          <div className={styles.why_items}>
+            <div className={styles.why_img}>
+              <img src="img/pix01.jpeg" alt="why_imgs"></img>
             </div>
-            <div className={styles.why - info}>
-              <div className={styles.why - info - title}>
+            <div className={styles.why_info}>
+              <div className={styles.why_info_title}>
                 고객 , 생산자를 위한 최선의 가격
               </div>
               <div>
@@ -151,12 +149,12 @@ function ProductDetail() {
               </div>
             </div>
           </div>
-          <div className={styles.why - items}>
-            <div className={styles.why - img}>
-              <img src="img/pix01.jpeg" alt="why-imgs"></img>
+          <div className={styles.why_items}>
+            <div className={styles.why_img}>
+              <img src="img/pix01.jpeg" alt="why_imgs"></img>
             </div>
-            <div className={styles.why - info}>
-              <div className={styles.why - info - title}>
+            <div className={styles.why_info}>
+              <div className={styles.why_info_title}>
                 환경을 생각하는 지속 가능한 유통
               </div>
               <div>
