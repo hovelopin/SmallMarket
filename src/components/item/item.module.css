@@ -1,0 +1,30 @@
+.itemBox{
+    width: 350px;
+    /*
+    가로로 정렬을 해야하는데 footer위치까지 변경되는 문제 발생.
+    */
+    margin: 30px 0 80px 25px;
+    
+}
+
+.itemTitle{
+    font-weight: bold;
+    color: black;
+    margin-top: 20px;
+    font-size: 25px;
+}
+
+.itemPrice{
+    font-weight: bold;
+    color: black;
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+.itemExplanation{
+    font-weight: normal;
+    color: black;
+    margin-top: 30px;
+    font-size: 15px;
+    line-height: 130%;
+}

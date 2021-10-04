@@ -7,6 +7,8 @@ import Footer from './components/footer/footer';
 import Login from './components/login/login';
 import Register from './components/login/register'
 import Cart from './components/cart/cart';
+import Shop from './components/item_list/item_list';
+import Item from './components/item/item';
 
 function App() {
   return (
@@ -14,9 +16,11 @@ function App() {
       <Navbar />
       <Switch>
         <Route exact path='/' component={Cart} />
-        {/* <Route exact path='/' component={Main} />
+        <Route exact path='/' component={Main} />
         <Route exact path='/register' component={Register} />
-        <Route exact path='/login' component={Login} /> */}
+        <Route exact path='/login' component={Login} />
+        <Route exact path='/shop' component={Shop} />
+        <Route exact path='/item' component={Item} />
       </Switch>
       <Footer />
     </Router>
