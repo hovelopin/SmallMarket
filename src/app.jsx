@@ -15,12 +15,12 @@ function App() {
     <Router>
       <Navbar />
       <Switch>
-        <Route exact path='/' component={Cart} />
         <Route exact path='/' component={Main} />
         <Route exact path='/register' component={Register} />
         <Route exact path='/login' component={Login} />
         <Route exact path='/shop' component={Shop} />
         <Route exact path='/item' component={Item} />
+        <Route exact path='/cart' component={Cart} />
       </Switch>
       <Footer />
     </Router>

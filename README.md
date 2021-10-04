@@ -19,9 +19,7 @@
 
 ## TODO
 ```
-Cart
-Item List
-Item detail
+Cart Function
 Pay
 Item list
 ```
@@ -33,4 +31,7 @@ Footer ✔
 Navbar ✔
 Login ✔
 Register ✔
+Cart design ✔
+Item List design ✔
+Item detail design ✔
 ```
