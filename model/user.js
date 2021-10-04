@@ -1,6 +1,5 @@
 import SQ from 'sequelize';
 import { sequelize } from '../database/database.js';
-import { Cart } from './cart.js';
 
 const DataTypes = SQ.DataTypes;
 
@@ -32,5 +31,3 @@ export const User = sequelize.define( // create schema
   },
   { timestamps: false },
 );
-
-User.belongsTo(Cart, { targetKey: 'id' }); 

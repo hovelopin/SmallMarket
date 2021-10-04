@@ -1,6 +1,18 @@
-# SmallMarket
+# 📖 SmallMarket Proejct
+- Server
 
-SmallMarket
+## Project [Server] Start
+```
+npm start
+```
+
+# :mag: Thchnical Skills
+
+- Framework: Node express
+- Main language: Javascript ES6+, Node.js
+- DataBase: MySQL
+- Server: webpack-dev-server (dev)
+- Token management
 
 ## ORM
 > sequelize
@@ -12,19 +24,14 @@ SmallMarket
 > signup
 
 ## TODO
-> user login ✔
->
-> authentication ✔
->
-> Cart modeling
+```
+Board
+```
 
 ## Complete
-> Login ✔
->
-> SignUp ✔
->
->
-
-## Project [Server] Start
+```
+Login ✔
+SignUp ✔
+```
 
 ### npm start

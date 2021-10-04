@@ -1,7 +1,7 @@
 import { User } from '../model/user.js';
 
 export async function findByUsername(username) {
-  return User.findOne({ where: {username} });
+  return User.findOne({ where: { username } });
 }
 
 export async function findById(id) {
