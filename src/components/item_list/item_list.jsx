@@ -1,6 +1,4 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
-import Register from "../login/register";
 import styles from './item_list.module.css';
 import Item from "../item/item";
 

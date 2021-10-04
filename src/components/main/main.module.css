@@ -1,7 +1,7 @@
 /* @value makerPink, makerGrey from '../../common/colors.css'; */
 
 .indexWrap {
-  width: 1425px;
+  width: 100%;
 }
 .indexContainer {
   display: flex;

@@ -2,7 +2,7 @@ const TOKEN = 'token';
 
 export default class TokenStorage {
   saveToken(token) {
-    localStorage.setItem(TOKEN, token);
+    localStorage.setItem(TOKEN, token); 
   }
 
   getToken() {

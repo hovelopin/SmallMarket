@@ -1,4 +1,4 @@
-@value marketBlack, marketWhite, marketPink, marketShadow, marketLightGrey from '../../common/colors.css';
+@value marketTeamOrange, marketTeamLightOrange, marketBlack, marketShadow, marketLightGrey from '../../common/colors.css';
 @value mediaQuery from '../../common/size.css';
 
 .cart {
@@ -44,8 +44,8 @@
 .button {
   width: 100%;
   padding: 1rem;
-  background-color: marketPink;
-  border: 2px solid marketBlack;
+  background-color: marketTeamOrange;
+  border: 2px solid marketTeamOrange;
   border-radius: 10rem;
   font-size: 1.2em;
   font-weight: bold;
@@ -54,6 +54,7 @@
 .button:hover {
   background-color: transparent;
   transition: 0.5s;
+  color: marketTeamOrange;
   cursor: pointer;
 }
 

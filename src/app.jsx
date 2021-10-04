@@ -9,6 +9,8 @@ import Register from './components/login/register'
 import Cart from './components/cart/cart';
 import Shop from './components/item_list/item_list';
 import Item from './components/item/item';
+import ItemList from './components/item_list/item_list';
+import ProductDetail from './components/product/product_detail';
 
 function App() {
   return (
@@ -20,7 +22,9 @@ function App() {
         <Route exact path='/login' component={Login} />
         <Route exact path='/shop' component={Shop} />
         <Route exact path='/item' component={Item} />
+        <Route exact path='/itemlist' component={ItemList} />
         <Route exact path='/cart' component={Cart} />
+        <Route exact path='/product' component={ProductDetail} />
       </Switch>
       <Footer />
     </Router>

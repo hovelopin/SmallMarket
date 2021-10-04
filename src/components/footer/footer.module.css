@@ -1,15 +1,18 @@
+@value marketTeamOrange, marketTeamLightOrange, marketBlack, marketShadow, marketLightGrey from '../../common/colors.css';
+
 .footerContainer {
   display: flex;
   justify-content: space-around;
   margin-top: 80px;
-  border: purple solid 1px;
 }
 
 .ftItems_title {
+  font-size: 1.1em;
   color: hsl(218, 10%, 50%);
 }
 
 .ftItems_sub {
+  font-size: 1.0em;
   color: hsl(218, 10%, 75%);
 }
 
