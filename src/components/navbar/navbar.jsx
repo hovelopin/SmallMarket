@@ -12,7 +12,7 @@ const Navbar = ({ click }) => {
 
   return (
     <nav className={styles.navbar}>
-      <ul className={styles.navbar_list}>
+      <ul className={styles.navbarList}>
         <li>
           <Link to="/shop">
             <span className={styles.title}>SHOP</span>
@@ -26,7 +26,7 @@ const Navbar = ({ click }) => {
         <li>
           <Link to="/cart">
             <span className={styles.title}>
-              <i className="fas fa-shopping-cart"></i> CART {getTotalCartItemCount()}
+            <i className="fas fa-shopping-cart"></i> CART {getTotalCartItemCount()}
             </span>
           </Link>
         </li>
@@ -38,8 +38,7 @@ const Navbar = ({ click }) => {
         <li>
           <Link to="/items">
             <span className={styles.title}>
-              <i className="fas fa-shopping-bag"></i>
-              NEW ITEM
+              <i className="fas fa-shopping-bag"></i> NEW ITEM
             </span>
           </Link>
         </li>

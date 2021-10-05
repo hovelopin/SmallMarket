@@ -1,5 +1,5 @@
 import React from 'react';
-import './index.css';
+import styles from './app.module.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Navbar from './components/navbar/navbar';
 import Main from './components/main/main';
@@ -14,6 +14,7 @@ import ProductDetail from './components/product/product_detail';
 
 function App() {
   return (
+    <div className={styles.app}>
     <Router>
       <Navbar />
       <Switch>
@@ -28,6 +29,7 @@ function App() {
       </Switch>
       <Footer />
     </Router>
+    </div>
   );
 }
 

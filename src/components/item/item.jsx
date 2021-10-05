@@ -5,9 +5,7 @@ const Item = () => {
   return (
     <ul className={styles.itemBox}>
       <li>
-        <a href="/login" target="_self">
-          <img src="/img/just.jpg"></img>
-        </a>
+        <img src="/img/just.jpg" alt='sample01' />
       </li>
       <li className={styles.itemTitle}>
         해당위치는 제목을 작성합니다. 링크를 걸어 디테일로갑니다.

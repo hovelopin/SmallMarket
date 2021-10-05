@@ -18,7 +18,7 @@ function ItemList  ()  {
         </div>
 
         <div className={styles.moveTop}>
-          <a href="#"><img src="/img/goTop.jpg"></img></a>
+          <img src="/img/goTop.jpg" alt='sample01' />
         </div>
 
         <div className={styles.shopContent}>

@@ -3,29 +3,31 @@ import styles from './footer.module.css';
 
 const Footer = () => {
   return (
-    <>
-      <ul className={styles.footerContainer}>
-        <li className={styles.footerItems}>
-          <p className={styles.ftItems_title}>Photo</p>
-          <p className={styles.ftItems_sub}>The Cooperative</p>
-          <p className={styles.ftItems_sub}>The Cooperative</p>
-          <p className={styles.ftItems_sub}>The Cooperative</p>
-        </li>
-        <li className={styles.footerItems}>
-          <p className={styles.ftItems_title}>Connect</p>
-          <p className={styles.ftItems_sub}>Connect</p>
-          <p className={styles.ftItems_sub}>Connect</p>
-          <p className={styles.ftItems_sub}>Connect</p>
-        </li>
-        <li className={styles.footerItems}>
-          <p className={styles.ftItems_title}>Our Contact</p>
-          <p className={styles.ftItems_sub}>https://github.com/SmallMarket-Project/SmallMarket</p>
-          <p className={styles.ftItems_sub}>Sungkonghoe University</p>
-          <p className={styles.ftItems_sub}>SmallMarket</p>
-        </li>
-      </ul>
-      <p className={styles.copyright}>@2021 SmallMarket | by HoJin , JunHo , JaeHyun </p>
-    </>
+    <footer className={styles.footerContainer}>
+      <div className={styles.footerRow}>
+        <div className={styles.footerCol}>
+          <h5>Contact Team : https://github.com/SmallMarket-Project/SmallMarket</h5>
+          <p className={styles.content}>Team : SmallMarket</p>
+          <p className={styles.content}>University : Sungonghoe University</p>
+          <p className={styles.content}>Tel : ooo-ooo-ooo</p>
+        </div>
+        <div className={styles.footerCol}>
+          <h5>SmallMarket</h5>
+          <p className={styles.content}>Team : SmallMarket</p>
+          <p className={styles.content}>University : Sungonghoe University</p>
+          <p className={styles.content}>Tel : ooo-ooo-ooo</p>
+        </div>
+        <div className={styles.footerCol}>
+          <h5>CopyRight</h5>
+          <p className={styles.content}>
+            <p>@2021 SmallMarket</p>
+            <p>HoJin</p>
+            <p>JunHo</p>
+            <p>JaeHyun</p>
+          </p>
+        </div>
+      </div>
+    </footer>
   );
 }
 

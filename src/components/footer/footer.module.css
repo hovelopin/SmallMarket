@@ -1,25 +1,29 @@
-@value marketTeamOrange, marketTeamLightOrange, marketBlack, marketShadow, marketLightGrey from '../../common/colors.css';
+@value marketWhite, marketTeamOrange, marketTeamLightOrange, marketBlack, marketShadow, marketLightGrey from '../../common/colors.css';
 
 .footerContainer {
+  width: 100%;
+  margin-top: 2%;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+}
+
+.footerRow {
+  color: marketBlack;
   display: flex;
-  justify-content: space-around;
-  margin-top: 80px;
+  align-items: center;
+  justify-content: center;
 }
 
-.ftItems_title {
-  font-size: 1.1em;
-  color: hsl(218, 10%, 50%);
+.footerCol {
+  color : marketBlack;
+  padding: 3rem 8rem 3rem 8rem;
+  box-sizing : border-box;
+  text-align: left;
 }
 
-.ftItems_sub {
-  font-size: 1.0em;
-  color: hsl(218, 10%, 75%);
-}
-
-.copyright {
-  margin-top: 50px;
-  color: hsl(218, 10%, 75%);
-  font-size: 16px;
-  text-align: center;
-  font-family: grap, sans-serif;
+.content {
+  color: marketBlack;
+  font-style: noraml;
+  font-size: 0.8em;
 }
