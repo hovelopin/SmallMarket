@@ -11,6 +11,24 @@
   margin-left: 1.2rem;
 }
 
+.empty {
+  font-size: 1em;
+  margin-left: 1.4rem;
+}
+
+.empty > a {
+  margin-left: 1.2rem;
+  text-decoration: none;
+  color: marketBlack;
+  font-weight: bold;
+}
+
+.empty > a:hover {
+  cursor: pointer;
+  color: marketTeamOrange;
+  transition: 0.5s;
+}
+
 .item {
   flex: 0.7;
   padding: 1rem;

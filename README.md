@@ -19,8 +19,8 @@
 
 ## TODO
 ```
-Cart Function
 Pay
+Navbar Function
 Item list
 ```
 
@@ -29,8 +29,9 @@ Item list
 Main ✔
 Footer ✔
 Navbar ✔
-Login ✔
-Register ✔
+Login ( Authentication Redux, action ) ✔
+Register ( Authentication Redux, action ) ✔
+Cart Function ( Cart Redux, action ) ✔
 Cart design ✔
 Item List design ✔
 Item detail design ✔
