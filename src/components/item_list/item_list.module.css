@@ -33,10 +33,6 @@
     background-color: transparent;
 }
 
-.shopItemList{
-    clear: both;
-}
-
 .moveTop{
     font-size: 20px;
     position: fixed;
