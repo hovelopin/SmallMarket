@@ -49,7 +49,7 @@ import Pagination from "react-js-pagination";
         <ul className={styles.Pagination}>
           <Pagination
             activePage={page}
-            itemsCountPerPage={10}
+            itemsCountPerPage={30}
             totalItemsCount={450}
             pageRangeDisplayed={5}
             prevPageText={"‹"}
