@@ -1,6 +1,6 @@
 // npm install react-icons --save
 // yarn add react-icons
-import { HiPlus, HiMinus } from 'react-icons/hi';
+// import { HiPlus, HiMinus } from 'react-icons/hi';
 import styles from './product_detail.module.css';
 
 function ProductDetail() {
@@ -27,17 +27,13 @@ function ProductDetail() {
           <div className={(styles.productQuantity, styles.productItemsList)}>
             <span className={styles.QuantityMain}>구매수량</span>
             <span className={styles.QuantitySub}>
-              <button className={styles.btQuantity}>
-                <HiMinus />
-              </button>
+              <button className={styles.btQuantity}>{/* <HiMinus /> */}</button>
               <input
                 type="number"
                 className={styles.inputQuantity}
                 value="1"
               ></input>
-              <button className={styles.btQuantity}>
-                <HiPlus />
-              </button>
+              <button className={styles.btQuantity}>{/* <HiPlus /> */}</button>
             </span>
           </div>
           <div className={(styles.productTotalPrice, styles.productItemsList)}>
