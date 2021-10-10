@@ -103,6 +103,7 @@ const Pay = () => {
             </div>
             {isDaumPost ? <DaumPostcode onComplete={handleComplete} /> : null}
             <div className={styles.delivery_full_address}>{fullAddress}</div>
+            {/* 값을 입력하면 제대로 들어가는데 입력 하기 전에 대칭이 안맞음 */}
             <input
               className={styles.delivery_other_address}
               type="text"

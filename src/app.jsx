@@ -5,7 +5,7 @@ import Navbar from './components/navbar/navbar';
 import Main from './components/main/main';
 import Footer from './components/footer/footer';
 import Login from './components/login/login';
-import Register from './components/login/register'
+import Register from './components/login/register';
 import Cart from './components/cart/cart';
 import Shop from './components/item_list/item_list';
 import Item from './components/item/item';
@@ -18,6 +18,7 @@ function App() {
     <div className={styles.app}>
       {/* <MainCover /> */}
       <Router>
+<<<<<<< HEAD
         <Navbar />
         <Switch>
           <Route exact path='/' component={Main} />
@@ -30,6 +31,22 @@ function App() {
           <Route exact path='/product' component={ProductDetail} />
         </Switch>
         <Footer />
+=======
+        <Switch>
+          <Route exact path="/register" component={Register} />
+          <Route exact path="/login" component={Login} />
+          <>
+            <Navbar />
+            <Route exact path="/" component={Main} />
+            <Route exact path="/shop" component={Shop} />
+            <Route exact path="/item" component={Item} />
+            <Route exact path="/itemlist" component={ItemList} />
+            <Route exact path="/cart" component={Cart} />
+            <Route exact path="/product" component={ProductDetail} />
+            <Footer />
+          </>
+        </Switch>
+>>>>>>> 08ac35a551a5517a8f4985ab9663eabfddd76684
       </Router>
     </div>
   );
