@@ -11,7 +11,7 @@ import {
 
 const baseURL = process.env.REACT_APP_BASE_URL;
 
-export const getItems = (itemId) => async (dispatch) => {
+export const getItems = (itemId) => async (dispatch) => { 
   const url = baseURL + '/items/list';
   try {
     dispatch({ type: GET_ITEMS });

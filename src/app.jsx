@@ -12,6 +12,7 @@ import Item from './components/item/item';
 import ItemList from './components/item_list/item_list';
 import ProductDetail from './components/product/product_detail';
 import MainCover from './main_cover/main_cover';
+import BoardContainer from './components/board_container/board_container';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route exact path='/items' component={ItemList} />
           <Route exact path='/cart' component={Cart} />
           <Route exact path='/product' component={ProductDetail} />
+          <Route exact path='/board' component={BoardContainer} />
         </Switch>
         <Footer />
       </Router>

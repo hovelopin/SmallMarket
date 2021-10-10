@@ -7,42 +7,39 @@ function Main() {
       <header className={styles.main}>
         <h1 className={styles.title}>SMALL MARKET</h1>
         <img className={styles.mainImg} src="img/1-index.jpg" alt='main' />
+        <button className={styles.button}>GO TO SHOP</button>
       </header>
-        <div className={styles.indexWrap}>
-          <ul className={styles.indexContainer}>
-            <li className={styles.indexItems}>
-              <img className={styles.indexItems_01} src="img/pix01.jpeg" alt='index05' />
-              <h3>The MarketPlace</h3>
-              <h5>Buy directly from artisans all across Morocco</h5>
-            </li>
-            <li className={styles.indexItems}>
-              <img className={styles.indexItems_01} src="img/pix01.jpeg" alt='index06' />
-              <h3>The MarketPlace</h3>
-              <h5>Buy directly from artisans all across Morocco</h5>
-            </li>
-            <li className={styles.indexItems}>
-              <img className={styles.indexItems_01} src="img/pix01.jpeg" alt='index07' />
-              <h3>The MarketPlace</h3>
-              <h5>Buy directly from artisans all across Morocco</h5>
-            </li>
-          </ul>
-          <hr className={styles.indexHr}></hr>
-          
-          <h1 className={styles.indexH1}>MD's Pick</h1>
-          <ul className={styles.mdContainer}>
-            <li className={styles.mdItems}>
-              <img className={styles.mdItems_01} src="img/pix01.jpeg" alt='index08' />
-              <h3>The MarketPlace</h3>
-              <h5>Buy directly from artisans all across Morocco</h5>
-            </li>
-            <li className={styles.mdItems}>
-              <img className={styles.mdItems_01} src="img/pix01.jpeg" alt='index09' />
-              <h3>The MarketPlace</h3>
-              <h5>Buy directly from artisans all across Morocco</h5>
-            </li>
-          </ul>
-          {/* <img src="img/pix01.jpeg" width="100%" height="400px"></img> */}
-        </div>
+      <article className={styles.indexWrap}>
+        <section className={styles.indexContainer}>
+          <div className={styles.indexItems}>
+            <img className={styles.itemColImg} src="img/2-index.jpg" alt='photo1' />
+            <h3>The Most Fresh Product</h3>
+            <h5>Buy directly from artisans all across Morocco</h5>
+          </div>
+          <div className={styles.indexItems}>
+            <img className={styles.itemColImg} src="img/3-index.jpg" alt='photo2' />
+            <h3>The MarketPlace</h3>
+            <h5>Buy directly from artisans all across Morocco</h5>
+          </div>
+          <div className={styles.indexItems}>
+            <img className={styles.itemColImg} src="img/4-index.jpg" alt='photo3' />
+            <h3>The MarketPlace</h3>
+            <h5>Buy directly from artisans all across Morocco</h5>
+          </div>
+        </section>
+        <section className={styles.sectionContainer}>
+          <div className={styles.sectionCol}>
+            <img className={styles.sectionImg} src="img/5-index.jpg" alt='photo4' />
+            <h3>The MarketPlace</h3>
+            <h5>Buy directly from artisans all across Morocco</h5>
+          </div>
+          <div className={styles.sectionCol}>
+            <img className={styles.sectionImg} src="img/6-index.jpg" alt='photo5' />
+            <h3>The MarketPlace</h3>
+            <h5>Buy directly from artisans all across Morocco</h5>
+          </div>
+        </section>
+      </article>
     </section>
   );
 }

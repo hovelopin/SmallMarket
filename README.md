@@ -20,18 +20,18 @@
 ## TODO
 ```
 Pay
-Navbar Function
-Item list
+Board Redux
 ```
 
 ## Now Testing
 ```
-Product action & redux
+Board Redux
 ```
 
 ## Complete
 ```
 Main ✔
+Main Design ✔
 Main Cover ✔
 Footer ✔
 Navbar ✔

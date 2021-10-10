@@ -34,9 +34,9 @@ const Navbar = ({ click }) => {
             </span>
           </Link>
         </li>
-        <li>
-          <Link to="/">
-            <span className={styles.title}>HOME</span>
+        <li className={styles.imgContainer}>
+          <Link to='/'>
+            <img className={styles.logo} src='/img/logo.png' alt="logo" />
           </Link>
         </li>
         <li>
