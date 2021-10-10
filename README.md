@@ -21,7 +21,13 @@ npm start
 >
 > user model & user repository & user controller
 >
-> signup
+> register & login
+>
+> item schema
+>
+> item model & item repository & item controller
+>
+> get all items & get item detail
 
 ## TODO
 ```
@@ -32,6 +38,7 @@ Board
 ```
 Login ✔
 SignUp ✔
+Item ✔
 ```
 
 ### npm start
