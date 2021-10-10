@@ -38,7 +38,7 @@ const Navbar = ({ click }) => {
         <li>
           <Link to="/items">
             <span className={styles.title}>
-              <i className="fas fa-shopping-bag"></i> NEW ITEM
+              <i className="fas fa-shopping-bag"></i> NEW
             </span>
           </Link>
         </li>
