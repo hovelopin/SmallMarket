@@ -3,12 +3,15 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 const Navbar = ({ click }) => {
-  const cart = useSelector(state => state.cart);
+  const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
 
   const getTotalCartItemCount = () => {
-    return cartItems.reduce((quantity, item) => quantity + Number(item.quantity), 0);
-  }
+    return cartItems.reduce(
+      (quantity, item) => quantity + Number(item.quantity),
+      0
+    );
+  };
 
   return (
     <nav className={styles.navbar}>
@@ -26,7 +29,8 @@ const Navbar = ({ click }) => {
         <li>
           <Link to="/cart">
             <span className={styles.title}>
-            <i className="fas fa-shopping-cart"></i> CART {getTotalCartItemCount()}
+              <i className="fas fa-shopping-cart"></i> CART{' '}
+              {getTotalCartItemCount()}
             </span>
           </Link>
         </li>
@@ -55,6 +59,6 @@ const Navbar = ({ click }) => {
       </ul>
     </nav>
   );
-}
+};
 
 export default Navbar;

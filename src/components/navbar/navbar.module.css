@@ -14,6 +14,8 @@
   display: flex;
   list-style: none;
   align-items: center;
+  /* 경계가 없는거 같아서 나중에 box-shadow 넣어서 수정함! */
+  /* box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2); */
 }
 
 .navbarList > li {
