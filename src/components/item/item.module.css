@@ -1,42 +1,64 @@
-.itemBox{
+@value marketWhite, marketBlack, marketTeamOrange, marketTeamLightOrange from '../../common/colors.css';
+
+.itemBox {
     width: 350px;
-    /*
-    가로로 정렬을 해야하는데 footer위치까지 변경되는 문제 발생.
-    */
-    float: left;
-    margin: 30px 60px 80px 40px;
-    
+    display: flex;
+    padding: 1rem;
+    background: marketWhite;
+    margin: 8px auto;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 10%;
+    /* border: 2px solid marketTeamOrange; */
+    margin: 0.8rem;
 }
 
-.imgSet{
-    width: 350px;
-    height: 350px;
-    object-fit: cover;
+.itemBox:hover {
+    cursor: pointer;
 }
 
-.itemTitle{
+.name {
+    margin-top: 0.3em;
+    text-transform: uppercase;
+}
+
+.imgSet {
+    height: 170px;
+    border-radius: 10%;
+}
+
+.itemPrice {
+    margin-top: 0.3em;
+    font-size: 0.8rem;
+}
+
+.itemQuantity {
+    margin-top: 0.3em;
+    font-size: 0.8rem;
+}
+
+.description {
+    margin-top: 0.3em;
+    font-size: 0.9rem;
+}
+
+.button {
+    margin-top: 1em;
+    display: block;
+    width: 100%;
+    text-decoration: none;
+    text-align: center;
+    background-color: transparent;
+    font-size: 1.2rem;
+    padding: 0.2em;
     font-weight: bold;
-    color: black;
-    margin-top: 20px;
-    font-size: 25px;
+    color: marketTeamOrange;
+    border: 2px solid marketBlack;
 }
 
-.itemPrice{
-    font-weight: bold;
-    color: black;
-    margin-top: 10px;
-    font-size: 20px;
-}
-
-.itemExplanation{
-    font-weight: normal;
-    color: black;
-    margin-top: 30px;
-    font-size: 15px;
-    line-height: 130%;
-}
-
-
-.clear{
-    clear: both;
+.button:hover {
+    cursor: pointer;
+    color: marketWhite;
+    background-color: marketTeamLightOrange;
+    transition: 2s;
 }

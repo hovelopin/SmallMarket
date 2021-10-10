@@ -1,6 +1,6 @@
 import * as actionTypes from '../actionTypes/item/itemActionTypes';
 
-export const getItemReducer = ( state = { items: [] }, action ) => {
+export const getItemReducer = ( state = { items: [] }, action )  =>   {
   switch(action.type) {
     case actionTypes.GET_ITEMS:
       return {

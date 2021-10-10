@@ -18,7 +18,6 @@ function App() {
     <div className={styles.app}>
       {/* <MainCover /> */}
       <Router>
-<<<<<<< HEAD
         <Navbar />
         <Switch>
           <Route exact path='/' component={Main} />
@@ -31,7 +30,6 @@ function App() {
           <Route exact path='/product' component={ProductDetail} />
         </Switch>
         <Footer />
-=======
         <Switch>
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
@@ -46,7 +44,6 @@ function App() {
             <Footer />
           </>
         </Switch>
->>>>>>> 08ac35a551a5517a8f4985ab9663eabfddd76684
       </Router>
     </div>
   );

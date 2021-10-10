@@ -20,7 +20,7 @@ export const getItems = (itemId) => async (dispatch) => {
       const { data } = await axios.get(url);
       dispatch({
         type: GET_ITEMS_SUCCESS,
-        payload: data,
+        payload: data.items,
       });
     } // TODO: add product id select
   } catch(error) {
@@ -44,7 +44,7 @@ export const getItemDetails = (itemId) => async(dispatch) => {
     dispatch(
       {
         type: GET_ITEMS_DETAILS_SUCCESS,
-        payload: data,
+        payload: data.items,
       }
     );
   } catch(error) {

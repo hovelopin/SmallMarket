@@ -8,6 +8,7 @@
 @value marketShadow: rgba(217, 217, 217, 1);
 @value marketColorful: linear-gradient(166deg, rgba(237, 193, 211, 1) 0%,rgba(212, 149, 161, 1) 60%, rgba(162, 63, 63, 1) 100%, rgba(127, 188, 242, 1) 100%);
 @value marketWheat: wheat;
+@value marketInput: #f7f7f7;
 @value marketShadow: rgba(217, 217, 217, 1);
 
 /* our color */
