@@ -11,24 +11,26 @@ import Shop from './components/item_list/item_list';
 import Item from './components/item/item';
 import ItemList from './components/item_list/item_list';
 import ProductDetail from './components/product/product_detail';
+import MainCover from './main_cover/main_cover';
 
 function App() {
   return (
     <div className={styles.app}>
-    <Router>
-      <Navbar />
-      <Switch>
-        <Route exact path='/' component={Main} />
-        <Route exact path='/register' component={Register} />
-        <Route exact path='/login' component={Login} />
-        <Route exact path='/shop' component={Shop} />
-        <Route exact path='/item' component={Item} />
-        <Route exact path='/itemlist' component={ItemList} />
-        <Route exact path='/cart' component={Cart} />
-        <Route exact path='/product' component={ProductDetail} />
-      </Switch>
-      <Footer />
-    </Router>
+      {/* <MainCover /> */}
+      <Router>
+        <Navbar />
+        <Switch>
+          <Route exact path='/main' component={Main} />
+          <Route exact path='/register' component={Register} />
+          <Route exact path='/login' component={Login} />
+          <Route exact path='/shop' component={Shop} />
+          <Route exact path='/item' component={Item} />
+          <Route exact path='/itemlist' component={ItemList} />
+          <Route exact path='/cart' component={Cart} />
+          <Route exact path='/product' component={ProductDetail} />
+        </Switch>
+        <Footer />
+      </Router>
     </div>
   );
 }

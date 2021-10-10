@@ -27,6 +27,7 @@ Item list
 ## Complete
 ```
 Main ✔
+Main Cover ✔
 Footer ✔
 Navbar ✔
 Login ( Authentication Redux, action ) ✔
