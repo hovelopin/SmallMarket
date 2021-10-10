@@ -16,8 +16,8 @@ import MainCover from './main_cover/main_cover';
 function App() {
   return (
     <div className={styles.app}>
-      {/* <MainCover /> */}
-      <Router>
+      <MainCover />
+      {/* <Router>
         <Navbar />
         <Switch>
           <Route exact path='/' component={Main} />
@@ -30,7 +30,7 @@ function App() {
           <Route exact path='/product' component={ProductDetail} />
         </Switch>
         <Footer />
-      </Router>
+      </Router> */}
     </div>
   );
 }
