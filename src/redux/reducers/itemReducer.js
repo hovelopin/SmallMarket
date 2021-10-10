@@ -1,4 +1,4 @@
-import * as actionTypes from '../actionTypes/product/productActionTypes';
+import * as actionTypes from '../actionTypes/item/itemActionTypes';
 
 export const getItemReducer = ( state = { items: [] }, action ) => {
   switch(action.type) {

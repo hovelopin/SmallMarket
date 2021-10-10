@@ -1,17 +1,26 @@
 // npm i react-js-pagination
 //https://cotak.tistory.com/112#%F-%-F%A-%-B%--%EA%B-%B-%EB%A-%A- 해당자료 확인후 js변경 추천
 
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import styles from './item_list.module.css';
 import './paging.css';
 import Item from "../item/item";
 import Pagination from "react-js-pagination";
-
+import { useDispatch, useSelector } from 'react-redux';
+import { getItems as itemList } from '../../redux/action/itemAction';
 
   const ItemList = () => { 
     const [page, setPage] = useState(1); 
     const handlePageChange = (page) => { setPage(page); };
 
+    const dispatch = useDispatch();
+
+    const getItems = useSelector(state => state.getItems);
+    const { items, error } = getItems;
+
+    useEffect(() => {
+      dispatch(itemList());
+    }, []);
 
     return (
       <>
@@ -39,9 +48,16 @@ import Pagination from "react-js-pagination";
             <button>높은 가격순</button>
           </div>
           <div className={styles.clear}>
-            <Item></Item>
-            <Item></Item>
-            <Item></Item>
+            {error ? <h1>{error}</h1> : (
+              items.map((item) => <Item 
+                key={item.id}
+                name={item.name}
+                quantity={item.quantity}
+                price={item.price}
+                id={item.id}
+                img={item.img} 
+              />)
+            )}
           </div>
           <div className={styles.clear}></div>
         </div>
