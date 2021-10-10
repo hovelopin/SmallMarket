@@ -24,6 +24,11 @@ Navbar Function
 Item list
 ```
 
+## Now Testing
+```
+Product action & redux
+```
+
 ## Complete
 ```
 Main ✔
