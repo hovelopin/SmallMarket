@@ -30,20 +30,6 @@ function App() {
           <Route exact path='/product' component={ProductDetail} />
         </Switch>
         <Footer />
-        <Switch>
-          <Route exact path="/register" component={Register} />
-          <Route exact path="/login" component={Login} />
-          <>
-            <Navbar />
-            <Route exact path="/" component={Main} />
-            <Route exact path="/shop" component={Shop} />
-            <Route exact path="/item" component={Item} />
-            <Route exact path="/itemlist" component={ItemList} />
-            <Route exact path="/cart" component={Cart} />
-            <Route exact path="/product" component={ProductDetail} />
-            <Footer />
-          </>
-        </Switch>
       </Router>
     </div>
   );
