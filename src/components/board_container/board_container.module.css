@@ -1,6 +1,30 @@
+@value marketWhite, marketBlack, marketInput, marketTeamOrange, marketTeamYellow, marketTeamLightOrange from '../../common/colors.css';
+
 .title {
   padding: 4em 0 0 0;
   text-align: center;
+}
+
+.postButton {
+  position: absolute;
+  right: 9rem;
+  top: 16rem;
+  width: 6rem;
+  height: 2.5rem;
+  border: 2px solid marketTeamOrange;
+  border-radius: 18px;
+  background-color: transparent;
+  font-weight: bold;
+  color: marketTeamOrange;
+  transition: transform 250ms ease-in;
+}
+
+.postButton:hover {
+  cursor: pointer;
+  color: marketWhite;
+  background-color: marketTeamYellow;
+  transition: 1.2s;
+  transform: scale(1.2);
 }
 
 .container {

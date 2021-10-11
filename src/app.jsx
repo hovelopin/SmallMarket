@@ -13,7 +13,11 @@ import ItemList from './components/item_list/item_list';
 import ProductDetail from './components/product/product_detail';
 import MainCover from './main_cover/main_cover';
 import BoardContainer from './components/board_container/board_container';
+<<<<<<< HEAD
 import Contact from './components/contact/contact';
+=======
+import Pay from './components/pay/pay';
+>>>>>>> 944dde7cf183b79253213c6c29067be869a16ba1
 
 function App() {
   return (
@@ -23,6 +27,7 @@ function App() {
         <Switch>
           <Route exact path="/maincover" component={MainCover} />
           <>
+<<<<<<< HEAD
           <Navbar />
           <Route exact path="/" component={Main} />
           <Route exact path="/register" component={Register} />
@@ -34,6 +39,19 @@ function App() {
           <Route exact path="/product" component={ProductDetail} />
           <Route exact path="/board" component={BoardContainer} />
           <Route exact path="/contact" component={Contact} />
+=======
+            <Navbar />
+            <Route exact path="/" component={Main} />
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/shop" component={Shop} />
+            <Route exact path="/items/detail" component={Item} />
+            <Route exact path="/items" component={ItemList} />
+            <Route exact path="/cart" component={Cart} />
+            <Route exact path="/product" component={ProductDetail} />
+            <Route exact path="/board" component={BoardContainer} />
+            <Route exact path="/pay" component={Pay} />
+>>>>>>> 944dde7cf183b79253213c6c29067be869a16ba1
           </>
         </Switch>
         <Footer />

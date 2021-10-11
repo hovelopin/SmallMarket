@@ -1,10 +1,10 @@
-import React, { useState } from 'react'; 
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { registerRequest } from '../../redux/action/authAction';
 import styles from './register.module.css';
 import { Link } from 'react-router-dom';
 
-function Register () {
+function Register() {
   const dispatch = useDispatch();
   const [username, setUserName] = useState('');
   const [password, setPassword] = useState('');
@@ -14,40 +14,43 @@ function Register () {
 
   const userNameChangeHandler = (event) => {
     setUserName(event.target.value);
-  }
+  };
 
   const passwordChangeHandler = (event) => {
     setPassword(event.target.value);
-  }
+  };
 
   const checkPasswordChangeHandler = (event) => {
     setCheckPassword(event.target.value);
-  }
+  };
 
   const nameChangeHandler = (event) => {
     setName(event.target.value);
-  }
+  };
 
   const emailChangeHandler = (event) => {
     setEmail(event.target.value);
-  }
+  };
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
-    if(checkPasswrod === password) {
+    if (checkPasswrod === password) {
       dispatch(registerRequest(username, password, email, name));
     } else {
-      alert("Not correspond your paossword");
+      alert('Not correspond your paossword');
     }
-  }
+  };
 
   return (
     <form>
-      <Link to='/'>
-      <div>
-        <img className={styles.intro}
-        src="/img/reg_smallmarket.png" alt="reg_intro" />
-      </div>
+      <Link to="/">
+        <div>
+          <img
+            className={styles.intro}
+            src="/img/reg_smallmarket.png"
+            alt="reg_intro"
+          />
+        </div>
       </Link>
       <div className={styles.wapper} onSubmit={onSubmitHandler}>
         <div className={styles.content}>
@@ -65,6 +68,7 @@ function Register () {
             <h3>PASSWORD</h3>
             <span className={styles.box_id}>
               <input
+                type="password"
                 className={styles.int}
                 placeholder="Enter password"
                 onChange={passwordChangeHandler}
@@ -75,6 +79,7 @@ function Register () {
             <h3>CONFIRM PASSWORD</h3>
             <span className={styles.box_id}>
               <input
+                type="password"
                 className={styles.int}
                 placeholder="Confirm password"
                 onChange={checkPasswordChangeHandler}

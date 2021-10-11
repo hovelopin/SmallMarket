@@ -1,4 +1,4 @@
-@value marketWhite, marketBlack, marketInput, marketTeamOrange, marketTeamLightOrange from '../../common/colors.css';
+@value marketWhite, marketBlack, marketInput, marketGrey, marketTeamOrange, marketTeamLightOrange from '../../common/colors.css';
 
 .container {
     max-width: 1500px;
@@ -34,7 +34,7 @@
     font-family: 'Noto Sans';
     font-weight: 400;
     font-size: 12px;
-    color: #666;
+    color: marketGrey;
     line-height: 16px;
     outline: none;
 }

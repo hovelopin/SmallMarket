@@ -18,12 +18,18 @@
 
 .title {
   color: marketBlack;
-  height: 20%;
+  height: 30%;
   display: flex;
   justify-content: center;
   align-items: center;
   border-bottom: 2px solid marketBlack;
-  font-weight: 600;
+}
+
+.author {
+  margin-left: 1.1rem;
+  display: flex;
+  font-size: 0.6em;
+  border-bottom: 1px solid marketBlack;
 }
 
 .body {
