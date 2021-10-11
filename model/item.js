@@ -8,7 +8,7 @@ export const Item = sequelize.define( // create item schema
   {
     id: { // auto increament true, PK
       type: DataTypes.INTEGER,
-      autoIncrement: true,
+      autoIncrement: true,  
       allowNull: false,
       primaryKey: true,
     },

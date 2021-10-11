@@ -34,11 +34,18 @@ npm start
 Board
 ```
 
+## Test
+```
+Board API
+```
+
 ## Complete
 ```
 Login ✔
 SignUp ✔
 Item ✔
+Board Model ✔ 
+Board Create ✔
 ```
 
 ### npm start

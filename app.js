@@ -6,6 +6,7 @@ import { config } from './config.js';
 import { sequelize } from './database/database.js'; // ORM
 import userRouter from './router/userValidateRouter.js';
 import itemRouter from './router/itemRouter.js';
+import questionRouter from './router/questionRouter.js';
 
 const app = express();
 const corsOptions = {
@@ -22,6 +23,7 @@ app.use(cors(corsOptions));
 // router
 app.use('/user', userRouter);
 app.use('/items', itemRouter);
+app.use('/board', questionRouter);
 
 app.use((error, request, response, next) => { // catch server error
     console.error(error);
