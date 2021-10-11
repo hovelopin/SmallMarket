@@ -19,8 +19,8 @@ import Pay from './components/pay/pay';
 function App() {
   return (
     <div className={styles.app}>
-     {/* <MainCover /> */}
-     <Router>
+    {/* <MainCover /> */}
+      <Router>
         <Switch>
           <Route exact path="/" component={MainCover} />
           <>
