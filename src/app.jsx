@@ -19,13 +19,13 @@ import Pay from './components/pay/pay';
 function App() {
   return (
     <div className={styles.app}>
-      {/* <MainCover /> */}
-      <Router>
+     {/* <MainCover /> */}
+     <Router>
         <Switch>
-          <Route exact path="/maincover" component={MainCover} />
+          <Route exact path="/" component={MainCover} />
           <>
           <Navbar />
-          <Route exact path="/" component={Main} />
+          <Route exact path="/main" component={Main} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/shop" component={Shop} />
@@ -35,20 +35,10 @@ function App() {
           <Route exact path="/product" component={ProductDetail} />
           <Route exact path="/board" component={BoardContainer} />
           <Route exact path="/contact" component={Contact} />
-            <Navbar />
-            <Route exact path="/" component={Main} />
-            <Route exact path="/register" component={Register} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/shop" component={Shop} />
-            <Route exact path="/items/detail" component={Item} />
-            <Route exact path="/items" component={ItemList} />
-            <Route exact path="/cart" component={Cart} />
-            <Route exact path="/product" component={ProductDetail} />
-            <Route exact path="/board" component={BoardContainer} />
-            <Route exact path="/pay" component={Pay} />
+          <Route exact path="/pay" component={Pay} />
+          <Footer />
           </>
         </Switch>
-        <Footer />
       </Router>
     </div>
   );
