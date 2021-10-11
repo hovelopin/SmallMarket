@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import DaumPostcode from 'react-daum-postcode';
 import styles from './pay.module.css';
 
@@ -6,7 +6,51 @@ const postcodeStyle = {
   width: 500,
 };
 
-const Pay = () => {
+const main = 'http://localhost:3000/main';
+
+const Pay = (effect, deps) => {
+  // 아임포트 API
+  useEffect(() => {
+    const jquery = document.createElement('script');
+    jquery.src = 'https://code.jquery.com/jquery-1.12.4.min.js';
+    const iamport = document.createElement('script');
+    iamport.src = 'https://cdn.iamport.kr/js/iamport.payment-1.1.7.js';
+
+    document.head.appendChild(jquery);
+    document.head.appendChild(iamport);
+    return () => {
+      document.head.removeChild(jquery);
+      document.head.removeChild(iamport);
+    };
+  }, []);
+
+  const onClickPayment = () => {
+    const { IMP } = window;
+    IMP.init('imp36622352');
+
+    //결제
+    const data = {
+      pg: 'html5_inicis', // 필수
+      pay_method: 'card', // 수단 (필수)
+      name: '이름을 입력해 주세용~', //주문명 (필수)
+      amount: 64900, // 금액(필수)
+    };
+
+    IMP.request_pay(data, callback);
+  };
+
+  const callback = (response) => {
+    const { success, error_msg } = response;
+
+    if (success) {
+      alert('결제 성공');
+      window.location.href = main;
+    } else {
+      alert(`결제 실패 : ${error_msg}`);
+    }
+  };
+
+  //다음 API
   const [fullAddress, setFullAddress] = useState();
   const [zoneCode, setZoneCode] = useState();
   const [isDaumPost, setIsDaumPost] = useState(false);
@@ -126,7 +170,11 @@ const Pay = () => {
           <h2 className={styles.pay_order_title}>결제</h2>
         </div>
         <div className={styles.payment_wrap}>
-          <button type="button" className={styles.btn_payment}>
+          <button
+            type="button"
+            className={styles.btn_payment}
+            onClick={onClickPayment}
+          >
             <span>결제 하기</span>
           </button>
         </div>

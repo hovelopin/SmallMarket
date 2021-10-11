@@ -1,26 +1,28 @@
 // npm i react-js-pagination
 //https://cotak.tistory.com/112#%F-%-F%A-%-B%--%EA%B-%B-%EB%A-%A- 해당자료 확인후 js변경 추천
 
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from 'react';
 import styles from './item_list.module.css';
 import './paging.css';
-import Pagination from "react-js-pagination";
+import Pagination from 'react-js-pagination';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { getItems as itemList } from '../../redux/action/itemAction';
-import Item from "../item/item";
+import Item from '../item/item';
 
 const ItemList = () => {
-  const [page, setPage] = useState(1); 
-  const handlePageChange = (page) => { setPage(page); };
+  const [page, setPage] = useState(1);
+  const handlePageChange = (page) => {
+    setPage(page);
+  };
   const dispatch = useDispatch();
-    const getItems = useSelector(state => state.getItems);
-    const { items, error } = getItems;
+  const getItems = useSelector((state) => state.getItems);
+  const { items, error } = getItems;
 
-    useEffect(() => {
-      dispatch(itemList());
-      setCount(items.length);
-    }, [dispatch]);
+  useEffect(() => {
+    dispatch(itemList());
+    // setCount(items.length);
+  }, [dispatch]);
 
   return (
     <section className={styles.container}>
@@ -63,12 +65,12 @@ const ItemList = () => {
           itemsCountPerPage={6}
           totalItemsCount={450}
           pageRangeDisplayed={5}
-          prevPageText={"‹"}
-          nextPageText={"›"}
+          prevPageText={'‹'}
+          nextPageText={'›'}
           onChange={handlePageChange}
         />
       </ul>
     </section>
   );
-}
+};
 export default ItemList;
