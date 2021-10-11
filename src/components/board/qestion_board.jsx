@@ -6,6 +6,9 @@ const QuestionBoard = () => {
     <div className={styles.post}>
         <div className={styles.title}>
           <h1>Title</h1>
+          <div className={styles.author}>
+            <p>Author</p>
+          </div>
         </div>
         <div className={styles.body}>
           <p>Description</p>
