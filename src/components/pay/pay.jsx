@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import DaumPostcode from 'react-daum-postcode';
 import styles from './pay.module.css';
 
+const postcodeStyle = {
+  width: 500,
+};
+
 const Pay = () => {
   const [fullAddress, setFullAddress] = useState();
   const [zoneCode, setZoneCode] = useState();
@@ -91,26 +95,33 @@ const Pay = () => {
         </div>
         <div className={styles.delivery_info_wrap}>
           <div>
-            <div className={styles.delivery_zone_code}>{zoneCode}</div>
-            <div className={styles.btn_delivery_register_wrap}>
-              <button
-                type="button"
-                className={styles.btn_delivery_register}
-                onClick={handleOpenPost}
-              >
-                <span>우편번호 등록</span>
-              </button>
+            <div className={styles.delivery_zone_code}>
+              {zoneCode}
+              <div className={styles.btn_delivery_register_wrap}>
+                <button
+                  type="button"
+                  className={styles.btn_delivery_register}
+                  onClick={handleOpenPost}
+                >
+                  <span>우편번호 등록</span>
+                </button>
+              </div>
             </div>
-            {isDaumPost ? <DaumPostcode onComplete={handleComplete} /> : null}
-            <div className={styles.delivery_full_address}>{fullAddress}</div>
-            {/* 값을 입력하면 제대로 들어가는데 입력 하기 전에 대칭이 안맞음 */}
-            <input
-              className={styles.delivery_other_address}
-              type="text"
-            ></input>
+            <div className={styles.delivery_full_address}>
+              {fullAddress}
+              <input
+                className={styles.delivery_other_address}
+                type="text"
+              ></input>
+              {isDaumPost ? (
+                <DaumPostcode
+                  onComplete={handleComplete}
+                  style={postcodeStyle}
+                />
+              ) : null}
+            </div>
           </div>
         </div>
-
         <div className={styles.delivery_wrap}>
           <h2 className={styles.pay_order_title}>결제</h2>
         </div>
