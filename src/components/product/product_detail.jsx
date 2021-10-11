@@ -1,12 +1,20 @@
 // npm install react-icons --save
 // yarn add react-icons
-// import { HiPlus, HiMinus } from 'react-icons/hi';
+import { useState } from 'react';
+import { HiPlus, HiMinus } from 'react-icons/hi';
 import styles from './product_detail.module.css';
 
 function ProductDetail() {
-  return (
-    // 상단에 navbar
+  const [quantity, setQuantitiy] = useState(0);
 
+  const onIncrease = () => {
+    setQuantitiy((preQuantity) => preQuantity + 1);
+  };
+  const onDecrease = () => {
+    setQuantitiy((preQuantity) => preQuantity - 1);
+  };
+
+  return (
     <div className={styles.productWrap}>
       <div className={styles.productContainer}>
         <div className={(styles.productImg, styles.productItems)}>
@@ -18,7 +26,7 @@ function ProductDetail() {
             <span className={styles.titleSub}>간단한 설명입니다. </span>
           </div>
           <div className={(styles.productPrice, styles.productItemsList)}>
-            <span className={styles.priceSub}>000원</span>
+            <span className={styles.priceSub}>500원</span>
           </div>
           <div className={(styles.productUnit, styles.productItemsList)}>
             <span className={styles.unitMain}>판매단위</span>
@@ -27,13 +35,17 @@ function ProductDetail() {
           <div className={(styles.productQuantity, styles.productItemsList)}>
             <span className={styles.QuantityMain}>구매수량</span>
             <span className={styles.QuantitySub}>
-              <button className={styles.btQuantity}>{/* <HiMinus /> */}</button>
+              <button className={styles.btQuantity} onClick={onDecrease}>
+                <HiMinus />
+              </button>
               <input
                 type="number"
                 className={styles.inputQuantity}
-                value="1"
+                value={quantity < 0 ? 0 : quantity}
               ></input>
-              <button className={styles.btQuantity}>{/* <HiPlus /> */}</button>
+              <button className={styles.btQuantity} onClick={onIncrease}>
+                <HiPlus />
+              </button>
             </span>
           </div>
           <div className={(styles.productTotalPrice, styles.productItemsList)}>
