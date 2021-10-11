@@ -1,24 +1,15 @@
 // npm i react-js-pagination
 //https://cotak.tistory.com/112#%F-%-F%A-%-B%--%EA%B-%B-%EB%A-%A- 해당자료 확인후 js변경 추천
 
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import styles from './item_list.module.css';
 import './paging.css';
-import Item from "../item/item";
 import Pagination from "react-js-pagination";
-import { useDispatch, useSelector } from 'react-redux';
-import { getItems as itemList } from '../../redux/action/itemAction';
+import ContainerList from './item_container'
 
 const ItemList = () => {
-  const dispatch = useDispatch();
   const [page, setPage] = useState(1); 
   const handlePageChange = (page) => { setPage(page); };
-  const getItems = useSelector(state => state.getItems);
-  const { items, error } = getItems;
-
-  useEffect(() => {
-    dispatch(itemList());
-  }, [dispatch]);
 
   return (
     <section className={styles.container}>
@@ -37,21 +28,9 @@ const ItemList = () => {
       <div className={styles.moveTop}>
         <img src="/img/goTop.jpg" alt="sample01" />
       </div>
-
-        <div className={styles.item}>
-          {error ? <h1>{error}</h1> 
-            : ( 
-              items.map((item) => <Item 
-                key={item.id}
-                name={item.name}
-                quantity={item.quantity}
-                price={item.price}
-                id={item.id}
-                img={item.img} 
-            />)
-          )}
-        </div>
       
+        <ContainerList/>
+
       <ul className={styles.Pagination}>
         <Pagination
           activePage={page}
