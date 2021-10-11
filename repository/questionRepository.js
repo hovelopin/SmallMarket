@@ -50,10 +50,10 @@ export async function create(title, content, userId) {
     .then((data) => this.getById(data.dataValues.id));
 }
 
-export async function update(id, text) {
+export async function update(id, content) {
   return Question.findByPk(id, INCLUDE_USER)
     .then((question) => {
-      question.text = text;
+      question.content = content;
       return question.save();
     }
   );

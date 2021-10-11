@@ -31,12 +31,12 @@ npm start
 
 ## TODO
 ```
-Board
+API Complete
 ```
 
 ## Test
 ```
-Board API
+API Complete
 ```
 
 ## Complete
@@ -46,6 +46,9 @@ SignUp ✔
 Item ✔
 Board Model ✔ 
 Board Create ✔
+Board Read ✔
+Board Update ✔
+Board Delete ✔
 ```
 
 ### npm start
