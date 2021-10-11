@@ -13,6 +13,7 @@ import ItemList from './components/item_list/item_list';
 import ProductDetail from './components/product/product_detail';
 import MainCover from './main_cover/main_cover';
 import BoardContainer from './components/board_container/board_container';
+import Contact from './components/contact/contact';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route exact path="/cart" component={Cart} />
           <Route exact path="/product" component={ProductDetail} />
           <Route exact path="/board" component={BoardContainer} />
+          <Route exact path="/contact" component={Contact} />
           </>
         </Switch>
         <Footer />

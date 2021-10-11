@@ -1,0 +1,118 @@
+@value marketColorful, marketBlack, marketWhite, marketWheat, marketTeamOrange, marketShadow, marketTeamLightOrange from '../../common/colors.css';
+
+.container {
+    width: 100%;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+}
+
+.contactCol {
+    flex-basis: 33%;
+    margin: 2rem;
+}
+
+.aboutCol:hover {
+    cursor: pointer;
+}
+
+.maintitle {
+  font-size: 1.8em;
+  margin-left: 1.2rem;
+  
+}
+  
+
+.contact1 {
+  margin-left: 12%;
+  display: flex;
+  align-items: center;
+  /* width: 100%; */
+  border-radius: 1em;
+  margin-bottom: 0.5em;
+  padding: 0.2em 0;
+  background-color: marketTeamLightOrange;
+  box-shadow: 6px 6px 8px 0px   ;
+  max-width: 30rem;
+}
+
+.contact2 {
+    margin-left: 12%;
+    display: flex;
+    align-items: center;
+    /* width: 100%; */
+    border-radius: 1em;
+    margin-bottom: 0.5em;
+    padding: 0.2em 0;
+    background-color: marketTeamLightOrange;
+    box-shadow: 6px 6px 8px 0px   ;
+    max-width: 30rem;
+  }
+
+  .contact3 {
+    margin-left: 12%;
+    display: flex;
+    align-items: center;
+    /* width: 100%; */
+    border-radius: 1em;
+    margin-bottom: 0.5em;
+    padding: 0.2em 0;
+    background-color: marketTeamLightOrange;
+    box-shadow: 6px 6px 8px 0px   ;
+    max-width: 30rem;
+  }
+
+  .contact4 {
+    margin-left: 12%;
+    display: flex;
+    align-items: center;
+    /* width: 100%; */
+    border-radius: 1em;
+    margin-bottom: 0.5em;
+    padding: 0.2em 0;
+    background-color: marketTeamLightOrange ;
+    box-shadow: 6px 6px 8px 0px   ;
+    max-width: 30rem;
+    max-height: 15rem;
+  }
+.avatar {
+  width: 10em;
+  height: 10em;
+  padding: 1em;
+  margin-left: 0.5em;
+  margin-right: 1em;
+  border-radius: 50%;
+}
+
+.info {
+  width: 100%;
+}
+
+.name, 
+.company, 
+.title, 
+.email, 
+.message {
+  margin: 0;
+  font-size: 1rem;
+  margin-bottom: 0.2em;
+}
+
+.name {
+  font-size: 1.2rem;
+}
+
+.company {
+  margin-bottom: 1em;
+}
+
+.company::after {
+  content: '';
+  display: block;
+  width: 90%;
+  height: 2px;
+  background-color: violet;
+  transform: translateY(0.5em);
+}

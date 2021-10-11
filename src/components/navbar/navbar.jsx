@@ -22,8 +22,8 @@ const Navbar = ({ click }) => {
           </Link>
         </li>
         <li>
-          <Link to="/about">
-            <span className={styles.title}>ABOUT</span>
+          <Link to="/contact">
+            <span className={styles.title}>CONTACT</span>
           </Link>
         </li>
         <li>
