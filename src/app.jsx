@@ -30,6 +30,7 @@ function App() {
           <Route exact path='/cart' component={Cart} />
           <Route exact path='/product' component={ProductDetail} />
           <Route exact path='/board' component={BoardContainer} />
+          <Route exact path='/maincover' component={MainCover} />
         </Switch>
         <Footer />
       </Router>

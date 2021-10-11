@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { registerRequest } from '../../redux/action/authAction';
 import styles from './register.module.css';
+import { Link } from 'react-router-dom';
 
 function Register () {
   const dispatch = useDispatch();
@@ -40,62 +41,74 @@ function Register () {
     }
   }
 
-  return(
-    <form 
-      className={styles.loginWrap} 
-      onSubmit={onSubmitHandler}>
-      <div className={styles.loginIndex}>
-        <h2> 스몰마켓 </h2>
-        <h3> 회원가입 </h3>
-        <ul className={styles.regContainer}>
-          <li className={styles.regId}> 아이디 </li>
-            <input 
-              className={styles.inputRegId} 
-              placeholder="아이디를 입력해주세요."
-              onChange={userNameChangeHandler}
-            >
-            </input>
-        </ul>
-        <ul className={styles.regContainer2}>
-          <li className={styles.regPw}> 비밀번호 </li>
-            <input 
-              className={styles.inputRegPw} 
-              placeholder="비밀번호를 입력해주세요."
-              onChange={passwordChangeHandler}
-            >
-            </input>
-        </ul>
-        <ul className={styles.regContainer3}>
-          <li className={styles.regPwCheck}> 비밀번호확인 </li>
-            <input 
-              className={styles.inputPwCheck} 
-              placeholder="비밀번호를 한번 더 입력해주세요."
-              onChange={checkPasswordChangeHandler}
-            >
-            </input>
-        </ul>
-        <ul className={styles.regContainer4}>
-          <li className={styles.regEmail}> 이메일 </li>
-            <input 
-              className={styles.inputEmail} 
-              placeholder="예) sungkonghoe@skhu.ac.kr" 
-              onChange={emailChangeHandler}
-            >
-            </input>
-        </ul>
-        <ul className={styles.regContainer5}>
-          <li className={styles.regNickName}> 닉네임 </li>
-            <input 
-              className={styles.inputNickName} 
-              placeholder="닉네임을 입력해주세요."
-              onChange={nameChangeHandler}
-            >
-            </input>
-        </ul>
-        <button className={styles.btRegComplete}> 가입하기</button>
+  return (
+    <form>
+      <Link to='/'>
+      <div>
+        <img className={styles.intro}
+        src="/img/reg_smallmarket.png" alt="reg_intro" />
+      </div>
+      </Link>
+      <div className={styles.wapper} onSubmit={onSubmitHandler}>
+        <div className={styles.content}>
+          <div>
+            <h3>ID</h3>
+            <span className={styles.box_id}>
+              <input
+                className={styles.int}
+                placeholder="Enter ID"
+                onChange={userNameChangeHandler}
+              ></input>
+            </span>
+          </div>
+          <div>
+            <h3>PASSWORD</h3>
+            <span className={styles.box_id}>
+              <input
+                className={styles.int}
+                placeholder="Enter password"
+                onChange={passwordChangeHandler}
+              ></input>
+            </span>
+          </div>
+          <div>
+            <h3>CONFIRM PASSWORD</h3>
+            <span className={styles.box_id}>
+              <input
+                className={styles.int}
+                placeholder="Confirm password"
+                onChange={checkPasswordChangeHandler}
+              ></input>
+            </span>
+          </div>
+          <div>
+            <h3>E-MAIL</h3>
+            <span className={styles.box_id}>
+              <input
+                className={styles.int}
+                placeholder="ex) sungkonghoe@skhu.ac.kr"
+                onChange={emailChangeHandler}
+              ></input>
+            </span>
+          </div>
+          <div>
+            <h3>NICK NAME</h3>
+            <span className={styles.box_id}>
+              <input
+                className={styles.int}
+                placeholder="Your name in SmallMarket"
+                onChange={nameChangeHandler}
+              ></input>
+            </span>
+          </div>
+          <div className={styles.btn}>
+            <button className={styles.btnJoin}>
+              <span>Ready to Jump</span>
+            </button>
+          </div>
+        </div>
       </div>
     </form>
   );
 }
-
 export default Register;

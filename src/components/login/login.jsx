@@ -3,6 +3,8 @@ import { useDispatch } from 'react-redux';
 import { loginRequest } from '../../redux/action/authAction';
 import styles from './login.module.css';
 import { RiLockPasswordFill, RiUser3Line } from 'react-icons/ri';
+import { Link } from 'react-router-dom';
+
 
 function Login() {
   const [username, setUsername] = useState('');
@@ -24,7 +26,7 @@ function Login() {
 
   return (
     <>
-      {/* 홈링크좀 달아줘 */}
+      <Link to ='/'>
       <div className={styles.login_logo}>
         <img
           className={styles.logo_text}
@@ -32,6 +34,7 @@ function Login() {
           alt="logoText"
         ></img>
       </div>
+      </Link>
       <form className={styles.loginWrap} onSubmit={onSubmitHandler}>
         <div className={styles.loginIndex}>
           <h3> 로그인 </h3>
