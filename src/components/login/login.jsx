@@ -5,7 +5,6 @@ import styles from './login.module.css';
 import { RiLockPasswordFill, RiUser3Line } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
 
-
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -26,14 +25,14 @@ function Login() {
 
   return (
     <>
-      <Link to ='/'>
-      <div className={styles.login_logo}>
-        <img
-          className={styles.logo_text}
-          src="logo/logoText.png"
-          alt="logoText"
-        ></img>
-      </div>
+      <Link to="/">
+        <div className={styles.login_logo}>
+          <img
+            className={styles.logo_text}
+            src="/img/reg_smallmarket.png"
+            alt="logoText"
+          ></img>
+        </div>
       </Link>
       <form className={styles.loginWrap} onSubmit={onSubmitHandler}>
         <div className={styles.loginIndex}>
@@ -48,6 +47,7 @@ function Login() {
             <RiUser3Line />
           </i>
           <input
+            type="password"
             className={styles.pwInput}
             placeholder="비밀번호를 입력해주세요."
             onChange={passwordChangeHandler}
