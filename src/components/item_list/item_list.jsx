@@ -38,13 +38,6 @@ const ItemList = () => {
         <img src="/img/goTop.jpg" alt="sample01" />
       </div>
 
-      <div className={styles.items}>
-        {/* <div className={styles.orderSort}>
-          <button>추천순</button>
-          <button>신상품순</button>
-          <button>낮은 가격순</button>
-          <button>높은 가격순</button>
-        </div> */}
         <div className={styles.item}>
           {error ? <h1>{error}</h1> 
             : ( 
@@ -58,8 +51,7 @@ const ItemList = () => {
             />)
           )}
         </div>
-      </div>
-
+      
       <ul className={styles.Pagination}>
         <Pagination
           activePage={page}
