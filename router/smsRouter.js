@@ -18,9 +18,9 @@ const validateSms = [
 router.get('/', isAuth, smsController.getSmSs);
 router.get('/:id', isAuth, smsController.getSms);
 
-router.post('/', isAuth, validateTweet, smsController.createSms);
+router.post('/', isAuth, validateSms, smsController.createSms);
 
-router.put('/:id', isAuth, validateTweet, smsController.updateSms);
+router.put('/:id', isAuth, validateSms, smsController.updateSms);
 
 router.delete('/:id', isAuth, smsController.deleteSms);
 

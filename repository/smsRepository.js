@@ -1,5 +1,8 @@
 import { Sms } from '../model/sms.js';
 import { User } from '../model/user.js';
+import SQ from 'sequelize';
+
+const Sequelize = SQ.Sequelize;
 
 const INCLUDE_USER = {
   attributes: [

@@ -13,6 +13,7 @@ npm start
 - DataBase: MySQL
 - Server: webpack-dev-server (dev)
 - Token management
+- Server Socket
 
 ## ORM
 > sequelize

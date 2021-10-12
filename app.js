@@ -5,6 +5,7 @@ import helmet from 'helmet';
 import { config } from './config.js';
 import { sequelize } from './database/database.js'; // ORM
 import { initSocket } from './connect/socket.js';
+import smsRouter from './router/smsRouter.js';
 import userRouter from './router/userValidateRouter.js';
 import itemRouter from './router/itemRouter.js';
 import questionRouter from './router/questionRouter.js';
