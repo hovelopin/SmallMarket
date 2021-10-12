@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { loginRequest } from '../../redux/action/authAction';
 import styles from './login.module.css';
 import { RiLockPasswordFill, RiUser3Line } from 'react-icons/ri';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
+  const history = useHistory();
+  const user = useSelector(state => state.user);
+  const { login, error } = user;
 
   const userNameChangeHandler = (event) => {
     setUsername(event.target.value);
@@ -18,10 +21,25 @@ function Login() {
     setPassword(event.target.value);
   };
 
-  const onSubmitHandler = (event) => {
-    event.preventDefault();
+  const registerHandler = () => {
+    history.push('/register');
+  }
+
+  const onClickHandler = () => {
     dispatch(loginRequest(username, password));
   };
+
+  const onSubmitForm = (event) => { // 두번해야 동작함
+    event.preventDefault();
+    onClickHandler();
+    console.log(login);
+    console.log(error);
+    if(window.confirm('Login Success! Do you want to go shop?')) {
+      history.push('/items');
+    } else {
+      history.push('/main');
+    }
+  }
 
   return (
     <>
@@ -34,7 +52,7 @@ function Login() {
           ></img>
         </div>
       </Link>
-      <form className={styles.loginWrap} onSubmit={onSubmitHandler}>
+      <form className={styles.loginWrap} onSubmit={onSubmitForm}>
         <div className={styles.loginIndex}>
           <h3> 로그인 </h3>
           <input
@@ -55,8 +73,8 @@ function Login() {
           <i className={styles.pw_icons}>
             <RiLockPasswordFill />
           </i>
-          <button className={styles.btLogin}>로그인</button>
-          <button className={styles.btReg}>회원가입</button>
+          <button className={styles.btLogin} onClick={onClickHandler}>로그인</button>
+          <button className={styles.btReg} onClick={registerHandler}>회원가입</button>
         </div>
       </form>
     </>

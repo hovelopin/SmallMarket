@@ -1,44 +1,54 @@
 import {
   USER_LOGIN,
   REGISTER_USER,
+  REGISTER_ERROR,
+  USER_LOGIN_FAIL,
 } from '../actionTypes/auth/authActionTypes';
 import HttpClient from '../../network/httpClient';
 import AuthenticateService from '../../service/authentication';
-import TokenStorage from '../../database/token';
 
 const baseURL = process.env.REACT_APP_BASE_URL;
 const httpClient = new HttpClient(baseURL).createAxios();
-const tokenStorage = new TokenStorage();
-const authenticationService = new AuthenticateService(httpClient, tokenStorage);
+const authenticationService = new AuthenticateService(httpClient);
 
 export const registerRequest = (username, password, email, name) => async(dispatch) => {
   try {
-    const data = await authenticationService.signUp(username, password, email, name);
+    const { data } = await authenticationService.signUp(username, password, email, name);
     dispatch(
       {
         type: REGISTER_USER,
-        payload: data,
+        payload: data.token,
       }
     )
   } catch(error) {
-    console.log(error.response);
+    dispatch(
+      {
+        type: REGISTER_ERROR,
+        payload: error.response,
+      }
+    );
   }
 }
 
-export const loginRequest = (username, password) => async(dispatch) => {
+export const loginRequest = (username, password) => async (dispatch) => {
   try {
-    const data = await authenticationService.login(username, password);
+    const { data } = await authenticationService.login(username, password);
     dispatch (
       {
         type: USER_LOGIN,
-        payload: data,
+        payload: data.token,
       }
     )
   } catch(error) {
-    console.log(error.response);
+    dispatch(
+      {
+        type: USER_LOGIN_FAIL,
+        payload: error.message,
+      }
+    )
   }
 }
 
-export function logoutRequest() {
-  authenticationService.logout();
+export function logoutRequest(username) {
+  authenticationService.logout(username);
 }

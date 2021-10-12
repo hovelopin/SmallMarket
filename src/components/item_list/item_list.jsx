@@ -5,7 +5,6 @@ import React, {useState, useEffect} from "react";
 import styles from './item_list.module.css';
 import './paging.css';
 import Pagination from "react-js-pagination";
-
 import { useDispatch, useSelector } from 'react-redux';
 import { getItems as itemList } from '../../redux/action/itemAction';
 import Item from "../item/item";
@@ -14,13 +13,12 @@ const ItemList = () => {
   const [page, setPage] = useState(1); 
   const handlePageChange = (page) => { setPage(page); };
   const dispatch = useDispatch();
-    const getItems = useSelector(state => state.getItems);
-    const { items, error } = getItems;
+  const getItems = useSelector(state => state.getItems);
+  const { items, error } = getItems;
 
-    useEffect(() => {
-      dispatch(itemList());
-      setCount(items.length);
-    }, [dispatch]);
+  useEffect(() => {
+    dispatch(itemList());
+  }, [dispatch]);
 
   return (
     <section className={styles.container}>

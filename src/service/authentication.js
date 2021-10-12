@@ -1,7 +1,6 @@
 export default class AuthenticateService {
-  constructor(httpClient, tokenStorage) {
+  constructor(httpClient) {
     this.httpClient = httpClient;
-    this.tokenStorage = tokenStorage;
   }
 
   async signUp(username, password, email, name) {
@@ -13,17 +12,11 @@ export default class AuthenticateService {
         name: name,
       }
     );
-    this.tokenStorage.saveToken(data.token);
     return data;
   }
 
   async login(username, password) {
     const data = await this.httpClient.post('/user/login', { username, password });
-    this.tokenStorage.saveToken(data.token);
     return data;
-  }
-
-  async logout() {
-    this.tokenStorage.clearToken();
   }
 }

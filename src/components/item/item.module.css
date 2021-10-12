@@ -10,11 +10,13 @@
     justify-content: space-between;
     border-radius: 10%;
     /* border: 2px solid marketTeamOrange; */
+    transition: transform 250ms ease-in;
     margin: 0.8rem;
 }
 
 .itemBox:hover {
     cursor: pointer;
+    transform: scale(1.04);
 }
 
 .name {
@@ -60,5 +62,15 @@
     cursor: pointer;
     color: marketWhite;
     background-color: marketTeamLightOrange;
+    transition: 2s;
+}
+
+.button > a {
+    text-decoration: none;
+    color: marketTeamLightOrange;
+}
+
+.button > a:hover {
+    color: marketWhite;
     transition: 2s;
 }

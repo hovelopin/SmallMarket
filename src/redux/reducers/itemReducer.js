@@ -22,19 +22,22 @@ export const getItemReducer = ( state = { items: [] }, action )  =>   {
   }
 }
 
-export const getItemDetailReducer = ( state = { items: [] }, action ) => {
+export const getItemDetailReducer = ( state = { item: {} }, action ) => {
   switch(action.type) {
     case actionTypes.GET_ITEMS_DETAILS:
       return {
+        loading: true,
       }
 
     case actionTypes.GET_ITEMS_DETAILS_SUCCESS:
       return {
-        items: action.payload,
+        loading: false,
+        item: action.payload,
       }
     
     case actionTypes.GET_ITEMS_DETAILS_FAIL:
       return {
+        loading: false,
         error: action.payload,
       }
 
