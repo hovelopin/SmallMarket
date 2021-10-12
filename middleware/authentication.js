@@ -5,7 +5,9 @@ import * as userRepository from '../repository/userRepository.js';
 const AUTHENTICATION_ERROR = { message: 'Authentication Error' };
 
 export const isAuth = async (request, response, next) => {
-  const authHeader = request.get('Authorization');
+  // console.log(request.body.headers.Authorization);
+  // const authHeader = request.get('Authorization');
+  const authHeader = request.body.headers.Authorization;
 
   if(!(authHeader && authHeader.startsWith('Bearer'))) {
     return response.status(401).json(AUTHENTICATION_ERROR);

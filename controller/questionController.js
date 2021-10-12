@@ -22,7 +22,7 @@ export async function getQuestion(request, response) {
 
 export async function createQuestion(request, response) {
   const title = request.body.title;
-  const content = request.body.content
+  const content = request.body.content;
   const question = await questionRepository.create(title, content, request.userId);
   response.status(201).json(question);
 }

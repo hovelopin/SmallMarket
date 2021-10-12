@@ -5,5 +5,6 @@ const router = express.Router();
 
 router.get('/list', itemController.getAllItems);
 router.post('/detail', itemController.getItemDetails);
+router.post('/cart', itemController.addCartItem);
 
 export default router;

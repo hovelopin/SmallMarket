@@ -15,10 +15,10 @@ const corsOptions = {
     credentials: true,
 }
 
+app.use(cors(corsOptions));
 app.use(express.json()); // using json for http
 app.use(morgan('tiny'));
 app.use(helmet());
-app.use(cors(corsOptions));
 
 // router
 app.use('/user', userRouter);

@@ -19,5 +19,16 @@ export async function getItemDetails(request, response) {
     return response.status(401).json({ message: "You can't find item details..." });
   }
 
-  response.status(200).json({ item });
+  response.status(200).json(item);
+}
+
+export async function addCartItem(request, response) {
+  const { id } = request.body;
+  const item = await itemRepository.findById(id);
+
+  if(!item) {
+    return response.status(401).json({ message: "You can't find item..." });
+  }
+
+  response.status(200).json(item);
 }
