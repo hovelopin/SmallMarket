@@ -8,14 +8,13 @@ import Login from './components/login/login';
 import Register from './components/login/register';
 import Cart from './components/cart/cart';
 import Shop from './components/item_list/item_list';
-import Item from './components/item/item';
 import ItemList from './components/item_list/item_list';
 import ProductDetail from './components/product/product_detail';
 import MainCover from './main_cover/main_cover';
 import BoardContainer from './components/board_container/board_container';
 import Contact from './components/contact/contact';
 import Pay from './components/pay/pay';
-// import About from './components/about/about';
+import About from './components/about/about';
 
 function App() {
   return (
@@ -36,11 +35,8 @@ function App() {
           <Route exact path="/board" component={BoardContainer} />
           <Route exact path="/contact" component={Contact} />
           <Route exact path="/pay" component={Pay} />
-<<<<<<< HEAD
-          {/* <Route exact path="/about" component={About} /> */}
-=======
-          <Footer />
->>>>>>> 042510268ead9db5d64759a8a93fc0a672aeeba1
+          <Route exact path="/about" component={About} />
+          <Footer/>
           </>
         </Switch>
       </Router>
