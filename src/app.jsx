@@ -8,7 +8,6 @@ import Login from './components/login/login';
 import Register from './components/login/register';
 import Cart from './components/cart/cart';
 import Shop from './components/item_list/item_list';
-import Item from './components/item/item';
 import ItemList from './components/item_list/item_list';
 import ProductDetail from './components/product/product_detail';
 import MainCover from './main_cover/main_cover';

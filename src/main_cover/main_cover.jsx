@@ -7,7 +7,9 @@ const MainCover = () => {
     <section className={styles.container}>
       <nav> 
         {/* add logo */}
-        <h1 className={styles.logoTitle}>Small Market</h1>
+        <div>
+          <img src = "/img/maincover.png"/>
+        </div>
         <ul>
           <li><Link to="/about">About</Link></li>
           <li><Link to="/contact">Contact</Link></li>
