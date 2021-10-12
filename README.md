@@ -31,12 +31,13 @@ npm start
 
 ## TODO
 ```
-SNS
+SNS ( Small market sns SMS )
 ```
 
 ## Test
 ```
 API Complete
+SNS ( Small market sns SMS ) API TESTING
 ```
 
 ## Complete
