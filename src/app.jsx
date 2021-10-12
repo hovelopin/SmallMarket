@@ -15,6 +15,7 @@ import MainCover from './main_cover/main_cover';
 import BoardContainer from './components/board_container/board_container';
 import Contact from './components/contact/contact';
 import Pay from './components/pay/pay';
+// import About from './components/about/about';
 
 function App() {
   return (
@@ -35,17 +36,8 @@ function App() {
           <Route exact path="/product" component={ProductDetail} />
           <Route exact path="/board" component={BoardContainer} />
           <Route exact path="/contact" component={Contact} />
-            <Navbar />
-            <Route exact path="/" component={Main} />
-            <Route exact path="/register" component={Register} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/shop" component={Shop} />
-            <Route exact path="/items/detail" component={Item} />
-            <Route exact path="/items" component={ItemList} />
-            <Route exact path="/cart" component={Cart} />
-            <Route exact path="/product" component={ProductDetail} />
-            <Route exact path="/board" component={BoardContainer} />
-            <Route exact path="/pay" component={Pay} />
+          <Route exact path="/pay" component={Pay} />
+          {/* <Route exact path="/about" component={About} /> */}
           </>
         </Switch>
         <Footer />
