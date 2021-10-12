@@ -22,6 +22,6 @@ router.post('/', isAuth, validateSms, smsController.createSms);
 
 router.put('/:id', isAuth, validateSms, smsController.updateSms);
 
-router.delete('/:id', isAuth, smsController.deleteSms);
+// router.delete('/:id', isAuth, smsController.deleteSms);
 
 export default router;

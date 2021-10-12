@@ -1,7 +1,7 @@
 import express from 'express';
 import * as questionController from '../controller/questionController.js';
 import { body } from 'express-validator';
-import { isAuth } from '../middleware/authentication.js';
+import { isAuthQuestion } from '../middleware/authentication.js';
 import { validate } from '../middleware/validator.js';
 
 const router = express.Router();
@@ -14,11 +14,11 @@ const validateQuestion = [
   validate,
 ];
 
-router.post('/', isAuth, validateQuestion, questionController.createQuestion);
+router.post('/', isAuthQuestion, validateQuestion, questionController.createQuestion);
 
-router.put('/:id', isAuth, validateQuestion, questionController.updateQuestion);
+router.put('/:id', isAuthQuestion, validateQuestion, questionController.updateQuestion);
 
-router.delete('/:id', isAuth, questionController.deleteQuestion); 
+router.delete('/:id', isAuthQuestion, questionController.deleteQuestion); 
 
 router.get('/', questionController.getQuestions);
 router.get('/:id', questionController.getQuestion);
