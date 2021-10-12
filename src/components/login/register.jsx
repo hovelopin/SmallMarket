@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import { registerRequest } from '../../redux/action/authAction';
@@ -12,8 +12,8 @@ function Register() {
   const [checkPasswrod, setCheckPassword] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [registerFlag, setRegisterFlag] = useState(false);
   const history = useHistory();
-  const user = useSelector(state => state.user);
 
   const userNameChangeHandler = (event) => {
     setUserName(event.target.value);
@@ -35,22 +35,38 @@ function Register() {
     setEmail(event.target.value);
   };
 
+  const checkInformation = () => {
+    if(username.length < 4) {
+      alert('Username should be at least 4 characters...');
+      setRegisterFlag(false);
+    } else if(password.length < 8) {
+      alert('Password should be at least 8 characters...');
+      setRegisterFlag(false);
+    } else if(password !== checkPasswrod) {
+      alert('Please check your password...');
+      setRegisterFlag(false);
+    } else if(name.length === 0) {
+      alert('Name is missing...');
+      setRegisterFlag(false);
+    } else {
+      setRegisterFlag(true);
+    }
+
+    return registerFlag;
+  }
+
   const onSubmitHandler = (event) => {
     event.preventDefault();
-    if (checkPasswrod === password) {
+    if (checkInformation()) {
       dispatch(registerRequest(username, password, email, name));
-      const token = user.register; // tokenStorage 클래스 동작 안함
-      localStorage.setItem(username, token);
-      
-      if(token) {
-        if(window.confirm("Success Register! Do you want to Shop?")) {
-          history.push('/main');
-        } else {
-          history.push('/');
-        }
-      } 
+
+      if(window.confirm("Success Register! Do you want to Shop?")) {
+        history.push('/main');
+      } else {
+        history.push('/');
+      }
     } else {
-      alert('Not correspond your paossword');
+      alert('Check your information!');
     }
   };
 

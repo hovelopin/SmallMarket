@@ -2,7 +2,6 @@ import axios from 'axios';
 import {
   ADD_CART,
   REMOVE_CART,
-  RESET_CART,
 } from '../actionTypes/cart/cartActionTypes';
 
 const baseURL = process.env.REACT_APP_BASE_URL;

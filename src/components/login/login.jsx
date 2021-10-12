@@ -12,6 +12,9 @@ function Login() {
   const history = useHistory();
   const user = useSelector(state => state.user);
   const { login, error } = user;
+  useEffect(() => {
+    dispatch(loginRequest(username, password));
+  }, [dispatch, username, password]);
 
   const userNameChangeHandler = (event) => {
     setUsername(event.target.value);
@@ -25,19 +28,18 @@ function Login() {
     history.push('/register');
   }
 
-  const onClickHandler = () => {
-    dispatch(loginRequest(username, password));
-  };
 
-  const onSubmitForm = (event) => { // 두번해야 동작함
+  const onSubmitForm = (event) => {
+    dispatch(loginRequest(username, password));
     event.preventDefault();
-    onClickHandler();
-    console.log(login);
-    console.log(error);
-    if(window.confirm('Login Success! Do you want to go shop?')) {
-      history.push('/items');
+    if(login) {
+      if(window.confirm('Login Success! Do you want to go shop?')) {
+        history.push('/items');
+      } else {
+        history.push('/main');
+      }
     } else {
-      history.push('/main');
+      alert('Login failed...');
     }
   }
 
@@ -73,7 +75,7 @@ function Login() {
           <i className={styles.pw_icons}>
             <RiLockPasswordFill />
           </i>
-          <button className={styles.btLogin} onClick={onClickHandler}>로그인</button>
+          <button className={styles.btLogin}>로그인</button>
           <button className={styles.btReg} onClick={registerHandler}>회원가입</button>
         </div>
       </form>

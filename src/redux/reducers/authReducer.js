@@ -5,13 +5,19 @@ import {
   USER_LOGIN_FAIL
 } from '../actionTypes/auth/authActionTypes';
 
-export const authReducer = (state = {}, action) => {
+export const authReducer = (state = { user: {} }, action) => {
   switch(action.type) {
     case REGISTER_USER:
-      return { ...state, register: action.payload }
+      return { 
+        ...state, 
+        register: action.payload, 
+      }
 
     case USER_LOGIN:
-      return { ...state, login: action.payload }
+      return { 
+        ...state, 
+        login: action.payload,
+      }
 
     case REGISTER_ERROR:
       return { error: action.payload }
