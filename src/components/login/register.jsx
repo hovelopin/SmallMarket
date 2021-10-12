@@ -72,7 +72,7 @@ function Register() {
 
   return (
     <form onSubmit={onSubmitHandler}>
-      <Link to="/">
+      <Link to="/main">
         <div>
           <img
             className={styles.intro}

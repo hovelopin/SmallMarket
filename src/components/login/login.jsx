@@ -45,7 +45,7 @@ function Login() {
 
   return (
     <>
-      <Link to="/">
+      <Link to="/main">
         <div className={styles.login_logo}>
           <img
             className={styles.logo_text}
