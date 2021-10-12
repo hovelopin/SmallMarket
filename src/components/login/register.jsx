@@ -35,7 +35,7 @@ function Register() {
     setEmail(event.target.value);
   };
 
-  const checkInformation = () => {
+  const checkInformation = async () => {
     if(username.length < 4) {
       alert('Username should be at least 4 characters...');
       setRegisterFlag(false);
@@ -52,7 +52,7 @@ function Register() {
       setRegisterFlag(true);
     }
 
-    return registerFlag;
+    return await registerFlag;
   }
 
   const onSubmitHandler = (event) => {

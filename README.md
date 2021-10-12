@@ -19,14 +19,13 @@
 
 ## TODO
 ```
-Pay
-Board Redux
+Pay=
 Bug Fix ( warning )
 ```
 
 ## Now Testing
 ```
-Board Redux
+Login Register Authorization
 ```
 
 ## Complete
@@ -42,4 +41,5 @@ Cart Function ( Cart Redux, action ) ✔
 Cart design ✔
 Item List design ✔
 Item detail design ✔
+Board Post and Reads ✔
 ```

@@ -1,13 +1,15 @@
+const TOKEN = 'token';
+
 export default class TokenStorage {
-  saveToken(username, token) {
-    localStorage.setItem(username, token); 
+  saveToken(token) {
+    localStorage.setItem(TOKEN, token); 
   }
 
-  async getToken(username) { // can take await
-    return localStorage.getItem(username);
+  async getToken() { // can take await
+    return localStorage.getItem(TOKEN);
   }
 
-  clearToken(username) {
-    localStorage.clear(username);
+  clearToken() {
+    localStorage.clear(TOKEN);
   }
 }

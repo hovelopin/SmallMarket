@@ -11,7 +11,7 @@ const Navbar = ({ click }) => {
       <ul className={styles.navbarList}>
         <li>
           <Link to="/items">
-            <span className={styles.title}>SHOP</span>
+            <span className={styles.title}><i className="fas fa-shopping-bag"></i> SHOP</span>
           </Link>
         </li>
         <li>
@@ -32,13 +32,6 @@ const Navbar = ({ click }) => {
           </Link>
         </li>
         <li>
-          <Link to="/items">
-            <span className={styles.title}>
-              <i className="fas fa-shopping-bag"></i> NEW
-            </span>
-          </Link>
-        </li>
-        <li>
           <Link to="/login">
             <span className={styles.title}>LOGIN</span>
           </Link>
@@ -46,6 +39,11 @@ const Navbar = ({ click }) => {
         <li>
           <Link to="/register">
             <span className={styles.title}>REGISTER</span>
+          </Link>
+        </li>
+        <li>
+          <Link to="/board">
+            <span className={styles.title}>Q & A</span>
           </Link>
         </li>
       </ul>

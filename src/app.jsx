@@ -15,7 +15,8 @@ import MainCover from './main_cover/main_cover';
 import BoardContainer from './components/board_container/board_container';
 import Contact from './components/contact/contact';
 import Pay from './components/pay/pay';
-// import About from './components/about/about';
+import About from './components/about/about';
+import CreateQuestion from './components/board/create_question_board';
 
 function App() {
   return (
@@ -36,11 +37,9 @@ function App() {
           <Route exact path="/board" component={BoardContainer} />
           <Route exact path="/contact" component={Contact} />
           <Route exact path="/pay" component={Pay} />
-<<<<<<< HEAD
-          {/* <Route exact path="/about" component={About} /> */}
-=======
+          <Route exact path="/about" component={About} />
+          <Route exact path='/create/question' component={CreateQuestion} />
           <Footer />
->>>>>>> 042510268ead9db5d64759a8a93fc0a672aeeba1
           </>
         </Switch>
       </Router>

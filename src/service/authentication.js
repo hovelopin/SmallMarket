@@ -13,7 +13,7 @@ export default class AuthenticateService {
         name: name,
       }
     );
-    this.tokenStorage.saveToken(data.username, data.token)
+    this.tokenStorage.saveToken(data.token)
     return data;
   }
 
@@ -24,7 +24,7 @@ export default class AuthenticateService {
         password 
       }
     );
-    this.tokenStorage.saveToken(data.username, data.token); // get token -> promise
+    this.tokenStorage.saveToken(data.token); // get token -> promise
     return data;
   }
 }
