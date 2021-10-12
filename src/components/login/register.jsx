@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
 import { registerRequest } from '../../redux/action/authAction';
 import styles from './register.module.css';
 import { Link } from 'react-router-dom';
@@ -11,6 +12,8 @@ function Register() {
   const [checkPasswrod, setCheckPassword] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const history = useHistory();
+  const user = useSelector(state => state.user);
 
   const userNameChangeHandler = (event) => {
     setUserName(event.target.value);
@@ -36,13 +39,23 @@ function Register() {
     event.preventDefault();
     if (checkPasswrod === password) {
       dispatch(registerRequest(username, password, email, name));
+      const token = user.register; // tokenStorage 클래스 동작 안함
+      localStorage.setItem(username, token);
+      
+      if(token) {
+        if(window.confirm("Success Register! Do you want to Shop?")) {
+          history.push('/main');
+        } else {
+          history.push('/');
+        }
+      } 
     } else {
       alert('Not correspond your paossword');
     }
   };
 
   return (
-    <form>
+    <form onSubmit={onSubmitHandler}>
       <Link to="/">
         <div>
           <img
@@ -52,7 +65,7 @@ function Register() {
           />
         </div>
       </Link>
-      <div className={styles.wapper} onSubmit={onSubmitHandler}>
+      <div className={styles.wapper}>
         <div className={styles.content}>
           <div>
             <h3>ID</h3>
@@ -107,7 +120,7 @@ function Register() {
             </span>
           </div>
           <div className={styles.btn}>
-            <button className={styles.btnJoin}>
+            <button className={styles.btnJoin} type="submit">
               <span>Ready to Jump</span>
             </button>
           </div>

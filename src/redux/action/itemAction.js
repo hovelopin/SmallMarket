@@ -44,7 +44,7 @@ export const getItemDetails = (itemId) => async(dispatch) => {
     dispatch(
       {
         type: GET_ITEMS_DETAILS_SUCCESS,
-        payload: data.items,
+        payload: data,
       }
     );
   } catch(error) {

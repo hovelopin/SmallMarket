@@ -1,145 +1,101 @@
-@value marketWhite, marketBlack, marketInput, marketTeamOrange, marketTeamLightOrange from '../../common/colors.css';
-/* 공통 속성 */
-div {
-  margin: 0;
-}
-ul {
-  list-style: none;
-  padding-left: 0px;
-}
-/* input type 화살표 없애기 */
-input[type='number']::-webkit-outer-spin-button,
-input[type='number']::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-/* product.jsx */
+@value marketWhite, marketBlack, marketInput, marketTeamOrange, marketTeamYellow, marketTeamLightOrange from '../../common/colors.css';
 .productWrap {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-.productImg {
-  margin-right: 150px;
-}
-.productImg2 img {
-  width: 1200px;
-  height: 500px;
-}
-.productContainer {
+  max-width: 1300px;
+  margin: 1rem auto;
   display: flex;
 }
-.productItemsList {
-  margin-bottom: 50px;
-  border-bottom: 1px solid #f4f4f4;
+
+.productContainer {
+  display: flex;
+  flex: 0.8;
 }
-.productItems:nth-child(2) {
-  width: 400px;
-  margin-left: 50px;
+
+.productImg {
+  margin: 1rem;
+  flex: 0.6;
 }
+
+.productImg img {
+  width: 100%;
+}
+
+.productInfo {
+  margin: 1rem;
+  flex: 0.4;
+  height: fit-content;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.productQuantity {
+  width: 10%;
+  margin: 1rem;
+  background: #fff;
+  height: fit-content;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.quantityInfo {
+  padding: 1rem;
+  background: marketWhite;
+  font-weight: bold;
+}
+
 .titleMain {
   font-weight: 700;
+  text-transform: uppercase;
   font-size: 24px;
 }
 .titleSub {
   display: block;
-  font-size: 14px;
+  margin-top: 0.6rem;
+  font-size: 1.1em;
   color: #999;
 }
-.priceMain {
-  width: 200px;
-  line-height: 20px;
-}
+
 .priceSub,
 .totalSub {
-  font-size: 20px;
+  font-size: 1em;
+  font-weight: bold;
   width: 400px;
 }
-.info_basket,
-.info_buy {
+
+.info_basket{
   display: inline-block;
+  margin-top: 4rem;
   width: 180px;
-  height: 50px;
+  height: 70px;
+  font-weight: bold;
+  font-size: 1em;
   background-color: #fff;
   color: marketTeamLightOrange;
-  border: 1px solid marketTeamLightOrange;
-  border-radius: 6px;
+  border: 2px solid marketTeamLightOrange;
+  border-radius: 18px;
 }
-.info_buy {
-  margin-left: 10px;
+
+.info_basket:hover{
+  background-color: marketTeamYellow;
+  color: marketWhite;
+  transition: 1s;
 }
+
 .btQuantity {
-  background: #fff;
+  background-color: transparent;
   text-align: center;
-  border: 0;
+  font-weight: bold;
+  border: 2px solid black;
+  border-radius: 20px;
 }
+
 .inputQuantity {
   width: 60px;
+  font-weight: bold;
   text-align: center;
-  border: 0;
+  border: none;
 }
-.QuantitySub {
-  border: 1px solid #dddfe1;
-  border-radius: 3px;
-}
-.unitMain,
-.QuantityMain {
-  color: #666;
-  margin-right: 50px;
-}
+
 .totalMain {
-  font-size: 12px;
-}
-.productTotalPrice {
-  text-align: right;
-}
-.product_info_wrap {
-  margin-top: 60px;
-}
-.product_nav_container {
-  display: flex;
-}
-.product_nav_items {
-  height: 60px;
-  text-align: center;
-  flex-grow: 1;
-  border: 1px solid #eee;
-  background: #fafafa;
-}
-.nav_explain {
-  display: block;
-  margin-top: 22px;
-  font-size: 16px;
-  font-weight: 700;
-  color: marketTeamLightOrange;
-}
-.why_wrap {
-  margin-top: 100px;
-}
-.why_title {
-  text-align: center;
-  font-weight: 500;
-  color: #666;
-  font-size: 36px;
-  margin-bottom: 100px;
-}
-.why_info_title {
-  font-size: 18px;
-  font-weight: 500;
-  margin-top: 10px;
-  color: marketTeamLightOrange;
-}
-.why_img img {
-  width: 40px;
-  height: 40px;
-}
-.why_container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-}
-.why_items {
-  width: 350px;
-  height: 250px;
-  text-align: center;
+  font-size: 1.1em;
+  font-weight: bold;
 }

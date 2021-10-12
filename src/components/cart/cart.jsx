@@ -10,12 +10,12 @@ const Cart = () => {
   const cart = useSelector(state => state.cart);
   const { cartItems } = cart;
 
-  const quantityChangeHandler = (productId, quantity) => {
-    dispatch(addCart(productId, quantity));
+  const quantityChangeHandler = (itemId, quantity) => {
+    dispatch(addCart(itemId, quantity));
   }
 
-  const removeHandler = (productId) => {
-    dispatch(removeCart(productId));
+  const removeHandler = (id) => {
+    dispatch(removeCart(id));
   }
 
   const getTotalItemCount = () => {
@@ -32,15 +32,14 @@ const Cart = () => {
         <h1 className={styles.title}>Shopping Cart</h1>
         {cartItems.length === 0 ? (
           <div className={styles.empty}>
-            <i className="fas fa-shopping-bag"></i> Cart is empty !<Link to='/'>Go Home</Link>
+            <i className="fas fa-shopping-bag"></i> Cart is empty !<Link to='/shop'>Go Home</Link>
           </div>
         ) : cartItems.map(item => 
           (<CartItem 
-            key={item.productId} 
             item={item} 
             quantityChangeHandler={quantityChangeHandler} 
-            removeHandler={removeHandler} />
-          )
+            removeHandler={removeHandler} 
+          />)
         )
       }
         {/* cart item ... */}

@@ -1,14 +1,38 @@
-import HttpClient from '../../network/httpClient';
-import CartService from '../../service/cartService';
+import axios from 'axios';
+import {
+  ADD_CART,
+  REMOVE_CART,
+  RESET_CART,
+} from '../actionTypes/cart/cartActionTypes';
 
 const baseURL = process.env.REACT_APP_BASE_URL;
-const httpClient = new HttpClient(baseURL).createAxios();
-const cartService = new CartService(httpClient);
 
-export const addCart = (productId, quantity) => {
-  cartService.addCart(productId, quantity);
+export const addCart = (itemId, quantity) => async (dispatch, getState) => {
+  const url = baseURL + '/items/cart';
+  try {
+    const { data } = await axios.post(url, {
+      id: itemId,
+    });
+    dispatch({
+      type: ADD_CART,
+      payload: {
+        id: data.id,
+        name: data.name,
+        img: data.img,
+        price: data.price,
+        quantity,
+      }
+    });
+    localStorage.setItem('cart', JSON.stringify(getState().cart.cartItems));
+  } catch(error) {
+    console.log(error);
+  }
 }
 
-export function removeCart(productId) {
-  cartService.removeCart(productId);
+export const removeCart = (id) => (dispatch, getState) => {
+  dispatch({
+    type: REMOVE_CART,
+    payload: id,
+  });
+  localStorage.setItem('cart', JSON.stringify(getState().cart.cartItems));
 }

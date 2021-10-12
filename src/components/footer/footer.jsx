@@ -20,10 +20,10 @@ const Footer = () => {
         <div className={styles.footerCol}>
           <h5>CopyRight</h5>
           <p className={styles.content}>
-            <p>@2021 SmallMarket</p>
-            <p>HoJin</p>
-            <p>JunHo</p>
-            <p>JaeHyun</p>
+          <p>@2021 SmallMarket</p>
+          <p>HoJin</p>
+          <p>JunHo</p>
+          <p>JaeHyun</p>
           </p>
         </div>
       </div>
