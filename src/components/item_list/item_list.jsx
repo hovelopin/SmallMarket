@@ -1,15 +1,8 @@
-// npm i react-js-pagination
-//https://cotak.tistory.com/112#%F-%-F%A-%-B%--%EA%B-%B-%EB%A-%A- 해당자료 확인후 js변경 추천
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'
 import styles from './item_list.module.css';
 import './paging.css';
-<<<<<<< HEAD
 import Pagination from "react-js-pagination";
-=======
-import Pagination from 'react-js-pagination';
-
->>>>>>> cd845b9b80d6317cb809951f21c50f76ef0fb5fd
 import { useDispatch, useSelector } from 'react-redux';
 import { getItems as itemList } from '../../redux/action/itemAction';
 import Item from '../item/item';
@@ -20,19 +13,11 @@ const ItemList = () => {
     setPage(page);
   };
   const dispatch = useDispatch();
-<<<<<<< HEAD
   const getItems = useSelector(state => state.getItems);
-=======
-  const getItems = useSelector((state) => state.getItems);
->>>>>>> cd845b9b80d6317cb809951f21c50f76ef0fb5fd
   const { items, error } = getItems;
 
   useEffect(() => {
     dispatch(itemList());
-<<<<<<< HEAD
-=======
-    // setCount(items.length);
->>>>>>> cd845b9b80d6317cb809951f21c50f76ef0fb5fd
   }, [dispatch]);
 
   return (
