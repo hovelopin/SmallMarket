@@ -50,9 +50,9 @@
     font-size: 18px;
     margin-bottom: 45px;
 }
-button{
+.button{
     background: marketTeamLightOrange;
-    color: white;
+    color: marketWhite;
     text-decoration: none;
     border : 2px solid transparent;
     font-weight: bold;
@@ -60,8 +60,10 @@ button{
     border-radius: 30px;
     transform: .4s;
 }
-button:hover{
+.button:hover{
     background: transparent;
+    color: marketWhite;
     border : 2px solid #f9004d;
     cursor: pointer;
+    transition: 2s;
 }

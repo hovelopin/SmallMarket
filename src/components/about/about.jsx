@@ -12,7 +12,7 @@ const About = () => {
                     <h1>About us</h1>
                     <h5>Developer<sapn> & Designer</sapn></h5>         
                 <p>I am front-end web developer. I can provide clean code and pixel perpect design. i also make the website more & more interactive with web animations. I can provide clean code and pixel perpect design.</p>
-                <button type = {styles.button}>let's Talk</button>
+                <button className = {styles.button}>let's Talk</button>
                 </div>
             </div>
         </section>

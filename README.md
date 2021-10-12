@@ -35,6 +35,8 @@ Main Design ✔
 Main Cover ✔
 Footer ✔
 Navbar ✔
+Contact ✔
+About ✔
 Login ( Authentication Redux, action ) ✔
 Register ( Authentication Redux, action ) ✔
 Cart Function ( Cart Redux, action ) ✔
