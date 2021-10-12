@@ -31,7 +31,7 @@ npm start
 
 ## TODO
 ```
-API Complete
+SNS
 ```
 
 ## Test
@@ -43,7 +43,9 @@ API Complete
 ```
 Login ✔
 SignUp ✔
+Authorization ✔
 Item ✔
+Item Detai ✔
 Board Model ✔ 
 Board Create ✔
 Board Read ✔
