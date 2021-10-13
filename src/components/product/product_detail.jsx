@@ -19,7 +19,7 @@ function ProductDetail({ match, history }) {
   }, []);
 
   const onIncrease = () => {
-    setQuantitiy((preQuantity) => preQuantity + 1);
+    setQuantitiy((preQuantity) => preQuantity < item.quantity ? preQuantity + 1 : preQuantity);
   };
 
   const onDecrease = () => {

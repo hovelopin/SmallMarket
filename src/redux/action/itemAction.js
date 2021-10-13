@@ -34,12 +34,13 @@ export const getItems = (itemId) => async (dispatch) => {
   }
 }
 
-export const getItemDetails = (itemId) => async(dispatch) => {
+export const getItemDetails = (itemId, itemQuantitiy) => async(dispatch) => {
   const url = baseURL + '/items/detail';
   try {
     dispatch({ type: GET_ITEMS_DETAILS });
     const { data } = await axios.post(url, {
       id: itemId,
+      quantitiy: itemQuantitiy,
     });
     dispatch(
       {
