@@ -1,6 +1,7 @@
 import styles from './navbar.module.css';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import React from 'react';
 
 const Navbar = ({ click }) => {
   const cart = useSelector(state => state.cart);
@@ -51,4 +52,4 @@ const Navbar = ({ click }) => {
   );
 };
 
-export default Navbar;
+export default React.memo(Navbar);
