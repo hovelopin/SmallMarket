@@ -11,7 +11,7 @@ function Login() {
   const dispatch = useDispatch();
   const history = useHistory();
   const user = useSelector(state => state.user);
-  const { login, error } = user;
+  const { login } = user;
   useEffect(() => {
     dispatch(loginRequest(username, password));
   }, [dispatch, username, password]);

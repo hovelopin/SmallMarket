@@ -16,11 +16,11 @@ import Contact from './components/contact/contact';
 import Pay from './components/pay/pay';
 import About from './components/about/about';
 import CreateQuestion from './components/board/create_question_board';
+import SmsContainer from './components/sms/sms_container/sms_container';
 
 function App() {
   return (
     <div className={styles.app}>
-    {/* <MainCover /> */}
       <Router>
         <Switch>
           <Route exact path="/" component={MainCover} />
@@ -38,6 +38,7 @@ function App() {
           <Route exact path="/pay" component={Pay} />
           <Route exact path="/about" component={About} />
           <Route exact path='/create/question' component={CreateQuestion} />
+          <Route exact path='/sms' component={SmsContainer} />
           <Footer />
           </>
         </Switch>

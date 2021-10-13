@@ -51,9 +51,9 @@ function ProductDetail({ match, history }) {
         </div>
         <div className={(styles.productQuantity)}>
           <div className={styles.quantityInfo}>
-            <btuton className={styles.btQuantity} onClick={onDecrease}>
+            <button className={styles.btQuantity} onClick={onDecrease}>
               <HiMinus />
-            </btuton>
+            </button>
             <input
               type="number"
               readOnly={true}

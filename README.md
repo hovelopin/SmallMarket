@@ -19,13 +19,15 @@
 
 ## TODO
 ```
-Pay=
+Pay
 Bug Fix ( warning )
 ```
 
 ## Now Testing
 ```
-Login Register Authorization
+Login Authorization
+Socket -> Small Market SNS Testing
+Sms first setting
 ```
 
 ## Complete

@@ -8,7 +8,7 @@ const Contact = () => {
         <div className={styles.row}>
             <div className={styles.contactCol}>
                 <div className={styles.contact1}>
-                    <img className={styles.avatar} src="" alt="profile photo" />
+                    <img className={styles.avatar} src="/logo/logoText" alt="profile photo0" />
                     <div className={styles.info}>
                         <h1 className={styles.name}>name</h1>
                         <p className={styles.company}>company</p>
@@ -20,7 +20,7 @@ const Contact = () => {
             </div>
             <div className={styles.contactCol}>
                 <div className={styles.contact2}>
-                    <img className={styles.avatar} src="" alt="profile photo" />
+                    <img className={styles.avatar} src="/logo/logoText" alt="profile photo1" />
                     <div className={styles.info}>
                         <h1 className={styles.name}>name</h1>
                         <p className={styles.company}>company</p>
@@ -34,7 +34,7 @@ const Contact = () => {
         <div className={styles.row}>
             <div className={styles.contactCol}>
                 <div className={styles.contact3}>
-                    <img className={styles.avatar} src="" alt="profile photo" />
+                    <img className={styles.avatar} src="/logo/logoText" alt="profile photo2" />
                     <div className={styles.info}>
                         <h1 className={styles.name}>name</h1>
                         <p className={styles.company}>company</p>
@@ -46,7 +46,7 @@ const Contact = () => {
             </div>
             <div className={styles.contactCol}>
                 <div className={styles.contact4}>
-                    <img className={styles.avatar} src="" alt="profile photo" />
+                    <img className={styles.avatar} src="/logo/logoText" alt="profile photo3" />
                     <div className={styles.info}>
                         <h1 className={styles.name}>name</h1>
                         <p className={styles.company}>company</p>
