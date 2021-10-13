@@ -25,21 +25,21 @@ function App() {
         <Switch>
           <Route exact path="/" component={MainCover} />
           <>
-          <Navbar />
-          <Route exact path="/main" component={Main} />
-          <Route exact path="/register" component={Register} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/shop" component={Shop} />
-          <Route exact path="/items" component={ItemList} />
-          <Route exact path="/cart" component={Cart} />
-          <Route exact path="/items/detail/:id" component={ProductDetail} />
-          <Route exact path="/board" component={BoardContainer} />
-          <Route exact path="/contact" component={Contact} />
-          <Route exact path="/pay" component={Pay} />
-          <Route exact path="/about" component={About} />
-          <Route exact path='/create/question' component={CreateQuestion} />
-          <Route exact path='/sms' component={SmsContainer} />
-          <Footer />
+            <Navbar />
+            <Route exact path="/main" component={Main} />
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/shop" component={Shop} />
+            <Route exact path="/items" component={ItemList} />
+            <Route exact path="/cart" component={Cart} />
+            <Route exact path="/items/detail/:id" component={ProductDetail} />
+            <Route exact path="/board" component={BoardContainer} />
+            <Route exact path="/contact" component={Contact} />
+            <Route exact path="/pay" component={Pay} />
+            <Route exact path="/about" component={About} />
+            <Route exact path="/create/question" component={CreateQuestion} />
+            <Route exact path="/sms" component={SmsContainer} />
+            <Footer />
           </>
         </Switch>
       </Router>
