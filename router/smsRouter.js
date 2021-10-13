@@ -15,7 +15,8 @@ const validateSms = [
   validate,
 ];
 
-router.get('/', isAuth, smsController.getSmSs);
+// router.get('/', isAuth, smsController.getSmSs);
+router.get('/', smsController.getSmSs);
 router.get('/:id', isAuth, smsController.getSms);
 
 router.post('/', isAuth, validateSms, smsController.createSms);

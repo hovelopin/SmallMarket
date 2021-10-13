@@ -3,17 +3,20 @@
 
 ## Project [Server] Start
 ```
-npm start
+npm start ( for developer )
 ```
 
 # :mag: Thchnical Skills
 
-- Framework: Node express
 - Main language: Javascript ES6+, Node.js
 - DataBase: MySQL
 - Server: webpack-dev-server (dev)
-- Token management
-- Server Socket
+- Token management using jwt
+- Socket: Using socket
+- Deploy: Platform.sh
+
+## :clock3: Project Period
+2021.09.17 ~ 2021.10.13
 
 ## ORM
 > sequelize
@@ -29,6 +32,14 @@ npm start
 > item model & item repository & item controller
 >
 > get all items & get item detail
+>
+> question board schema
+>
+> Create and Read
+>
+> Sns Schema ( smallmarket sns -> sms )
+>
+> now sns testing -> API -> Good
 
 ## TODO
 ```
@@ -38,7 +49,6 @@ SNS ( Small market sns SMS ) - Good
 ## Test
 ```
 API Complete
-SNS ( Small market sns SMS ) API TESTING - Good
 ```
 
 ## Complete
@@ -54,5 +64,3 @@ Board Read ✔
 Board Update ✔
 Board Delete ✔
 ```
-
-### npm start
