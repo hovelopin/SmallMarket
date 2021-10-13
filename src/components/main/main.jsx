@@ -1,13 +1,19 @@
 import styles from './main.module.css';
+import {useHistory} from 'react-router-dom';
 
 function Main() {
+  const history = useHistory();
+
+  const goShop = () => {
+    history.push('/items');
+  }
   return(
     /* 상단에 navbar */
     <section className={styles.container}>
       <header className={styles.main}>
         <h1 className={styles.title}>SMALL MARKET</h1>
         <img className={styles.mainImg} src="img/1-index.jpg" alt='main' />
-        <button className={styles.button}>GO TO SHOP</button>
+        <button className={styles.button} onClick={goShop}>GO TO SHOP</button>
       </header>
       <article className={styles.indexWrap}>
         <section className={styles.indexContainer}>

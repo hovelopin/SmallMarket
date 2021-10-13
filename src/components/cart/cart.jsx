@@ -3,11 +3,16 @@ import styles from './cart.module.css';
 import CartItem from './cart_item';
 import { useDispatch, useSelector } from 'react-redux';
 import { addCart, removeCart } from '../../redux/action/cartAction';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 const Cart = () => {
   const dispatch = useDispatch();
   const cart = useSelector(state => state.cart);
+  const history = useHistory();
+
+  const payHandler = () =>{
+    history.push('/pay');
+  }
   const { cartItems } = cart;
 
   const quantityChangeHandler = (itemId, quantity) => {
@@ -51,7 +56,7 @@ const Cart = () => {
           <p className={styles.content}>Dollar : {getTotalItemPrice()}</p>
         </div>
         <div className={styles.buttonContainer}>
-          <button className={styles.button}>Checkout</button>
+          <button className={styles.button} onClick={payHandler}>Checkout</button>
         </div>
       </div>
     </section>

@@ -23,7 +23,7 @@ function ProductDetail({ match, history }) {
   };
 
   const onDecrease = () => {
-    setQuantitiy((preQuantity) => preQuantity - 1);
+    setQuantitiy((preQuantity) => preQuantity === 1 ?  preQuantity : preQuantity - 1);
   };
 
   const cartHandler = () => {
