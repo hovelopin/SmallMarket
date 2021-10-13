@@ -30,6 +30,10 @@ img:hover {
   z-index: 10;
 }
 
+.title:hover {
+  cursor: pointer;
+}
+
 .button {
   width: 200px;
   height: 60px;
@@ -44,6 +48,7 @@ img:hover {
   background-color: transparent;
   font-size: 1.2em;
   z-index: 50;
+  transition: transform 250ms ease-in;
 }
 
 .button:hover {
@@ -51,6 +56,7 @@ img:hover {
   border: 2px solid marketTeamOrange;
   cursor: pointer;
   transition: 1s;
+  transform: scale(1.04);
 }
 
 .indexWrap {

@@ -27,7 +27,7 @@ const Navbar = ({ click }) => {
           </Link>
         </li>
         <li className={styles.imgContainer}>
-          <Link to='/main'>
+          <Link to='/'>
             <img className={styles.logo} src='/img/logo.png' alt="logo" />
           </Link>
         </li>

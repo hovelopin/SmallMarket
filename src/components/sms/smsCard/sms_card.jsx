@@ -3,7 +3,7 @@ import parseDate from '../../../util/parseDate';
 import styles from './sms_card.module.css';
 
 const SmsCard = memo(
-  ({ sms, onUsernameClick }) => {
+  ({ sms }) => {
     const { username, name, text, createdAt } = sms;
 
     return (
@@ -13,7 +13,6 @@ const SmsCard = memo(
             <span className={styles.smsName}>{name}</span>
             <span
               className={styles.smsUsername}
-              onClick={() => onUsernameClick(sms)}
             >
               @{username}
             </span>

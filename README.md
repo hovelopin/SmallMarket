@@ -26,8 +26,7 @@ Bug Fix ( warning )
 ## Now Testing
 ```
 Login Authorization
-Socket -> Small Market SNS Testing
-Sms first setting
+Socket -> Small Market SNS Testing -> Beta version.
 ```
 
 ## Complete
@@ -46,4 +45,5 @@ Cart design ✔
 Item List design ✔
 Item detail design ✔
 Board Post and Reads ✔
+Refactoring design ✔
 ```

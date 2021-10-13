@@ -6,10 +6,12 @@
     font-family :'Gill Sans', sans-serif;
     box-sizing : border-box;
 }
+
 .about{
     width: 100%;
     padding : 78px 0px;
-    background-color: marketWhite;
+    background-color: #FAFAD2;
+    background-color:
 }
 .aboutimg{
     height: 770px;

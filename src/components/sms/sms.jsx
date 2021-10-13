@@ -1,5 +1,4 @@
 import React, { memo, useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import NewSmsForm from './sms_form/new_sms_form';
 import SmsCard from './smsCard/sms_card';
 import styles from './sms.module.css';
@@ -8,9 +7,8 @@ const Sms = memo(({ smsService, username, addable }) => {
   const userTest = {
     username: 'foxmon',
   }
-  const [sms, setSms] = useState([]);
+  const [sms, setSms] = useState([]); 
   const [error, setError] = useState('');
-  const history = useHistory();
   const user = userTest;
 
   useEffect(() => {
@@ -21,11 +19,9 @@ const Sms = memo(({ smsService, username, addable }) => {
     return smsService.onSync((sms) => onCreated(sms));
   }, [smsService, username, user]);
 
-  const onCreated = (sms) => {
+  const onCreated = (sms) => {  
     setSms((smss) => [sms, ...smss]);
   };
-
-  const onUsernameClick = (sms) => history.push(`/${sms.username}`);
 
   const onError = (error) => {
     setError(error.toString());
@@ -45,7 +41,6 @@ const Sms = memo(({ smsService, username, addable }) => {
           <SmsCard
             key={new Date()}
             sms={item}
-            onUsernameClick={onUsernameClick}
           />
         ))}
       </ul>
