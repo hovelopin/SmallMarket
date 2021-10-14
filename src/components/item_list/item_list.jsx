@@ -27,11 +27,6 @@ const ItemList = () => {
           </div>
         </div>
       </div>
-
-      <div className={styles.moveTop}>
-        <img src="/img/goTop.jpg" alt="sample01" />
-      </div>
-
       <div className={styles.item}>
         {error ? (
           <h1>{error}</h1>

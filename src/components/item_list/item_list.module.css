@@ -58,13 +58,6 @@
     background-color: transparent;
 }
 
-.moveTop{
-    font-size: 20px;
-    position: fixed;
-    bottom: 15px;
-    right: 15px;
-}
-
 .item {
     clear: both;
     display: grid;

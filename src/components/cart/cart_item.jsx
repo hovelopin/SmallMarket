@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import styles from './cart_item.module.css';
 
 const CartItem = ({ item, quantityChangeHandler, removeHandler, isPay }) => {

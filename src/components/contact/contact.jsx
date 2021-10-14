@@ -26,7 +26,7 @@ const Contact = () => {
           <div className={styles.contact2}>
             <img
               className={styles.avatar}
-              src="img/face02.png"
+              src="img/face04.jpg"
               alt="profile photo1"
             />
             <div className={styles.info}>

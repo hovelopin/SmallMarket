@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react';
+import React, { memo } from 'react';
 import parseDate from '../../../util/parseDate';
 import styles from './sms_card.module.css';
 

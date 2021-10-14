@@ -16,7 +16,7 @@ import Contact from './components/contact/contact';
 import Pay from './components/pay/pay';
 import About from './components/about/about';
 import CreateQuestion from './components/board/create_question_board';
-import SmsContainer from './components/sms/sms_container/sms_container';
+// import SmsContainer from './components/sms/sms_container/sms_container';
 
 function App() {
   return (

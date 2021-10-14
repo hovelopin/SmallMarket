@@ -49,5 +49,5 @@ Cart design ✔
 Item List design ✔
 Item detail design ✔
 Board Post and Reads ✔
-Refactoring design & bug✔
+Refactoring design & bug ✔
 ```

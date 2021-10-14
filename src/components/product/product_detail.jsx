@@ -10,7 +10,6 @@ function ProductDetail({ match, history }) {
   const itemDetails = useSelector(state => state.getItemDetails);
   const { item, loading, error } = itemDetails;
   const base = "/img/items/";
-  const TOKEN = 'token';
 
   useEffect(() => {
     if(item  && (match.params.id !== item.id)) {
