@@ -34,7 +34,7 @@ function Login() {
     event.preventDefault();
     if(login) {
       if(window.confirm('Login Success! Do you want to go shop?')) {
-        window.location.replace('/items')
+        window.location.replace('/main')
       } else {
         history.push('/main');
       }
