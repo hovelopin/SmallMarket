@@ -61,7 +61,7 @@ function Register() {
       dispatch(registerRequest(username, password, email, name));
 
       if(window.confirm("Success Register! Do you want to Shop?")) {
-        history.push('/main');
+        history.push('/login');
       } else {
         history.push('/');
       }

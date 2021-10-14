@@ -10,7 +10,7 @@ const Contact = () => {
           <div className={styles.contact1}>
             <img
               className={styles.avatar}
-              src="img/face01.png"
+              src="img/face01.jpg"
               alt="profile photo0"
             />
             <div className={styles.info}>
@@ -44,7 +44,7 @@ const Contact = () => {
           <div className={styles.contact3}>
             <img
               className={styles.avatar}
-              src="img/face03.png"
+              src="img/face03.jpg"
               alt="profile photo2"
             />
             <div className={styles.info}>
@@ -60,7 +60,7 @@ const Contact = () => {
           <div className={styles.contact4}>
             <img
               className={styles.avatar}
-              src="img/face04.png"
+              src="img/face02.jpg"
               alt="profile photo3"
             />
             <div className={styles.info}>

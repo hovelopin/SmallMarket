@@ -2,7 +2,10 @@
 - Client
 
 ## :clock3: Project Period
-2021.09.17 ~ ...
+2021.09.17 ~ 2021.10.14
+
+# Deploy
+https://smallmarket.netlify.app
 
 # Proejct Start
 ```
@@ -16,11 +19,12 @@
 - State manage: Redux
 - Server: webpack-dev-server (dev)
 - CSS: Post CSS
+- Deploy: netlify
 
 ## TODO
 ```
 Pay
-Bug Fix ( warning )
+Responsive web site
 ```
 
 ## Now Testing
@@ -45,5 +49,5 @@ Cart design ✔
 Item List design ✔
 Item detail design ✔
 Board Post and Reads ✔
-Refactoring design ✔
+Refactoring design & bug✔
 ```

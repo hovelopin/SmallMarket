@@ -38,7 +38,7 @@ function App() {
             <Route exact path="/pay" component={Pay} />
             <Route exact path="/about" component={About} />
             <Route exact path="/create/question" component={CreateQuestion} />
-            <Route exact path="/sms" component={SmsContainer} />
+            {/* <Route exact path="/sms" component={SmsContainer} /> now testing.... beta version */}
             <Footer />
           </>
         </Switch>

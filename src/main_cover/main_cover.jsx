@@ -9,7 +9,7 @@ const MainCover = () => {
         <Link to="/main">
           {/* add logo */}
           <div>
-            <img src="/img/maincover.png" />
+            <img src="/img/maincover.png" alt="maincover" />
           </div>
         </Link>
         <ul>

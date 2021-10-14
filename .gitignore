@@ -3,3 +3,9 @@ node_modules/
 
 # ENVIRONMENT
 .env
+
+# Local Netlify folder
+.netlify
+
+# Deploy
+/build

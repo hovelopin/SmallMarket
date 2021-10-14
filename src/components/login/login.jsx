@@ -34,7 +34,7 @@ function Login() {
     event.preventDefault();
     if(login) {
       if(window.confirm('Login Success! Do you want to go shop?')) {
-        history.push('/items');
+        window.location.replace('/items')
       } else {
         history.push('/main');
       }
@@ -56,11 +56,11 @@ function Login() {
       </Link>
       <form className={styles.loginWrap} onSubmit={onSubmitForm}>
         <div className={styles.loginIndex}>
-          <h3> 로그인 </h3>
+          <h3> Login </h3>
           <input
             type="text"
             className={styles.idInput}
-            placeholder="아이디를 입력해주세요."
+            placeholder="Enter your name...."
             onChange={userNameChangeHandler}
           ></input>
           <i className={styles.id_icons}>
@@ -69,14 +69,14 @@ function Login() {
           <input
             type="password"
             className={styles.pwInput}
-            placeholder="비밀번호를 입력해주세요."
+            placeholder="Enter your password..."
             onChange={passwordChangeHandler}
           ></input>
           <i className={styles.pw_icons}>
             <RiLockPasswordFill />
           </i>
-          <button className={styles.btLogin}>로그인</button>
-          <button className={styles.btReg} onClick={registerHandler}>회원가입</button>
+          <button className={styles.btLogin}>Login</button>
+          <button className={styles.btReg} onClick={registerHandler}>Register</button>
         </div>
       </form>
     </>

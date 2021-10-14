@@ -1,11 +1,13 @@
 import styles from './navbar.module.css';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import React from 'react';
 
 const Navbar = ({ click }) => {
-  const cart = useSelector(state => state.cart);
-  const { cartItems } = cart;
+  const TOKEN = 'token';
+  const logoutHandler = () => {
+    localStorage.clear();
+    window.location.reload();
+  }
 
   return (
     <nav className={styles.navbar}>
@@ -23,7 +25,7 @@ const Navbar = ({ click }) => {
         <li>
           <Link to="/cart">
             <span className={styles.title}>
-              <i className="fas fa-shopping-cart"></i> CART {cartItems.length}
+              <i className="fas fa-shopping-cart"></i> CART
             </span>
           </Link>
         </li>
@@ -32,19 +34,40 @@ const Navbar = ({ click }) => {
             <img className={styles.logo} src='/img/logo.png' alt="logo" />
           </Link>
         </li>
+        {!localStorage.getItem(TOKEN) && 
+          <li>
+            <Link to="/login">
+              <span className={styles.title}>LOGIN</span>
+            </Link>
+          </li>
+        }
+        {!localStorage.getItem(TOKEN) &&
+          <li>
+            <Link to="/register">
+              <span className={styles.title}>REGISTER</span>
+            </Link>
+          </li>
+        }
+        {localStorage.getItem(TOKEN) && 
+          <li>
+            <Link to="/register">
+              <span 
+                className={styles.title}
+                onClick={logoutHandler}
+              >LOGOUT</span>
+            </Link>
+          </li>
+        }
+        {localStorage.getItem(TOKEN) &&
+          <li>
+            <Link to="/board">
+              <span className={styles.title}>Q & A</span>
+            </Link>
+          </li>
+        }
         <li>
-          <Link to="/login">
-            <span className={styles.title}>LOGIN</span>
-          </Link>
-        </li>
-        <li>
-          <Link to="/register">
-            <span className={styles.title}>REGISTER</span>
-          </Link>
-        </li>
-        <li>
-          <Link to="/board">
-            <span className={styles.title}>Q & A</span>
+          <Link to="/about">
+            <span className={styles.title}>ABOUT</span>
           </Link>
         </li>
       </ul>
