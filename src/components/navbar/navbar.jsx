@@ -1,12 +1,20 @@
 import styles from './navbar.module.css';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import React from 'react';
 
 const Navbar = ({ click }) => {
+  const history = useHistory();
   const TOKEN = 'token';
   const logoutHandler = () => {
     localStorage.clear();
     window.location.reload();
+  }
+  const cartClickHandler = () => {
+    if(!localStorage.getItem(TOKEN)) {
+      alert('You need to Login or Register!!');
+    } else {
+      history.push('/items');
+    }
   }
 
   return (
@@ -23,11 +31,12 @@ const Navbar = ({ click }) => {
           </Link>
         </li>
         <li>
-          <Link to="/cart">
-            <span className={styles.title}>
-              <i className="fas fa-shopping-cart"></i> CART
-            </span>
-          </Link>
+          <span 
+            className={styles.titleCart}
+            onClick={cartClickHandler}
+          >
+            <i className="fas fa-shopping-cart"></i> CART
+          </span>
         </li>
         <li className={styles.imgContainer}>
           <Link to='/main'>

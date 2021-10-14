@@ -1,14 +1,45 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import DaumPostcode from 'react-daum-postcode';
 import styles from './pay.module.css';
+import { useSelector } from 'react-redux';
+import CartItem from '../cart/cart_item';
 
 const postcodeStyle = {
   width: 500,
 };
 
-const main = 'http://localhost:3000/main';
-
 const Pay = (effect, deps) => {
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
+  const nameChangeHandler = (e) => { 
+    setName(e.target.value);
+  }
+  const phoneChangeHandler = (e) => { 
+    setPhone(e.target.value);
+  }
+  const emailChangeHandler = (e) => { 
+    setEmail(e.target.value);
+  }
+
+  const check = () => {
+    if(name === '' || phone === '' || email === '' ||
+      fullAddress === '' || zoneCode === '' || isDaumPost === false) {
+      alert('Please enter your information...');
+      return false;
+    }
+
+    return true;
+  }
+
+  const history = useHistory();
+  const cart = useSelector(state => state.cart);
+  const { cartItems } = cart;
+  const totalPrice = () => { 
+    return cartItems.reduce((price, item) => (item.price * item.quantity) + price, 0);
+  }
+
   // 아임포트 API
   useEffect(() => {
     const jquery = document.createElement('script');
@@ -25,28 +56,30 @@ const Pay = (effect, deps) => {
   }, []);
 
   const onClickPayment = () => {
-    const { IMP } = window;
-    IMP.init('imp36622352');
+    if(check()) {
+      const { IMP } = window;
+      IMP.init('imp36622352');
 
-    //결제
-    const data = {
-      pg: 'html5_inicis', // 필수
-      pay_method: 'card', // 수단 (필수)
-      name: '이름을 입력해 주세용~', //주문명 (필수)
-      amount: 64900, // 금액(필수)
-    };
+      //결제
+      const data = {
+        pg: 'html5_inicis', // 필수
+        pay_method: 'card', // 수단 (필수)
+        name: 'smallmarket', //주문명 (필수)
+        amount: totalPrice(), // 금액(필수)
+      };
 
-    IMP.request_pay(data, callback);
+      IMP.request_pay(data, callback);
+    }
   };
 
   const callback = (response) => {
     const { success, error_msg } = response;
 
     if (success) {
-      alert('결제 성공');
-      window.location.href = main;
+      alert('Success!!!');
+      history.push('/main');
     } else {
-      alert(`결제 실패 : ${error_msg}`);
+      alert(`Failed... : ${error_msg}`);
     }
   };
 
@@ -73,10 +106,6 @@ const Pay = (effect, deps) => {
       }
       fullAddress += extraAddress !== '' ? ` (${extraAddress})` : '';
     }
-
-    console.log(fullAddress);
-    console.log(zoneCode);
-    console.log(data);
   };
 
   const handleOpenPost = () => {
@@ -86,56 +115,58 @@ const Pay = (effect, deps) => {
   return (
     <div className={styles.pay_wrap}>
       <div className={styles.pay_title}>
-        <h2>결제 주문서</h2>
+        <h2>Payment</h2>
       </div>
       <div className={styles.pay_order_wrap}>
         <div className={styles.pay_order}>
-          <h2 className={styles.pay_order_title}>주문 상품</h2>
+          <h2 className={styles.pay_order_title}>Order product</h2>
+          <div className={styles.total}>
+            <h2>Total Price : {totalPrice()}</h2>
+          </div>
         </div>
         <div className={styles.pay_order_container}>
-          <div className={styles.pay_order_items}>
-            <img src="img/pix01.jpeg" alt="order_img"></img>
-          </div>
-          <div className={styles.pay_order_items}>
-            <h4>[회사이름] : 상품명</h4>
-          </div>
-          <div className={styles.pay_order_items}>
-            <h4>1개</h4>
-          </div>
-          <div className={styles.pay_order_items}>
-            <h4>0000원</h4>
-          </div>
-        </div>
+          {cartItems.map(item => 
+              (<CartItem 
+                id={item.id}
+                item={item} 
+                isPay={true}
+              />)
+            )
+          }
+      </div>
 
         <div className={styles.purchaser_order}>
-          <h2 className={styles.pay_order_title}>주문자 정보</h2>
+          <h2 className={styles.pay_order_title}>User information</h2>
         </div>
         <div className={styles.pay_info_wrap}>
           <div className={styles.info_container}>
-            <span className={styles.info_name}>발송자</span>
+            <span className={styles.info_name}>Name</span>
             <input
               className={styles.info_input}
-              placeholder="이름을 입력해주세요."
-            ></input>
+              placeholder="Enter your name."
+              onChange={nameChangeHandler}
+            />
           </div>
           <div className={styles.info_container}>
-            <span className={styles.info_name}>휴대폰</span>
+            <span className={styles.info_name}>Phone</span>
             <input
               className={styles.info_input}
-              placeholder="숫자만 입력해주세요."
-            ></input>
+              placeholder="Enter your phone number...(00011112222)"
+              onChange={phoneChangeHandler}
+            />
           </div>
           <div className={styles.info_container}>
-            <span className={styles.info_name}>이메일</span>
+            <span className={styles.info_name}>Email</span>
             <input
               className={styles.info_input}
-              placeholder="예) sungkonghoe@skhu.ac.kr"
-            ></input>
+              placeholder="ex) smallmarket@google.com"
+              onChange={emailChangeHandler}
+            />
           </div>
         </div>
 
         <div className={styles.delivery_wrap}>
-          <h2 className={styles.pay_order_title}>배송 정보</h2>
+          <h2 className={styles.pay_order_title}>Address</h2>
         </div>
         <div className={styles.delivery_info_wrap}>
           <div>
@@ -147,7 +178,7 @@ const Pay = (effect, deps) => {
                   className={styles.btn_delivery_register}
                   onClick={handleOpenPost}
                 >
-                  <span>우편번호 등록</span>
+                  Zip code
                 </button>
               </div>
             </div>
@@ -166,16 +197,13 @@ const Pay = (effect, deps) => {
             </div>
           </div>
         </div>
-        <div className={styles.delivery_wrap}>
-          <h2 className={styles.pay_order_title}>결제</h2>
-        </div>
         <div className={styles.payment_wrap}>
           <button
             type="button"
             className={styles.btn_payment}
             onClick={onClickPayment}
           >
-            <span>결제 하기</span>
+            결제 하기
           </button>
         </div>
       </div>

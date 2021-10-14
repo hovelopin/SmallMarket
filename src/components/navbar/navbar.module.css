@@ -43,6 +43,12 @@
   align-items: center;
 }
 
+.titleCart:hover {
+  cursor: pointer;
+  color: marketTeamOrange;
+  transition: 0.5s;
+}
+
 .logo {
   width: 120px;
 }

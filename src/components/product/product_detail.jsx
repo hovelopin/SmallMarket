@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { HiPlus, HiMinus } from 'react-icons/hi';
 import styles from './product_detail.module.css';
 import { getItemDetails } from '../../redux/action/itemAction';
 import { addCart } from '../../redux/action/cartAction';
@@ -11,6 +10,7 @@ function ProductDetail({ match, history }) {
   const itemDetails = useSelector(state => state.getItemDetails);
   const { item, loading, error } = itemDetails;
   const base = "/img/items/";
+  const TOKEN = 'token';
 
   useEffect(() => {
     if(item  && (match.params.id !== item.id)) {
@@ -51,23 +51,23 @@ function ProductDetail({ match, history }) {
         </div>
         <div className={(styles.productQuantity)}>
           <div className={styles.quantityInfo}>
-            <button className={styles.btQuantity} onClick={onDecrease}>
-              <HiMinus />
-            </button>
-            <input
-              type="number"
-              readOnly={true}
-              className={styles.inputQuantity}
-              value={quantity < 0 ? 0 : quantity}
-            />
-            <button className={styles.btQuantity} onClick={onIncrease}><HiPlus/></button>
-            <span className={styles.totalMain}>Total Price  ${quantity * item.price}</span>
+            <h3>Quantity</h3>
             <button 
-              className={styles.info_basket} 
-              onClick={cartHandler}
-            >Add to cart
-            </button>
+              className={styles.button} 
+              onClick={onDecrease}
+            >-</button>
+            {quantity < 1 ? 1 : quantity}
+            <button 
+              className={styles.button} 
+              onClick={onIncrease}
+            >+</button>
           </div>
+          <span className={styles.totalMain}>Total Price  ${quantity * item.price}</span>
+          <button 
+            className={styles.info_basket} 
+            onClick={cartHandler}
+          >Add to cart
+          </button>
         </div>
       </>
       )}

@@ -73,6 +73,11 @@ img:hover {
 .indexItems {
   flex-direction: row;
   margin: 3rem;
+  transition: transform 250ms ease-in;
+}
+
+.indexItems:hover {
+  transform: scale(1.08);
 }
 
 .indexItems > h3 {
@@ -100,6 +105,11 @@ img:hover {
 .sectionCol {
   flex: 1;
   flex-direction: column;
+  transition: transform 250ms ease-in;
+}
+
+.sectionCol:hover {
+  transform: scale(1.06);
 }
 
 .sectionCol > h3 {

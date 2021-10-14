@@ -41,13 +41,13 @@ const Cart = () => {
           </div>
         ) : cartItems.map(item => 
           (<CartItem 
+            id={item.id}
             item={item} 
             quantityChangeHandler={quantityChangeHandler} 
             removeHandler={removeHandler} 
           />)
         )
       }
-        {/* cart item ... */}
       </div>
       <div className={styles.info}>
         <h1 className={styles.title}>Information</h1>

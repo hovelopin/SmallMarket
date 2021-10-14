@@ -1,17 +1,11 @@
 
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import styles from './item_list.module.css';
-import './paging.css';
-import Pagination from "react-js-pagination";
 import { useDispatch, useSelector } from 'react-redux';
 import { getItems as itemList } from '../../redux/action/itemAction';
 import Item from '../item/item';
 
 const ItemList = () => {
-  const [page, setPage] = useState(1);
-  const handlePageChange = (page) => {
-    setPage(page);
-  };
   const dispatch = useDispatch();
   const getItems = useSelector(state => state.getItems);
   const { items, error } = getItems;
@@ -28,7 +22,7 @@ const ItemList = () => {
           <div className={styles.search}>
             <input
               className={styles.shopSearchBox}
-              placeholder="검색어를 입력해주세요."
+              placeholder="Please enter item name"
             />
           </div>
         </div>
@@ -54,18 +48,6 @@ const ItemList = () => {
           ))
         )}
       </div>
-
-      <ul className={styles.Pagination}>
-        <Pagination
-          activePage={page}
-          itemsCountPerPage={6}
-          totalItemsCount={450}
-          pageRangeDisplayed={5}
-          prevPageText={'‹'}
-          nextPageText={'›'}
-          onChange={handlePageChange}
-        />
-      </ul>
     </section>
   );
 };
