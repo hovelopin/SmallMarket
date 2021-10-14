@@ -7,13 +7,13 @@ const Navbar = ({ click }) => {
   const TOKEN = 'token';
   const logoutHandler = () => {
     localStorage.clear();
-    window.location.reload();
+    window.location.replace('/');
   }
   const cartClickHandler = () => {
     if(!localStorage.getItem(TOKEN)) {
       alert('You need to Login or Register!!');
     } else {
-      history.push('/items');
+      history.push('/cart');
     }
   }
 
@@ -59,12 +59,10 @@ const Navbar = ({ click }) => {
         }
         {localStorage.getItem(TOKEN) && 
           <li>
-            <Link to="/register">
-              <span 
-                className={styles.title}
-                onClick={logoutHandler}
-              >LOGOUT</span>
-            </Link>
+            <span 
+              className={styles.titleLogout}
+              onClick={logoutHandler}
+            >LOGOUT</span>
           </li>
         }
         {localStorage.getItem(TOKEN) &&
