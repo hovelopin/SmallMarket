@@ -57,7 +57,7 @@ Login ✔
 SignUp ✔
 Authorization ✔
 Item ✔
-Item Detai ✔
+Item Detail ✔
 Board Model ✔ 
 Board Create ✔
 Board Read ✔
