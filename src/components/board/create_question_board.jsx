@@ -47,6 +47,7 @@ const CreateQuestion = () => {
               placeholder="Write your question title" 
               className={styles.inputTitle}
               onChange={onTitleChangeHandler}
+              maxLength='9'
             />
             <div className={styles.author}>
               <p>Author</p>

@@ -98,6 +98,7 @@ function Register() {
             <span className={styles.box_id}>
               <input
                 type="password"
+                minLength='8'
                 className={styles.int}
                 placeholder="Enter password"
                 onChange={passwordChangeHandler}

@@ -33,8 +33,8 @@ function Login() {
     dispatch(loginRequest(username, password));
     event.preventDefault();
     if(login) {
-      if(window.confirm('Login Success! Do you want to go shop?')) {
-        window.location.replace('/main')
+      if(window.confirm('Login Success ! Do you want to go our web sites ?')) {
+        window.location.replace('/');
       } else {
         history.push('/main');
       }
