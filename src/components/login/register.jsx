@@ -13,6 +13,7 @@ function Register() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [registerFlag, setRegisterFlag] = useState(false);
+  const [checkFlag, setCheckFlag] = useState(false);
   const history = useHistory();
 
   const userNameChangeHandler = (event) => {
@@ -57,7 +58,8 @@ function Register() {
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
-    if (checkInformation()) {
+    setCheckFlag(checkInformation());
+    if (checkFlag) {
       dispatch(registerRequest(username, password, email, name));
 
       if(window.confirm("Success Register! Do you want to Shop?")) {
