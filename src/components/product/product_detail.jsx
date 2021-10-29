@@ -3,11 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import styles from './product_detail.module.css';
 import { getItemDetails } from '../../redux/action/itemAction';
 import { addCart } from '../../redux/action/cartAction';
+import { useHistory } from 'react-router';
 
 function ProductDetail({ match, history }) {
   const [quantity, setQuantitiy] = useState(1);
   const dispatch = useDispatch();
   const itemDetails = useSelector(state => state.getItemDetails);
+  const cart = useSelector(state => state.cart);
+  const { cartItems } = cart;
   const { item, loading, error } = itemDetails;
   const base = "/img/items/";
 
@@ -26,8 +29,13 @@ function ProductDetail({ match, history }) {
   };
 
   const cartHandler = () => {
-    dispatch(addCart(item.id, quantity));
-    history.push('/cart');
+    if(cartItems.find((cartItem) => cartItem.id === item.id)) {
+      history.push('/items');
+      alert('Already exist in your cart ! ');
+    } else {
+      dispatch(addCart(item.id, quantity));
+      history.push('/cart');
+    }
   }
 
   return (
