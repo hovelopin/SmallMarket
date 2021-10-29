@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import styles from './product_detail.module.css';
 import { getItemDetails } from '../../redux/action/itemAction';
 import { addCart } from '../../redux/action/cartAction';
-import { useHistory } from 'react-router';
 
 function ProductDetail({ match, history }) {
   const [quantity, setQuantitiy] = useState(1);
