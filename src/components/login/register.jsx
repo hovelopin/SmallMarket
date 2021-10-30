@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router';
-import { registerRequest } from '../../redux/action/authAction';
-import styles from './register.module.css';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router";
+import { registerRequest } from "../../redux/action/authAction";
+import styles from "./register.module.css";
+import { Link } from "react-router-dom";
 
 function Register() {
   const dispatch = useDispatch();
-  const [username, setUserName] = useState('');
-  const [password, setPassword] = useState('');
-  const [checkPasswrod, setCheckPassword] = useState('');
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [registerFlag, setRegisterFlag] = useState(false);
-  const [checkFlag, setCheckFlag] = useState(false);
+  const [username, setUserName] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [checkPasswrod, setCheckPassword] = useState("");
   const history = useHistory();
+  // const [registerFlag, setRegisterFlag] = useState(false);
+  // const [checkFlag, setCheckFlag] = useState(false);
 
   const userNameChangeHandler = (event) => {
     setUserName(event.target.value);
@@ -36,39 +36,37 @@ function Register() {
     setEmail(event.target.value);
   };
 
-  const checkInformation = async () => {
-    if(username.length < 4) {
-      alert('Username should be at least 4 characters...');
-      setRegisterFlag(false);
-    } else if(password.length < 8) {
-      alert('Password should be at least 8 characters...');
-      setRegisterFlag(false);
-    } else if(password !== checkPasswrod) {
-      alert('Please check your password...');
-      setRegisterFlag(false);
-    } else if(name.length === 0) {
-      alert('Name is missing...');
-      setRegisterFlag(false);
-    } else {
-      setRegisterFlag(true);
-    }
+  // const checkInformation = async () => {
+  //   if(username.length < 4) {
+  //     alert('Username should be at least 4 characters...');
+  //     setRegisterFlag(false);
+  //   } else if(password.length < 8) {
+  //     alert('Password should be at least 8 characters...');
+  //     setRegisterFlag(false);
+  //   } else if(password !== checkPasswrod) {
+  //     alert('Please check your password...');
+  //     setRegisterFlag(false);
+  //   } else if(name.length === 0) {
+  //     alert('Name is missing...');
+  //     setRegisterFlag(false);
+  //   } else {
+  //     setRegisterFlag(true);
+  //   }
 
-    return await registerFlag;
-  }
+  //   return await registerFlag;
+  // }
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
-    setCheckFlag(checkInformation());
-    if (checkFlag) {
+    if (password === checkPasswrod) {
       dispatch(registerRequest(username, password, email, name));
-
-      if(window.confirm("Success Register! Do you want to Shop?")) {
-        history.push('/login');
+      if (window.confirm("Success Register! Do you want to Shop?")) {
+        history.push("/login");
       } else {
-        history.push('/');
+        history.push("/");
       }
     } else {
-      alert('Check your information!');
+      alert("Please check your password...");
     }
   };
 
@@ -92,6 +90,7 @@ function Register() {
                 className={styles.int}
                 placeholder="Enter ID"
                 onChange={userNameChangeHandler}
+                required
               ></input>
             </span>
           </div>
@@ -100,10 +99,11 @@ function Register() {
             <span className={styles.box_id}>
               <input
                 type="password"
-                minLength='8'
+                minLength="8"
                 className={styles.int}
                 placeholder="Enter password"
                 onChange={passwordChangeHandler}
+                required
               ></input>
             </span>
           </div>
@@ -115,6 +115,7 @@ function Register() {
                 className={styles.int}
                 placeholder="Confirm password"
                 onChange={checkPasswordChangeHandler}
+                required
               ></input>
             </span>
           </div>
@@ -123,8 +124,10 @@ function Register() {
             <span className={styles.box_id}>
               <input
                 className={styles.int}
+                type="email"
                 placeholder="ex) sungkonghoe@skhu.ac.kr"
                 onChange={emailChangeHandler}
+                required
               ></input>
             </span>
           </div>
@@ -135,6 +138,7 @@ function Register() {
                 className={styles.int}
                 placeholder="Your name in SmallMarket"
                 onChange={nameChangeHandler}
+                required
               ></input>
             </span>
           </div>
