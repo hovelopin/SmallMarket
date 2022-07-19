@@ -5,6 +5,7 @@ import ErrorUtil from "./errorUtil"
 // V: Vegetable
 // M: Meat
 // D: Drink
+// N: Normal
 
 class Category extends NameUtil {
     constructor(category) {
@@ -19,5 +20,6 @@ class Category extends NameUtil {
 Category.V = new Category("vegatable")
 Category.M = new Category("meat")
 Category.D = new Category("Drink")
+Category.N = new Category("Normal")
 
 export default Category
