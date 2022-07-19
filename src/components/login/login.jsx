@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useCallback } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import React, { useState, useCallback } from "react"
+import { useDispatch } from "react-redux"
 import { loginRequest } from "../../redux/action/authAction"
 import styles from "./login.module.css"
 import { RiLockPasswordFill, RiUser3Line } from "react-icons/ri"
@@ -10,12 +10,6 @@ function Login() {
     const [password, setPassword] = useState("")
     const dispatch = useDispatch()
     const history = useHistory()
-    const user = useSelector((state) => state.user)
-    const { login } = user
-
-    useEffect(() => {
-        dispatch(loginRequest(username, password))
-    }, [dispatch, username, password])
 
     const userNameChangeHandler = useCallback((event) => {
         setUsername(event.target.value)
@@ -29,26 +23,27 @@ function Login() {
         history.push("/register")
     }
 
-    const onSubmitForm = (event) => {
-        dispatch(loginRequest(username, password))
+    const onLoginButtonClickEventHandler = (event) => {
         event.preventDefault()
-        if (login) {
-            if (
-                window.confirm(
-                    "Login Success ! Do you want to go our web sites ?"
-                )
-            ) {
-                window.location.replace("/")
-            } else {
-                history.push("/main")
-            }
-        } else {
-            alert("Login failed...")
-        }
+        dispatch(loginRequest(username, password))
+            .then((data) => {
+                if (data.token) {
+                    if (
+                        window.confirm(
+                            "Login Success ! Do you want to go our web sites ?"
+                        )
+                    ) {
+                        window.location.replace("/")
+                    } else {
+                        history.push("/main")
+                    }
+                }
+            })
+            .catch(() => alert("Login failed..."))
     }
 
     return (
-        <>
+        <React.Fragment>
             <Link to="/main">
                 <div className={styles.login_logo}>
                     <img
@@ -58,7 +53,7 @@ function Login() {
                     ></img>
                 </div>
             </Link>
-            <form className={styles.loginWrap} onSubmit={onSubmitForm}>
+            <form className={styles.loginWrap}>
                 <div className={styles.loginIndex}>
                     <h3> Login </h3>
                     <input
@@ -79,13 +74,18 @@ function Login() {
                     <i className={styles.pw_icons}>
                         <RiLockPasswordFill />
                     </i>
-                    <button className={styles.btLogin}>Login</button>
+                    <button
+                        className={styles.btLogin}
+                        onClick={onLoginButtonClickEventHandler}
+                    >
+                        Login
+                    </button>
                     <button className={styles.btReg} onClick={registerHandler}>
                         Register
                     </button>
                 </div>
             </form>
-        </>
+        </React.Fragment>
     )
 }
 
