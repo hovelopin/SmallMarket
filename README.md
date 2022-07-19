@@ -6,7 +6,7 @@
 
 2021.09.17 ~ 2021.10.14
 
-## :clock3: Refactoring Period
+## Refactoring Period
 
 `SmallMarket V2`
 
