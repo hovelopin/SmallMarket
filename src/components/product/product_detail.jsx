@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import React, { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import styles from "./product_detail.module.css"
 import { getItemDetails } from "../../redux/action/itemAction"
@@ -17,7 +17,7 @@ function ProductDetail({ match, history }) {
         if (item && match.params.id !== item.id) {
             dispatch(getItemDetails(match.params.id))
         }
-    }, [dispatch, item, match])
+    }, [])
 
     const onIncrease = () => {
         setQuantitiy((preQuantity) =>
@@ -48,7 +48,7 @@ function ProductDetail({ match, history }) {
             ) : error ? (
                 <h2>{error}</h2>
             ) : (
-                <>
+                <React.Fragment>
                     <div className={styles.productContainer}>
                         <div className={styles.productImg}>
                             <img src={base + `${item.img}`} alt={item.name} />
@@ -90,7 +90,7 @@ function ProductDetail({ match, history }) {
                             Add to cart
                         </button>
                     </div>
-                </>
+                </React.Fragment>
             )}
         </div>
     )
