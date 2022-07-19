@@ -12,10 +12,6 @@
 
 2022.07.19 ~ ...?
 
-# Deploy
-
-https://smallmarket.netlify.app
-
 # Proejct Start
 
 ```
