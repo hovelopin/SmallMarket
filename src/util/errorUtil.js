@@ -26,5 +26,12 @@ ErrorUtil.instanceCheck = function (param, instance) {
     }
 }
 
+ErrorUtil.assert = function (a, msg) {
+    if (!a) {
+        console.log(`${msg}`)
+        debugger
+    }
+}
+
 Object.freeze(ErrorUtil)
 export default ErrorUtil
