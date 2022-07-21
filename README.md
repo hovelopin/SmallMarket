@@ -72,6 +72,14 @@ Refactoring design & bug ✔
         먼저 불필요한 CSS파일을 삭제하면서 하나씩 바꿔나가도록 한다.
 ```
 
+### navbar Refactoring
+
+```
+SmallMarket v1의 Navbar는 유지보수성 및 일반화에 있어서 매우 불편하다는 단점을 가지고 있었다.
+이름을 Appbar로 바꾸고 메뉴 아이템들을 하나의 Array안에서 관리하도록 한다.
+즉 Array의 요소가 추가될 때마다 메뉴의 아이템이 추가되도록 리팩토링한다.
+```
+
 ### useCallback 도입
 
 ```
