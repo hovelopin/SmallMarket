@@ -2,6 +2,7 @@ import React from "react"
 import styles from "./app.module.css"
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 import Navbar from "./components/navbar/navbar"
+import Appbar from "./components/navbar/appbar"
 import Main from "./components/main/main"
 import Footer from "./components/footer/footer"
 import Login from "./components/login/login"
@@ -24,7 +25,7 @@ function App() {
                 <Switch>
                     <Route exact path="/" component={MainCover} />
                     <React.Fragment>
-                        <Navbar />
+                        <Appbar />
                         <Route exact path="/main" component={Main} />
                         <Route exact path="/register" component={Register} />
                         <Route exact path="/login" component={Login} />
