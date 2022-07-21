@@ -2,8 +2,10 @@ import NameUtil from "../util/nameUtil"
 import ErrorUtil from "../util/errorUtil"
 
 class ItemType extends NameUtil {
-    constructor(name, price, quantity, img, type) {
+    constructor(uuid, name, price, quantity, img, type) {
         super(type)
+        ErrorUtil.invalidParameter(uuid)
+        this.uuid = uuid
         ErrorUtil.invalidParameter(name)
         this.name = name
         ErrorUtil.invalidParameter(price)
