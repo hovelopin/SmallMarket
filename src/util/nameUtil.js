@@ -1,9 +1,9 @@
 import ErrorUtil from "./errorUtil"
 
 class NameUtil {
-    constructor(name) {
-        ErrorUtil.invalidParameter(name)
-        this.name = name
+    constructor(type) {
+        ErrorUtil.invalidParameter(type)
+        this.type = type
     }
 }
 
