@@ -6,6 +6,9 @@ import {
     faSignOut,
     faRegistered,
     faUser,
+    faAddressBook,
+    faClipboard,
+    faAddressCard,
 } from "@fortawesome/free-solid-svg-icons"
 import ErrorUtil from "../util/errorUtil"
 
@@ -27,6 +30,12 @@ function doFetchFontAwesomeIcon(name) {
             return faSignOut
         case "user":
             return faUser
+        case "contact":
+            return faAddressBook
+        case "qna":
+            return faClipboard
+        case "about":
+            return faAddressCard
         default:
             ErrorUtil.notImplemented()
     }
