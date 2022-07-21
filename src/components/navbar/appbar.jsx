@@ -100,4 +100,4 @@ const menuTextStyle = {
     mr: 1,
 }
 
-export default Appbar
+export default React.memo(Appbar)
