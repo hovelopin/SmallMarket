@@ -1,8 +1,6 @@
 import ItemType from "./itemType"
 import ErrorUtil from "../util/errorUtil"
 
-ErrorUtil
-
 const FoodItemListType = {}
 
 class _FoodItemListType {
