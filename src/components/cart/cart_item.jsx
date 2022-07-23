@@ -8,7 +8,7 @@ const CartItem = ({ item, onRemoveButtonClickEvent, isPay }) => {
 
     return (
         <Box sx={boxStyle}>
-            <img className={styles.image} src={item.img} alt={item.name} />
+            <img src={item.img} alt={item.name} />
 
             <Typography sx={fontStyle}>{item.name}</Typography>
             <Typography sx={fontStyle}>${item.price}</Typography>
