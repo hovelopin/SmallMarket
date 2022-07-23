@@ -11,7 +11,6 @@ function ProductDetail({ match, history }) {
     const cart = useSelector((state) => state.cart)
     const { cartItems } = cart
     const { item, loading, error } = itemDetails
-    const base = "/img/items/"
 
     useEffect(() => {
         if (item && match.params.id !== item.id) {
@@ -51,7 +50,7 @@ function ProductDetail({ match, history }) {
                 <React.Fragment>
                     <div className={styles.productContainer}>
                         <div className={styles.productImg}>
-                            <img src={base + `${item.img}`} alt={item.name} />
+                            <img src={item.img} alt={item.name} />
                         </div>
                         <div className={styles.productInfo}>
                             <span className={styles.titleMain}>
