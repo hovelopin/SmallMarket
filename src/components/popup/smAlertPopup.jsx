@@ -4,7 +4,7 @@ import {
     DialogTitle,
     DialogContent,
     DialogContentText,
-    DialogAction,
+    DialogActions,
     Button,
 } from "@mui/material"
 
@@ -20,11 +20,11 @@ const SMAlertPopup = ({ isOpen, onCloseButtonClickEvent, msg }) => {
                 <DialogContent>
                     <DialogContentText>{msg}</DialogContentText>
                 </DialogContent>
-                <DialogAction>
+                <DialogActions>
                     <Button onClick={onCloseButtonClickEventHandler(false)}>
                         Cancel
                     </Button>
-                </DialogAction>
+                </DialogActions>
             </Dialog>
         </Box>
     )
