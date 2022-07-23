@@ -11,20 +11,44 @@ FoodItemType.createVegetable = function (uuid, name, price, quantity, img) {
         quantity,
         img,
         Category.V,
-        "VegetableType"
+        "VegetableItemType"
     )
 }
 
 FoodItemType.createMeat = function (uuid, name, price, quantity, img) {
-    return new Item(uuid, name, price, quantity, img, Category.M, "MeatType")
+    return new Item(
+        uuid,
+        name,
+        price,
+        quantity,
+        img,
+        Category.M,
+        "MeatItemType"
+    )
 }
 
 FoodItemType.createDrink = function (uuid, name, price, quantity, img) {
-    return new Item(uuid, name, price, quantity, img, Category.D, "DrinkType")
+    return new Item(
+        uuid,
+        name,
+        price,
+        quantity,
+        img,
+        Category.D,
+        "DrinkItemType"
+    )
 }
 
 FoodItemType.createNormal = function (uuid, name, price, quantity, img) {
-    return new Item(uuid, name, price, quantity, img, Category.N, "NormalType")
+    return new Item(
+        uuid,
+        name,
+        price,
+        quantity,
+        img,
+        Category.N,
+        "NormalItemType"
+    )
 }
 
 Object.freeze(FoodItemType)
