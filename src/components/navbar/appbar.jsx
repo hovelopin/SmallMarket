@@ -1,7 +1,6 @@
 import React from "react"
 import { Box, AppBar, Toolbar, Typography, Button } from "@mui/material"
 import Icon from "../../icon/icon"
-import ErrorUtil from "../../util/errorUtil"
 
 function Appbar() {
     // onClickEventHandler를 공통화 한다
@@ -10,43 +9,36 @@ function Appbar() {
             name: "SHOP",
             icon: <Icon name="bag" />,
             path: "/items",
-            onClick: ErrorUtil.notImplemented(),
         },
         {
             name: "CONTACT",
             icon: <Icon name="contact" />,
             path: "/contact",
-            onClick: ErrorUtil.notImplemented(),
         },
         {
             name: "CART",
             icon: <Icon name="cart" />,
             path: "/cart",
-            onClick: ErrorUtil.notImplemented(),
         },
         {
             name: "LOGIN",
             icon: <Icon name="signin" />,
             path: "/login",
-            onClick: ErrorUtil.notImplemented(),
         },
         {
             name: "REGISTER",
             icon: <Icon name="signup" />,
             path: "/register",
-            onClick: ErrorUtil.notImplemented(),
         },
         {
             name: "Q & A",
             icon: <Icon name="qna" />,
             path: "/board",
-            onClick: ErrorUtil.notImplemented(),
         },
         {
             name: "ABOUT",
             icon: <Icon name="about" />,
             path: "/about",
-            onClick: ErrorUtil.notImplemented(),
         },
     ]
 
@@ -56,12 +48,8 @@ function Appbar() {
                 <Toolbar>
                     <Box sx={menuStyle}>
                         {items.map((item) => (
-                            <Box sx={navStyle}>
-                                <Button
-                                    key={item.name}
-                                    sx={buttonStyle}
-                                    onClick={item.onClick}
-                                >
+                            <Box key={item.name} sx={navStyle}>
+                                <Button sx={buttonStyle} onClick={item.onClick}>
                                     <Typography sx={menuTextStyle}>
                                         {item.name}
                                     </Typography>
