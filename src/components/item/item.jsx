@@ -5,7 +5,7 @@ import styles from "./item.module.css"
 const Item = ({ uuid, name, price, quantity, img }) => {
     const history = useHistory()
 
-    const buttonClickHandler = () => {
+    const onDetailButtonClickEventHandler = () => {
         history.push(`/items/detail/${uuid}`)
     }
 
@@ -17,7 +17,10 @@ const Item = ({ uuid, name, price, quantity, img }) => {
                 <p className={styles.itemPrice}>Price : {price}</p>
                 <p className={styles.itemQuantity}>Quantity : {quantity}</p>
                 <p className={styles.description}>Description : {name}</p>
-                <button className={styles.button} onClick={buttonClickHandler}>
+                <button
+                    className={styles.button}
+                    onClick={onDetailButtonClickEventHandler}
+                >
                     Detail
                 </button>
             </div>
