@@ -3,6 +3,7 @@ import { composeWithDevTools } from "redux-devtools-extension"
 import { authReducer } from "../reducers/authReducer"
 import { cartReducer } from "../reducers/cartReducer"
 import { getItemReducer, getItemDetailReducer } from "../reducers/itemReducer"
+import Storage from "../../storage/storage"
 import thunk from "redux-thunk"
 
 const reducer = combineReducers({
@@ -14,13 +15,11 @@ const reducer = combineReducers({
 
 const middleware = [thunk]
 
-const cartLocalStorage = localStorage.getItem("cart")
-    ? JSON.parse(localStorage.getItem("cart"))
-    : []
+const cartStorage = Storage.getItem() ? JSON.parse(Storage.getItem()) : []
 
 const INIT_STATE = {
     cart: {
-        cartItems: cartLocalStorage,
+        cartItems: cartStorage,
     },
 }
 
