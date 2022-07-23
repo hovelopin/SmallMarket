@@ -1,12 +1,14 @@
 import { useCallback } from "react"
-import { Link, useHistory } from "react-router-dom"
+import { useHistory } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { removeCart } from "../../redux/action/cartAction"
-import styles from "./cart.module.css"
+import { Box, Typography, Button } from "@mui/material"
+import Icon from "../../icon/icon"
 import CartItem from "./cart_item"
 
 const Cart = () => {
     const history = useHistory()
+
     const dispatch = useDispatch()
     const cart = useSelector((state) => state.cart)
 
@@ -19,6 +21,10 @@ const Cart = () => {
     const onRemoveButtonClickEventHandler = useCallback((uuid) => {
         dispatch(removeCart(uuid))
     }, [])
+
+    const onHomeButtonClickEventHandler = () => {
+        history.push("/shop")
+    }
 
     const getTotalItemCount = () => {
         return cartItems.reduce(
@@ -35,14 +41,16 @@ const Cart = () => {
     }
 
     return (
-        <section className={styles.cart}>
-            <div className={styles.item}>
-                <h1 className={styles.title}>Shopping Cart</h1>
+        <Box sx={boxStyle}>
+            <Box sx={itemBoxStyle}>
+                <Typography variant="h1">SHOPPING CART</Typography>
                 {cartItems.length === 0 ? (
-                    <div className={styles.empty}>
-                        <i className="fas fa-shopping-bag"></i> Cart is empty !
-                        <Link to="/shop">Go Home</Link>
-                    </div>
+                    <Box sx={emptyBoxStyle}>
+                        <Icon name="bag" /> CART IS EMPTY !
+                        <Button onClick={onHomeButtonClickEventHandler}>
+                            Go Home
+                        </Button>
+                    </Box>
                 ) : (
                     cartItems.map((item) => (
                         <CartItem
@@ -55,28 +63,62 @@ const Cart = () => {
                         />
                     ))
                 )}
-            </div>
-            <div className={styles.info}>
-                <h1 className={styles.title}>Information</h1>
-                <div className={styles.detail}>
-                    <p className={styles.content}>
+            </Box>
+            <Box sx={infoBoxStyle}>
+                <Typography variant="h1">INFORMATION</Typography>
+                <Box sx={detailBoxStyle}>
+                    <Typography sx={contentTextStyle}>
                         Count : {getTotalItemCount()}
-                    </p>
-                    <p className={styles.content}>
-                        Dollar : {getTotalItemPrice()}
-                    </p>
-                </div>
-                <div className={styles.buttonContainer}>
-                    <button
-                        className={styles.button}
-                        onClick={onPayButtonClickEventHandler}
-                    >
+                    </Typography>
+                    <Typography sx={contentTextStyle}>
+                        Price : {getTotalItemPrice()}
+                    </Typography>
+                </Box>
+                <Box>
+                    <Button onClick={onPayButtonClickEventHandler}>
                         Checkout
-                    </button>
-                </div>
-            </div>
-        </section>
+                    </Button>
+                </Box>
+            </Box>
+        </Box>
     )
+}
+
+const boxStyle = {
+    width: "100%",
+    display: "flex",
+}
+
+const itemBoxStyle = {
+    flex: 0.7,
+    padding: "1rem",
+    mt: 5,
+    mr: "0.8rem",
+    ml: "0.8rem",
+}
+
+const emptyBoxStyle = {
+    ml: 2,
+}
+
+const infoBoxStyle = {
+    height: "fit-content",
+    flex: 0.23,
+    padding: 1,
+    border: "2px",
+    borderRadius: "2rem",
+    mt: 5,
+}
+
+const detailBoxStyle = {
+    borderTop: 2,
+    borderBottom: 2,
+    padding: 1,
+    mt: 1,
+}
+
+const contentTextStyle = {
+    padding: 1,
 }
 
 export default Cart
