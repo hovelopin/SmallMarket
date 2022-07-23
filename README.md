@@ -106,3 +106,10 @@ SmallMarket V1 에서는 서버에서 받아온 JSON 데이터 형태 그대로�
 따라서 ItemType을 설계하고 사이사이에 ErrorUtil을 활용해 데이터 spec을 맞추도록 한다.
 또한 Item들의 Category가 분류되어 있지 않다. Item category의 다양성을 증가시키도록 Cateogry를 설계하도록 한다.
 ```
+
+### TestData, ItemType 도입 및 ItemReducer 리팩토링
+
+```
+전에 만들었던 BackEnd를 대신해 Firebase를 도입할 생각이다. Firebase 컬렉션 설계가 완료되기 전까지 TestData를 활용하여
+프로젝트 리팩토링을 진행할 생각이다. 제일 먼저 ItemReducer를 TestData로 교체하고 수정이 필요한 로직은 빠르게 수정할 생각이다.
+```
