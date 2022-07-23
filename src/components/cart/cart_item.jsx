@@ -1,5 +1,5 @@
 import Icon from "../../icon/icon"
-import styles from "./cart_item.module.css"
+import { Box, Typography, Button } from "@mui/material"
 
 const CartItem = ({ item, onRemoveButtonClickEvent, isPay }) => {
     const onRemoveButtonClickEventHandler = (uuid) => () => {
@@ -7,23 +7,36 @@ const CartItem = ({ item, onRemoveButtonClickEvent, isPay }) => {
     }
 
     return (
-        <section className={styles.item}>
+        <Box sx={boxStyle}>
             <img className={styles.image} src={item.img} alt={item.name} />
 
-            <p className={styles.content}>{item.name}</p>
-            <p className={styles.price}>${item.price}</p>
-            <p className={styles.quantity}>{item.quantity}</p>
+            <Typography sx={fontStyle}>{item.name}</Typography>
+            <Typography sx={fontStyle}>${item.price}</Typography>
+            <Typography sx={fontStyle}>{item.quantity}</Typography>
 
             {!isPay && (
-                <button
-                    className={styles.delete}
-                    onClick={onRemoveButtonClickEventHandler(item.uuid)}
-                >
+                <Button onClick={onRemoveButtonClickEventHandler(item.uuid)}>
                     <Icon name="trash" />
-                </button>
+                </Button>
             )}
-        </section>
+        </Box>
     )
+}
+
+const boxStyle = {
+    width: "100%",
+    padding: "1rem",
+    display: "grid",
+    mt: "2rem",
+    mb: "2rem",
+    gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr",
+    gap: "0.3rem",
+    placeItems: "center",
+    border: "2px",
+}
+
+const fontStyle = {
+    cursor: "pointer",
 }
 
 export default CartItem
