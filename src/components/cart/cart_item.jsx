@@ -1,3 +1,4 @@
+import Icon from "../../icon/icon"
 import styles from "./cart_item.module.css"
 
 const CartItem = ({ item, onRemoveButtonClickEvent, isPay }) => {
@@ -18,7 +19,7 @@ const CartItem = ({ item, onRemoveButtonClickEvent, isPay }) => {
                     className={styles.delete}
                     onClick={onRemoveButtonClickEventHandler(item.uuid)}
                 >
-                    <i className="fas fa-trash"></i>
+                    <Icon name="trash" />
                 </button>
             )}
         </section>
