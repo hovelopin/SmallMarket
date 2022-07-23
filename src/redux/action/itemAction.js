@@ -9,8 +9,6 @@ import {
 } from "../actionTypes/item/itemActionTypes"
 import Data from "../../dev/data"
 
-const baseURL = process.env.REACT_APP_BASE_URL
-
 export const getItems = () => async (dispatch) => {
     // 현재는 TestData로 진행하도록 한다.
     try {
