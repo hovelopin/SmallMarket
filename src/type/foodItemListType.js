@@ -1,10 +1,12 @@
 import ItemType from "./itemType"
+import NameUtil from "../util/nameUtil"
 import ErrorUtil from "../util/errorUtil"
 
 const FoodItemListType = {}
 
-class _FoodItemListType {
+class _FoodItemListType extends NameUtil {
     constructor(foodItemListType) {
+        super("FoodItemListType")
         this.$_foodItemListType = foodItemListType
     }
 
