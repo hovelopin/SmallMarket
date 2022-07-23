@@ -9,6 +9,7 @@ import {
     faAddressBook,
     faClipboard,
     faAddressCard,
+    faTrash,
 } from "@fortawesome/free-solid-svg-icons"
 import ErrorUtil from "../util/errorUtil"
 
@@ -36,6 +37,8 @@ function doFetchFontAwesomeIcon(name) {
             return faClipboard
         case "about":
             return faAddressCard
+        case "trash":
+            return faTrash
         default:
             ErrorUtil.notImplemented()
     }
