@@ -1,14 +1,18 @@
-import React, { useState, useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import React, { useState, useEffect, useCallback } from "react"
 import styles from "./product_detail.module.css"
+import SMAlertPopup from "../popup/smAlertPopup"
+import { useDispatch, useSelector } from "react-redux"
 import { getItemDetails } from "../../redux/action/itemAction"
 import { addCart } from "../../redux/action/cartAction"
 
 function ProductDetail({ match, history }) {
     const [quantity, setQuantitiy] = useState(1)
+    const [isOpenAlert, setIsOpenAlert] = useState(false)
+
     const dispatch = useDispatch()
     const itemDetails = useSelector((state) => state.getItemDetails)
     const cart = useSelector((state) => state.cart)
+
     const { cartItems } = cart
     const { item, loading, error } = itemDetails
 
@@ -18,27 +22,31 @@ function ProductDetail({ match, history }) {
         }
     }, [])
 
-    const onIncrease = () => {
+    const onIncreaseButtonClickEventHandler = () => {
         setQuantitiy((preQuantity) =>
             preQuantity < item.quantity ? preQuantity + 1 : preQuantity
         )
     }
 
-    const onDecrease = () => {
+    const onDecreaseButtonClickEventHandler = () => {
         setQuantitiy((preQuantity) =>
             preQuantity === 1 ? preQuantity : preQuantity - 1
         )
     }
 
-    const cartHandler = () => {
-        if (cartItems.find((cartItem) => cartItem.id === item.id)) {
-            history.push("/items")
-            alert("Already exist in your cart ! ")
+    const onCartButtonClickEventHandler = () => {
+        if (cartItems.find((cartItem) => cartItem.uuid === item.uuid)) {
+            setIsOpenAlert(true)
+            return
         } else {
-            dispatch(addCart(item.id, quantity))
+            dispatch(addCart(item, quantity))
             history.push("/cart")
         }
     }
+
+    const onCloseButtonClickEventHanlder = useCallback((checked) => {
+        setIsOpenAlert(checked)
+    }, [])
 
     return (
         <div className={styles.productWrap}>
@@ -67,14 +75,14 @@ function ProductDetail({ match, history }) {
                             <h3>Quantity</h3>
                             <button
                                 className={styles.button}
-                                onClick={onDecrease}
+                                onClick={onDecreaseButtonClickEventHandler}
                             >
                                 -
                             </button>
                             {quantity < 1 ? 1 : quantity}
                             <button
                                 className={styles.button}
-                                onClick={onIncrease}
+                                onClick={onIncreaseButtonClickEventHandler}
                             >
                                 +
                             </button>
@@ -84,13 +92,18 @@ function ProductDetail({ match, history }) {
                         </span>
                         <button
                             className={styles.info_basket}
-                            onClick={cartHandler}
+                            onClick={onCartButtonClickEventHandler}
                         >
                             Add to cart
                         </button>
                     </div>
                 </React.Fragment>
             )}
+            <SMAlertPopup
+                isOpen={isOpenAlert}
+                onCloseButtonClickEvent={onCloseButtonClickEventHanlder}
+                msg="Already exist in your cart !"
+            />
         </div>
     )
 }
