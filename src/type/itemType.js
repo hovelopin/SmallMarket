@@ -12,7 +12,6 @@ class ItemType extends NameUtil {
         this.price = price
         ErrorUtil.invalidParameter(quantity)
         this.quantity = quantity
-        ErrorUtil.invalidParameter(img)
         this.img = img
 
         NameUtil.freezeObject(this, ItemType)

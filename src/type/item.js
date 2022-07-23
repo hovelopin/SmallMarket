@@ -23,7 +23,7 @@ Item.discountPrice = function (price, discount) {
 }
 
 Item.stockCheck = function (quantity) {
-    return quantity == 0 ? false : true
+    return quantity === 0 ? false : true
 }
 
 export default Item
