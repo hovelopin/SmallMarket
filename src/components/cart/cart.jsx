@@ -1,27 +1,24 @@
-import React from "react"
+import { useCallback } from "react"
+import { Link, useHistory } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
+import { removeCart } from "../../redux/action/cartAction"
 import styles from "./cart.module.css"
 import CartItem from "./cart_item"
-import { useDispatch, useSelector } from "react-redux"
-import { addCart, removeCart } from "../../redux/action/cartAction"
-import { Link, useHistory } from "react-router-dom"
 
 const Cart = () => {
+    const history = useHistory()
     const dispatch = useDispatch()
     const cart = useSelector((state) => state.cart)
-    const history = useHistory()
 
-    const payHandler = () => {
-        history.push("/pay")
-    }
     const { cartItems } = cart
 
-    const quantityChangeHandler = (itemId, quantity) => {
-        dispatch(addCart(itemId, quantity))
+    const onPayButtonClickEventHandler = () => {
+        history.push("/pay")
     }
 
-    const removeHandler = (id) => {
-        dispatch(removeCart(id))
-    }
+    const onRemoveButtonClickEventHandler = useCallback((uuid) => {
+        dispatch(removeCart(uuid))
+    }, [])
 
     const getTotalItemCount = () => {
         return cartItems.reduce(
@@ -52,8 +49,9 @@ const Cart = () => {
                             key={item.uuid}
                             uuid={item.uuid}
                             item={item}
-                            quantityChangeHandler={quantityChangeHandler}
-                            removeHandler={removeHandler}
+                            onRemoveButtonClickEvent={
+                                onRemoveButtonClickEventHandler
+                            }
                         />
                     ))
                 )}
@@ -69,7 +67,10 @@ const Cart = () => {
                     </p>
                 </div>
                 <div className={styles.buttonContainer}>
-                    <button className={styles.button} onClick={payHandler}>
+                    <button
+                        className={styles.button}
+                        onClick={onPayButtonClickEventHandler}
+                    >
                         Checkout
                     </button>
                 </div>

@@ -17,7 +17,7 @@ export const addCart = (item, quantity) => async (dispatch, getState) => {
                 quantity: quantity,
             },
         })
-        Storage.setItem(JSON.stringify(getState().cart.cartItems))
+        Storage.addStorageItem(JSON.stringify(getState().cart.cartItems))
     } catch (error) {
         console.log(error)
     }
@@ -28,7 +28,7 @@ export const removeCart = (uuid) => (dispatch, getState) => {
         type: REMOVE_CART,
         payload: uuid,
     })
-    Storage.setItem(JSON.stringify(getState().cart.cartItems))
+    Storage.addStorageItem(JSON.stringify(getState().cart.cartItems))
 }
 
 export const resetCart = () => (dispatch) => {
