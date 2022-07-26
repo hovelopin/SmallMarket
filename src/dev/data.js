@@ -16,6 +16,18 @@ Data.user = {
     refreshToken: "REFRESHTOKEN",
 }
 
+Data.newUser = {
+    username: "",
+    password: "",
+    email: "",
+    uuid: "",
+    fetchOption: {
+        uuid: "",
+    },
+    accessToken: "",
+    refreshToken: "",
+}
+
 // 같은 Type의 Item이 여러개 들어있는 Type이라면 FoodItemListType이라고 정의
 // 한 개의 Item이라면 VegetableItemType, MeatItemType etc... 이렇게 정의
 Data.createVegetableItemData = function () {
