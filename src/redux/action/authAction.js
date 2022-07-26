@@ -12,8 +12,7 @@ export const registerRequest =
             const data = await AuthService.registerRequest(
                 username,
                 password,
-                email,
-                name
+                email
             )
             dispatch({
                 type: REGISTER_USER,
