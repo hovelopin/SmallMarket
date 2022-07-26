@@ -18,9 +18,12 @@ const Cart = () => {
         history.push("/pay")
     }
 
-    const onRemoveButtonClickEventHandler = useCallback((uuid) => {
-        dispatch(removeCart(uuid))
-    }, [])
+    const onRemoveButtonClickEventHandler = useCallback(
+        (uuid) => {
+            dispatch(removeCart(uuid))
+        },
+        [dispatch]
+    )
 
     const onHomeButtonClickEventHandler = () => {
         history.push("/shop")
