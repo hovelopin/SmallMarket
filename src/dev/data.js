@@ -3,6 +3,19 @@ import FoodItemListType from "../type/foodItemListType"
 
 const Data = {}
 
+// dev mode admin user
+Data.user = {
+    username: "sm_admin",
+    password: "admin1234@",
+    email: "sm_admin@gmail.com",
+    uuid: "dKAhfFKd1rM78siddBdb9D0kdlEl",
+    fetchOption: {
+        uuid: "dKAhfFKd1rM78siddBdb9D0kdlEl",
+    },
+    accessToken: "ACCESSTOKEN",
+    refreshToken: "REFRESHTOKEN",
+}
+
 // 같은 Type의 Item이 여러개 들어있는 Type이라면 FoodItemListType이라고 정의
 // 한 개의 Item이라면 VegetableItemType, MeatItemType etc... 이렇게 정의
 Data.createVegetableItemData = function () {
