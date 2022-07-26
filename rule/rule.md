@@ -30,6 +30,7 @@
 
     - 상위 컴포넌트와 하위 컴포넌트가 state나 props를 공유하게 될 경우, 이러한 state들은 상위 컴포넌트로 끌어올림.
     - props는 ReadOnly임. 절대 내려보낸 props를 변경하지 말 것.
+    - 상위 컴포넌트의 함수가 하위 컴포넌트의 props로 전달되는 경우 useCallback을 사용.
 
 4. Git & README
 
