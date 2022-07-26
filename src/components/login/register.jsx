@@ -31,7 +31,7 @@ function Register() {
     const onSubmiButtonClickEventtHandler = (event) => {
         event.preventDefault()
         if (password === checkPasswrod) {
-            dispatch(registerRequest(username, password, email))
+            console.log(dispatch(registerRequest(username, password, email)))
         } else {
             return
         }

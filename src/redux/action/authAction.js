@@ -6,25 +6,21 @@ import {
 } from "../actionTypes/auth/authActionTypes"
 import AuthService from "../../service/authService"
 
-export const registerRequest =
-    (username, password, email, name) => async (dispatch) => {
-        try {
-            const data = await AuthService.registerRequest(
-                username,
-                password,
-                email
-            )
-            dispatch({
-                type: REGISTER_USER,
-                payload: data,
-            })
-        } catch (error) {
-            dispatch({
-                type: REGISTER_ERROR,
-                payload: error.response,
-            })
-        }
+export const registerRequest = (username, password, email) => (dispatch) => {
+    try {
+        const data = AuthService.registerRequest(username, password, email)
+        dispatch({
+            type: REGISTER_USER,
+            payload: data,
+        })
+        return data
+    } catch (error) {
+        dispatch({
+            type: REGISTER_ERROR,
+            payload: error.response,
+        })
     }
+}
 
 export const loginRequest = (username, password) => (dispatch) => {
     try {

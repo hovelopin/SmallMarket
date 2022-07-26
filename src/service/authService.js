@@ -1,13 +1,22 @@
 import Data from "../dev/data"
 import UserStorage from "../storage/userStorage"
-import ErrorUtil from "../util/errorUtil"
 
 const AuthService = {}
 
 AuthService.type = "AuthServiceType"
 
-AuthService.registerRequest = function (username, password, email, name) {
-    ErrorUtil.notImplemented()
+AuthService.registerRequest = function (username, password, email) {
+    const newUser = {}
+    newUser.username = username
+    newUser.password = password
+    newUser.email = email
+    newUser.fetchOption = {}
+    newUser.fetchOption.uuid = "DkAHffKD6dlF8EkSD4kaNrJ1sK"
+    newUser.accessToken = "ACCESSTOKEN2"
+    newUser.refreshToken = "REFRESHTOKEN2"
+    Data.newUser = newUser
+    UserStorage.save(Data.newUser.refreshToken)
+    return Data.newUser
 }
 
 AuthService.loginRequest = function (username, password) {
