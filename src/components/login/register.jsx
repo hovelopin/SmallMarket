@@ -6,7 +6,6 @@ import { registerRequest } from "../../redux/action/authAction"
 function Register() {
     const [username, setUserName] = useState("")
     const [password, setPassword] = useState("")
-    const [name, setName] = useState("")
     const [email, setEmail] = useState("")
     const [checkPasswrod, setCheckPassword] = useState("")
 
@@ -32,7 +31,7 @@ function Register() {
     const onSubmiButtonClickEventtHandler = (event) => {
         event.preventDefault()
         if (password === checkPasswrod) {
-            dispatch(registerRequest(username, password, email, name))
+            dispatch(registerRequest(username, password, email))
         } else {
             return
         }
