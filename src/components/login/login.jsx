@@ -1,13 +1,13 @@
-import React, { useState, useCallback } from "react"
+import { useState, useCallback } from "react"
 import { useDispatch } from "react-redux"
+import { Container, Box, Input, Button, Typography } from "@mui/material"
 import { loginRequest } from "../../redux/action/authAction"
-import styles from "./login.module.css"
-import { RiLockPasswordFill, RiUser3Line } from "react-icons/ri"
-import { Link, useHistory } from "react-router-dom"
+import { useHistory } from "react-router-dom"
 
 function Login() {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+
     const dispatch = useDispatch()
     const history = useHistory()
 
@@ -19,74 +19,100 @@ function Login() {
         setPassword(event.target.value)
     }, [])
 
-    const registerHandler = () => {
+    const onRegisterButtonClickHandler = () => {
         history.push("/register")
     }
 
     const onLoginButtonClickEventHandler = (event) => {
         event.preventDefault()
-        dispatch(loginRequest(username, password))
-            .then((data) => {
-                if (data.token) {
-                    if (
-                        window.confirm(
-                            "Login Success ! Do you want to go our web sites ?"
-                        )
-                    ) {
-                        window.location.replace("/")
-                    } else {
-                        history.push("/main")
-                    }
-                }
-            })
-            .catch(() => alert("Login failed..."))
+        console.log(dispatch(loginRequest(username, password)))
     }
 
     return (
-        <React.Fragment>
-            <Link to="/main">
-                <div className={styles.login_logo}>
-                    <img
-                        className={styles.logo_text}
-                        src="/img/reg_smallmarket.png"
-                        alt="logoText"
-                    ></img>
-                </div>
-            </Link>
-            <form className={styles.loginWrap}>
-                <div className={styles.loginIndex}>
-                    <h3> Login </h3>
-                    <input
+        <Container>
+            <Box sx={boxStyle}>
+                <img
+                    style={imgStyle}
+                    src="/img/reg_smallmarket.png"
+                    alt="logoText"
+                ></img>
+            </Box>
+            <Box sx={formStyle}>
+                <Box sx={loginStyle}>
+                    <Typography sx={textStyle} variant="h4" align="center">
+                        Login
+                    </Typography>
+                    <Input
                         type="text"
-                        className={styles.idInput}
+                        sx={inputStyle}
                         placeholder="Enter your name...."
                         onChange={userNameChangeHandler}
-                    ></input>
-                    <i className={styles.id_icons}>
-                        <RiUser3Line />
-                    </i>
-                    <input
+                    ></Input>
+                    <Input
                         type="password"
-                        className={styles.pwInput}
+                        sx={inputStyle}
                         placeholder="Enter your password..."
                         onChange={passwordChangeHandler}
-                    ></input>
-                    <i className={styles.pw_icons}>
-                        <RiLockPasswordFill />
-                    </i>
-                    <button
-                        className={styles.btLogin}
+                    ></Input>
+                    <Button
+                        sx={buttonStyle}
                         onClick={onLoginButtonClickEventHandler}
                     >
                         Login
-                    </button>
-                    <button className={styles.btReg} onClick={registerHandler}>
+                    </Button>
+                    <Button
+                        sx={buttonStyle}
+                        onClick={onRegisterButtonClickHandler}
+                    >
                         Register
-                    </button>
-                </div>
-            </form>
-        </React.Fragment>
+                    </Button>
+                </Box>
+            </Box>
+        </Container>
     )
+}
+
+const boxStyle = {
+    width: "100%",
+    position: "relative",
+    textAlign: "center",
+    mt: 15,
+}
+
+const imgStyle = {
+    width: "240px",
+}
+
+const formStyle = {
+    width: "100%",
+    height: "500px",
+    position: "relative",
+}
+
+const textStyle = {
+    m: 2,
+}
+
+const loginStyle = {
+    width: "450px",
+    position: "absolute",
+    top: "40%",
+    left: "50%",
+    background: "white",
+    boxShadow: "0 2px 4px 0 rgba(0, 0, 0, 0.2)",
+    padding: "20px 20px 20px 20px",
+    transform: "translate(-50%, -50%)",
+}
+
+const inputStyle = {
+    display: "block",
+    height: 50,
+    width: "100%",
+}
+
+const buttonStyle = {
+    width: "50%",
+    height: 50,
 }
 
 export default Login
