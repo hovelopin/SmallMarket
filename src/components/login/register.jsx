@@ -12,8 +12,13 @@ function Register() {
 
     const dispatch = useDispatch()
 
+    // TODO: user validation 추가
     const onUserNameChangeEventHandler = useCallback((event) => {
         setUserName(event.target.value)
+    }, [])
+
+    const onEmailChangeEventHandler = useCallback((event) => {
+        setEmail(event.target.value)
     }, [])
 
     const onPasswordChangeEventHandler = useCallback((event) => {
@@ -24,18 +29,12 @@ function Register() {
         setCheckPassword(event.target.value)
     }, [])
 
-    const onNameChangeEventHandler = useCallback((event) => {
-        setName(event.target.value)
-    }, [])
-
-    const onEmailChangeEventHandler = useCallback((event) => {
-        setEmail(event.target.value)
-    }, [])
-
     const onSubmiButtonClickEventtHandler = (event) => {
         event.preventDefault()
         if (password === checkPasswrod) {
             dispatch(registerRequest(username, password, email, name))
+        } else {
+            return
         }
     }
 
@@ -59,6 +58,13 @@ function Register() {
                     required
                 />
                 <Input
+                    type="email"
+                    sx={inputStyle}
+                    placeholder="smallmarket@gmail.com"
+                    onChange={onEmailChangeEventHandler}
+                    required
+                />
+                <Input
                     type="password"
                     sx={inputStyle}
                     placeholder="Enter password"
@@ -70,19 +76,6 @@ function Register() {
                     sx={inputStyle}
                     placeholder="Confirm password"
                     onChange={onCheckPasswordChangeEventHandler}
-                    required
-                />
-                <Input
-                    type="email"
-                    sx={inputStyle}
-                    placeholder="smallmarket@gmail.com"
-                    onChange={onEmailChangeEventHandler}
-                    required
-                />
-                <Input
-                    sx={inputStyle}
-                    placeholder="Your name in SmallMarket"
-                    onChange={onNameChangeEventHandler}
                     required
                 />
                 <Button onClick={onSubmiButtonClickEventtHandler}>
