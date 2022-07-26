@@ -121,7 +121,7 @@ Stroage class를 제작하고 이를 통해 Cart에 대한 Item 항목들을 손
 Cart component를 MUI의 UI를 활용해 보다 더욱 직관적인 UI로 수정했다.
 ```
 
-### Login, User관련 Redux 리팩토링
+### Login, Register, User관련 Redux 리팩토링
 
 ```
 Login, Register Component를 MUI로 바꿨다. 개발용 Data에 임시 admin 계정 데이터를 생성하고, LocalStorage에 담긴 정보를 CookieStorage로 옮겼다.
