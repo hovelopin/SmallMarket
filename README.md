@@ -120,3 +120,12 @@ SmallMarket V1 에서는 서버에서 받아온 JSON 데이터 형태 그대로�
 Stroage class를 제작하고 이를 통해 Cart에 대한 Item 항목들을 손쉽게 관리할 수 있도록 수정했다.
 Cart component를 MUI의 UI를 활용해 보다 더욱 직관적인 UI로 수정했다.
 ```
+
+### Login, User관련 Redux 리팩토링
+
+```
+Login Component를 MUI로 바꿨다. 개발용 Data에 임시 admin 계정 데이터를 생성하고, LocalStorage에 담긴 정보를 CookieStorage로 옮겼다.
+또한 기존의 AuthService는 class형태로 작성이 됐는데, 사용할 때마다 객체를 생성할 필요없이 object 형태로 만들어 다른 곳에서도 언제든지
+import만 한다면 사용할 수 있도록 리팩토링했다. firebase로 옮기면서 테스트 데이터를 하나씩 지워가며 실제 Data를 토대로 통신할 수 있도록
+수정할 예정이다.
+```
