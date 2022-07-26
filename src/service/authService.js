@@ -1,33 +1,29 @@
-export default class AuthService { // for sms
-  constructor(http, tokenStorage) {
-    this.http = http;
-    this.tokenStorage = tokenStorage;
-  }
+import Data from "../dev/data"
+import UserStorage from "../storage/userStorage"
+import ErrorUtil from "../util/errorUtil"
 
-  async signup(username, password, name, email) { // more simplify. using fetch method
-    const data = await this.http.fetch('/user/signup', {
-      method: 'POST',
-      body: JSON.stringify({
-        username,
-        password,
-        name,
-        email,
-      }),
-    });
-    this.tokenStorage.saveToken(data.token);
-    return data;
-  }
+const AuthService = {}
 
-  async login(username, password) {
-    const data = await this.http.fetch('/user/login', {
-      method: 'POST',
-      body: JSON.stringify({ username, password }),
-    });
-    this.tokenStorage.saveToken(data.token);
-    return data;
-  }
+AuthService.type = "AuthServiceType"
 
-  async logout() {
-    this.tokenStorage.clearToken();
-  }
+AuthService.registerRequest = function (username, password, email, name) {
+    ErrorUtil.notImplemented()
 }
+
+AuthService.loginRequest = function (username, password) {
+    const serverData = {}
+    serverData.username = Data.user.username
+    serverData.password = Data.user.password
+    if (username === serverData.username && serverData.password === password) {
+        UserStorage.save(Data.user.refreshToken)
+        return Data.user
+    }
+    return null
+}
+
+AuthService.logoutRequest = function () {
+    UserStorage.clear()
+}
+
+export default AuthService
+Object.freeze(AuthService)
