@@ -4,19 +4,12 @@ import {
     REGISTER_ERROR,
     USER_LOGIN_FAIL,
 } from "../actionTypes/auth/authActionTypes"
-import HttpClient from "../../network/httpClient"
-import TokenStorage from "../../database/token"
-import AuthenticateService from "../../service/authentication"
-
-const baseURL = process.env.REACT_APP_BASE_URL
-const tokenStorage = new TokenStorage()
-const httpClient = new HttpClient(baseURL).createAxios()
-const authenticationService = new AuthenticateService(httpClient, tokenStorage)
+import AuthService from "../../service/authService"
 
 export const registerRequest =
     (username, password, email, name) => async (dispatch) => {
         try {
-            const data = await authenticationService.signUp(
+            const data = await AuthService.registerRequest(
                 username,
                 password,
                 email,
@@ -34,9 +27,9 @@ export const registerRequest =
         }
     }
 
-export const loginRequest = (username, password) => async (dispatch) => {
+export const loginRequest = (username, password) => (dispatch) => {
     try {
-        const data = await authenticationService.login(username, password)
+        const data = AuthService.loginRequest(username, password)
         dispatch({
             type: USER_LOGIN,
             payload: data,
@@ -50,6 +43,6 @@ export const loginRequest = (username, password) => async (dispatch) => {
     }
 }
 
-export function logoutRequest(username) {
-    authenticationService.logout(username)
+export function logoutRequest() {
+    AuthService.logout()
 }
