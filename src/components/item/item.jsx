@@ -1,6 +1,6 @@
 import React from "react"
+import { Box, Typography, Button } from "@mui/material"
 import { useHistory } from "react-router-dom"
-import styles from "./item.module.css"
 
 const Item = ({ uuid, name, price, quantity, img }) => {
     const history = useHistory()
@@ -10,21 +10,57 @@ const Item = ({ uuid, name, price, quantity, img }) => {
     }
 
     return (
-        <section className={styles.itemBox}>
-            <img className={styles.imgSet} src={img} alt={name} />
-            <div className={styles.itemInfo}>
-                <h2 className={styles.name}>{name}</h2>
-                <p className={styles.itemPrice}>Price : {price}</p>
-                <p className={styles.itemQuantity}>Quantity : {quantity}</p>
-                <p className={styles.description}>Description : {name}</p>
-                <button
-                    className={styles.button}
+        <Box sx={boxStyle}>
+            <img style={imgStyle} src={`./img/${img}`} alt={name} />
+            <Box>
+                <Typography variant="h4" sx={nameStyle}>
+                    {name}
+                </Typography>
+                <Typography sx={desStyle} variant="p">
+                    Price : {price}
+                </Typography>
+                <Typography sx={desStyle} variant="p">
+                    Quantity : {quantity}
+                </Typography>
+                <Typography sx={desStyle} variant="p">
+                    Description : {name}
+                </Typography>
+                <Button
+                    sx={buttonStyle}
                     onClick={onDetailButtonClickEventHandler}
                 >
                     Detail
-                </button>
-            </div>
-        </section>
+                </Button>
+            </Box>
+        </Box>
     )
 }
+
+const boxStyle = {
+    width: "350px",
+    display: "flex",
+    p: "1rem",
+    margin: "0 auto",
+    flexDirection: "column",
+    justifyContent: "space-between",
+}
+
+const imgStyle = {
+    height: "200px",
+    borderRadius: "10%",
+}
+
+const nameStyle = {
+    mt: 1,
+    textTransform: "uppercase",
+}
+
+const desStyle = {
+    display: "block",
+}
+
+const buttonStyle = {
+    float: "left",
+}
+
 export default Item
