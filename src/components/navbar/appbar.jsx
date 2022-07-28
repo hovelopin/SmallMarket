@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { useHistory } from "react-router-dom"
 import {
     Box,
     AppBar,
@@ -14,6 +15,7 @@ function Appbar() {
     const [itemAnchorEl, setItemAnchorEl] = useState(null)
 
     const isOpen = Boolean(itemAnchorEl)
+    const history = useHistory()
 
     // onClick 함수가 있을 경우에만 동작하도록 한다.
     const items = [
@@ -27,17 +29,23 @@ function Appbar() {
         {
             name: "CART",
             icon: <Icon name="cart" />,
-            path: "/cart",
+            onClick: () => {
+                history.push("/cart")
+            },
         },
         {
             name: "LOGIN",
             icon: <Icon name="signin" />,
-            path: "/login",
+            onClick: () => {
+                history.push("/login")
+            },
         },
         {
             name: "REGISTER",
             icon: <Icon name="signup" />,
-            path: "/register",
+            onClick: () => {
+                history.push("/register")
+            },
         },
     ]
 
