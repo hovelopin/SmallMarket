@@ -20,7 +20,6 @@ function Appbar() {
         {
             name: "SHOP",
             icon: <Icon name="bag" />,
-            path: "/items",
             onClick: (e) => {
                 setItemAnchorEl(e.currentTarget)
             },
@@ -50,6 +49,7 @@ function Appbar() {
     ]
 
     const onMenuButtonClickEventHandler = (menuName) => () => {
+        // const path = "/items"
         // TODO: menuName에 따른 라우팅
         // app.jsx에서 params로 분류
         // 카테고리 이름에 따라서 item_list에서 fetch를 할 것
