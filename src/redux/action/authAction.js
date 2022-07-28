@@ -35,6 +35,7 @@ export const loginRequest = (username, password) => (dispatch) => {
             type: USER_LOGIN_FAIL,
             payload: error.message,
         })
+        return null
     }
 }
 
