@@ -47,7 +47,7 @@ function Login() {
                     style={imgStyle}
                     src="/img/reg_smallmarket.png"
                     alt="logoText"
-                ></img>
+                />
             </Box>
             <Box sx={formStyle}>
                 <Box sx={loginStyle}>
