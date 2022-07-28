@@ -81,7 +81,7 @@ function Appbar() {
 
     return (
         <React.Fragment>
-            <AppBar component="nav">
+            <AppBar sx={appbarStyle} component="nav">
                 <Toolbar sx={boxStyle}>
                     <Box sx={menuStyle}>
                         {items.map((item) => (
@@ -113,6 +113,11 @@ function Appbar() {
             </Menu>
         </React.Fragment>
     )
+}
+
+const appbarStyle = {
+    bgcolor: "rgb(255, 166, 0)",
+    boxShadow: "none",
 }
 
 const boxStyle = {
