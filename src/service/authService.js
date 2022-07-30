@@ -43,6 +43,7 @@ AuthService.logoutRequest = function () {
     UserStorage.clear()
 }
 
+// TODO: Test 필요
 AuthService.firebaseRegiserRequest = async function (
     username,
     password,
