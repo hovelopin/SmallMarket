@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react"
-import styles from "./product_detail.module.css"
 import SMAlertPopup from "../popup/smAlertPopup"
+import { Box, Typography, Button } from "@mui/material"
 import { useDispatch, useSelector } from "react-redux"
 import { getItemDetails } from "../../redux/action/itemAction"
 import { addCart } from "../../redux/action/cartAction"
@@ -14,7 +14,7 @@ function ProductDetail({ match, history }) {
     const cart = useSelector((state) => state.cart)
 
     const { cartItems } = cart
-    const { item, loading, error } = itemDetails
+    const { item } = itemDetails
 
     useEffect(() => {
         if (item && match.params.id !== item.id) {
@@ -49,63 +49,72 @@ function ProductDetail({ match, history }) {
     }, [])
 
     return (
-        <div className={styles.productWrap}>
-            {loading ? (
-                <h2>Loading</h2>
-            ) : error ? (
-                <h2>{error}</h2>
-            ) : (
-                <React.Fragment>
-                    <div className={styles.productContainer}>
-                        <div className={styles.productImg}>
-                            <img src={item.img} alt={item.name} />
-                        </div>
-                        <div className={styles.productInfo}>
-                            <span className={styles.titleMain}>
-                                {item.name}
-                            </span>
-                            <span className={styles.titleSub}>{item.name}</span>
-                            <span className={styles.priceSub}>
-                                Price : {item.price}
-                            </span>
-                        </div>
-                    </div>
-                    <div className={styles.productQuantity}>
-                        <div className={styles.quantityInfo}>
-                            <h3>Quantity</h3>
-                            <button
-                                className={styles.button}
-                                onClick={onDecreaseButtonClickEventHandler}
-                            >
-                                -
-                            </button>
-                            {quantity < 1 ? 1 : quantity}
-                            <button
-                                className={styles.button}
-                                onClick={onIncreaseButtonClickEventHandler}
-                            >
-                                +
-                            </button>
-                        </div>
-                        <span className={styles.totalMain}>
-                            Total Price ${quantity * item.price}
-                        </span>
-                        <button
-                            className={styles.info_basket}
-                            onClick={onCartButtonClickEventHandler}
-                        >
-                            Add to cart
-                        </button>
-                    </div>
-                </React.Fragment>
-            )}
+        <Box sx={containerStyle}>
+            <Box sx={boxWrap}>
+                <img
+                    style={imgStyle}
+                    src={`../../img/${item.img}`}
+                    alt={item.name}
+                />
+            </Box>
+            <Box sx={productInfo}>
+                <Typography variant="h4">{item.name}</Typography>
+                <Typography variant="h5">Stock: {item.quantity}</Typography>
+                <Typography variant="h5">Price: ${item.price}</Typography>
+            </Box>
+            <Box>
+                <Box sx={qBoxStyle}>
+                    <Typography variant="h4">Quantity</Typography>
+                    <Button onClick={onDecreaseButtonClickEventHandler}>
+                        Decrease
+                    </Button>
+                    <Typography variant="h6" align="center">
+                        {quantity < 1 ? 1 : quantity}
+                    </Typography>
+                    <Button onClick={onIncreaseButtonClickEventHandler}>
+                        Add
+                    </Button>
+                </Box>
+                <Typography variant="span">
+                    Total Price ${quantity * item.price}
+                </Typography>
+                <Box>
+                    <Button onClick={onCartButtonClickEventHandler}>
+                        Add to cart
+                    </Button>
+                </Box>
+            </Box>
             <SMAlertPopup
                 isOpen={isOpenAlert}
                 onCloseButtonClickEvent={onCloseButtonClickEventHanlder}
                 msg="Already exist in your cart !"
             />
-        </div>
+        </Box>
     )
+}
+
+const containerStyle = {
+    width: "100%",
+    display: "flex",
+    mt: 10,
+}
+
+const boxWrap = {
+    flex: "0.5",
+}
+
+const imgStyle = {
+    width: "17%",
+}
+
+const productInfo = {
+    margin: 1,
+    flex: "0.45",
+    height: "fit-content",
+}
+
+const qBoxStyle = {
+    height: "fit-content",
 }
 
 export default ProductDetail
