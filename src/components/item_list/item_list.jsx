@@ -1,42 +1,46 @@
 import React, { useEffect } from "react"
-import styles from "./item_list.module.css"
 import { useDispatch, useSelector } from "react-redux"
 import { getItems as itemList } from "../../redux/action/itemAction"
+import { Box } from "@mui/material"
 import Item from "../item/item"
 
 const ItemList = () => {
     const dispatch = useDispatch()
     const getItems = useSelector((state) => state.getItems)
-    const { items, error } = getItems
+    const { items } = getItems
 
     useEffect(() => {
         dispatch(itemList())
     }, [dispatch])
 
     return (
-        <section className={styles.container}>
-            <div className={styles.shopTop}>
-                <div className={styles.shopBox}>
-                    <h1>ITEMS</h1>
-                </div>
-            </div>
-            <div className={styles.item}>
-                {error ? (
-                    <h1>{error}</h1>
-                ) : (
-                    items.map((item) => (
-                        <Item
-                            key={item.uuid}
-                            name={item.name}
-                            quantity={item.quantity}
-                            price={item.price}
-                            uuid={item.uuid}
-                            img={item.img}
-                        />
-                    ))
-                )}
-            </div>
-        </section>
+        <Box sx={containerStyle}>
+            <Box sx={boxStyle}>
+                {items.map((item) => (
+                    <Item
+                        key={item.uuid}
+                        name={item.name}
+                        quantity={item.quantity}
+                        price={item.price}
+                        uuid={item.uuid}
+                        img={item.img}
+                    />
+                ))}
+            </Box>
+        </Box>
     )
 }
+
+const containerStyle = {
+    width: "100%",
+    pt: 5,
+}
+
+const boxStyle = {
+    width: "100%",
+    textAlign: "center",
+    display: "grid",
+    gridTemplateColumns: "repeat(4, 1fr)",
+}
+
 export default ItemList
