@@ -8,8 +8,7 @@ const CartItem = ({ item, onRemoveButtonClickEvent, isPay }) => {
 
     return (
         <Box sx={boxStyle}>
-            <img src={item.img} alt={item.name} />
-
+            <img style={imgStyle} src={`./img/${item.img}`} alt={item.name} />
             <Typography sx={fontStyle}>{item.name}</Typography>
             <Typography sx={fontStyle}>${item.price}</Typography>
             <Typography sx={fontStyle}>{item.quantity}</Typography>
@@ -33,6 +32,10 @@ const boxStyle = {
     gap: "0.3rem",
     placeItems: "center",
     border: "2px",
+}
+
+const imgStyle = {
+    width: "120px",
 }
 
 const fontStyle = {
