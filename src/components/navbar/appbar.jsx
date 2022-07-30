@@ -1,51 +1,88 @@
-import React from "react"
-import { Box, AppBar, Toolbar, Typography, Button } from "@mui/material"
+import React, { useState } from "react"
+import { useHistory } from "react-router-dom"
+import {
+    Box,
+    AppBar,
+    Toolbar,
+    Typography,
+    Button,
+    Menu,
+    MenuItem,
+} from "@mui/material"
 import Icon from "../../icon/icon"
 
 function Appbar() {
-    // onClickEventHandler를 공통화 한다
+    const [itemAnchorEl, setItemAnchorEl] = useState(null)
+
+    const isOpen = Boolean(itemAnchorEl)
+    const history = useHistory()
+
+    // onClick 함수가 있을 경우에만 동작하도록 한다.
     const items = [
         {
             name: "SHOP",
             icon: <Icon name="bag" />,
-            path: "/items",
-        },
-        {
-            name: "CONTACT",
-            icon: <Icon name="contact" />,
-            path: "/contact",
+            onClick: (e) => {
+                setItemAnchorEl(e.currentTarget)
+            },
         },
         {
             name: "CART",
             icon: <Icon name="cart" />,
-            path: "/cart",
+            onClick: () => {
+                history.push("/cart")
+            },
         },
         {
             name: "LOGIN",
             icon: <Icon name="signin" />,
-            path: "/login",
+            onClick: () => {
+                history.push("/login")
+            },
         },
         {
             name: "REGISTER",
             icon: <Icon name="signup" />,
-            path: "/register",
-        },
-        {
-            name: "Q & A",
-            icon: <Icon name="qna" />,
-            path: "/board",
-        },
-        {
-            name: "ABOUT",
-            icon: <Icon name="about" />,
-            path: "/about",
+            onClick: () => {
+                history.push("/register")
+            },
         },
     ]
 
+    const category = [
+        { name: "Vegetable" },
+        { name: "Meat" },
+        { name: "Drink" },
+        { name: "Normal" },
+    ]
+
+    const onMenuButtonClickEventHandler = (menuName) => () => {
+        // const path = "/items"
+        // TODO: menuName에 따른 라우팅
+        // app.jsx에서 params로 분류
+        // 카테고리 이름에 따라서 item_list에서 fetch를 할 것
+        switch (menuName) {
+            case "Vegetable":
+                break
+            case "Meat":
+                break
+            case "Drink":
+                break
+            case "Normal":
+                break
+            default:
+                return
+        }
+    }
+
+    const onMenuCloseButtonClickEventHandler = () => {
+        setItemAnchorEl(null)
+    }
+
     return (
-        <Box sx={boxStyle}>
-            <AppBar component="nav">
-                <Toolbar>
+        <React.Fragment>
+            <AppBar sx={appbarStyle} component="nav">
+                <Toolbar sx={boxStyle}>
                     <Box sx={menuStyle}>
                         {items.map((item) => (
                             <Box key={item.name} sx={navStyle}>
@@ -60,12 +97,34 @@ function Appbar() {
                     </Box>
                 </Toolbar>
             </AppBar>
-        </Box>
+            <Menu
+                anchorEl={itemAnchorEl}
+                open={isOpen}
+                onClose={onMenuCloseButtonClickEventHandler}
+            >
+                {category.map((c) => (
+                    <MenuItem
+                        key={c.name}
+                        onClick={onMenuButtonClickEventHandler(c.name)}
+                    >
+                        {c.name}
+                    </MenuItem>
+                ))}
+            </Menu>
+        </React.Fragment>
     )
+}
+
+const appbarStyle = {
+    bgcolor: "rgb(255, 166, 0)",
+    boxShadow: "none",
 }
 
 const boxStyle = {
     display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    padding: 1,
 }
 
 const menuStyle = {

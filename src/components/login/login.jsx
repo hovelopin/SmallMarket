@@ -3,10 +3,12 @@ import { useDispatch } from "react-redux"
 import { Container, Box, Input, Button, Typography } from "@mui/material"
 import { loginRequest } from "../../redux/action/authAction"
 import { useHistory } from "react-router-dom"
+import SMAlertPopup from "../popup/smAlertPopup"
 
 function Login() {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+    const [isAlertPopupOpen, setIsAlertPopupOpen] = useState(false)
 
     const dispatch = useDispatch()
     const history = useHistory()
@@ -25,7 +27,17 @@ function Login() {
 
     const onLoginButtonClickEventHandler = (event) => {
         event.preventDefault()
-        console.log(dispatch(loginRequest(username, password)))
+        const user = dispatch(loginRequest(username, password))
+        if (user !== null) {
+            history.push("/")
+        } else {
+            setIsAlertPopupOpen(true)
+            return
+        }
+    }
+
+    const onCloseButtonClickEventHandler = (checked) => {
+        setIsAlertPopupOpen(checked)
     }
 
     return (
@@ -35,7 +47,7 @@ function Login() {
                     style={imgStyle}
                     src="/img/reg_smallmarket.png"
                     alt="logoText"
-                ></img>
+                />
             </Box>
             <Box sx={formStyle}>
                 <Box sx={loginStyle}>
@@ -68,6 +80,11 @@ function Login() {
                     </Button>
                 </Box>
             </Box>
+            <SMAlertPopup
+                isOpen={isAlertPopupOpen}
+                onCloseButtonClickEvent={onCloseButtonClickEventHandler}
+                msg="Please check your input !"
+            />
         </Container>
     )
 }
