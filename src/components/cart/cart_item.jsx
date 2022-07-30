@@ -23,15 +23,13 @@ const CartItem = ({ item, onRemoveButtonClickEvent, isPay }) => {
 }
 
 const boxStyle = {
-    width: "100%",
-    padding: "1rem",
+    width: "150%",
     display: "grid",
     mt: "2rem",
     mb: "2rem",
-    gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr",
-    gap: "0.3rem",
+    gridTemplateColumns: "repeat(5, 1fr)",
+    gap: "1rem",
     placeItems: "center",
-    border: "2px",
 }
 
 const imgStyle = {
