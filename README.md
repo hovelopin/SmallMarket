@@ -1,8 +1,6 @@
 # 📖 SmallMarket Project
 
--   Client
-
-## :clock3: Project Period
+## :clock3: First project Period
 
 2021.09.17 ~ 2021.10.14
 
@@ -27,37 +25,18 @@
 -   CSS: Post CSS
 -   Deploy: netlify
 
-## TODO
-
-```
-Pay
-Responsive web site
-```
-
-## Now Testing
-
-```
-Login Authorization
-Socket -> Small Market SNS Testing -> Beta version.
-```
-
 ## Complete
 
 ```
 Main ✔
-Main Design ✔
-Main Cover ✔
 Footer ✔
-Navbar ✔
-Contact ✔
-About ✔
+Appbar ✔
 Login ( Authentication Redux, action ) ✔
 Register ( Authentication Redux, action ) ✔
 Cart Function ( Cart Redux, action ) ✔
 Cart design ✔
 Item List design ✔
 Item detail design ✔
-Board Post and Reads ✔
 Refactoring design & bug ✔
 ```
 

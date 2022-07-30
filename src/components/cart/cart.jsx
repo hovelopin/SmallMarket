@@ -57,8 +57,7 @@ const Cart = () => {
                 ) : (
                     cartItems.map((item) => (
                         <CartItem
-                            key={item.uuid}
-                            uuid={item.uuid}
+                            key={item.name}
                             item={item}
                             onRemoveButtonClickEvent={
                                 onRemoveButtonClickEventHandler
