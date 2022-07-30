@@ -20,6 +20,13 @@ const cartStorage = Storage.getStorageItem()
     : []
 
 const INIT_STATE = {
+    user: {
+        accessToken: "",
+        refreshToken: "",
+        fetchOption: {
+            uuid: "",
+        },
+    },
     cart: {
         cartItems: cartStorage,
     },
