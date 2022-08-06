@@ -6,15 +6,15 @@ import { useHistory } from "react-router-dom"
 import SMAlertPopup from "../popup/smAlertPopup"
 
 function Login() {
-    const [username, setUsername] = useState("")
+    const [userEmail, setUserEmail] = useState("")
     const [password, setPassword] = useState("")
     const [isAlertPopupOpen, setIsAlertPopupOpen] = useState(false)
 
     const dispatch = useDispatch()
     const history = useHistory()
 
-    const userNameChangeHandler = useCallback((event) => {
-        setUsername(event.target.value)
+    const userEmailChangeHandler = useCallback((event) => {
+        setUserEmail(event.target.value)
     }, [])
 
     const passwordChangeHandler = useCallback((event) => {
@@ -27,7 +27,14 @@ function Login() {
 
     const onLoginButtonClickEventHandler = (event) => {
         event.preventDefault()
-        const user = dispatch(loginRequest(username, password))
+        // email 정규식 google 참고
+        const emailRegex =
+            /([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/
+        if (!emailRegex.test(userEmail)) {
+            setIsAlertPopupOpen(true)
+            return
+        }
+        const user = dispatch(loginRequest(userEmail, password))
         if (user !== null) {
             history.push("/")
         } else {
@@ -55,10 +62,10 @@ function Login() {
                         Login
                     </Typography>
                     <Input
-                        type="text"
+                        type="email"
                         sx={inputStyle}
-                        placeholder="Enter your name...."
-                        onChange={userNameChangeHandler}
+                        placeholder="Enter your email...."
+                        onChange={userEmailChangeHandler}
                     ></Input>
                     <Input
                         type="password"

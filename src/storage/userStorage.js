@@ -9,8 +9,8 @@ class UserStroage extends NameUtil {
     }
 }
 
-UserStroage.save = function (refreshToken) {
-    CookieStorage.saveRefreshToken(refreshToken)
+UserStroage.save = function (accessToken) {
+    CookieStorage.saveRefreshToken(accessToken)
 }
 
 UserStroage.getToken = function () {
