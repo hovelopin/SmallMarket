@@ -3,7 +3,7 @@ import Cookies from "universal-cookie"
 import ErrorUtil from "../util/errorUtil"
 
 const cookies = new Cookies()
-const REFRESH_TOKEN = "SM_REFRESH_TOKEN"
+const ACCESS_TOKEN = "SM_ACCESS_TOKEN"
 
 class CookieStorage extends NameUtil {
     constructor() {
@@ -14,17 +14,17 @@ class CookieStorage extends NameUtil {
 }
 
 // samesite option
-CookieStorage.saveRefreshToken = function (refreshToken) {
-    ErrorUtil.invalidParameter(refreshToken)
-    cookies.set(REFRESH_TOKEN, refreshToken, { sameSite: "strict" })
+CookieStorage.saveAccessToken = function (accessToken) {
+    ErrorUtil.invalidParameter(accessToken)
+    cookies.set(ACCESS_TOKEN, accessToken, { sameSite: "strict" })
 }
 
 CookieStorage.checkUserToken = function () {
-    return cookies.get(REFRESH_TOKEN)
+    return cookies.get(ACCESS_TOKEN)
 }
 
 CookieStorage.clearToken = function () {
-    cookies.remove(REFRESH_TOKEN)
+    cookies.remove(ACCESS_TOKEN)
 }
 
 export default CookieStorage
