@@ -1,13 +1,6 @@
-import { Box, Typography, Button } from "@mui/material"
-import { useHistory } from "react-router-dom"
+import { Box, Typography } from "@mui/material"
 
 function Main() {
-    const history = useHistory()
-
-    const onShopButtonClickEventHandler = () => {
-        history.push("/items")
-    }
-
     return (
         <Box sx={boxStyle}>
             <Box sx={boxHeaderStyle}>
@@ -24,12 +17,6 @@ function Main() {
                     src="img/1-index.jpg"
                     alt="main"
                 />
-                <Button
-                    sx={buttonStyle}
-                    onClick={onShopButtonClickEventHandler}
-                >
-                    GO TO SHOP
-                </Button>
             </Box>
             <Box sx={wrapStyle}>
                 <Box sx={wrapContainerStyle}>
@@ -125,22 +112,9 @@ const boxHeaderStyle = {
 const titleStyle = {
     position: "absolute",
     color: "#fff",
-    top: "10%",
+    top: "30%",
     left: "25%",
     zIndex: "10",
-}
-
-const buttonStyle = {
-    width: "200px",
-    height: "60px",
-    position: "absolute",
-    left: "43%",
-    top: "50%",
-    zIndex: 50,
-    color: "#fff",
-    fontWeight: "bold",
-    border: "1px solid #fff",
-    fontSize: "1.2rem",
 }
 
 const wrapStyle = {
