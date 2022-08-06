@@ -24,7 +24,6 @@ AuthService.registerRequest = function (username, password, email) {
     newUser.accessToken = "ACCESSTOKEN2"
     newUser.refreshToken = "REFRESHTOKEN2"
     Data.newUser = newUser
-    UserStorage.save(Data.newUser.refreshToken)
     return Data.newUser
 }
 
@@ -33,7 +32,7 @@ AuthService.loginRequest = function (username, password) {
     serverData.username = Data.user.username
     serverData.password = Data.user.password
     if (username === serverData.username && serverData.password === password) {
-        UserStorage.save(Data.user.refreshToken)
+        UserStorage.save(Data.user.accessToken)
         return Data.user
     }
     return null
@@ -81,7 +80,7 @@ AuthService.firebaseLoginRequest = async function (email, password) {
             const user = userCredential.user
             const uObj = {}
             uObj.uuid = user.uid
-            uObj.token = user.accessToken
+            uObj.accessToken = user.accessToken
             uObj.refreshToken = user.refreshToken
             uObj.isEmailVerified = user.emailVerified
             return uObj.isEmailVerified === false ? null : uObj
