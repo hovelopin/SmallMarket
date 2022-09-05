@@ -1,3 +1,19 @@
+# 폴더 및 파일
+
+1. js
+
+    - JavaScript
+        - JavaScript 파일의 경우 소문자로 지정
+
+2. jsx
+
+    - jsx
+        - React파일의 경우 camelCase 사용
+
+3. 폴더
+
+    - 폴더 이름의 경우 소문자 사용
+
 # Programming Rule
 
 1. 변수
