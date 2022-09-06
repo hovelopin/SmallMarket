@@ -10,7 +10,6 @@
             "error",
             {
                 "endOfLine": "auto",
-                "semi": [2, "never"],
                 "quotes": ["warn", "double"],
                 "no-var": ["error"]
             }
