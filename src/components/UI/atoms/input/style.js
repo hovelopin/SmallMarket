@@ -2,6 +2,7 @@ import styled from "styled-components"
 import Theme from "../../../../util/style/theme"
 
 const StyledInput = styled.input`
+    outline: none;
     width: ${(props) => props.width};
     height: ${(props) => props.height};
     placeholder: ${(props) => props.placeholder};
