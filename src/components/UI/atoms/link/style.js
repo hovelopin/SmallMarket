@@ -5,7 +5,7 @@ const StyledLink = styled(Link)`
     display: inline-block;
     text-decoration: none;
     &:hover {
-        font-weight: bold;
+        font-weight: ${Theme.fontWeight.bold};
     }
     color: ${Theme.colors.black};
 `
