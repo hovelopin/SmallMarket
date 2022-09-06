@@ -22,6 +22,12 @@ const Theme = {
         width: "80%",
         gap: "10px",
     },
+    modal: {
+        padding: "15px",
+        background: "rgba(0, 0, 0, 0.14)",
+        translate: "translate(-50%, -50%)",
+        borderRadius: "8px",
+    },
 }
 
 Object.freeze(Theme)
