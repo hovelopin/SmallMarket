@@ -1,7 +1,7 @@
 import StyledLabel from "./style"
 
-const Label = ({ text }) => {
-    return <StyledLabel>{text}</StyledLabel>
+const Label = ({ labelText }) => {
+    return <StyledLabel>{labelText}</StyledLabel>
 }
 
 export default Label
