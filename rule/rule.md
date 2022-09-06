@@ -37,7 +37,9 @@
 
     - 이름
         - React Component 내에서 관리하는 이름의 경우 onClickEventHandler와 같이 명명
-            - ex) **_onNameButtonClickEventHandler_**
+        - ex) **_handlePayButtonClick_**
+    - 상위 컴포넌트에서 하위 컴포넌트로 이벤트를 전달하는 경우
+        - ex) **_onPayButtonClickEvent_**
     - 굳이 컴포넌트내에 모든 함수를 정의할 필요 없음.
         - call, bind 권장
     - map, reduce, filter, forEach, some, every와 같은 JS Array 함수 최대한 활용.
