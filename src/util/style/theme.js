@@ -4,6 +4,11 @@ const Theme = {
         white: "#fff",
         silverGray: "#ccc",
     },
+    fontSizes: {
+        small: "0.5rem",
+        default: "1.2rem",
+        large: "1.8rem",
+    },
     fontWeight: {
         thin: 300,
         medium: 700,
