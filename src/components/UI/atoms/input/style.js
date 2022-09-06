@@ -3,12 +3,13 @@ import Theme from "../../../../util/style/theme"
 
 const StyledInput = styled.input`
     outline: none;
-    width: ${(props) => props.width};
-    height: ${(props) => props.height};
+    width: 100%;
+    line-height: ${Theme.inputs.lineHeight};
     placeholder: ${(props) => props.placeholder};
     border: ${Theme.inputs.border};
     border-radius: ${Theme.inputs.borderRadius};
     box-sizing: ${Theme.inputs.boxSizing};
+    padding: ${Theme.inputs.padding};
     display: ${Theme.inputs.display};
 `
 
