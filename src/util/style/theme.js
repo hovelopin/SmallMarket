@@ -18,6 +18,10 @@ const Theme = {
         boxSizing: "border-box",
         display: "inline-block",
     },
+    grid: {
+        width: "80%",
+        gap: "10px",
+    },
 }
 
 Object.freeze(Theme)
