@@ -33,6 +33,9 @@ const Theme = {
         translate: "translate(-50%, -50%)",
         borderRadius: "8px",
     },
+    menus: {
+        padding: "1rem",
+    },
 }
 
 Object.freeze(Theme)
