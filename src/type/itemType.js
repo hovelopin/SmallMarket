@@ -4,13 +4,12 @@ import ErrorUtil from "../util/errorUtil"
 class ItemType extends NameUtil {
     constructor(uuid, name, price, quantity, img, type) {
         super(type)
-        ErrorUtil.invalidParameter(uuid)
+        ErrorUtil.invalidParameter(
+            [uuid, name, price, quantity].every((v) => v)
+        )
         this.uuid = uuid
-        ErrorUtil.invalidParameter(name)
         this.name = name
-        ErrorUtil.invalidParameter(price)
         this.price = price
-        ErrorUtil.invalidParameter(quantity)
         this.quantity = quantity
         this.img = img
 
