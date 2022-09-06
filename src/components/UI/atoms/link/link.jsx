@@ -1,7 +1,7 @@
 import StyledLink from "./style"
 
-const Link = ({ children, ...path }) => {
-    return <StyledLink {...path}>{children}</StyledLink>
+const Link = ({ children }) => {
+    return <StyledLink>{children}</StyledLink>
 }
 
 export default Link
