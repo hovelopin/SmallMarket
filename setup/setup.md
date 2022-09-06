@@ -11,4 +11,5 @@
         - Tab width: 4
 
 3. pre-commit
-    - 추후에 추가할 예정임
+    - setup > pre-commit > pre-commit 파일 복사
+    - .git > hooks > 복사한 파일 붙여넣기
