@@ -3,7 +3,6 @@ import * as StyledText from "./style"
 import ErrorUtil from "../../../../util/errorUtil"
 
 const Text = ({ type = "default", context }) => {
-    console.log(type)
     const getTextType = () => {
         switch (type) {
             case "small":
