@@ -4,7 +4,7 @@ const Theme = {
         white: "#fff",
         silverGray: "#ccc",
     },
-    fontWeigiht: {
+    fontWeight: {
         thin: 300,
         medium: 700,
         bold: "bold",
@@ -13,7 +13,7 @@ const Theme = {
         vertical: "middle",
         padding: "12px 20px",
         lineHeight: "28px",
-        border: "1px solid #ccc",
+        border: "3px solid #ccc",
         borderRadius: "4px",
         boxSizing: "border-box",
         display: "inline-block",
