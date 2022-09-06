@@ -4,6 +4,11 @@ const Theme = {
         white: "#fff",
         silverGray: "#ccc",
     },
+    fontSizes: {
+        small: "0.5rem",
+        default: "1.2rem",
+        large: "1.8rem",
+    },
     fontWeight: {
         thin: 300,
         medium: 700,
@@ -27,6 +32,9 @@ const Theme = {
         background: "rgba(0, 0, 0, 0.14)",
         translate: "translate(-50%, -50%)",
         borderRadius: "8px",
+    },
+    menus: {
+        padding: "1rem",
     },
 }
 
