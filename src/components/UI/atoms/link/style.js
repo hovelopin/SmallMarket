@@ -5,9 +5,6 @@ import { Link } from "react-router-dom"
 const StyledLink = styled(Link)`
     display: inline-block;
     text-decoration: none;
-    &:hover {
-        font-weight: ${Theme.fontWeight.bold};
-    }
-    color: ${Theme.colors.black};
+    color: ${Theme.colors.lightBlack};
 `
 export default StyledLink
