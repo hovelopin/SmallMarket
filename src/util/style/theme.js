@@ -23,6 +23,12 @@ const Theme = {
         boxSizing: "border-box",
         display: "inline-block",
     },
+    buttons: {
+        borderRadius: "3px",
+        padding: "0px 10px",
+        border: "0px none",
+        background: "rgb(95,0,128)",
+    },
     grid: {
         width: "80%",
         gap: "10px",
