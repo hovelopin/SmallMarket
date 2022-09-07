@@ -6,7 +6,7 @@ const SearchBar = ({ width, placeholder, value, onChangeEvent }) => {
 	return (
 		<Container width={width} display="flex">
 			<Input tpye="text" placeholder={placeholder} onChangeEvent={onChangeEvent} />
-			<Button width={width} value={value} />
+			<Button width="auto" value={value} />
 		</Container>
 	)
 }

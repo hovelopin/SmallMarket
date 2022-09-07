@@ -37,6 +37,7 @@ const Header = () => {
                 </MenuItemSection>
                 <SearchItemSection>
                     <SearchBar
+                        width={"100%"}
                         placeholder={"Please enter your content"}
                         value={"Search"}
                     />
