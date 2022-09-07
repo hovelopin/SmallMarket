@@ -2,7 +2,11 @@ import React from "react"
 import StyledButton from "./style"
 
 const Button = ({ height, width, value }) => {
-    return <StyledButton width={width} height={height} value={value} />
+    return (
+        <StyledButton width={width} height={height} value={value}>
+            {value}
+        </StyledButton>
+    )
 }
 
 export default Button
