@@ -2,6 +2,7 @@ import styled from "styled-components"
 import Container from "../atoms/container/container"
 import Text from "../atoms/text/text"
 import LinkGroup from "../blocks/linkGroup/linkGroup"
+import SearchBar from "../blocks/searchBar/searchBar"
 import Theme from "../../../util/style/theme"
 
 const Header = () => {
@@ -35,7 +36,10 @@ const Header = () => {
                     ))}
                 </MenuItemSection>
                 <SearchItemSection>
-                    <ItemText context="검색" />
+                    <SearchBar
+                        placeholder={"Please enter your content"}
+                        value={"Search"}
+                    />
                 </SearchItemSection>
             </NavigationSection>
         </Container>
