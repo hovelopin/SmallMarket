@@ -1,5 +1,4 @@
 {
-    "extends": ["plugin:prettier/recommended"],
     "env": {
         "browser": true,
         "node": true
@@ -10,14 +9,9 @@
     },
     "plugins": ["import", "react", "react-hooks"],
     "rules": {
-        "prettier/prettier": [
-            "error",
-            {
-                "endOfLine": "auto",
-                "quotes": ["warn", "double"],
-                "no-var": ["error"],
-                "no-debugger": false
-            }
-        ]
+        "strict": 0,
+        "no-var": ["error"],
+        "semi": [2, "never"],
+        "quotes": ["warn", "double"]
     }
 }
