@@ -1,9 +1,9 @@
-import React from "react"
 // import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
+import MainPage from "./components/UI/container/mainPage"
 
 function App() {
     return (
-        <></>
+        <MainPage />
         // <Router>
         //     <Switch>
         //         <Route exact path="/" component={Test} />
