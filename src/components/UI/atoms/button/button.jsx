@@ -3,7 +3,7 @@ import StyledButton from "./style"
 
 const Button = ({ height, width, value }) => {
     return (
-        <StyledButton width={width} height={height} value={value}>
+        <StyledButton width={width} height={height}>
             {value}
         </StyledButton>
     )
