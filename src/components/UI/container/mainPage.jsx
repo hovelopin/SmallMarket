@@ -1,16 +1,51 @@
+import React from "react"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
 import Theme from "../../../util/style/theme"
 
 const MainPage = () => {
     return (
-        <MainContainer width="100%" height="100%">
-            <TitleContainer>
-                <TitleText>Welcome to our Small Market</TitleText>
-                <SubTitleText>It's nice to meet you</SubTitleText>
-                <LinkButton to="/">Try to shopping</LinkButton>
-            </TitleContainer>
-        </MainContainer>
+        <React.Fragment>
+            <MainContainer width="100%" height="100%">
+                <TitleContainer>
+                    <TitleText>Welcome to our Small Market</TitleText>
+                    <SubTitleText>It's nice to meet you</SubTitleText>
+                    <LinkButton to="/">Try to shopping</LinkButton>
+                </TitleContainer>
+            </MainContainer>
+            <InformationContainer>
+                <InformationContentContainer>
+                    <InformationTitle>01</InformationTitle>
+                    <InformationSubTitle>High Quality</InformationSubTitle>
+                    <InformationContent>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Quisque dignissim magna et consectetur bibendum. Integer
+                        auctor feugiat posuere.
+                    </InformationContent>
+                    <MoreButton to="/">More</MoreButton>
+                </InformationContentContainer>
+                <InformationContentContainer>
+                    <InformationTitle>02</InformationTitle>
+                    <InformationSubTitle>Innovations</InformationSubTitle>
+                    <InformationContent>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Quisque dignissim magna et consectetur bibendum. Integer
+                        auctor feugiat posuere.
+                    </InformationContent>
+                    <MoreButton to="/">More</MoreButton>
+                </InformationContentContainer>
+                <InformationContentContainer>
+                    <InformationTitle>03</InformationTitle>
+                    <InformationSubTitle>Best Pricing</InformationSubTitle>
+                    <InformationContent>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Quisque dignissim magna et consectetur bibendum. Integer
+                        auctor feugiat posuere.
+                    </InformationContent>
+                    <MoreButton to="/">More</MoreButton>
+                </InformationContentContainer>
+            </InformationContainer>
+        </React.Fragment>
     )
 }
 
@@ -72,6 +107,70 @@ const LinkButton = styled(Link)`
     transition: 0.5s;
     &:hover {
         background-color: ${Theme.colors.darkOrange};
+    }
+`
+
+const InformationContainer = styled.div`
+    width: 100%;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    background: ${Theme.colors.lightGray};
+`
+
+const InformationContentContainer = styled.div`
+    width: 100%;
+    height: 25rem;
+    margin: 3rem;
+    background-color: ${Theme.colors.white};
+    box-sizing: border-box;
+    padding: 1rem;
+    border-radius: 10px;
+    overflow: auto;
+`
+
+const InformationTitle = styled.span`
+    display: block;
+    padding: 20px;
+    font-family: "Montserrat";
+    font-size: 2.75rem;
+    font-weight: ${Theme.fontWeight.medium};
+    line-height: 1.5rem;
+    color: ${Theme.colors.lightOrange};
+`
+
+const InformationSubTitle = styled.span`
+    display: block;
+    padding: 30px;
+    font-family: "Montserrat";
+    font-size: 2.05rem;
+    font-weight: 400;
+    line-height: 1.5rem;
+    color: ${Theme.colors.black};
+`
+
+const InformationContent = styled.p`
+    font-size: 1.05rem;
+    line-height: 2rem;
+    color: ${Theme.colors.lightBlack};
+`
+const MoreButton = styled(Link)`
+    display: inline-block;
+    font-weight: ${Theme.fontWeight.medium};
+    font-family: "Montserrat";
+    font-size: 1.25rem;
+    line-height: 1.25rem;
+    padding: 0.4rem 0.6rem;
+    margin-top: 1rem;
+    margin-bottom: 1.2rem;
+    border-bottom: 2.5px solid ${Theme.colors.black};
+    color: ${Theme.colors.black};
+    text-decoration: none;
+    text-transform: uppercase !important;
+    transition: 0.5s;
+    &:hover {
+        cursor: pointer;
+        transform: scale(1.05);
     }
 `
 
