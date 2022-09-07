@@ -64,7 +64,7 @@
         - Action의 object는 다양한 Data field를 가질 수 있는데 이러한 action object의 이름은 payload라고 지정한다.
             ```
             const addTodoAction = {
-                type: "todos/todoAdded",
+                type: "TODO_ADD",
                 payload: "Buy something",
             }
             ```
