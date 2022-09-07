@@ -5,6 +5,8 @@ const Theme = {
         white: "#fff",
         silverGray: "#ccc",
         darkRed: "#DF2A04",
+        lightOrange: "#ffc800",
+        darkOrange: "#d9aa00",
     },
     fontSizes: {
         small: "0.5rem",
