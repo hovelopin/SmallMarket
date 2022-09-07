@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import Container from "../atoms/container/container"
 import Text from "../atoms/text/text"
-import Link from "../atoms/link/link"
+import LinkGroup from "../blocks/linkGroup/linkGroup"
 import Theme from "../../../util/style/theme"
 
 const Header = () => {
@@ -26,9 +26,11 @@ const Header = () => {
                 <MenuItemSection>
                     {menuItems.map((m) => (
                         <Item key={m.name}>
-                            <Link path={m.path}>
-                                <ItemText context={m.name} />
-                            </Link>
+                            <LinkGroup
+                                path={m.path}
+                                type="default"
+                                context={m.name}
+                            />
                         </Item>
                     ))}
                 </MenuItemSection>
