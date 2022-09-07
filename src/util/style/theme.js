@@ -1,8 +1,12 @@
 const Theme = {
     colors: {
         black: "#000",
+        lightBlack: "rgba(0, 0, 0, 0.55)",
         white: "#fff",
         silverGray: "#ccc",
+        darkRed: "#DF2A04",
+        lightOrange: "#ffc800",
+        darkOrange: "#d9aa00",
     },
     fontSizes: {
         small: "0.5rem",
@@ -24,10 +28,9 @@ const Theme = {
         display: "inline-block",
     },
     buttons: {
-        borderRadius: "3px",
-        padding: "0px 10px",
-        border: "0px none",
-        background: "rgb(95,0,128)",
+        borderRadius: "0.35rem",
+        padding: "0.875rem 1.125rem",
+        border: "1px solid transparent",
     },
     grid: {
         width: "80%",

@@ -1,10 +1,9 @@
-import React from "react"
 // import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
-import Header from "./components/UI/pages/header"
+import MainPage from "./components/UI/container/mainPage"
 
 function App() {
     return (
-        <Header />
+        <MainPage />
         // <Router>
         //     <Switch>
         //         <Route exact path="/" component={Test} />

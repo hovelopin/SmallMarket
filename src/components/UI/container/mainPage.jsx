@@ -1,0 +1,78 @@
+import { Link } from "react-router-dom"
+import styled from "styled-components"
+import Theme from "../../../util/style/theme"
+
+const MainPage = () => {
+    return (
+        <MainContainer width="100%" height="100%">
+            <TitleContainer>
+                <TitleText>Welcome to our Small Market</TitleText>
+                <SubTitleText>It's nice to meet you</SubTitleText>
+                <LinkButton to="/">Try to shopping</LinkButton>
+            </TitleContainer>
+        </MainContainer>
+    )
+}
+
+const MainContainer = styled.div`
+    width: 100%;
+    height: 100%;
+    margin-right: auto;
+    margin-left: auto;
+`
+
+const TitleContainer = styled.div`
+    padding-top: 15rem;
+    padding-bottom: 15rem;
+    text-align: center;
+    color: ${Theme.colors.white};
+    background-image: url(${process.env.PUBLIC_URL}/logo/background.jpg);
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: center center;
+    background-size: cover;
+`
+
+const TitleText = styled.div`
+    font-size: 3.25rem;
+    font-weight: ${Theme.fontWeight.medium};
+    font-style: italic;
+    line-height: 3.25rem;
+    margin-bottom: 4rem;
+    font-family: "Roboto Slab";
+`
+
+const SubTitleText = styled.div`
+    font-weight: ${Theme.fontWeight.medium};
+    font-size: 5.25rem;
+    line-height: 5.25rem;
+    margin-bottom: 3rem;
+    font-family: "Montserrat";
+    text-transform: uppercase !important;
+`
+
+const LinkButton = styled(Link)`
+    display: inline-block;
+    font-weight: ${Theme.fontWeight.medium};
+    font-family: "Montserrat";
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+    padding: 1.25rem 2.5rem;
+    margin-top: 5rem;
+    margin-bottom: 4rem;
+    border: 1px solid transparent;
+    border-radius: ${Theme.buttons.borderRadius};
+    text-align: center;
+    text-decoration: none;
+    position: relative;
+    color: ${Theme.colors.white};
+    background-color: ${Theme.colors.lightOrange};
+    text-transform: uppercase !important;
+    z-index: 2;
+    transition: 0.5s;
+    &:hover {
+        background-color: ${Theme.colors.darkOrange};
+    }
+`
+
+export default MainPage
