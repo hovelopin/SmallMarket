@@ -1,8 +1,10 @@
 const Theme = {
     colors: {
         black: "#000",
+        darkBlack: "#303030",
         lightBlack: "rgba(0, 0, 0, 0.55)",
         white: "#fff",
+        lightGray: "#E0E0E0",
         silverGray: "#ccc",
         darkRed: "#DF2A04",
         lightOrange: "#ffc800",

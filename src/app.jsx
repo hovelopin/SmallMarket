@@ -1,15 +1,13 @@
-// import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
-import MainPage from "./components/UI/container/mainPage"
+import React from "react"
+import CustomRouter from "./components/router/customRouter"
+import Footer from "./components/UI/container/footer"
 
 function App() {
     return (
-        <MainPage />
-        // <Router>
-        //     <Switch>
-        //         <Route exact path="/" component={Test} />
-        //         <Route exact path="/test" component={Test2} />
-        //     </Switch>
-        // </Router>
+        <React.Fragment>
+            <CustomRouter />
+            <Footer />
+        </React.Fragment>
     )
 }
 
