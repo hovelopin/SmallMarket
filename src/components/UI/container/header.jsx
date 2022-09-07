@@ -68,7 +68,7 @@ const ItemText = styled(Text)`
 
 const SearchItemSection = styled.div`
     display: inline-block;
-    white=space: nowrap;
+    white-space: nowrap;
     flex-basis: auto;
     width: auto;
     padding: ${Theme.menus.padding};
