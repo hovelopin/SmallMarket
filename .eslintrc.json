@@ -7,11 +7,17 @@
     "parserOptions": {
         "ecmaVersion": 2020
     },
-    "plugins": ["import", "react", "react-hooks"],
+    "plugins": ["import", "react", "react-hooks", "prettier"],
     "rules": {
         "strict": 0,
         "no-var": ["error"],
         "semi": [2, "never"],
-        "quotes": ["warn", "double"]
+        "quotes": ["warn", "double"],
+        "prettier/prettier": [
+            "error",
+            {
+                "endOfLine": "auto"
+            }
+        ]
     }
 }
