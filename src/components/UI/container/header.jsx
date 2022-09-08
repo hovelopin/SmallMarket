@@ -32,7 +32,9 @@ const Header = () => {
     return (
         <Container width="100%" height="100%">
             <NavigationSection>
-                <StyledCardImage src={`${process.env.PUBLIC_URL}/img/logo.png`} />
+                <StyledCardImage
+                    src={`${process.env.PUBLIC_URL}/img/logo.png`}
+                />
                 <SearchItemSection>
                     <SearchBar
                         width="40rem"
