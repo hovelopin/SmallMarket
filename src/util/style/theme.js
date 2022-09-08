@@ -47,6 +47,9 @@ const Theme = {
     menus: {
         padding: "1rem",
     },
+    card: {
+        borderRadius: "0.25rem",
+    },
 }
 
 Object.freeze(Theme)
