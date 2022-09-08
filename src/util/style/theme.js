@@ -37,6 +37,7 @@ const Theme = {
     grid: {
         width: "80%",
         gap: "10px",
+        padding: "1rem",
     },
     modal: {
         padding: "15px",
@@ -53,7 +54,7 @@ const Theme = {
     header: {
         paddingLeft: "4rem",
         paddingRight: "4rem",
-    }
+    },
 }
 
 Object.freeze(Theme)
