@@ -19,8 +19,12 @@ const StyledGrid = styled.div`
     display: grid;
     justify-items: center;
     width: ${Theme.grid.width};
+    padding: ${Theme.grid.padding};
     gap: ${Theme.grid.gap};
-    ${gridAxis}
+    color: ${(props) => (props.color ? props.color : Theme.colors.black)};
+    background-color: ${(props) =>
+        props.bgColor ? props.bgColor : Theme.colors.white};
+    ${gridAxis};
 `
 
 export default StyledGrid
