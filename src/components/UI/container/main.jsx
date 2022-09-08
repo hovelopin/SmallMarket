@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import styled from "styled-components"
 import Theme from "../../../util/style/theme"
 
-const MainPage = () => {
+const Main = () => {
     return (
         <React.Fragment>
             <MainContainer width="100%" height="100%">
@@ -174,4 +174,4 @@ const MoreButton = styled(Link)`
     }
 `
 
-export default MainPage
+export default Main
