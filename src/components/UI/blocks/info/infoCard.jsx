@@ -3,9 +3,10 @@ import Grid from "../../atoms/grid/grid"
 import Container from "../../atoms/container/container"
 import Text from "../../atoms/text/text"
 import Button from "../../atoms/button/button"
+import SelectButton from "../selectButton/selectButton"
 import Theme from "../../../../util/style/theme"
 
-const InfoCard = ({ user }) => {
+const InfoCard = ({ user, onDetailButtonClickEvent, onSelectChangeEvent }) => {
     const { uuid, created, name, status } = user
 
     return (
@@ -29,15 +30,14 @@ const InfoCard = ({ user }) => {
                 </Container>
                 <Container>
                     <Button
-                        type="contrast"
+                        type="black"
                         height="100%"
                         width="100%"
                         value="Detail"
+                        onClickEvent={onDetailButtonClickEvent}
                     />
                 </Container>
-                <Container display="flex">
-                    <Text type="default" context={status} />
-                </Container>
+                <SelectButton width="auto" options={[1, 2, 3]} value="OK" />
             </Grid>
         </StyledWrapper>
     )
