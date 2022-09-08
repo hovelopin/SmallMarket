@@ -2,7 +2,7 @@ import styled from "styled-components"
 import Theme from "../../../../util/style/theme"
 
 export const StyledSelect = styled.select`
-    width: 300px;
+    width: 100%;
     padding: ${Theme.inputs.padding};
     border: ${Theme.selects.border};
     border-radius: ${Theme.selects.borderRadius};
