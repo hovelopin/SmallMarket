@@ -32,3 +32,19 @@ export const StyledContrastButton = styled.button`
     line-height: 1;
     cursor: pointer;
 `
+
+export const StyledBlackButton = styled.button`
+    color: ${Theme.colors.black};
+    text-align: center;
+    vertical-align: center;
+    height: ${(props) => props.height};
+    width: ${(props) => props.width};
+    border-radius: ${Theme.buttons.borderRadius};
+    padding: ${Theme.buttons.padding};
+    border: 2px solid ${Theme.colors.black};
+    background-color: ${Theme.colors.white};
+    font-size: ${Theme.fontSizes.default};
+    font-weight: ${Theme.fontWeight.medium};
+    line-height: 1;
+    cursor: pointer;
+`

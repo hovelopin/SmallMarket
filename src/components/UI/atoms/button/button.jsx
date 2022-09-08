@@ -27,6 +27,17 @@ const Button = ({ type = "default", height, width, value, onClickEvent }) => {
                     </MyButton.StyledContrastButton>
                 )
 
+            case "black":
+                return (
+                    <MyButton.StyledBlackButton
+                        width={width}
+                        height={height}
+                        onClick={onClickEvent}
+                    >
+                        {value}
+                    </MyButton.StyledBlackButton>
+                )
+
             default:
                 ErrorUtil.notImplemented()
         }
