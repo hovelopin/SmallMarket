@@ -2,8 +2,10 @@ import React from "react"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
 import Theme from "../../../util/style/theme"
+import Grid from "../atoms/grid/grid"
+import Card from "../blocks/card/card"
 
-const MainPage = () => {
+const Main = () => {
     return (
         <React.Fragment>
             <MainContainer width="100%" height="100%">
@@ -45,6 +47,14 @@ const MainPage = () => {
                     <MoreButton to="/">More</MoreButton>
                 </InformationContentContainer>
             </InformationContainer>
+            <ProductContainer>
+                <SubTitleText>BEST ITEMS</SubTitleText>
+                <Grid repeat={3} axis="column">
+                    <Card />
+                    <Card />
+                    <Card />
+                </Grid>
+            </ProductContainer>
         </React.Fragment>
     )
 }
@@ -174,4 +184,13 @@ const MoreButton = styled(Link)`
     }
 `
 
-export default MainPage
+const ProductContainer = styled.div`
+    width: 100%;
+    display: grid;
+    place-items: center;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    margin-left: auto;
+`
+
+export default Main

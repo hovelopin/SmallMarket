@@ -3,16 +3,16 @@ import ReactDOM from "react-dom"
 import "./index.css"
 import App from "./app"
 import "@fortawesome/fontawesome-free/js/all"
-// import store from './redux/store/store';
 import { BrowserRouter } from "react-router-dom"
-// import { Provider } from 'react-redux';
+import store from "./store/index"
+import { Provider } from "react-redux"
 
 ReactDOM.render(
     <React.StrictMode>
         <BrowserRouter>
-            {/* <Provider store={store}> */}
-            <App />
-            {/* </Provider> */}
+            <Provider store={store}>
+                <App />
+            </Provider>
         </BrowserRouter>
     </React.StrictMode>,
     document.getElementById("root")
