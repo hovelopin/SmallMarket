@@ -50,6 +50,10 @@ const Theme = {
     card: {
         borderRadius: "0.25rem",
     },
+    header: {
+        paddingLeft: "4rem",
+        paddingRight: "4rem",
+    }
 }
 
 Object.freeze(Theme)

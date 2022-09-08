@@ -74,8 +74,8 @@ const NavigationSection = styled.div`
     display: flex;
     align-items: center;
     flex: 1;
-    padding-left: 4rem;
-    padding-right: 4rem;
+    padding-left: ${Theme.header.paddingLeft};
+    padding-right: ${Theme.header.paddingRight};
 `
 
 const MenuItemSection = styled.ul`
