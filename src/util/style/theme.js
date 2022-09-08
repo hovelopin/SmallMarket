@@ -32,6 +32,7 @@ const Theme = {
     },
     selects: {
         textAlign: "center",
+        padding: "0.875rem 1.125rem",
         border: "2px solid black",
         borderRadius: "0.35rem",
     },

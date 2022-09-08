@@ -3,7 +3,7 @@ import Theme from "../../../../util/style/theme"
 
 export const StyledSelect = styled.select`
     width: 100%;
-    padding: ${Theme.inputs.padding};
+    padding: ${Theme.selects.padding};
     border: ${Theme.selects.border};
     border-radius: ${Theme.selects.borderRadius};
     line-height: ${Theme.inputs.lineHeight};
