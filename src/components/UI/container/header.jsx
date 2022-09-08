@@ -1,9 +1,9 @@
 import styled from "styled-components"
 import Container from "../atoms/container/container"
-import Text from "../atoms/text/text"
 import LinkGroup from "../blocks/linkGroup/linkGroup"
 import SearchBar from "../blocks/searchBar/searchBar"
 import Theme from "../../../util/style/theme"
+import Icon from "../../../icon/icon"
 
 const Header = () => {
     const menuItems = [
@@ -19,10 +19,39 @@ const Header = () => {
             name: "미정3",
             path: "/미정3",
         },
+        {
+            name: "미정4",
+            path: "/미정4",
+        },
+        {
+            name: "미정5",
+            path: "/미정5",
+        },
     ]
 
     return (
-        <Container width="100%" height="20px">
+        <Container width="100%" height="100%">
+            <NavigationSection>
+                <StyledCardImage src={`${process.env.PUBLIC_URL}/img/logo.png`} />
+                <SearchItemSection>
+                    <SearchBar
+                        width="40rem"
+                        placeholder="Please enter your content"
+                        value="Search"
+                    />
+                </SearchItemSection>
+                <SearchItemSection>
+                    <UserItemSection>
+                        <Icon name="cart" />
+                    </UserItemSection>
+                    <UserItemSection>
+                        <Icon name="signin" />
+                    </UserItemSection>
+                    <UserItemSection>
+                        <Icon name="signup" />
+                    </UserItemSection>
+                </SearchItemSection>
+            </NavigationSection>
             <NavigationSection>
                 <MenuItemSection>
                     {menuItems.map((m) => (
@@ -35,29 +64,47 @@ const Header = () => {
                         </Item>
                     ))}
                 </MenuItemSection>
-                <SearchItemSection>
-                    <SearchBar
-                        width={"100%"}
-                        placeholder={"Please enter your content"}
-                        value={"Search"}
-                    />
-                </SearchItemSection>
             </NavigationSection>
         </Container>
     )
 }
 
 const NavigationSection = styled.div`
-    justify-content: flex-start;
+    justify-content: space-between;
     display: flex;
     align-items: center;
     flex: 1;
+    padding-left: 4rem;
+    padding-right: 4rem;
 `
 
 const MenuItemSection = styled.ul`
-    justify-content: flex-start;
+    justify-content: space-between;
     display: flex;
     flex: 1;
+`
+
+const UserItemSection = styled.div`
+    display: inline-block;
+    white-space: nowrap;
+    flex-basis: auto;
+    width: auto;
+    margin-left: 0.225rem;
+    font-size: ${Theme.fontSizes.large};
+    padding: ${Theme.menus.padding};
+    &:hover {
+        cursor: pointer;
+    }
+`
+
+const StyledCardImage = styled.img`
+    width: 17%;
+    align-items: center;
+    object-fit: cover;
+    vertical-align: middle;
+    &:hover {
+        cursor: pointer;
+    }
 `
 
 const Item = styled.li`
@@ -67,14 +114,8 @@ const Item = styled.li`
     padding: ${Theme.menus.padding};
 `
 
-const ItemText = styled(Text)`
-    font-weight: ${Theme.fontWeight.bold};
-`
-
 const SearchItemSection = styled.div`
-    display: inline-block;
     white-space: nowrap;
-    flex-basis: auto;
     width: auto;
     padding: ${Theme.menus.padding};
 `
