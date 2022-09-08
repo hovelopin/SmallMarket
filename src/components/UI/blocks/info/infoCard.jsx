@@ -6,8 +6,14 @@ import Button from "../../atoms/button/button"
 import SelectButton from "../selectButton/selectButton"
 import Theme from "../../../../util/style/theme"
 
-const InfoCard = ({ user, onDetailButtonClickEvent, onSelectChangeEvent }) => {
-    const { uuid, created, name, status } = user
+const InfoCard = ({
+    user,
+    options,
+    onDetailButtonClickEvent,
+    onSelectChangeEvent,
+    onSelectButtonClickEvent,
+}) => {
+    const { uuid, created, name } = user
 
     return (
         <StyledWrapper>
@@ -37,7 +43,13 @@ const InfoCard = ({ user, onDetailButtonClickEvent, onSelectChangeEvent }) => {
                         onClickEvent={onDetailButtonClickEvent}
                     />
                 </Container>
-                <SelectButton width="auto" options={[1, 2, 3]} value="OK" />
+                <SelectButton
+                    width="auto"
+                    options={options}
+                    value="OK"
+                    onChangeEvent={onSelectChangeEvent}
+                    onClickEvent={onSelectButtonClickEvent}
+                />
             </Grid>
         </StyledWrapper>
     )

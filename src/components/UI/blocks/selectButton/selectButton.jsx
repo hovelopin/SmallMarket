@@ -6,8 +6,8 @@ const SelectButton = ({
     width,
     options,
     value,
-    onClickEvent,
     onChangeEvent,
+    onClickEvent,
 }) => {
     return (
         <Container width={width} display="flex">
