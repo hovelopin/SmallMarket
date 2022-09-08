@@ -2,6 +2,8 @@ import React from "react"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
 import Theme from "../../../util/style/theme"
+import Grid from "../atoms/grid/grid"
+import Card from "../blocks/card/card"
 
 const Main = () => {
     return (
@@ -45,6 +47,14 @@ const Main = () => {
                     <MoreButton to="/">More</MoreButton>
                 </InformationContentContainer>
             </InformationContainer>
+            <ProductContainer>
+                <SubTitleText>BEST ITEMS</SubTitleText>
+                <Grid repeat={3} axis="column">
+                    <Card />
+                    <Card />
+                    <Card />
+                </Grid>
+            </ProductContainer>
         </React.Fragment>
     )
 }
@@ -172,6 +182,15 @@ const MoreButton = styled(Link)`
         cursor: pointer;
         transform: scale(1.05);
     }
+`
+
+const ProductContainer = styled.div`
+    width: 100%;
+    display: grid;
+    place-items: center;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    margin-left: auto;
 `
 
 export default Main
