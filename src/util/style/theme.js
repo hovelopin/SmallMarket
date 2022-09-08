@@ -4,6 +4,7 @@ const Theme = {
         darkBlack: "#303030",
         lightBlack: "rgba(0, 0, 0, 0.55)",
         white: "#fff",
+        whiteGray: "#F5F5F5",
         lightGray: "#E0E0E0",
         silverGray: "#ccc",
         darkRed: "#DF2A04",
@@ -29,6 +30,12 @@ const Theme = {
         boxSizing: "border-box",
         display: "inline-block",
     },
+    selects: {
+        textAlign: "center",
+        padding: "0.875rem 1.125rem",
+        border: "2px solid black",
+        borderRadius: "0.35rem",
+    },
     buttons: {
         borderRadius: "0.35rem",
         padding: "0.875rem 1.125rem",
@@ -37,6 +44,7 @@ const Theme = {
     grid: {
         width: "80%",
         gap: "10px",
+        padding: "1rem",
     },
     modal: {
         padding: "15px",
@@ -53,7 +61,7 @@ const Theme = {
     header: {
         paddingLeft: "4rem",
         paddingRight: "4rem",
-    }
+    },
 }
 
 Object.freeze(Theme)
