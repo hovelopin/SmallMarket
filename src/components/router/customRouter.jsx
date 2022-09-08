@@ -1,11 +1,11 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
-import MainPage from "../UI/container/mainPage"
+import Main from "../UI/container/main"
 
 const CustomRouter = () => {
     return (
         <Router>
             <Switch>
-                <Route exact path="/" component={MainPage} />
+                <Route exact path="/" component={Main} />
             </Switch>
         </Router>
     )
