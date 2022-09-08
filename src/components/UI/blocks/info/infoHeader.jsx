@@ -12,6 +12,7 @@ const InfoHeader = ({ headerItems }) => {
                 axis="column"
                 bgColor={Theme.colors.black}
                 color={Theme.colors.white}
+                border="8px"
             >
                 {headerItems.map((h) => (
                     <Container key={h.context}>
