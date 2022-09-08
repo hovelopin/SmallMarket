@@ -30,6 +30,11 @@ const Theme = {
         boxSizing: "border-box",
         display: "inline-block",
     },
+    selects: {
+        textAlign: "center",
+        border: "2px solid black",
+        borderRadius: "0.35rem",
+    },
     buttons: {
         borderRadius: "0.35rem",
         padding: "0.875rem 1.125rem",
