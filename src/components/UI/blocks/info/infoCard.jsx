@@ -45,6 +45,7 @@ const InfoCard = ({
                 </Container>
                 <SelectButton
                     width="auto"
+                    sWidth="180px"
                     options={options}
                     value="OK"
                     onChangeEvent={onSelectChangeEvent}
