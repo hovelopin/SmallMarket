@@ -4,12 +4,15 @@ import Carousel from "react-slick"
 import styled from "styled-components"
 import Container from "../../atoms/container/container"
 
-export const CarouselContainer = styled(Container)`
-    overflow: hidden;
+export const CarouselContainer = styled.div`
     width: 100%;
 `
+// export const CarouselContainer = styled(Container)`
+//     overflow: hidden;
+//     width: 100%;
+// `
 export const Image = styled.img`
-    max-width: 100%;
+    max-width: 60%;
     max-height: 100%;
 `
 

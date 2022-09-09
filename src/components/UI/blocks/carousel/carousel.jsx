@@ -1,5 +1,5 @@
 import * as StyledCarousel from "./style"
-
+import Container from "../../atoms/container/container"
 /**
  *
  * @param {Object in Array} items [{id: 1, url: imageUrl}]
@@ -20,17 +20,13 @@ const Carousel = ({ items }) => {
     ]
 
     return (
-        <StyledCarousel.CarouselContainer>
+        <Container width="100%">
             <StyledCarousel.StyledCarousel {...StyledCarousel.setting}>
                 {sampleItems.map((e) => {
-                    return (
-                        <div key={e.id}>
-                            <StyledCarousel.Image src={e.url} />
-                        </div>
-                    )
+                    return <StyledCarousel.Image key={e.id} src={e.url} />
                 })}
             </StyledCarousel.StyledCarousel>
-        </StyledCarousel.CarouselContainer>
+        </Container>
     )
 }
 
