@@ -55,8 +55,6 @@ const StyledWrapper = styled.div`
     width: 100%;
     height: 100vh;
     padding-top: 2rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
     padding-bottom: 2rem;
     background-color: ${Theme.colors.lightGray};
 `
