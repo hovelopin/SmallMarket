@@ -15,6 +15,12 @@ export const StyledButton = styled.button`
     font-weight: ${Theme.fontWeight.medium};
     line-height: 1;
     cursor: pointer;
+    &:hover {
+        transition 0.3s;
+        background-color: ${Theme.colors.white};
+        border: 2px solid ${Theme.colors.darkRed};
+        color: ${Theme.colors.darkRed};
+    }
 `
 
 export const StyledContrastButton = styled.button`
@@ -30,7 +36,12 @@ export const StyledContrastButton = styled.button`
     font-size: ${Theme.fontSizes.default};
     font-weight: ${Theme.fontWeight.medium};
     line-height: 1;
-    cursor: pointer;
+    &:hover {
+        transition 0.3s;
+        background-color: ${Theme.colors.darkRed};
+        border: 2px solid ${Theme.colors.darkRed};
+        color: ${Theme.colors.white};
+    }
 `
 
 export const StyledBlackButton = styled.button`
@@ -47,4 +58,10 @@ export const StyledBlackButton = styled.button`
     font-weight: ${Theme.fontWeight.medium};
     line-height: 1;
     cursor: pointer;
+    &:hover {
+        transition 0.3s;
+        background-color: ${Theme.colors.black};
+        border: 2px solid ${Theme.colors.black};
+        color: ${Theme.colors.white};
+    }
 `
