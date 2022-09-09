@@ -12,7 +12,7 @@ const Theme = {
         darkOrange: "#d9aa00",
     },
     fontSizes: {
-        small: "0.5rem",
+        small: "0.85rem",
         default: "1.2rem",
         large: "1.8rem",
     },
