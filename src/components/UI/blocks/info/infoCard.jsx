@@ -1,10 +1,10 @@
 import styled from "styled-components"
-import Grid from "../../atoms/grid/grid"
-import Container from "../../atoms/container/container"
-import Text from "../../atoms/text/text"
-import Button from "../../atoms/button/button"
-import SelectButton from "../selectButton/selectButton"
-import Theme from "../../../../util/style/theme"
+import Grid from "@components/UI/atoms/grid/grid"
+import Container from "@components/UI/atoms/container/container"
+import Text from "@components/UI/atoms/text/text"
+import Button from "@components/UI/atoms/button/button"
+import SelectButton from "@components/UI/blocks/selectButton/selectButton"
+import Theme from "@util/style/theme"
 
 const InfoCard = ({
     user,

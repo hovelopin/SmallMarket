@@ -1,8 +1,8 @@
 import styled from "styled-components"
-import Grid from "../../atoms/grid/grid"
-import Container from "../../atoms/container/container"
-import Text from "../../atoms/text/text"
-import Theme from "../../../../util/style/theme"
+import Grid from "@components/UI/atoms/grid/grid"
+import Container from "@components/UI/atoms/container/container"
+import Text from "@components/UI/atoms/text/text"
+import Theme from "@util/style/theme"
 
 const InfoHeader = ({ headerItems }) => {
     return (
