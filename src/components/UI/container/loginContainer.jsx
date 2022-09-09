@@ -18,6 +18,7 @@ const LoginContainer = () => {
                             width="100%"
                             labelText="Username"
                             inputType="text"
+                            name="username"
                             placeholder="Please enter your username"
                         />
                     </StyledFormContainer>
@@ -26,6 +27,7 @@ const LoginContainer = () => {
                             width="100%"
                             labelText="Password"
                             inputType="password"
+                            name="password"
                             placeholder="Please enter your password"
                         />
                     </StyledFormContainer>
