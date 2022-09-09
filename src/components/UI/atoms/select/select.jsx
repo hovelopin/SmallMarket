@@ -1,8 +1,8 @@
-import * as Selector from "./syle"
+import * as Selector from "@components/UI/atoms/select/syle"
 
-const Select = ({ options, onChangeEvent }) => {
+const Select = ({ width, options, onChangeEvent }) => {
     return (
-        <Selector.StyledSelect onChange={onChangeEvent}>
+        <Selector.StyledSelect width={width} onChange={onChangeEvent}>
             {options.map((value) => (
                 <Selector.StyledOption key={value} value={value}>
                     {value}
