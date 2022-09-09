@@ -61,6 +61,7 @@ const StyledWrapper = styled.div`
     place-items: center;
     margin: 0 auto;
     margin-top: 1rem;
+    margin-bottom: 1rem;
 `
 
 export default InfoCard

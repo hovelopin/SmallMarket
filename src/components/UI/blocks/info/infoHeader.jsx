@@ -56,7 +56,7 @@ const StyledContainer = styled.div`
 `
 
 const StyledWrapper = styled.div`
-    width: 100%;
+    width: 99%;
     margin-top: 2rem;
     display: grid;
     place-items: center;
