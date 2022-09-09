@@ -4,6 +4,7 @@ import Button from "../../atoms/button/button"
 
 const SearchBar = ({
     width,
+    buttonType,
     placeholder,
     value,
     onChangeEvent,
@@ -16,7 +17,12 @@ const SearchBar = ({
                 placeholder={placeholder}
                 onChangeEvent={onChangeEvent}
             />
-            <Button width="auto" value={value} onClickEvent={onClickEvent} />
+            <Button
+                type={buttonType}
+                width="auto"
+                value={value}
+                onClickEvent={onClickEvent}
+            />
         </Container>
     )
 }

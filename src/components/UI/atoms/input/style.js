@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import Theme from "../../../../util/style/theme"
+import Theme from "@util/style/theme"
 
 const StyledInput = styled.input`
     outline: none;

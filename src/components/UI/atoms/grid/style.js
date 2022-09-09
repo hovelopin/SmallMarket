@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components"
-import Theme from "../../../../util/style/theme"
+import Theme from "@util/style/theme"
 
 const gridAxis = css`
     ${(props) =>

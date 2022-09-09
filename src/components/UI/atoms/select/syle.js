@@ -1,8 +1,8 @@
 import styled from "styled-components"
-import Theme from "../../../../util/style/theme"
+import Theme from "@util/style/theme"
 
 export const StyledSelect = styled.select`
-    width: 100%;
+    width: ${(props) => (props.width ? props.width : "100%")};
     padding: ${Theme.selects.padding};
     border: ${Theme.selects.border};
     border-radius: ${Theme.selects.borderRadius};

@@ -1,6 +1,6 @@
 import React from "react"
 import * as StyledText from "./style"
-import ErrorUtil from "../../../../util/errorUtil"
+import ErrorUtil from "@util/errorUtil"
 
 const Text = ({ type = "default", context }) => {
     const getTextType = (type) => {
