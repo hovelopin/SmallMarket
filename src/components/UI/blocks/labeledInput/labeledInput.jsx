@@ -6,12 +6,19 @@ const LabeledInput = ({
     width,
     labelText,
     inputType = "text",
+    name,
+    value,
     placeholder,
 }) => {
     return (
         <Container width={width} display="block">
             <Label labelText={labelText} />
-            <Input type={inputType} placeholder={placeholder} />
+            <Input
+                type={inputType}
+                name={name}
+                value={value}
+                placeholder={placeholder}
+            />
         </Container>
     )
 }
