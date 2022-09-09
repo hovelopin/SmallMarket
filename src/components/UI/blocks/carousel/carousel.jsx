@@ -1,10 +1,6 @@
 import * as StyledCarousel from "./style"
-import Container from "../../atoms/container/container"
-/**
- *
- * @param {Object in Array} items [{id: 1, url: imageUrl}]
- */
-const Carousel = ({ items }) => {
+
+const Carousel = () => {
     const imgUrl = `${process.env.PUBLIC_URL}/img/reg_smallmarket.png`
     const sampleItems = [
         { id: 1, url: imgUrl },
@@ -20,13 +16,13 @@ const Carousel = ({ items }) => {
     ]
 
     return (
-        <Container width="100%">
-            <StyledCarousel.StyledCarousel {...StyledCarousel.setting}>
-                {sampleItems.map((e) => {
-                    return <StyledCarousel.Image key={e.id} src={e.url} />
-                })}
-            </StyledCarousel.StyledCarousel>
-        </Container>
+        <StyledCarousel.SliderContainer>
+            <StyledCarousel.StyledSlider {...StyledCarousel.setting}>
+                {sampleItems.map((image) => (
+                    <StyledCarousel.Image key={image.id} src={image.url} />
+                ))}
+            </StyledCarousel.StyledSlider>
+        </StyledCarousel.SliderContainer>
     )
 }
 

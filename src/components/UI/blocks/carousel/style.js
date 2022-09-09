@@ -1,22 +1,20 @@
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
-import Carousel from "react-slick"
+import Slider from "react-slick"
 import styled from "styled-components"
-import Container from "../../atoms/container/container"
 
-export const CarouselContainer = styled.div`
+export const SliderContainer = styled.div`
     width: 100%;
+    height: 100%;
+    margin-bottom: 30px;
 `
-// export const CarouselContainer = styled(Container)`
-//     overflow: hidden;
-//     width: 100%;
-// `
+
 export const Image = styled.img`
-    max-width: 60%;
+    max-width: 30%;
     max-height: 100%;
 `
 
-export const StyledCarousel = styled(Carousel)`
+export const StyledSlider = styled(Slider)`
     .slick-slide div {
         outline: none;
         text-align: center;
@@ -24,8 +22,10 @@ export const StyledCarousel = styled(Carousel)`
 `
 export const setting = {
     dots: true,
-    Infinity: true,
+    infinite: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
 }
