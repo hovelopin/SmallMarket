@@ -2,7 +2,7 @@ import styled from "styled-components"
 import Theme from "../../../../util/style/theme"
 
 export const StyledCartContainer = styled.div`
-    width: 35rem;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -16,15 +16,22 @@ export const StyledCartContainer = styled.div`
 `
 
 export const StyledCartImg = styled.img`
-    width: 20%;
+    width: 100%;
 `
 
 export const StyledCartContent = styled.div`
     display: flex;
+    align-items: center;
     flex-direction: column;
 `
 
 export const StyledCartCount = styled.div`
+    text-align: center;
     font-size: ${Theme.fontSizes.default};
     font-weight: ${Theme.fontWeight.bold};
+`
+
+export const StyledCartIcon = styled.div`
+    text-align: center;
+    font-size: ${Theme.fontSizes.large};
 `
