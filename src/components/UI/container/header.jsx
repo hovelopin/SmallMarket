@@ -1,9 +1,9 @@
 import styled from "styled-components"
-import Container from "../atoms/container/container"
-import LinkGroup from "../blocks/linkGroup/linkGroup"
-import SearchBar from "../blocks/searchBar/searchBar"
-import Theme from "../../../util/style/theme"
-import Icon from "../../../icon/icon"
+import Container from "@components/UI/atoms/container/container"
+import LinkGroup from "@components/UI/blocks/linkGroup/linkGroup"
+import SearchBar from "@components/UI/blocks/searchBar/searchBar"
+import Theme from "@util/style/theme"
+import Icon from "@/icon/icon"
 
 const Header = () => {
     const menuItems = [
