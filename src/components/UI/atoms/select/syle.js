@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import Theme from "../../../../util/style/theme"
+import Theme from "@util/style/theme"
 
 export const StyledSelect = styled.select`
     width: ${(props) => (props.width ? props.width : "100%")};
