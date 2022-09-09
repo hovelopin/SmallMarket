@@ -13,7 +13,8 @@ const SearchBar = ({
     return (
         <Container width={width} display="flex">
             <Input
-                tpye="text"
+                type="text"
+                name="search"
                 placeholder={placeholder}
                 onChangeEvent={onChangeEvent}
             />
