@@ -5,18 +5,25 @@ import Text from "@components/UI/atoms/text/text"
 import SearchBar from "@components/UI/blocks/searchBar/searchBar"
 import Theme from "@util/style/theme"
 
-const InfoHeader = ({ headerItems }) => {
+const InfoHeader = ({
+    headerItems,
+    onSearchChangeEvent,
+    onSearchClickEvent,
+}) => {
     return (
         <Container width="100%">
             <StyledContainer>
                 <Container>
-                    <Text type="large" context="Search" />
+                    <Text type="large" context="User list" />
                 </Container>
                 <Container>
                     <SearchBar
+                        buttonType="black"
                         width="100%"
                         placeholder="Search user..."
                         value="Search"
+                        onChangeEvent={onSearchChangeEvent}
+                        onClickEvent={onSearchClickEvent}
                     />
                 </Container>
             </StyledContainer>
