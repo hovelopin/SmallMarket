@@ -15,6 +15,9 @@ const Footer = () => {
 
 const FooterContainer = styled.div`
     width: 100%;
+    height: 100px;
+    min-height: 100%;
+    transform: translateY(0%);
     padding-top: 3rem;
     padding-bottom: 2rem;
     text-align: center;
