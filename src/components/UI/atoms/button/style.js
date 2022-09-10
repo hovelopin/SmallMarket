@@ -36,6 +36,7 @@ export const StyledContrastButton = styled.button`
     font-size: ${Theme.fontSizes.default};
     font-weight: ${Theme.fontWeight.medium};
     line-height: 1;
+    cursor: pointer;
     &:hover {
         transition 0.3s;
         background-color: ${Theme.colors.darkRed};
@@ -64,4 +65,13 @@ export const StyledBlackButton = styled.button`
         border: 2px solid ${Theme.colors.black};
         color: ${Theme.colors.white};
     }
+`
+
+export const StyledIconButton = styled.button`
+    all: unset;
+    width: ${(props) => props.width};
+    height: ${(props) => props.height};
+    font-size: ${Theme.fontSizes.large};
+    font-weight: ${Theme.fontWeight.medium};
+    cursor: pointer;
 `

@@ -8,6 +8,7 @@ const Button = ({
     height,
     width,
     value,
+    children,
     onClickEvent,
 }) => {
     const getButtonType = (type) => {
@@ -46,6 +47,17 @@ const Button = ({
                     >
                         {value}
                     </MyButton.StyledBlackButton>
+                )
+
+            case "icon":
+                return (
+                    <MyButton.StyledIconButton
+                        width={width}
+                        height={height}
+                        onClick={onClickEvent}
+                    >
+                        {children}
+                    </MyButton.StyledIconButton>
                 )
 
             default:
