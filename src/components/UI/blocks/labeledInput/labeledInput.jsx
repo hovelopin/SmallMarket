@@ -9,6 +9,7 @@ const LabeledInput = ({
     name,
     value,
     placeholder,
+    onChangeEvent,
 }) => {
     return (
         <Container width={width} display="block">
@@ -18,6 +19,7 @@ const LabeledInput = ({
                 name={name}
                 value={value}
                 placeholder={placeholder}
+                onChangeEvent={onChangeEvent}
             />
         </Container>
     )
