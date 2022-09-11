@@ -21,6 +21,10 @@ class Validation {
         if (!isValid) return false
         return true
     }
+
+    static validateAll(infoArr) {
+        return infoArr.every((info) => info === true)
+    }
 }
 
 function isIncludesSpace(str) {
