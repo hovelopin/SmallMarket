@@ -5,7 +5,12 @@ const useForm = (initialValue) => {
 
     const handleFormValueChange = useCallback((e) => {
         const { name, value } = e.target
-        setFormValue({ ...formValue, [name]: value })
+        setFormValue((prev) => {
+            return {
+                ...prev,
+                [name]: value,
+            }
+        })
     }, [])
 
     return [formValue, handleFormValueChange]
