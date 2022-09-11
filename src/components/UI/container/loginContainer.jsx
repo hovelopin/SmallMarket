@@ -1,25 +1,52 @@
+import useForm from "@/hooks/useForm"
+import useModal from "@/hooks/useModal"
 import styled from "styled-components"
 import Form from "@components/UI/atoms/form/form"
 import Text from "@components/UI/atoms/text/text"
 import Button from "@components/UI/atoms/button/button"
 import LabeledInput from "@/components/UI/blocks/labeledInput/labeledInput"
-import Theme from "@/util/style/theme"
+import Modal from "@/components/UI/blocks/modal/modal"
+import Theme from "@util/style/theme"
+import Validation from "@util/validation/validation"
 
 const LoginContainer = () => {
+    const [loginFormValue, handleFormValueChange] = useForm({
+        username: "",
+        password: "",
+    })
+
+    const [isOpen, handleOpenButtonClick, handleCloseButtonClick] =
+        useModal(false)
+
+    const handleLoginSubmit = (e) => {
+        e.preventDefault()
+        const { username, password } = loginFormValue
+        const isValidUserInformation = Validation.validateAll([
+            username,
+            password,
+        ])
+        if (!isValidUserInformation) {
+            handleOpenButtonClick(true)
+            return
+        }
+    }
+
     return (
         <StyledWrapper>
             <StyledContainer>
                 <StyledTextContainer>
                     <Text type="default" context="ACCOUNT LOGIN" />
                 </StyledTextContainer>
-                <Form>
+                <Form onSubmitEvent={handleLoginSubmit}>
                     <StyledFormContainer>
                         <LabeledInput
                             width="100%"
                             labelText="Username"
                             inputType="text"
                             name="username"
+                            value={loginFormValue.username}
                             placeholder="Please enter your username"
+                            onChangeEvent={handleFormValueChange}
                         />
                     </StyledFormContainer>
                     <StyledFormContainer>
@@ -28,7 +55,9 @@ const LoginContainer = () => {
                             labelText="Password"
                             inputType="password"
                             name="password"
+                            value={loginFormValue.password}
                             placeholder="Please enter your password"
+                            onChangeEvent={handleFormValueChange}
                         />
                     </StyledFormContainer>
                     <StyledSmallTextContainer>
@@ -41,12 +70,15 @@ const LoginContainer = () => {
                     </StyledSmallTextContainer>
                     <Button
                         type="default"
-                        bType="button"
+                        bType="submit"
                         width="100%"
                         value="LOGIN"
                     />
                 </Form>
             </StyledContainer>
+            <Modal isOpen={isOpen} onClickEvent={handleCloseButtonClick}>
+                Please check your username or password
+            </Modal>
         </StyledWrapper>
     )
 }
