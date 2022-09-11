@@ -12,7 +12,7 @@ import {
     faTrash,
     faGripVertical,
 } from "@fortawesome/free-solid-svg-icons"
-import ErrorUtil from "../util/errorUtil"
+import ErrorUtil from "@/util/errorUtil"
 
 function Icon({ name }) {
     return <FontAwesomeIcon icon={doFetchFontAwesomeIcon.call(this, name)} />

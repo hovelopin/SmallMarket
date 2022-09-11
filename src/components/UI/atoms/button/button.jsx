@@ -1,6 +1,6 @@
 import React from "react"
 import * as MyButton from "./style"
-import ErrorUtil from "../../../../util/errorUtil"
+import ErrorUtil from "@/util/errorUtil"
 
 const Button = ({
     type = "default",
@@ -46,18 +46,8 @@ const Button = ({
                         onClick={onClickEvent}
                     >
                         {value}
-                    </MyButton.StyledBlackButton>
-                )
-
-            case "icon":
-                return (
-                    <MyButton.StyledIconButton
-                        width={width}
-                        height={height}
-                        onClick={onClickEvent}
-                    >
                         {children}
-                    </MyButton.StyledIconButton>
+                    </MyButton.StyledBlackButton>
                 )
 
             default:
