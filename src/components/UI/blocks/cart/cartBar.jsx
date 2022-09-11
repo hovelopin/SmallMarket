@@ -2,7 +2,7 @@ import Container from "@components/UI/atoms/container/container"
 import Text from "@components/UI/atoms/text/text"
 import Button from "@components/UI/atoms/button/button"
 import CheckBox from "@components/UI/atoms/checkBox/checkBox"
-import Icon from "@/icon/icon"
+import IconButton from "@components/UI/blocks/iconButton/iconButton"
 import styled from "styled-components"
 import Theme from "@/util/style/theme"
 
@@ -52,18 +52,15 @@ const CartBar = ({
                     <Text type="default" context={`￦ ${price}`} />
                 </StyledCartPrice>
                 <StyledCartIcon>
-                    <Button
-                        type="icon"
+                    <IconButton
+                        type="black"
                         width="auto"
+                        name="trash"
                         onClickEvent={onDeleteButtonClickEvent}
-                    >
-                        <Icon name="trash" />
-                    </Button>
+                    />
                 </StyledCartIcon>
                 <StyledCartIcon>
-                    <Button type="icon" width="3rem">
-                        <Icon name="grip" />
-                    </Button>
+                    <IconButton type="black" width="auto" name="grip" />
                 </StyledCartIcon>
             </StyledCartContainer>
         </Container>
