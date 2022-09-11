@@ -1,10 +1,16 @@
-import * as MyModal from "./style"
+import * as MyModal from "@components/UI/blocks/modal/style"
+import Button from "@components/UI/atoms/button/button"
 
-const Modal = ({ isOpen, children }) => {
+const Modal = ({ isOpen, onClickEvent, children }) => {
     return (
         <MyModal.StyledModalBackdrop isOpen={isOpen}>
             <MyModal.StyledModalContainer isOpen={isOpen}>
                 {children}
+                <Button
+                    width="400px"
+                    value="Cancel"
+                    onClickEvent={onClickEvent}
+                />
             </MyModal.StyledModalContainer>
         </MyModal.StyledModalBackdrop>
     )
