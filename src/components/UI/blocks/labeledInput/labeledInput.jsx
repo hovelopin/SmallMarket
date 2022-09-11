@@ -1,6 +1,6 @@
-import Container from "../../atoms/container/container"
-import Label from "../../atoms/label/label"
-import Input from "../../atoms/input/input"
+import Container from "@components/UI/atoms/container/container"
+import Label from "@components/UI/atoms/label/label"
+import Input from "@components/UI/atoms/input/input"
 
 const LabeledInput = ({
     width,

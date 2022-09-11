@@ -1,6 +1,6 @@
-import Container from "../../atoms/container/container"
-import Input from "../../atoms/input/input"
-import Button from "../../atoms/button/button"
+import Container from "@components/UI/atoms/container/container"
+import Input from "@components/UI/atoms/input/input"
+import Button from "@components/UI/atoms/button/button"
 
 const SearchBar = ({
     width,
