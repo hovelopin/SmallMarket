@@ -25,9 +25,11 @@ export const StyledModalBackdrop = styled.div`
 
 export const StyledModalContainer = styled.div`
     position: fixed;
+    width: 400px;
+    height: 400px;
     left: 50%;
     top: 50%;
-    text-align: "center";
+    text-align: center;
     transform: ${Theme.modal.translate};
     padding: ${Theme.modal.padding};
     background: ${Theme.colors.white};
