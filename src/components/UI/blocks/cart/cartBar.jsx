@@ -1,7 +1,7 @@
 import Container from "@components/UI/atoms/container/container"
 import Text from "@components/UI/atoms/text/text"
 import Button from "@components/UI/atoms/button/button"
-import CheckBox from "@components/UI/atoms/checkBox/checkBox"
+import Input from "@components/UI/atoms/input/input"
 import IconButton from "@components/UI/blocks/iconButton/iconButton"
 import styled from "styled-components"
 import Theme from "@/util/style/theme"
@@ -22,7 +22,7 @@ const CartBar = ({
         <Container width="100%">
             <StyledCartContainer>
                 <Container width="5%">
-                    <CheckBox />
+                    <Input type="checkbox" zoom={1.5} />
                 </Container>
                 <Container width="10%">
                     <StyledCartImg src={img} />
