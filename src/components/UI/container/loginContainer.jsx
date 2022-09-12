@@ -8,27 +8,36 @@ import LabeledInput from "@/components/UI/blocks/labeledInput/labeledInput"
 import Modal from "@/components/UI/blocks/modal/modal"
 import Theme from "@util/style/theme"
 import Validation from "@util/validation/validation"
+import { useDispatch } from "react-redux"
+import { authLoginReuqestAction } from "@/store/actions/authAction"
 
 const LoginContainer = () => {
     const [loginFormValue, handleFormValueChange] = useForm({
-        username: "",
+        email: "",
         password: "",
     })
 
     const [isOpen, handleOpenButtonClick, handleCloseButtonClick] =
         useModal(false)
 
+    const dispatch = useDispatch()
+
     const handleLoginSubmit = (e) => {
         e.preventDefault()
-        const { username, password } = loginFormValue
+        const { email, password } = loginFormValue
+        const isValidEmail = Validation.validateEmail(email)
+        const isValidPassword = Validation.validatePassword(password)
         const isValidUserInformation = Validation.validateAll([
-            username,
-            password,
+            isValidEmail,
+            isValidPassword,
         ])
         if (!isValidUserInformation) {
             handleOpenButtonClick(true)
             return
         }
+        dispatch(authLoginReuqestAction(email, password)).then((res) =>
+            console.log(res)
+        )
     }
 
     return (
@@ -41,11 +50,11 @@ const LoginContainer = () => {
                     <StyledFormContainer>
                         <LabeledInput
                             width="100%"
-                            labelText="Username"
+                            labelText="Email"
                             inputType="text"
-                            name="username"
-                            value={loginFormValue.username}
-                            placeholder="Please enter your username"
+                            name="email"
+                            value={loginFormValue.email}
+                            placeholder="Please enter your email"
                             onChangeEvent={handleFormValueChange}
                         />
                     </StyledFormContainer>
