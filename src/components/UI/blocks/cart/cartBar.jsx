@@ -22,7 +22,7 @@ const CartBar = ({
         <Container width="100%">
             <StyledCartContainer>
                 <Container width="5%">
-                    <CheckBox type="checkbox" />
+                    <CheckBox />
                 </Container>
                 <Container width="10%">
                     <StyledCartImg src={img} />

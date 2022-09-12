@@ -1,9 +1,7 @@
 import StyledCheckBox from "./style"
 
-const CheckBox = ({ checked, type, onClickEvnet }) => {
-    return (
-        <StyledCheckBox checked={checked} type={type} onClick={onClickEvnet} />
-    )
+const CheckBox = ({ checked }) => {
+    return <StyledCheckBox checked={checked} type="checkbox" />
 }
 
 export default CheckBox
