@@ -100,7 +100,7 @@ const StyledTextContainer = styled.div`
 
 const StyledContainer = styled.div`
     width: 500px;
-    height: 400px;
+    height: auto;
     margin: 0 auto;
     padding: 1rem;
     background-color: ${Theme.colors.white};
