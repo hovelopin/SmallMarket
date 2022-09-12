@@ -36,6 +36,7 @@ export const StyledContrastButton = styled.button`
     font-size: ${Theme.fontSizes.default};
     font-weight: ${Theme.fontWeight.medium};
     line-height: 1;
+    cursor: pointer;
     &:hover {
         transition 0.3s;
         background-color: ${Theme.colors.darkRed};
