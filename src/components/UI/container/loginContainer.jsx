@@ -1,3 +1,4 @@
+import { useHistory } from "react-router-dom"
 import useForm from "@/hooks/useForm"
 import useModal from "@/hooks/useModal"
 import styled from "styled-components"
@@ -10,6 +11,7 @@ import Theme from "@util/style/theme"
 import Validation from "@util/validation/validation"
 import { useDispatch } from "react-redux"
 import { authLoginReuqestAction } from "@/store/actions/authAction"
+import CookieStorage from "@/storage/cookieStorage"
 
 const LoginContainer = () => {
     const [loginFormValue, handleFormValueChange] = useForm({
@@ -20,6 +22,7 @@ const LoginContainer = () => {
     const [isOpen, handleOpenButtonClick, handleCloseButtonClick] =
         useModal(false)
 
+    const history = useHistory()
     const dispatch = useDispatch()
 
     const handleLoginSubmit = (e) => {
@@ -35,9 +38,10 @@ const LoginContainer = () => {
             handleOpenButtonClick(true)
             return
         }
-        dispatch(authLoginReuqestAction(email, password)).then((res) =>
-            console.log(res)
-        )
+        // firebase 연동 후 로그인 실패에 대한 로직을 추가해야 한다.
+        dispatch(authLoginReuqestAction(email, password)).then(() => {
+            if (CookieStorage.getItem()) history.push("/")
+        })
     }
 
     return (
