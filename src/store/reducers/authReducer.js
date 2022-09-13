@@ -1,3 +1,5 @@
+import UserActionTypes from "@/store/types/userActionTypes"
+
 const INITIAL_STATE = {
     user: {
         accessToken: "",
@@ -10,13 +12,18 @@ const INITIAL_STATE = {
 
 const authReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
-        case "REQUEST_USER_LOGIN":
+        case UserActionTypes.REQUEST_USER_STATE:
+            return {
+                ...state,
+            }
+
+        case UserActionTypes.REQUEST_USER_LOGIN:
             return {
                 ...state,
                 user: action.payload,
             }
 
-        case "REQUEST_USER_LOGIN_FAIL":
+        case UserActionTypes.REQUEST_USER_LOGIN_FAIL:
             return {
                 error: action.payload,
             }
