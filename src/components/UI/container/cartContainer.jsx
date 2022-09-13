@@ -1,37 +1,54 @@
-import { useCallback } from "react"
+import { useState, useCallback } from "react"
+import { DragDropContext } from "react-beautiful-dnd"
+import styled from "styled-components"
+import Text from "@components/UI/atoms/text/text"
 import CartBar from "@/components/UI/blocks/cart/cartBar"
 import CartSidebar from "@/components/UI/blocks/cart/cartSidebar"
-import Text from "@components/UI/atoms/text/text"
-import styled from "styled-components"
+import DroppableBox from "@components/UI/blocks/dragdrop/droppableBox"
+import DraggableBox from "@components/UI/blocks/dragdrop/draggableBox"
 import Theme from "@/util/style/theme"
 
 const CartContainer = () => {
-    const cartItem = [
+    const [cartItems, setCartItems] = useState([
         {
-            uuid: 1,
-            name: "오렌지 마말레이드",
+            uuid: "abc1",
+            name: "Mexican Limeade and Orageade",
             img: `${process.env.PUBLIC_URL}/img/defaultImg.png`,
-            description: "매우 신선한 음료",
+            description: "Limeade and Orangeade",
             quantity: 1,
             price: 5000,
         },
         {
-            uuid: 2,
-            name: "크로아티아산 커피콩 15g",
+            uuid: "abc2",
+            name: "Hand made Croatian coffee brew",
             img: `${process.env.PUBLIC_URL}/img/defaultImg.png`,
-            description: "굉장히 쓴 커피",
+            description: "Hande made Croatian coffe",
             quantity: 1,
             price: 6000,
         },
         {
-            uuid: 3,
-            name: "프랑스에서 만든 에스카르고",
+            uuid: "abc3",
+            name: "Mongo banana and strawberry",
             img: `${process.env.PUBLIC_URL}/img/defaultImg.png`,
-            description: "달팽이 음식임",
-            quantity: 2,
+            description: "Banana and strawberry",
+            quantity: 1,
             price: 15000,
         },
-    ]
+    ])
+
+    const totalPrice = cartItems.reduce((acc, cur) => acc + cur.price, 0)
+    const discount = 10
+
+    const handleDragEnd = (result) => {
+        const { destination, source } = result
+        if (!destination) return
+        const currentCartItems = [...cartItems]
+        const dropCartItemIndex = result.destination.index
+        const draggingItemIndex = source.index
+        const removedCartItem = currentCartItems.splice(draggingItemIndex, 1)
+        currentCartItems.splice(dropCartItemIndex, 0, removedCartItem[0])
+        setCartItems(currentCartItems)
+    }
 
     const handleAddButtonClick = useCallback(() => {
         console.log("Add")
@@ -50,33 +67,49 @@ const CartContainer = () => {
             <CartHeaderContainer>
                 <Text type="large" context="Shopping bag" />
             </CartHeaderContainer>
-            <CartBodyContainer>
-                <CartBodyItemContainer>
-                    {cartItem.map((item) => {
-                        return (
-                            <CartBarContainer key={item.uuid}>
-                                <CartBar
-                                    name={item.name}
-                                    img={item.img}
-                                    description={item.description}
-                                    quantity={item.quantity}
-                                    price={item.price}
-                                    onAddButtonClickEvent={handleAddButtonClick}
-                                    onMinusButtonClickEvent={
-                                        handleMinusButtonClick
-                                    }
-                                    onDeleteButtonClickEvent={
-                                        handleDeleteButtonClick
-                                    }
-                                />
-                            </CartBarContainer>
-                        )
-                    })}
-                </CartBodyItemContainer>
-                <CartBodyPayMentContainer>
-                    <CartSidebar />
-                </CartBodyPayMentContainer>
-            </CartBodyContainer>
+            <DragDropContext onDragEnd={handleDragEnd}>
+                <CartBodyContainer>
+                    <CartBodyItemContainer>
+                        <DroppableBox>
+                            {cartItems.map((item, i) => {
+                                return (
+                                    <DraggableBox
+                                        key={item.uuid}
+                                        item={item}
+                                        index={i}
+                                    >
+                                        <CartBarContainer>
+                                            <CartBar
+                                                name={item.name}
+                                                img={item.img}
+                                                description={item.description}
+                                                quantity={item.quantity}
+                                                price={item.price}
+                                                onAddButtonClickEvent={
+                                                    handleAddButtonClick
+                                                }
+                                                onMinusButtonClickEvent={
+                                                    handleMinusButtonClick
+                                                }
+                                                onDeleteButtonClickEvent={
+                                                    handleDeleteButtonClick
+                                                }
+                                            />
+                                        </CartBarContainer>
+                                    </DraggableBox>
+                                )
+                            })}
+                        </DroppableBox>
+                    </CartBodyItemContainer>
+                    <CartBodyPayMentContainer>
+                        <CartSidebar
+                            totalPrice={totalPrice}
+                            discount={discount}
+                            totalQuantity={cartItems.length}
+                        />
+                    </CartBodyPayMentContainer>
+                </CartBodyContainer>
+            </DragDropContext>
         </CartMainContainer>
     )
 }
