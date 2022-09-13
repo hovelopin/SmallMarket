@@ -1,14 +1,44 @@
+import { useCallback } from "react"
+import useForm from "@/hooks/useForm"
+import useModal from "@/hooks/useModal"
 import styled from "styled-components"
 import Text from "@components/UI/atoms/text/text"
 import Form from "@components/UI/atoms/form/form"
 import Button from "@components/UI/atoms/button/button"
 import LabeledInput from "@components/UI/blocks/labeledInput/labeledInput"
+import Modal from "@components/UI/blocks/modal/modal"
 import Theme from "@util/style/theme"
+import Validation from "@util/validation/validation"
 
 const RegisterContainer = () => {
-    const handleRegisterSubmit = (e) => {
+    const [registerFormValue, handleFormValueChange] = useForm({
+        email: "",
+        username: "",
+        password: "",
+        confirmPassword: "",
+    })
+
+    const [isOpen, handleOpenButtonClick, handleCloseButtonClick] =
+        useModal(false)
+
+    const handleRegisterSubmit = useCallback((e) => {
         e.preventDefault()
-    }
+        const { email, username, password, confirmPassword } = registerFormValue
+        const isValidEmail = Validation.validateEmail(email)
+        const isValidUsernme = Validation.validateUsername(username)
+        const isValidPassword = Validation.validatePassword(password)
+        const isValidRegisterInformation = Validation.validateAll([
+            isValidEmail,
+            isValidUsernme,
+            isValidPassword,
+            password === confirmPassword,
+        ])
+
+        if (!isValidRegisterInformation) {
+            handleOpenButtonClick(true)
+            return
+        }
+    }, [])
 
     return (
         <StyledWrapper>
@@ -23,7 +53,9 @@ const RegisterContainer = () => {
                             labelText="Email"
                             inputType="email"
                             name="email"
+                            value={registerFormValue.email}
                             placeholder="Please enter your email"
+                            onChangeEvent={handleFormValueChange}
                         />
                     </StyledFormContainer>
                     <StyledFormContainer>
@@ -32,7 +64,9 @@ const RegisterContainer = () => {
                             labelText="Username"
                             inputType="text"
                             name="username"
+                            value={registerFormValue.username}
                             placeholder="Please enter your username"
+                            onChangeEvent={handleFormValueChange}
                         />
                     </StyledFormContainer>
                     <StyledFormContainer>
@@ -41,7 +75,9 @@ const RegisterContainer = () => {
                             labelText="Password"
                             inputType="password"
                             name="password"
+                            value={registerFormValue.password}
                             placeholder="Please enter your password"
+                            onChangeEvent={handleFormValueChange}
                         />
                     </StyledFormContainer>
                     <StyledFormContainer>
@@ -50,7 +86,9 @@ const RegisterContainer = () => {
                             labelText="Confirm Password"
                             inputType="password"
                             name="confirmPassword"
+                            value={registerFormValue.confirmPassword}
                             placeholder="Please enter your password"
+                            onChangeEvent={handleFormValueChange}
                         />
                     </StyledFormContainer>
                     <Button
@@ -61,6 +99,9 @@ const RegisterContainer = () => {
                     />
                 </Form>
             </StyledContainer>
+            <Modal isOpen={isOpen} onClickEvent={handleCloseButtonClick}>
+                <Text context="Please check your information" />
+            </Modal>
         </StyledWrapper>
     )
 }
