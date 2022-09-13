@@ -4,55 +4,61 @@ import Text from "@components/UI/atoms/text/text"
 import Theme from "@/util/style/theme"
 import Button from "@components/UI/atoms/button/button"
 
-const CartSidebar = ({
-    productPrice,
-    discountPrice,
-    delivery,
-    expectedPrice,
-}) => {
+const CartSidebar = ({ totalPrice, discount, totalQuantity }) => {
+    const discountedPrice = Math.floor(totalPrice / discount)
+
     return (
         <Container width="100%">
             <CartSidebarMainContainer>
                 <CartSidebarHeader>
-                    <Text type="default" context="결제하실금액" />
+                    <Text type="large" context="Receipt" />
                 </CartSidebarHeader>
                 <CartSidebarBody>
                     <CartSidebarContextContainer>
                         <CartSidebarContext>
-                            <Text type="default" context="상품금액" />
+                            <Text type="default" context="Total" />
                         </CartSidebarContext>
                         <CartSidebarContext>
-                            <Text type="default" context="￦ 26000" />
-                        </CartSidebarContext>
-                    </CartSidebarContextContainer>
-                    <CartSidebarContextContainer>
-                        <CartSidebarContext>
-                            <Text type="default" context="할인금액" />
-                        </CartSidebarContext>
-                        <CartSidebarContext>
-                            <Text type="default" context="￦ 6000" />
+                            <Text type="default" context={`￦ ${totalPrice}`} />
                         </CartSidebarContext>
                     </CartSidebarContextContainer>
                     <CartSidebarContextContainer>
                         <CartSidebarContext>
-                            <Text type="default" context="총 수량" />
+                            <Text type="default" context="Discount" />
                         </CartSidebarContext>
                         <CartSidebarContext>
-                            <Text type="default" context="3" />
+                            <Text
+                                type="default"
+                                context={`￦ ${discountedPrice}`}
+                            />
+                        </CartSidebarContext>
+                    </CartSidebarContextContainer>
+                    <CartSidebarContextContainer>
+                        <CartSidebarContext>
+                            <Text type="default" context="Quantity" />
+                        </CartSidebarContext>
+                        <CartSidebarContext>
+                            <Text
+                                type="default"
+                                context={`${totalQuantity} pcs`}
+                            />
                         </CartSidebarContext>
                     </CartSidebarContextContainer>
                 </CartSidebarBody>
                 <CartSidebarFooter>
                     <CartSidebarContext>
-                        <Text type="default" context="결제예상 금액" />
+                        <Text type="default" context="Total price" />
                     </CartSidebarContext>
                     <CartSidebarContext>
-                        <Text type="default" context="￦ 20000" />
+                        <Text
+                            type="default"
+                            context={`￦ ${totalPrice - discountedPrice}`}
+                        />
                     </CartSidebarContext>
                 </CartSidebarFooter>
             </CartSidebarMainContainer>
             <CartSidebarButton>
-                <Button type="default" width="100%" value="PAY" />
+                <Button type="default" width="100%" value="PAYMENT" />
             </CartSidebarButton>
         </Container>
     )
@@ -66,7 +72,7 @@ const CartSidebarMainContainer = styled.div`
 const CartSidebarHeader = styled.div`
     padding-top: 2rem;
     padding-bottom: 2rem;
-    text-align: center;
+    padding-left: 1rem;
     border-bottom: 2px solid ${Theme.colors.lightGray};
 `
 
