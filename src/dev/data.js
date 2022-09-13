@@ -29,7 +29,7 @@ Data.newUser = {
 }
 
 Data.loginRequest = async (email, password) => {
-    return email == Data.user.email && password == Data.user.password
+    return email === Data.user.email && password === Data.user.password
         ? Data.user
         : null
 }
