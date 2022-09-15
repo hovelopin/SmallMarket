@@ -7,11 +7,7 @@ import Theme from "@util/style/theme"
 
 const PaymentDetail = () => {
     return (
-        <CustomContainer
-            width="50%"
-            margin="0 0 3% 0"
-            bColor={Theme.colors.whiteGray}
-        >
+        <CustomContainer width="50%" bColor={Theme.colors.whiteGray}>
             <CustomContainer margin="0 0 2% 0">
                 <Text type="large" context="Payment Datails"></Text>
             </CustomContainer>
