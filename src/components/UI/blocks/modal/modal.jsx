@@ -6,11 +6,13 @@ const Modal = ({ isOpen, onClickEvent, children }) => {
         <MyModal.StyledModalBackdrop isOpen={isOpen}>
             <MyModal.StyledModalContainer isOpen={isOpen}>
                 {children}
-                <Button
-                    width="400px"
-                    value="Cancel"
-                    onClickEvent={onClickEvent}
-                />
+                <MyModal.StyledModalButtonContainer>
+                    <Button
+                        width="400px"
+                        value="Cancel"
+                        onClickEvent={onClickEvent}
+                    />
+                </MyModal.StyledModalButtonContainer>
             </MyModal.StyledModalContainer>
         </MyModal.StyledModalBackdrop>
     )

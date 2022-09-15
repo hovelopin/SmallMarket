@@ -1,3 +1,4 @@
+import { useCallback } from "react"
 import { useHistory } from "react-router-dom"
 import useForm from "@/hooks/useForm"
 import useModal from "@/hooks/useModal"
@@ -25,7 +26,7 @@ const LoginContainer = () => {
     const history = useHistory()
     const dispatch = useDispatch()
 
-    const handleLoginSubmit = (e) => {
+    const handleLoginSubmit = useCallback((e) => {
         e.preventDefault()
         const { email, password } = loginFormValue
         const isValidEmail = Validation.validateEmail(email)
@@ -42,7 +43,7 @@ const LoginContainer = () => {
         dispatch(authLoginReuqestAction(email, password)).then(() => {
             if (CookieStorage.getItem()) history.push("/")
         })
-    }
+    }, [])
 
     return (
         <StyledWrapper>
@@ -90,7 +91,7 @@ const LoginContainer = () => {
                 </Form>
             </StyledContainer>
             <Modal isOpen={isOpen} onClickEvent={handleCloseButtonClick}>
-                Please check your username or password
+                <Text context="Please check your email or password" />
             </Modal>
         </StyledWrapper>
     )

@@ -23,10 +23,14 @@ export const StyledModalBackdrop = styled.div`
     ${isVisible};
 `
 
+export const StyledModalButtonContainer = styled.div`
+    margin-top: 1.25rem;
+`
+
 export const StyledModalContainer = styled.div`
     position: fixed;
     width: 400px;
-    height: 400px;
+    height: auto;
     left: 50%;
     top: 50%;
     text-align: center;
