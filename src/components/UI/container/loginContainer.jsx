@@ -1,24 +1,65 @@
+import { useHistory } from "react-router-dom"
+import useForm from "@/hooks/useForm"
+import useModal from "@/hooks/useModal"
 import styled from "styled-components"
 import Form from "@components/UI/atoms/form/form"
 import Text from "@components/UI/atoms/text/text"
 import Button from "@components/UI/atoms/button/button"
 import LabeledInput from "@/components/UI/blocks/labeledInput/labeledInput"
-import Theme from "@/util/style/theme"
+import Modal from "@/components/UI/blocks/modal/modal"
+import Theme from "@util/style/theme"
+import Validation from "@util/validation/validation"
+import { useDispatch } from "react-redux"
+import { authLoginReuqestAction } from "@/store/actions/authAction"
+import CookieStorage from "@/storage/cookieStorage"
 
 const LoginContainer = () => {
+    const [loginFormValue, handleFormValueChange] = useForm({
+        email: "",
+        password: "",
+    })
+
+    const [isOpen, handleOpenButtonClick, handleCloseButtonClick] =
+        useModal(false)
+
+    const history = useHistory()
+    const dispatch = useDispatch()
+
+    const handleLoginSubmit = (e) => {
+        e.preventDefault()
+        const { email, password } = loginFormValue
+        const isValidEmail = Validation.validateEmail(email)
+        const isValidPassword = Validation.validatePassword(password)
+        const isValidUserInformation = Validation.validateAll([
+            isValidEmail,
+            isValidPassword,
+        ])
+        if (!isValidUserInformation) {
+            handleOpenButtonClick(true)
+            return
+        }
+        // firebase 연동 후 로그인 실패에 대한 로직을 추가해야 한다.
+        dispatch(authLoginReuqestAction(email, password)).then(() => {
+            if (CookieStorage.getItem()) history.push("/")
+        })
+    }
+
     return (
         <StyledWrapper>
             <StyledContainer>
                 <StyledTextContainer>
                     <Text type="default" context="ACCOUNT LOGIN" />
                 </StyledTextContainer>
-                <Form>
+                <Form onSubmitEvent={handleLoginSubmit}>
                     <StyledFormContainer>
                         <LabeledInput
                             width="100%"
-                            labelText="Username"
+                            labelText="Email"
                             inputType="text"
-                            placeholder="Please enter your username"
+                            name="email"
+                            value={loginFormValue.email}
+                            placeholder="Please enter your email"
+                            onChangeEvent={handleFormValueChange}
                         />
                     </StyledFormContainer>
                     <StyledFormContainer>
@@ -26,7 +67,10 @@ const LoginContainer = () => {
                             width="100%"
                             labelText="Password"
                             inputType="password"
+                            name="password"
+                            value={loginFormValue.password}
                             placeholder="Please enter your password"
+                            onChangeEvent={handleFormValueChange}
                         />
                     </StyledFormContainer>
                     <StyledSmallTextContainer>
@@ -39,12 +83,15 @@ const LoginContainer = () => {
                     </StyledSmallTextContainer>
                     <Button
                         type="default"
-                        bType="button"
+                        bType="submit"
                         width="100%"
                         value="LOGIN"
                     />
                 </Form>
             </StyledContainer>
+            <Modal isOpen={isOpen} onClickEvent={handleCloseButtonClick}>
+                Please check your username or password
+            </Modal>
         </StyledWrapper>
     )
 }
@@ -66,7 +113,7 @@ const StyledTextContainer = styled.div`
 
 const StyledContainer = styled.div`
     width: 500px;
-    height: 400px;
+    height: auto;
     margin: 0 auto;
     padding: 1rem;
     background-color: ${Theme.colors.white};

@@ -11,6 +11,7 @@ const StyledInput = styled.input`
     box-sizing: ${Theme.inputs.boxSizing};
     padding: ${Theme.inputs.padding};
     display: ${Theme.inputs.display};
+    zoom: ${(props) => props.zoom};
 `
 
 export default StyledInput

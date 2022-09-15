@@ -10,8 +10,9 @@ import {
     faClipboard,
     faAddressCard,
     faTrash,
+    faGripVertical,
 } from "@fortawesome/free-solid-svg-icons"
-import ErrorUtil from "../util/errorUtil"
+import ErrorUtil from "@/util/errorUtil"
 
 function Icon({ name }) {
     return <FontAwesomeIcon icon={doFetchFontAwesomeIcon.call(this, name)} />
@@ -39,6 +40,8 @@ function doFetchFontAwesomeIcon(name) {
             return faAddressCard
         case "trash":
             return faTrash
+        case "grip":
+            return faGripVertical
         default:
             ErrorUtil.notImplemented()
     }

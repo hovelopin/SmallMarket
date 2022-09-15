@@ -1,6 +1,6 @@
 import React from "react"
 import * as MyButton from "./style"
-import ErrorUtil from "../../../../util/errorUtil"
+import ErrorUtil from "@/util/errorUtil"
 
 const Button = ({
     type = "default",
@@ -8,6 +8,7 @@ const Button = ({
     height,
     width,
     value,
+    children,
     onClickEvent,
 }) => {
     const getButtonType = (type) => {
@@ -45,6 +46,7 @@ const Button = ({
                         onClick={onClickEvent}
                     >
                         {value}
+                        {children}
                     </MyButton.StyledBlackButton>
                 )
 
