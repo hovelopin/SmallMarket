@@ -14,16 +14,12 @@ const Post = () => {
     return (
         <PostContainer>
             <Button onClickEvent={() => setIsOpen(true)}>test</Button>
-            <Modal
-                isOpen={isOpen}
-                children={
-                    <Postcode
-                        setFullAddress={setFullAddress}
-                        setZoneCode={setZoneCode}
-                    ></Postcode>
-                }
-                onClickEvent={() => setIsOpen(false)}
-            ></Modal>
+            <Modal isOpen={isOpen} onClickEvent={() => setIsOpen(false)}>
+                <Postcode
+                    setFullAddress={setFullAddress}
+                    setZoneCode={setZoneCode}
+                ></Postcode>
+            </Modal>
         </PostContainer>
     )
 }
