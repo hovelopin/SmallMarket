@@ -3,7 +3,12 @@ import Icon from "@/icon/icon"
 
 const IconButton = ({ type, name, width, onClickEvent }) => {
     return (
-        <Button type={type} bType="button" width={width} onClick={onClickEvent}>
+        <Button
+            type={type}
+            bType="button"
+            width={width}
+            onClickEvent={onClickEvent}
+        >
             <Icon name={name} />
         </Button>
     )
