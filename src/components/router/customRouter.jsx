@@ -4,6 +4,7 @@ import LoginContainer from "@components/UI/container/loginContainer"
 import RegisterContainer from "@components/UI/container/registerContainer"
 import AdminContainer from "@components/UI/container/adminContainer"
 import CartContainer from "@components/UI/container/cartContainer"
+import ProductContainer from "@components/UI/container/productContainer"
 import NotFound from "@components/UI/container/NotFound"
 
 const CustomRouter = () => {
@@ -15,6 +16,7 @@ const CustomRouter = () => {
                 <Route exact path="/register" component={RegisterContainer} />
                 <Route exact path="/admin" component={AdminContainer} />
                 <Route exact path="/cart" component={CartContainer} />
+                <Route exact path="/items" component={ProductContainer} />
                 <Route component={NotFound} />
             </Switch>
         </Router>
