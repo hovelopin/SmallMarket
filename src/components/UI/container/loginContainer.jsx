@@ -1,4 +1,5 @@
-import { useCallback } from "react"
+import { useContext } from "react"
+import { useHistory } from "react-router-dom"
 import useForm from "@/hooks/useForm"
 import useModal from "@/hooks/useModal"
 import styled from "styled-components"
@@ -7,8 +8,12 @@ import Text from "@components/UI/atoms/text/text"
 import Button from "@components/UI/atoms/button/button"
 import LabeledInput from "@/components/UI/blocks/labeledInput/labeledInput"
 import Modal from "@/components/UI/blocks/modal/modal"
+import { DispatchContext } from "@/context/auth/authContext"
+import AuthTypes from "@/context/types/authRequestType"
 import Theme from "@util/style/theme"
 import Validation from "@util/validation/validation"
+import CookieStorage from "@/storage/cookieStorage"
+import Data from "@/dev/data"
 
 const LoginContainer = () => {
     const [loginFormValue, handleFormValueChange] = useForm({
@@ -19,7 +24,10 @@ const LoginContainer = () => {
     const [isOpen, handleOpenButtonClick, handleCloseButtonClick] =
         useModal(false)
 
-    const handleLoginSubmit = useCallback((e) => {
+    const authDispatch = useContext(DispatchContext)
+    const history = useHistory()
+
+    const handleLoginSubmit = async (e) => {
         e.preventDefault()
         const { email, password } = loginFormValue
         const isValidEmail = Validation.validateEmail(email)
@@ -32,8 +40,20 @@ const LoginContainer = () => {
             handleOpenButtonClick(true)
             return
         }
-        // add login...
-    }, [])
+
+        const res = await Data.loginRequest(email, password)
+        if (res) {
+            authDispatch({
+                type: AuthTypes.login,
+                payload: res,
+            })
+            CookieStorage.setItem(res.accessToken)
+            history.replace("/")
+        } else {
+            handleOpenButtonClick(true)
+            return
+        }
+    }
 
     return (
         <StyledWrapper>
