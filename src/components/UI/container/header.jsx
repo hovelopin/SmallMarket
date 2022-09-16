@@ -1,11 +1,48 @@
+import { useContext } from "react"
+import { useHistory } from "react-router-dom"
 import styled from "styled-components"
 import Container from "@components/UI/atoms/container/container"
 import LinkGroup from "@components/UI/blocks/linkGroup/linkGroup"
 import SearchBar from "@components/UI/blocks/searchBar/searchBar"
-import Theme from "@util/style/theme"
+import { DispatchContext } from "@/context/auth/authContext"
+import AuthTypes from "@/context/types/authRequestType"
 import Icon from "@/icon/icon"
+import Theme from "@util/style/theme"
+import CookieStorage from "@/storage/cookieStorage"
 
 const Header = () => {
+    const authDispatch = useContext(DispatchContext)
+    const history = useHistory()
+
+    const userMenuItems = [
+        {
+            name: "cart",
+            handleClick: () => {
+                history.push("/cart")
+            },
+        },
+        {
+            name: CookieStorage.getItem() ? "signout" : "user",
+            handleClick: () => {
+                if (CookieStorage.getItem()) {
+                    authDispatch({
+                        type: AuthTypes.logout,
+                        payload: null,
+                    })
+                    CookieStorage.clear()
+                } else {
+                    history.push("/login")
+                }
+            },
+        },
+        {
+            name: CookieStorage.getItem() ? null : "signup",
+            handleClick: () => {
+                history.push("/register")
+            },
+        },
+    ]
+
     const menuItems = [
         {
             name: "미정1",
@@ -29,11 +66,16 @@ const Header = () => {
         },
     ]
 
+    const handleLogoImgClick = () => {
+        history.push("/")
+    }
+
     return (
         <Container width="100%" height="100%">
             <NavigationSection>
                 <StyledCardImage
                     src={`${process.env.PUBLIC_URL}/img/logo.png`}
+                    onClick={handleLogoImgClick}
                 />
                 <SearchItemSection>
                     <SearchBar
@@ -43,15 +85,13 @@ const Header = () => {
                     />
                 </SearchItemSection>
                 <SearchItemSection>
-                    <UserItemSection>
-                        <Icon name="cart" />
-                    </UserItemSection>
-                    <UserItemSection>
-                        <Icon name="signin" />
-                    </UserItemSection>
-                    <UserItemSection>
-                        <Icon name="signup" />
-                    </UserItemSection>
+                    {userMenuItems.map((menu, i) => (
+                        <UserItemSection key={i} onClick={menu.handleClick}>
+                            {menu.name && (
+                                <Icon type="black" name={menu.name} />
+                            )}
+                        </UserItemSection>
+                    ))}
                 </SearchItemSection>
             </NavigationSection>
             <NavigationSection>
