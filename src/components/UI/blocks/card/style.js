@@ -2,7 +2,7 @@ import styled from "styled-components"
 import Theme from "../../../../util/style/theme"
 
 export const StyledCardContainer = styled.div`
-    width: 24rem;
+    width: 100%;
     position: relative;
     min-width: 0;
     word-wrap: break-word;

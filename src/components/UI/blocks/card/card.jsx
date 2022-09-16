@@ -3,21 +3,24 @@ import Text from "../../atoms/text/text"
 import Button from "../../atoms/button/button"
 import * as MyCard from "./style"
 
-const Card = ({ uuid, name, description, price, quantity, img }) => {
+const Card = ({ name, description, price, img }) => {
     return (
         <Container width="100%">
             <MyCard.StyledCardContainer>
                 <MyCard.StyledCardImage
-                    src={`${process.env.PUBLIC_URL}/img/defaultImg.png`}
+                    src={`${process.env.PUBLIC_URL}/img/${img}`}
                 />
                 <MyCard.StyledCardBody>
-                    <Text type="large" context="Product title" />
+                    <Text type="large" context={name} />
                 </MyCard.StyledCardBody>
                 <MyCard.StyledCardBody>
-                    <Text type="default" context="Product subtitle" />
+                    <Text type="default" context={name} />
                 </MyCard.StyledCardBody>
                 <MyCard.StyledCardBody>
-                    <Text type="default" context="Product price" />
+                    <Text type="default" context={description} />
+                </MyCard.StyledCardBody>
+                <MyCard.StyledCardBody>
+                    <Text type="default" context={`${price} ￦`} />
                 </MyCard.StyledCardBody>
                 <MyCard.StyledCardFooter>
                     <Button

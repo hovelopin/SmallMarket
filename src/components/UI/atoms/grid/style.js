@@ -20,7 +20,7 @@ const StyledGrid = styled.div`
     justify-items: center;
     width: ${Theme.grid.width};
     padding: ${Theme.grid.padding};
-    gap: ${Theme.grid.gap};
+    gap: ${(props) => (props.gap ? props.gap : Theme.grid.gap)};
     color: ${(props) => (props.color ? props.color : Theme.colors.black)};
     border-radius: ${(props) => (props.border ? props.border : "none")};
     background-color: ${(props) =>
