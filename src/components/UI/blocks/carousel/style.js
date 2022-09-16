@@ -13,6 +13,7 @@ export const SliderContainer = styled.div`
 export const Image = styled.img`
     max-width: 30%;
     max-height: 100%;
+    cursor: pointer;
 `
 
 export const StyledSlider = styled(Slider)`
