@@ -1,131 +1,179 @@
 import styled from "styled-components"
-import Label from "@components/UI/atoms/label/label"
-import Text from "@components/UI/atoms/text/text"
 import Button from "@components/UI/atoms/button/button"
 import LabeledInput from "@components/UI/blocks/labeledInput/labeledInput"
+import Container from "@components/UI/atoms/container/container"
 import Theme from "@util/style/theme"
-import { useState } from "react"
-const PaymentDetail = (fullAddress, zoneCode) => {
-    const event1 = () => {}
-    const event2 = () => {}
-    const [srt, setSrt] = useState("")
+import useForm from "@/hooks/useForm"
+import Form from "@components/UI/atoms/form/form"
+
+const PaymentDetail = () => {
+    const [deliveryValue, valueChangeHandler] = useForm({
+        email: "",
+        name: "",
+        phoneNumber: "",
+        address: "",
+        detailAddress: "",
+        zoneCode: "",
+        order: "",
+        price: "700$",
+    })
+    //일어나면 여기부터
+    const handlePaySubmit = (e) => {
+        e.preventDefault()
+        console.log("ests")
+    }
     return (
-        <CustomContainer width="50%" bColor={Theme.colors.whiteGray}>
-            <CustomContainer margin="5% 5% 5% 5%">
-                <CustomContainer margin="0 0 2% 0">
-                    <Text type="large" context="Payment Datails"></Text>
-                </CustomContainer>
-                <CustomContainer margin="0 0 3% 0">
-                    <Text
-                        type="default"
-                        context="Complete your purchase by providing your payment details"
-                    ></Text>
-                </CustomContainer>
-                <InputContainer>
-                    <LabeledInput
-                        width="100%"
-                        labelText="Email address"
-                        inputType="text"
-                        placeholder="enter your email"
-                        name="email"
-                    ></LabeledInput>
-                    <LabeledInput
-                        width="100%"
-                        labelText="Name"
-                        inputType="text"
-                        placeholder="박재현 짱짱맨"
-                        name="name"
-                    ></LabeledInput>
-                    <LabeledInput
-                        width="100%"
-                        labelText="Phone number"
-                        inputType="text"
-                        placeholder="010-0000-0000"
-                        name="phoneNumber"
-                    ></LabeledInput>
-                    <GridContainer fr="2fr 1fr">
+        <DetailWapper>
+            <DetailHeadContainer>
+                <DetailHeadText fontSize="2.2rem" fontWeight="bold">
+                    Payment Detail
+                </DetailHeadText>
+                <DetailHeadText fontWeight="600">
+                    Complete your purchase by providing your payment details
+                </DetailHeadText>
+            </DetailHeadContainer>
+            <Container width="60%">
+                <Form onSubmitEvent={handlePaySubmit}>
+                    <FormContainer>
                         <LabeledInput
                             width="100%"
-                            labelText="Full address"
-                            name="fullAddress"
-                            value={srt}
-                            onChangeEvent={event1}
-                            readOnly
-                        ></LabeledInput>
-                        <CustomContainer width="100%" margin="20px 0 0 0">
-                            <Button
-                                value="Address search"
+                            labelText="Enter your email"
+                            inputType="text"
+                            name="email"
+                            value={deliveryValue.email}
+                            placeholder="email@domain.topDomain"
+                            onChangeEvent={valueChangeHandler}
+                        />
+                    </FormContainer>
+                    <FormContainer>
+                        <LabeledInput
+                            width="100%"
+                            labelText="Enter your name"
+                            inputType="text"
+                            name="name"
+                            value={deliveryValue.name}
+                            placeholder="Hong Gil Dong"
+                            onChangeEvent={valueChangeHandler}
+                        />
+                    </FormContainer>
+                    <FormContainer>
+                        <LabeledInput
+                            width="100%"
+                            labelText="Enter your phone number"
+                            inputType="text"
+                            name="phoneNumber"
+                            value={deliveryValue.phoneNumber}
+                            placeholder="하이픈(-)을 입력하세요"
+                            onChangeEvent={valueChangeHandler}
+                        />
+                    </FormContainer>
+                    <AddressContainer>
+                        <Container width="60%">
+                            <LabeledInput
                                 width="100%"
-                                name="fullAddressBtn"
-                                onClickEvent={event1}
-                            ></Button>
-                        </CustomContainer>
-                    </GridContainer>
-                    <GridContainer fr="2fr 1fr">
-                        <LabeledInput
+                                labelText="Address to be delivered"
+                                inputType="text"
+                                name="address"
+                                value={deliveryValue.address}
+                                placeholder="Click the button to find the address"
+                                onChangeEvent={valueChangeHandler}
+                            />
+                        </Container>
+                        <AddressSubContainer marginTop="20px">
+                            <Button
+                                type="contrast"
+                                bType="button"
+                                height="100%"
+                                width="100%"
+                                value="FIND ADDRESS"
+                            />
+                        </AddressSubContainer>
+                    </AddressContainer>
+                    <AddressContainer>
+                        <Container width="60%">
+                            <LabeledInput
+                                width="100%"
+                                labelText="Enter your Detailed Address"
+                                inputType="text"
+                                name="detailAddress"
+                                value={deliveryValue.detailAddress}
+                                placeholder="104-305"
+                                onChangeEvent={valueChangeHandler}
+                            />
+                        </Container>
+                        <AddressSubContainer>
+                            <LabeledInput
+                                width="100%"
+                                labelText="Zone Code"
+                                inputType="text"
+                                name="zoneCode"
+                                value={deliveryValue.zoneCode}
+                                placeholder="11741"
+                                onChangeEvent={valueChangeHandler}
+                            />
+                        </AddressSubContainer>
+                    </AddressContainer>
+                    <Container width="100%">
+                        <GridContainer>
+                            <DetailHeadText fontSize="1.4rem">
+                                TOTAL PRICE
+                            </DetailHeadText>
+                            <DetailHeadText fontSize="1.4rem" textAlign="right">
+                                {deliveryValue.price}
+                            </DetailHeadText>
+                        </GridContainer>
+                    </Container>
+                    <Container width="100%">
+                        <Button
+                            type="default"
+                            bType="submit"
                             width="100%"
-                            labelText="Extra address"
-                            inputType="text"
-                            name="extraAddress"
-                        ></LabeledInput>
-                        <LabeledInput
-                            width="100%"
-                            labelText="ZoneCode"
-                            inputType="text"
-                            name="zoneCode"
-                            value={srt}
-                            onChangeEvent={event2}
-                            readOnly
-                        ></LabeledInput>
-                    </GridContainer>
-                    <LabeledInput
-                        width="100%"
-                        labelText="Additional order"
-                        placeholder="Additional order"
-                        inputType="text"
-                        name="additionalOrder"
-                    ></LabeledInput>
-                </InputContainer>
-                <CustomContainer margin="2% 0 0 0">
-                    <GridContainer fr="6fr 1fr">
-                        <Label labelText="Products price"></Label>
-                        <Label labelText="here price props"></Label>
-                    </GridContainer>
-                </CustomContainer>
-                <CustomContainer margin="2% 0 0 0">
-                    <GridContainer fr="6fr 1fr">
-                        <Label labelText="Delivery price"></Label>
-                        <Label labelText="here price props"></Label>
-                    </GridContainer>
-                </CustomContainer>
-                <CustomContainer margin="2% 0 5% 0">
-                    <GridContainer fr="6fr 1fr">
-                        <Label labelText="Total price"></Label>
-                        <Label labelText="here price props"></Label>
-                    </GridContainer>
-                </CustomContainer>
-                <Button
-                    width="100%"
-                    value="Pay!"
-                    onClickEvent={event1}
-                ></Button>
-            </CustomContainer>
-        </CustomContainer>
+                            height="4rem"
+                            value={`Pay $${deliveryValue.price}`}
+                        />
+                    </Container>
+                </Form>
+            </Container>
+        </DetailWapper>
     )
 }
 const GridContainer = styled.div`
     display: grid;
-    grid-template-columns: ${(props) => props.fr || "1fr 1fr"};
+    grid-template-columns: repeat(2, 1fr);
+    margin-bottom: 1.75rem;
 `
-const CustomContainer = styled.div`
-    width: ${(props) => props.width};
-    heihht: ${(props) => props.heihht};
-    margin: ${(props) => props.margin};
-    padding: ${(props) => props.padding};
-    background-color: ${(props) => props.bColor};
+const AddressContainer = styled.div`
+    display: flex;
+    margin-bottom: 1.75rem;
+    flex-direction: ${(props) => props.direction || "row"};
+`
+const AddressSubContainer = styled.div`
+    width: 40%;
+    height: 9%;
+    align-items: right;
+    margin-left: 5%;
+    margin-top: ${(props) => props.marginTop || "0"};
 `
 
-const InputContainer = styled.div`
-    margin-top: 1rem;
+const DetailHeadContainer = styled.div`
+    width: 60%;
+    margin-bottom: 5%;
 `
+const FormContainer = styled.div`
+    margin-bottom: 1.75rem;
+`
+const DetailHeadText = styled.p`
+    font-size: ${(props) => props.fontSize || Theme.fontSizes.default};
+    font-weight: ${(props) => props.fontWeight || Theme.fontWeight.medium};
+    text-align: ${(props) => props.textAlign || "left"};
+`
+const DetailWapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 100%;
+    align-items: center;
+    margin-bottom: 5%;
+`
+
 export default PaymentDetail
