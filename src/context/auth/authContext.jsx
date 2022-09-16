@@ -16,11 +16,16 @@ const AuthContext = ({ children }) => {
     }, [])
 
     const fetchUserInformation = async () => {
-        const user = await Data.loginRequest()
-        dispatch({
-            type: AuthTypes.login,
-            payload: user,
-        })
+        try {
+            const user = await Data.loginRequest()
+            dispatch({
+                type: AuthTypes.login,
+                payload: user,
+            })
+        } catch (e) {
+            // 에러상황 처리
+            console.error(e)
+        }
     }
 
     return (
