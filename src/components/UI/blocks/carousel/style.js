@@ -7,7 +7,7 @@ export const SliderContainer = styled.div`
     width: ${(props) => props.width || "100%"};
     height: ${(props) => props.height || "100%"};
     margin: ${(props) => props.margin || "0 auto"};
-    padding: ${(props) => props.padding || "0 auto%"};
+    padding: ${(props) => props.padding || "0 auto"};
 `
 
 export const Image = styled.img`
