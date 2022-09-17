@@ -1,10 +1,10 @@
-import { useContext } from "react"
+import { useEffect, useContext } from "react"
 import { useHistory } from "react-router-dom"
 import styled from "styled-components"
 import Container from "@components/UI/atoms/container/container"
 import LinkGroup from "@components/UI/blocks/linkGroup/linkGroup"
 import SearchBar from "@components/UI/blocks/searchBar/searchBar"
-import { DispatchContext } from "@/context/auth/authContext"
+import { AuthStateContext, DispatchContext } from "@/context/auth/authContext"
 import AuthTypes from "@/context/types/authRequestType"
 import Icon from "@/icon/icon"
 import Theme from "@util/style/theme"
@@ -12,6 +12,8 @@ import CookieStorage from "@/storage/cookieStorage"
 
 const Header = () => {
     const authDispatch = useContext(DispatchContext)
+    const authState = useContext(AuthStateContext)
+
     const history = useHistory()
 
     const userMenuItems = [
@@ -35,36 +37,37 @@ const Header = () => {
                 }
             },
         },
-        {
-            name: CookieStorage.getItem() ? null : "signup",
-            handleClick: () => {
-                history.push("/register")
-            },
-        },
     ]
 
     const menuItems = [
         {
-            name: "미정1",
+            name: "My page",
             path: "/미정1",
         },
         {
-            name: "미정2",
+            name: "Information",
             path: "/미정2",
         },
         {
-            name: "미정3",
+            name: "Item category",
+            path: "/items",
+        },
+        {
+            name: "Fair trade",
             path: "/미정3",
         },
         {
-            name: "미정4",
-            path: "/미정4",
-        },
-        {
-            name: "미정5",
-            path: "/미정5",
+            name: "Contact",
+            path: "/contact",
         },
     ]
+
+    useEffect(() => {
+        authDispatch({
+            type: AuthTypes.login,
+            payload: authState,
+        })
+    }, [authDispatch])
 
     const handleLogoImgClick = () => {
         history.push("/")
