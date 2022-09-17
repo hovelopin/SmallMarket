@@ -48,11 +48,19 @@ const LoginContainer = () => {
                 payload: res,
             })
             CookieStorage.setItem(res.accessToken)
-            history.replace("/")
+            window.location.replace("/")
         } else {
             handleOpenButtonClick(true)
             return
         }
+    }
+
+    const handleRegisterButtonClick = () => {
+        history.push("/register")
+    }
+
+    if (CookieStorage.getItem()) {
+        history.push("/")
     }
 
     return (
@@ -92,12 +100,23 @@ const LoginContainer = () => {
                             <Text type="small" context="FORGOT PASSWORD?" />
                         </StyledSpanContainer>
                     </StyledSmallTextContainer>
-                    <Button
-                        type="default"
-                        bType="submit"
-                        width="100%"
-                        value="LOGIN"
-                    />
+                    <StyledButtonContainer>
+                        <Button
+                            type="default"
+                            bType="submit"
+                            width="100%"
+                            value="LOGIN"
+                        />
+                    </StyledButtonContainer>
+                    <StyledButtonContainer>
+                        <Button
+                            type="default"
+                            bType="button"
+                            width="100%"
+                            value="REGISTER"
+                            onClickEvent={handleRegisterButtonClick}
+                        />
+                    </StyledButtonContainer>
                 </Form>
             </StyledContainer>
             <Modal isOpen={isOpen} onClickEvent={handleCloseButtonClick}>
@@ -144,6 +163,10 @@ const StyledSpanContainer = styled.div`
 
 const StyledFormContainer = styled.div`
     margin-bottom: 1.75rem;
+`
+
+const StyledButtonContainer = styled.div`
+    margin-bottom: 0.5rem;
 `
 
 export default LoginContainer
