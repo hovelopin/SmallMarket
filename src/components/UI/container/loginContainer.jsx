@@ -27,11 +27,12 @@ const LoginContainer = () => {
     const authDispatch = useContext(DispatchContext)
     const history = useHistory()
 
+    const { email, password } = loginFormValue
+    const isValidEmail = Validation.validateEmail(email)
+    const isValidPassword = Validation.validatePassword(password)
+
     const handleLoginSubmit = async (e) => {
         e.preventDefault()
-        const { email, password } = loginFormValue
-        const isValidEmail = Validation.validateEmail(email)
-        const isValidPassword = Validation.validatePassword(password)
         const isValidUserInformation = Validation.validateAll([
             isValidEmail,
             isValidPassword,
@@ -80,6 +81,11 @@ const LoginContainer = () => {
                             placeholder="Please enter your email"
                             onChangeEvent={handleFormValueChange}
                         />
+                        {!isValidEmail && (
+                            <StyledErrorText>
+                                Invalid email format
+                            </StyledErrorText>
+                        )}
                     </StyledFormContainer>
                     <StyledFormContainer>
                         <LabeledInput
@@ -91,6 +97,11 @@ const LoginContainer = () => {
                             placeholder="Please enter your password"
                             onChangeEvent={handleFormValueChange}
                         />
+                        {!isValidPassword && (
+                            <StyledErrorText>
+                                Invalid password format
+                            </StyledErrorText>
+                        )}
                     </StyledFormContainer>
                     <StyledSmallTextContainer>
                         <StyledSpanContainer>
@@ -167,6 +178,10 @@ const StyledFormContainer = styled.div`
 
 const StyledButtonContainer = styled.div`
     margin-bottom: 0.5rem;
+`
+
+const StyledErrorText = styled.p`
+    color: ${Theme.colors.darkRed};
 `
 
 export default LoginContainer
