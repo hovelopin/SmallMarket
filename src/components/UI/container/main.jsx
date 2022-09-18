@@ -1,9 +1,9 @@
 import React from "react"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
-import Theme from "../../../util/style/theme"
-import Grid from "../atoms/grid/grid"
-import Card from "../blocks/card/card"
+import Theme from "@util/style/theme"
+import Grid from "@components/UI/atoms/grid/grid"
+import Card from "@components/UI/blocks/card/card"
 
 const Main = () => {
     const items = [

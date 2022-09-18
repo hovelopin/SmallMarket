@@ -4,15 +4,11 @@ import "./index.css"
 import App from "./app"
 import "@fortawesome/fontawesome-free/js/all"
 import { BrowserRouter } from "react-router-dom"
-import store from "./store/index"
-import { Provider } from "react-redux"
 
 ReactDOM.render(
     <React.StrictMode>
         <BrowserRouter>
-            <Provider store={store}>
-                <App />
-            </Provider>
+            <App />
         </BrowserRouter>
     </React.StrictMode>,
     document.getElementById("root")

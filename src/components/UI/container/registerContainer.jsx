@@ -21,17 +21,19 @@ const RegisterContainer = () => {
     const [isOpen, handleOpenButtonClick, handleCloseButtonClick] =
         useModal(false)
 
+    const { email, username, password, confirmPassword } = registerFormValue
+    const isValidEmail = Validation.validateEmail(email)
+    const isValidUsernme = Validation.validateUsername(username)
+    const isValidPassword = Validation.validatePassword(password)
+    const isValidConfirmPassword = password === confirmPassword
+
     const handleRegisterSubmit = useCallback((e) => {
         e.preventDefault()
-        const { email, username, password, confirmPassword } = registerFormValue
-        const isValidEmail = Validation.validateEmail(email)
-        const isValidUsernme = Validation.validateUsername(username)
-        const isValidPassword = Validation.validatePassword(password)
         const isValidRegisterInformation = Validation.validateAll([
             isValidEmail,
             isValidUsernme,
             isValidPassword,
-            password === confirmPassword,
+            isValidConfirmPassword,
         ])
 
         if (!isValidRegisterInformation) {
@@ -57,6 +59,11 @@ const RegisterContainer = () => {
                             placeholder="Please enter your email"
                             onChangeEvent={handleFormValueChange}
                         />
+                        {!isValidEmail && (
+                            <StyledErrorText>
+                                Invalid password format
+                            </StyledErrorText>
+                        )}
                     </StyledFormContainer>
                     <StyledFormContainer>
                         <LabeledInput
@@ -68,6 +75,11 @@ const RegisterContainer = () => {
                             placeholder="Please enter your username"
                             onChangeEvent={handleFormValueChange}
                         />
+                        {!isValidUsernme && (
+                            <StyledErrorText>
+                                Invalid username format
+                            </StyledErrorText>
+                        )}
                     </StyledFormContainer>
                     <StyledFormContainer>
                         <LabeledInput
@@ -79,6 +91,11 @@ const RegisterContainer = () => {
                             placeholder="Please enter your password"
                             onChangeEvent={handleFormValueChange}
                         />
+                        {!isValidPassword && (
+                            <StyledErrorText>
+                                Invalid password format
+                            </StyledErrorText>
+                        )}
                     </StyledFormContainer>
                     <StyledFormContainer>
                         <LabeledInput
@@ -90,6 +107,11 @@ const RegisterContainer = () => {
                             placeholder="Please enter your password"
                             onChangeEvent={handleFormValueChange}
                         />
+                        {!isValidConfirmPassword && (
+                            <StyledErrorText>
+                                Please check your password
+                            </StyledErrorText>
+                        )}
                     </StyledFormContainer>
                     <Button
                         type="default"
@@ -131,6 +153,10 @@ const StyledTextContainer = styled.div`
 
 const StyledFormContainer = styled.div`
     margin-bottom: 1.75rem;
+`
+
+const StyledErrorText = styled.p`
+    color: ${Theme.colors.darkRed};
 `
 
 export default RegisterContainer
