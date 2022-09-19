@@ -8,7 +8,6 @@ const Input = ({
     value,
     checked,
     onChangeEvent,
-    readOnly,
 }) => {
     return (
         <StyledInput
@@ -19,7 +18,6 @@ const Input = ({
             value={value}
             checked={checked}
             onChange={onChangeEvent}
-            readOnly={readOnly}
         />
     )
 }
