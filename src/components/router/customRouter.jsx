@@ -7,6 +7,7 @@ import AdminContainer from "@components/UI/container/adminContainer"
 import CartContainer from "@components/UI/container/cartContainer"
 import ProductContainer from "@components/UI/container/productContainer"
 import DetailContainer from "@components/UI/container/detailContainer"
+import FairTradeContainer from "@components/UI/container/fairTradeContainer"
 import NotFound from "@components/UI/container/NotFound"
 
 const CustomRouter = () => {
@@ -21,6 +22,7 @@ const CustomRouter = () => {
                 <Route exact path="/cart" component={CartContainer} />
                 <Route exact path="/items" component={ProductContainer} />
                 <Route exact path="/detail" component={DetailContainer} />
+                <Route exact path="/about" component={FairTradeContainer} />
                 <Route component={NotFound} />
             </Switch>
         </Router>
