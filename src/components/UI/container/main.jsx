@@ -39,7 +39,7 @@ const Main = () => {
                 <TitleContainer>
                     <TitleText>Welcome to our Small Market</TitleText>
                     <SubTitleText>It's nice to meet you</SubTitleText>
-                    <LinkButton to="/">Try to shopping</LinkButton>
+                    <LinkButton to="/items">Try to shopping</LinkButton>
                 </TitleContainer>
             </MainContainer>
             <InformationContainer>
