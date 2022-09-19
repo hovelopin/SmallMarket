@@ -9,6 +9,12 @@ function authReducer(auth, action) {
                 user: action.payload,
             }
 
+        case AuthTypes.current:
+            return {
+                ...auth,
+                user: action.payload,
+            }
+
         case AuthTypes.logout:
             return {
                 ...auth,
