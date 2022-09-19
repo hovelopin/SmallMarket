@@ -13,7 +13,7 @@ import AuthTypes from "@/context/types/authRequestType"
 import Theme from "@util/style/theme"
 import Validation from "@util/validation/validation"
 import CookieStorage from "@/storage/cookieStorage"
-import Data from "@/dev/data"
+import AuthService from "@/service/authService"
 
 const LoginContainer = () => {
     const [loginFormValue, handleFormValueChange] = useForm({
@@ -41,15 +41,19 @@ const LoginContainer = () => {
             handleOpenButtonClick(true)
             return
         }
-
-        const res = await Data.loginRequest(email, password)
-        if (res) {
+        const res = await AuthService.firebaseLoginRequest(email, password)
+        const { uid, accessToken, emailVerified } = res
+        if (!emailVerified) {
+            handleOpenButtonClick(true)
+            return
+        }
+        if (uid) {
             authDispatch({
                 type: AuthTypes.login,
-                payload: res,
+                payload: uid,
             })
-            CookieStorage.setItem(res.accessToken)
-            window.location.replace("/")
+            CookieStorage.setItem(accessToken)
+            history.push("/")
         } else {
             handleOpenButtonClick(true)
             return
