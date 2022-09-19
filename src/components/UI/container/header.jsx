@@ -1,9 +1,10 @@
-import { useEffect, useContext } from "react"
+import { useState, useEffect, useContext } from "react"
 import { useHistory } from "react-router-dom"
 import styled from "styled-components"
 import Container from "@components/UI/atoms/container/container"
 import LinkGroup from "@components/UI/blocks/linkGroup/linkGroup"
 import SearchBar from "@components/UI/blocks/searchBar/searchBar"
+import DropdownList from "@components/UI/blocks/dropdown/dropdownList"
 import { AuthStateContext, DispatchContext } from "@/context/auth/authContext"
 import AuthTypes from "@/context/types/authRequestType"
 import Icon from "@/icon/icon"
@@ -11,6 +12,8 @@ import Theme from "@util/style/theme"
 import CookieStorage from "@/storage/cookieStorage"
 
 const Header = () => {
+    const [isMouseOver, setIsMouseOver] = useState(false)
+
     const authDispatch = useContext(DispatchContext)
     const authState = useContext(AuthStateContext)
 
@@ -51,6 +54,15 @@ const Header = () => {
         {
             name: "Item category",
             path: "/items",
+            items: () => {
+                return (
+                    <MenuItemsList>
+                        {["Vegetables", "Drink", "Meets", "Normal"].map((c) => (
+                            <DropdownList key={c} menuItems={c} />
+                        ))}
+                    </MenuItemsList>
+                )
+            },
         },
         {
             name: "Fair trade",
@@ -68,6 +80,14 @@ const Header = () => {
             payload: authState,
         })
     }, [authDispatch])
+
+    const handleMenuItemsOver = () => {
+        setIsMouseOver(true)
+    }
+
+    const handleMenuItemsLeave = () => {
+        setIsMouseOver(false)
+    }
 
     const handleLogoImgClick = () => {
         history.push("/")
@@ -99,15 +119,30 @@ const Header = () => {
             </NavigationSection>
             <NavigationSection>
                 <MenuItemSection>
-                    {menuItems.map((m) => (
-                        <Item key={m.name}>
-                            <LinkGroup
-                                path={m.path}
-                                type="default"
-                                context={m.name}
-                            />
-                        </Item>
-                    ))}
+                    {menuItems.map((m) => {
+                        return (
+                            <Item
+                                key={m.name}
+                                onMouseOver={
+                                    m.name === "Item category"
+                                        ? handleMenuItemsOver
+                                        : null
+                                }
+                                onMouseLeave={
+                                    m.name === "Item category"
+                                        ? handleMenuItemsLeave
+                                        : null
+                                }
+                            >
+                                <LinkGroup
+                                    path={m.path}
+                                    type="default"
+                                    context={m.name}
+                                />
+                                {m.items && isMouseOver && m.items()}
+                            </Item>
+                        )
+                    })}
                 </MenuItemSection>
             </NavigationSection>
         </Container>
@@ -129,6 +164,14 @@ const MenuItemSection = styled.ul`
     flex: 1;
 `
 
+const MenuItemsList = styled.ul`
+    position: absolute;
+    text-align: left;
+    background-color: ${Theme.colors.white};
+    border-radius: 5px;
+    padding-left: 0px;
+    width: 140px;
+`
 const UserItemSection = styled.div`
     display: inline-block;
     white-space: nowrap;
