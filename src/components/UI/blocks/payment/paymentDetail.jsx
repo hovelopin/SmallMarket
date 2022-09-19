@@ -17,7 +17,6 @@ const PaymentDetail = () => {
         order: "",
         price: "700$",
     })
-    //일어나면 여기부터
     const handlePaySubmit = (e) => {
         e.preventDefault()
     }
