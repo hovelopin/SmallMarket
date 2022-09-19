@@ -1,18 +1,45 @@
 import React from "react"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
-import Theme from "../../../util/style/theme"
-import Grid from "../atoms/grid/grid"
-import Card from "../blocks/card/card"
+import Theme from "@util/style/theme"
+import Grid from "@components/UI/atoms/grid/grid"
+import Card from "@components/UI/blocks/card/card"
 
 const Main = () => {
+    const items = [
+        {
+            uuid: 1,
+            name: "Apple",
+            description: "Fresh apple",
+            price: 5120,
+            quantity: 30,
+            img: "defaultImg.png",
+        },
+        {
+            uuid: 2,
+            name: "Cherry",
+            description: "Fresh cherry",
+            price: 4720,
+            quantity: 30,
+            img: "defaultImg.png",
+        },
+        {
+            uuid: 3,
+            name: "Banana",
+            description: "Fresh banana",
+            price: 7250,
+            quantity: 30,
+            img: "defaultImg.png",
+        },
+    ]
+
     return (
         <React.Fragment>
             <MainContainer width="100%" height="100%">
                 <TitleContainer>
                     <TitleText>Welcome to our Small Market</TitleText>
                     <SubTitleText>It's nice to meet you</SubTitleText>
-                    <LinkButton to="/">Try to shopping</LinkButton>
+                    <LinkButton to="/items">Try to shopping</LinkButton>
                 </TitleContainer>
             </MainContainer>
             <InformationContainer>
@@ -50,9 +77,16 @@ const Main = () => {
             <ProductContainer>
                 <SubTitleText>BEST ITEMS</SubTitleText>
                 <Grid repeat={3} axis="column">
-                    <Card />
-                    <Card />
-                    <Card />
+                    {items.map((item) => (
+                        <Card
+                            key={item.uuid}
+                            name={item.name}
+                            description={item.description}
+                            price={item.price}
+                            quantity={item.quantity}
+                            img={item.img}
+                        />
+                    ))}
                 </Grid>
             </ProductContainer>
         </React.Fragment>
