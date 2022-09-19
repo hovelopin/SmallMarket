@@ -1,9 +1,9 @@
 import React from "react"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
-import Theme from "../../../util/style/theme"
-import Grid from "../atoms/grid/grid"
-import Card from "../blocks/card/card"
+import Theme from "@util/style/theme"
+import Grid from "@components/UI/atoms/grid/grid"
+import Card from "@components/UI/blocks/card/card"
 
 const Main = () => {
     const items = [
@@ -39,7 +39,7 @@ const Main = () => {
                 <TitleContainer>
                     <TitleText>Welcome to our Small Market</TitleText>
                     <SubTitleText>It's nice to meet you</SubTitleText>
-                    <LinkButton to="/">Try to shopping</LinkButton>
+                    <LinkButton to="/items">Try to shopping</LinkButton>
                 </TitleContainer>
             </MainContainer>
             <InformationContainer>

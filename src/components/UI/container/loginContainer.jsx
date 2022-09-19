@@ -1,4 +1,4 @@
-import { useCallback } from "react"
+import { useContext } from "react"
 import { useHistory } from "react-router-dom"
 import useForm from "@/hooks/useForm"
 import useModal from "@/hooks/useModal"
@@ -8,11 +8,12 @@ import Text from "@components/UI/atoms/text/text"
 import Button from "@components/UI/atoms/button/button"
 import LabeledInput from "@/components/UI/blocks/labeledInput/labeledInput"
 import Modal from "@/components/UI/blocks/modal/modal"
+import { DispatchContext } from "@/context/auth/authContext"
+import AuthTypes from "@/context/types/authRequestType"
 import Theme from "@util/style/theme"
 import Validation from "@util/validation/validation"
-import { useDispatch } from "react-redux"
-import { authLoginReuqestAction } from "@/store/actions/authAction"
 import CookieStorage from "@/storage/cookieStorage"
+import Data from "@/dev/data"
 
 const LoginContainer = () => {
     const [loginFormValue, handleFormValueChange] = useForm({
@@ -23,14 +24,15 @@ const LoginContainer = () => {
     const [isOpen, handleOpenButtonClick, handleCloseButtonClick] =
         useModal(false)
 
+    const authDispatch = useContext(DispatchContext)
     const history = useHistory()
-    const dispatch = useDispatch()
 
-    const handleLoginSubmit = useCallback((e) => {
+    const { email, password } = loginFormValue
+    const isValidEmail = Validation.validateEmail(email)
+    const isValidPassword = Validation.validatePassword(password)
+
+    const handleLoginSubmit = async (e) => {
         e.preventDefault()
-        const { email, password } = loginFormValue
-        const isValidEmail = Validation.validateEmail(email)
-        const isValidPassword = Validation.validatePassword(password)
         const isValidUserInformation = Validation.validateAll([
             isValidEmail,
             isValidPassword,
@@ -39,11 +41,28 @@ const LoginContainer = () => {
             handleOpenButtonClick(true)
             return
         }
-        // firebase 연동 후 로그인 실패에 대한 로직을 추가해야 한다.
-        dispatch(authLoginReuqestAction(email, password)).then(() => {
-            if (CookieStorage.getItem()) history.push("/")
-        })
-    }, [])
+
+        const res = await Data.loginRequest(email, password)
+        if (res) {
+            authDispatch({
+                type: AuthTypes.login,
+                payload: res,
+            })
+            CookieStorage.setItem(res.accessToken)
+            window.location.replace("/")
+        } else {
+            handleOpenButtonClick(true)
+            return
+        }
+    }
+
+    const handleRegisterButtonClick = () => {
+        history.push("/register")
+    }
+
+    if (CookieStorage.getItem()) {
+        history.push("/")
+    }
 
     return (
         <StyledWrapper>
@@ -62,6 +81,11 @@ const LoginContainer = () => {
                             placeholder="Please enter your email"
                             onChangeEvent={handleFormValueChange}
                         />
+                        {!isValidEmail && (
+                            <StyledErrorText>
+                                Invalid email format
+                            </StyledErrorText>
+                        )}
                     </StyledFormContainer>
                     <StyledFormContainer>
                         <LabeledInput
@@ -73,6 +97,11 @@ const LoginContainer = () => {
                             placeholder="Please enter your password"
                             onChangeEvent={handleFormValueChange}
                         />
+                        {!isValidPassword && (
+                            <StyledErrorText>
+                                Invalid password format
+                            </StyledErrorText>
+                        )}
                     </StyledFormContainer>
                     <StyledSmallTextContainer>
                         <StyledSpanContainer>
@@ -82,12 +111,23 @@ const LoginContainer = () => {
                             <Text type="small" context="FORGOT PASSWORD?" />
                         </StyledSpanContainer>
                     </StyledSmallTextContainer>
-                    <Button
-                        type="default"
-                        bType="submit"
-                        width="100%"
-                        value="LOGIN"
-                    />
+                    <StyledButtonContainer>
+                        <Button
+                            type="default"
+                            bType="submit"
+                            width="100%"
+                            value="LOGIN"
+                        />
+                    </StyledButtonContainer>
+                    <StyledButtonContainer>
+                        <Button
+                            type="default"
+                            bType="button"
+                            width="100%"
+                            value="REGISTER"
+                            onClickEvent={handleRegisterButtonClick}
+                        />
+                    </StyledButtonContainer>
                 </Form>
             </StyledContainer>
             <Modal isOpen={isOpen} onClickEvent={handleCloseButtonClick}>
@@ -134,6 +174,14 @@ const StyledSpanContainer = styled.div`
 
 const StyledFormContainer = styled.div`
     margin-bottom: 1.75rem;
+`
+
+const StyledButtonContainer = styled.div`
+    margin-bottom: 0.5rem;
+`
+
+const StyledErrorText = styled.p`
+    color: ${Theme.colors.darkRed};
 `
 
 export default LoginContainer
