@@ -45,12 +45,17 @@ Data.createVegetableItemData = async function () {
         const name = `Vegetable ${i + 1}`
         const price = Math.floor(Math.random() * 10000 + 1)
         const quantity = Math.floor(Math.random() * 100 + 1)
+        const seller = `FoxMon ${i + 1}`
+        const origin = `FoxMon's farm ${i + 1}`
         const vObj = FoodItemType.createVegetable(
             i + 1,
             name,
+            name,
             price,
             quantity,
-            null
+            null,
+            seller,
+            origin
         )
         return vObj
     })
@@ -62,7 +67,18 @@ Data.createMeatItemData = async function () {
         const name = `Meat ${i + 1}`
         const price = Math.floor(Math.random() * 20000 + 1)
         const quantity = Math.floor(Math.random() * 20 + 1)
-        const mObj = FoodItemType.createMeat(i + 1, name, price, quantity, null)
+        const seller = `FoxMon ${i + 1}`
+        const origin = `FoxMon's farm ${i + 1}`
+        const mObj = FoodItemType.createMeat(
+            i + 1,
+            name,
+            name,
+            price,
+            quantity,
+            null,
+            seller,
+            origin
+        )
         return mObj
     })
     return FoodItemListType.createFoodItemListType(mArr)
@@ -73,12 +89,17 @@ Data.createDrinkItemType = async function () {
         const name = `Drink ${i + 1}`
         const price = Math.floor(Math.random() * 5000 + 1)
         const quantity = Math.floor(Math.random() * 200 + 1)
+        const seller = `FoxMon ${i + 1}`
+        const origin = `FoxMon's farm ${i + 1}`
         const mObj = FoodItemType.createDrink(
             i + 1,
             name,
+            name,
             price,
             quantity,
-            null
+            null,
+            seller,
+            origin
         )
         return mObj
     })
@@ -90,12 +111,17 @@ Data.createNormalItemType = async function () {
         const name = `Normal ${i + 1}`
         const price = Math.floor(Math.random() * 9000 + 1)
         const quantity = Math.floor(Math.random() * 63 + 1)
+        const seller = `FoxMon ${i + 1}`
+        const origin = `FoxMon's farm ${i + 1}`
         const nObj = FoodItemType.createNormal(
             i + 1,
             name,
+            name,
             price,
             quantity,
-            null
+            null,
+            seller,
+            origin
         )
         return nObj
     })
