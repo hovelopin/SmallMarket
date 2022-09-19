@@ -27,7 +27,7 @@ const Header = () => {
             },
         },
         {
-            name: CookieStorage.getItem() ? "signout" : "user",
+            name: authState.user ? "signout" : "user",
             handleClick: () => {
                 if (CookieStorage.getItem()) {
                     authDispatch({
@@ -35,6 +35,7 @@ const Header = () => {
                         payload: null,
                     })
                     CookieStorage.clear()
+                    history.push("/")
                 } else {
                     history.push("/login")
                 }
