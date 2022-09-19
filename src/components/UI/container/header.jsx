@@ -66,7 +66,7 @@ const Header = () => {
         },
         {
             name: "Fair trade",
-            path: "/미정3",
+            path: "/about",
         },
         {
             name: "Contact",
