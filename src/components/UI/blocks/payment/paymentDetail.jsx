@@ -20,7 +20,6 @@ const PaymentDetail = () => {
     //일어나면 여기부터
     const handlePaySubmit = (e) => {
         e.preventDefault()
-        console.log("ests")
     }
     return (
         <DetailWapper>
@@ -28,7 +27,7 @@ const PaymentDetail = () => {
                 <DetailHeadText fontSize="2.2rem" fontWeight="bold">
                     Payment Detail
                 </DetailHeadText>
-                <DetailHeadText fontWeight="600">
+                <DetailHeadText fontSize="1.4rem" fontWeight="600">
                     Complete your purchase by providing your payment details
                 </DetailHeadText>
             </DetailHeadContainer>
@@ -172,8 +171,9 @@ const DetailWapper = styled.div`
     flex-direction: column;
     width: 50%;
     height: 100%;
-    align-items: center;
+    align-items: flex-start;
     margin-bottom: 5%;
+    margin-top: 1%;
 `
 
 export default PaymentDetail
