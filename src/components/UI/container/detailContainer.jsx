@@ -1,22 +1,13 @@
 import React, { useCallback } from "react"
-import DetailInfo from "@/components/UI/blocks/detail/detailInfo"
 import styled from "styled-components"
+import { useLocation } from "react-router-dom"
+import DetailInfo from "@components/UI/blocks/detail/detailInfo"
+import Theme from "@util/style/theme"
 
 const DetailContainer = () => {
-    const detailItem = [
-        {
-            uuid: 1,
-            seller: "Leo",
-            origin: "국내산",
-            capacity: "1L",
-            name: "오렌지 마말레이드",
-            img: `${process.env.PUBLIC_URL}/img/defaultImg.png`,
-            description:
-                "우리나라라면 마트에 가면 쉽게 볼 수 있는 유자청을 생각하면 된다. 이름은 '청'이라지만 만들어놓은 결과물은 마말레이드와 같다. 뜨거운 물에 타 유자차로 먹으라지만, 식빵에 발라 먹어도 된다. ",
-            quantity: [1, 2, 3, 4, 5, 6],
-            price: 5000,
-        },
-    ]
+    const location = useLocation()
+
+    const { item } = location.state
 
     const handlePayButtonClick = useCallback(() => {
         console.log("pay")
@@ -33,35 +24,62 @@ const DetailContainer = () => {
 
     return (
         <DetailMainConetainer>
-            <DetailHeadContainer />
-            <DetailBodyContainer>
-                <DetailImageContainer src={detailItem[0].img} />
-            </DetailBodyContainer>
-            <DetailSideContainer>
-                <DetailInfo
-                    detailItem={detailItem[0]}
-                    onPayButtonClickEvent={handlePayButtonClick}
-                    onToCartButtonClickEvent={handleToCartButtonClick}
-                    onQuntityChangeEvent={handleQuntityChange}
-                />
-            </DetailSideContainer>
+            <DetailHeadContainer>
+                <DetailHeaderFont>Product detail</DetailHeaderFont>
+                <DetailHeaderFontContent>
+                    With SmallMarket
+                </DetailHeaderFontContent>
+            </DetailHeadContainer>
+            <DetailBodyWrapper>
+                <DetailBodyContainer>
+                    <DetailImageContainer
+                        src={`${process.env.PUBLIC_URL}/img/${item.img}`}
+                    />
+                </DetailBodyContainer>
+                <DetailSideContainer>
+                    <DetailInfo
+                        detailItem={item}
+                        onPayButtonClickEvent={handlePayButtonClick}
+                        onToCartButtonClickEvent={handleToCartButtonClick}
+                        onQuntityChangeEvent={handleQuntityChange}
+                    />
+                </DetailSideContainer>
+            </DetailBodyWrapper>
         </DetailMainConetainer>
     )
 }
 
 const DetailMainConetainer = styled.div`
     width: 100%;
-    height: 140vh;
+    height: 100%;
 `
 
 const DetailHeadContainer = styled.div`
-    box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.1);
-    padding-top: 6rem;
+    background-color: ${Theme.colors.darkBlack};
+    color: ${Theme.colors.white};
+    text-align: left;
+    padding: 3rem;
+`
+
+const DetailHeaderFont = styled.span`
+    font-weight: bold;
+    font-size: 4.75rem;
+`
+
+const DetailHeaderFontContent = styled.p`
+    font-size: 1.75rem;
+    color: ${Theme.colors.whiteGray};
+`
+
+const DetailBodyWrapper = styled.div`
+    display: flex;
+    justify-content: space-between;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
 `
 
 const DetailBodyContainer = styled.div`
     width: 30%;
-    float: left;
     padding-left: 10rem;
 `
 
@@ -71,7 +89,6 @@ const DetailImageContainer = styled.img`
 
 const DetailSideContainer = styled.div`
     width: 40%;
-    float: right;
     padding-right: 10rem;
 `
 
