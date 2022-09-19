@@ -1,7 +1,7 @@
 import * as StyledCarousel from "./style"
 
-const Carousel = () => {
-    const imgUrl = `${process.env.PUBLIC_URL}/img/reg_smallmarket.png`
+const Carousel = ({ width, height, margin, padding, item }) => {
+    const imgUrl = `${process.env.PUBLIC_URL}/img/foxmon.png`
     const sampleItems = [
         { id: 1, url: imgUrl },
         { id: 2, url: imgUrl },
@@ -16,7 +16,12 @@ const Carousel = () => {
     ]
 
     return (
-        <StyledCarousel.SliderContainer>
+        <StyledCarousel.SliderContainer
+            width={width}
+            height={height}
+            margin={margin}
+            padding={padding}
+        >
             <StyledCarousel.StyledSlider {...StyledCarousel.setting}>
                 {sampleItems.map((image) => (
                     <StyledCarousel.Image key={image.id} src={image.url} />

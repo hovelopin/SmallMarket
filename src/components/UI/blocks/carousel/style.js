@@ -4,9 +4,10 @@ import Slider from "react-slick"
 import styled from "styled-components"
 
 export const SliderContainer = styled.div`
-    width: 100%;
-    height: 100%;
-    margin-bottom: 30px;
+    width: ${(props) => props.width || "100%"};
+    height: ${(props) => props.height || "100%"};
+    margin: ${(props) => props.margin || "0 auto"};
+    padding: ${(props) => props.padding || "0 auto"};
 `
 
 export const Image = styled.img`
