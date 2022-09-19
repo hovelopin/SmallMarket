@@ -11,6 +11,7 @@ const Button = ({
     children,
     onClickEvent,
 }) => {
+    const buttonValue = value ? value : children
     const getButtonType = (type) => {
         switch (type) {
             case "default":
@@ -21,7 +22,7 @@ const Button = ({
                         height={height}
                         onClick={onClickEvent}
                     >
-                        {value}
+                        {buttonValue}
                     </MyButton.StyledButton>
                 )
 
@@ -33,7 +34,7 @@ const Button = ({
                         height={height}
                         onClick={onClickEvent}
                     >
-                        {value}
+                        {buttonValue}
                     </MyButton.StyledContrastButton>
                 )
 
@@ -45,8 +46,7 @@ const Button = ({
                         height={height}
                         onClick={onClickEvent}
                     >
-                        {value}
-                        {children}
+                        {buttonValue}
                     </MyButton.StyledBlackButton>
                 )
 
