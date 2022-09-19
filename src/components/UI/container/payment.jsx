@@ -14,10 +14,6 @@ const PaymentWapper = styled.div`
     display: flex;
     width: 100%;
     height: 100%;
-    margin: 0 auto;
-`
-const GridContainer = styled.div`
-    display: grid;
-    grid-template-columns: ${(props) => props.fr || "1fr 1fr"};
+    margin-left: 5%;
 `
 export default Payment
