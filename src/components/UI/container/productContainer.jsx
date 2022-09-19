@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react"
-import { useParams } from "react-router-dom"
+import React, { useState, useEffect, useContext } from "react"
+import { useParams, useHistory } from "react-router-dom"
 import styled from "styled-components"
 import Container from "@components/UI/atoms/container/container"
 import Carousel from "@components/UI/blocks/carousel/carousel"
@@ -7,17 +7,31 @@ import Grid from "@components/UI/atoms/grid/grid"
 import Card from "@components/UI/blocks/card/card"
 import Data from "@/dev/data"
 import Theme from "@util/style/theme"
+import { AuthStateContext } from "@/context/auth/authContext"
 
 const ProductContainer = () => {
     const [items, setItems] = useState([])
 
     const { category } = useParams()
+    const history = useHistory()
+    const auth = useContext(AuthStateContext)
+    console.log(auth)
 
     useEffect(() => {
         fetchFoodItems.call(this, category).then((res) => {
+            console.log(res)
             setItems(res.$_foodItemListType)
         })
     }, [category])
+
+    const handleDetailButtonClick = (item) => () => {
+        history.push({
+            pathname: `/detail/${item}`,
+            state: {
+                item: item,
+            },
+        })
+    }
 
     return (
         <Container width="100%">
@@ -40,6 +54,7 @@ const ProductContainer = () => {
                             name={item.name}
                             price={item.price}
                             quantity={item.quantity}
+                            onClickEvent={handleDetailButtonClick(item)}
                         />
                     ))}
                 </Grid>
