@@ -14,7 +14,7 @@ import Validation from "@util/validation/validation"
 import AuthService from "@/service/authService"
 
 const RegisterContainer = () => {
-    const [customerType, setCustomertype] = useState("Seller")
+    const [customerType, setCustomertype] = useState("Customer")
     const [registerFormValue, handleFormValueChange] = useForm({
         email: "",
         username: "",
@@ -53,7 +53,7 @@ const RegisterContainer = () => {
             email,
             customerType
         )
-        if (res.accessToken) history.push("/login")
+        if (res) history.push("/login")
     }
 
     const handleSelectChange = (e) => {
