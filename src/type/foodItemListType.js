@@ -15,9 +15,12 @@ class _FoodItemListType extends NameUtil {
         this.$_foodItemListType.forEach((e) => {
             obj[e.uuid] = {
                 name: e.name,
+                description: e.description,
                 price: e.price,
                 quantity: e.quantity,
                 img: e.img,
+                seller: e.seller,
+                origin: e.origin,
                 type: e.type,
             }
         })
