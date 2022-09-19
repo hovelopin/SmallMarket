@@ -13,12 +13,12 @@ const ContactContainer = () => {
             email: "foxmon1524@gmail.com",
         },
         {
-            img: "foxmon.PNG",
-            alt: "foxmon",
-            name: "FoxMon2",
+            img: "leo.png",
+            alt: "leo",
+            name: "Leo",
             subtitle: "Frontend developer",
             description: "The Team SmallMarket's Frontend engineer",
-            email: "foxmon1524@gmail.com",
+            email: "vpvm96@gmail.com",
         },
         {
             img: "foxmon.PNG",
@@ -58,19 +58,19 @@ const ContactContainer = () => {
                         <StyledColumnContainer key={c.name}>
                             <StyledCard>
                                 <StyledImg
-                                    src={`${process.env.PUBLIC_URL}/img/foxmon.PNG`}
-                                    alt="foxmon"
+                                    src={`${process.env.PUBLIC_URL}/img/${c.img}`}
+                                    alt={c.alt}
                                 />
                                 <StyledCardContainer>
-                                    <StyledTitle>FoxMon</StyledTitle>
+                                    <StyledTitle>{c.name}</StyledTitle>
                                     <StyledSubtitle>
-                                        Frontend developer
+                                        {c.subtitle}
                                     </StyledSubtitle>
                                     <StyledDescription>
-                                        The Team SmallMarket Leader
+                                        {c.description}
                                     </StyledDescription>
                                     <StyledDescription>
-                                        foxmon1524@gmail.com
+                                        {c.email}
                                     </StyledDescription>
                                     <StyledButtonContainer>
                                         <StyledLink href={`mailto:${c.email}`}>
@@ -132,7 +132,6 @@ const StyledColumnContainer = styled.div`
 
 const StyledCard = styled.div`
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    padding: 0 16px;
 `
 
 const StyledImg = styled.img`
@@ -180,7 +179,7 @@ const StyledLink = styled.a`
     line-height: 1;
     cursor: pointer;
     &:hover {
-        transition 0.3s;
+        transition: 0.3s;
         background-color: ${Theme.colors.darkRed};
         border: 2px solid ${Theme.colors.darkRed};
         color: ${Theme.colors.white};

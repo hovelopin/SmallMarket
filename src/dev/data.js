@@ -40,7 +40,7 @@ Data.getCurrentUserInformation = async () => {
 
 // 같은 Type의 Item이 여러개 들어있는 Type이라면 FoodItemListType이라고 정의
 // 한 개의 Item이라면 VegetableItemType, MeatItemType etc... 이렇게 정의
-Data.createVegetableItemData = function () {
+Data.createVegetableItemData = async function () {
     const vArr = Array.from({ length: 20 }, (_, i) => {
         const name = `Vegetable ${i + 1}`
         const price = Math.floor(Math.random() * 10000 + 1)
@@ -57,7 +57,7 @@ Data.createVegetableItemData = function () {
     return FoodItemListType.createFoodItemListType(vArr)
 }
 
-Data.createMeatItemData = function () {
+Data.createMeatItemData = async function () {
     const mArr = Array.from({ length: 40 }, (_, i) => {
         const name = `Meat ${i + 1}`
         const price = Math.floor(Math.random() * 20000 + 1)
@@ -68,7 +68,7 @@ Data.createMeatItemData = function () {
     return FoodItemListType.createFoodItemListType(mArr)
 }
 
-Data.createDrinkItemType = function () {
+Data.createDrinkItemType = async function () {
     const dArr = Array.from({ length: 25 }, (_, i) => {
         const name = `Drink ${i + 1}`
         const price = Math.floor(Math.random() * 5000 + 1)
@@ -85,7 +85,7 @@ Data.createDrinkItemType = function () {
     return FoodItemListType.createFoodItemListType(dArr)
 }
 
-Data.createNormalItemType = function () {
+Data.createNormalItemType = async function () {
     const nArr = Array.from({ length: 47 }, (_, i) => {
         const name = `Normal ${i + 1}`
         const price = Math.floor(Math.random() * 9000 + 1)
