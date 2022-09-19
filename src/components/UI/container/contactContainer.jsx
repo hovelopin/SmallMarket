@@ -21,12 +21,12 @@ const ContactContainer = () => {
             email: "vpvm96@gmail.com",
         },
         {
-            img: "foxmon.PNG",
-            alt: "foxmon",
-            name: "FoxMon3",
+            img: "velo.PNG",
+            alt: "velo",
+            name: "Velo",
             subtitle: "Frontend developer",
             description: "The Team SmallMarket's Frontend engineer",
-            email: "foxmon1524@gmail.com",
+            email: "jhpark4884@gmail.com",
         },
         {
             img: "foxmon.PNG",
