@@ -1,7 +1,7 @@
 import * as StyledCarousel from "./style"
 
 const Carousel = ({ width, height, margin, padding, item }) => {
-    const imgUrl = `${process.env.PUBLIC_URL}/img/reg_smallmarket.png`
+    const imgUrl = `${process.env.PUBLIC_URL}/img/foxmon.png`
     const sampleItems = [
         { id: 1, url: imgUrl },
         { id: 2, url: imgUrl },
