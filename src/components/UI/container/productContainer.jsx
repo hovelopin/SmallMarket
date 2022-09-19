@@ -1,3 +1,5 @@
+import React, { useState, useEffect } from "react"
+import { useParams } from "react-router-dom"
 import styled from "styled-components"
 import Container from "@components/UI/atoms/container/container"
 import Carousel from "@components/UI/blocks/carousel/carousel"
@@ -7,7 +9,15 @@ import Data from "@/dev/data"
 import Theme from "@/util/style/theme"
 
 const ProductContainer = () => {
-    const items = Data.createVegetableItemData().$_foodItemListType
+    const [items, setItems] = useState([])
+
+    const { category } = useParams()
+
+    useEffect(() => {
+        fetchFoodItems.call(this, category).then((res) => {
+            setItems(res.$_foodItemListType)
+        })
+    }, [category])
 
     return (
         <Container width="100%">
@@ -36,6 +46,13 @@ const ProductContainer = () => {
             </StyledContainer>
         </Container>
     )
+}
+
+function fetchFoodItems(category) {
+    if (category === "vegetables") return Data.createVegetableItemData()
+    else if (category === "drink") return Data.createDrinkItemType()
+    else if (category === "meets") return Data.createMeatItemData()
+    else if (category === "normal") return Data.createNormalItemType()
 }
 
 const StyledContainer = styled.div`
