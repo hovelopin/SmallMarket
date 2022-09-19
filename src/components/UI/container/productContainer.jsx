@@ -6,7 +6,7 @@ import Carousel from "@components/UI/blocks/carousel/carousel"
 import Grid from "@components/UI/atoms/grid/grid"
 import Card from "@components/UI/blocks/card/card"
 import Data from "@/dev/data"
-import Theme from "@/util/style/theme"
+import Theme from "@util/style/theme"
 
 const ProductContainer = () => {
     const [items, setItems] = useState([])
