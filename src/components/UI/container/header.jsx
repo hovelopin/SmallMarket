@@ -55,10 +55,18 @@ const Header = () => {
             name: "Item category",
             path: "/items",
             items: () => {
+                const handleCategoryClick = (itemsPath) => () => {
+                    history.push(`/items/${itemsPath.toLowerCase()}`)
+                }
                 return (
                     <MenuItemsList>
                         {["Vegetables", "Drink", "Meets", "Normal"].map((c) => (
-                            <DropdownList key={c} menuItems={c} />
+                            <ItemCategory
+                                key={c}
+                                onClick={handleCategoryClick(c)}
+                            >
+                                <DropdownList menuItems={c} />
+                            </ItemCategory>
                         ))}
                     </MenuItemsList>
                 )
@@ -200,6 +208,10 @@ const Item = styled.li`
     position: relative;
     width: auto;
     padding: ${Theme.menus.padding};
+`
+
+const ItemCategory = styled.div`
+    width: auto;
 `
 
 const SearchItemSection = styled.div`
