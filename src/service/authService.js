@@ -6,9 +6,8 @@ import {
     signOut,
 } from "firebase/auth"
 import { doc, setDoc } from "firebase/firestore"
-import { firestore } from "./firebaseService"
-import Data from "../dev/data"
-import UserStorage from "../storage/userStorage"
+import { firestore } from "@/service/firebaseService"
+import Data from "@/dev/data"
 
 const AuthService = {}
 
@@ -42,11 +41,11 @@ AuthService.logoutRequest = function () {
     UserStorage.clear()
 }
 
-// TODO: Test 필요
 AuthService.firebaseRegiserRequest = async function (
     username,
     password,
-    email
+    email,
+    customerType
 ) {
     const auth = getAuth()
     return createUserWithEmailAndPassword(auth, username, password)
@@ -63,12 +62,10 @@ AuthService.firebaseRegiserRequest = async function (
                 uuid: user.uid,
                 username: username,
                 email: email,
+                isAdmin: false,
+                isSeller: customerType === "Seller" ? true : false,
             })
-            const uObj = {}
-            uObj.uuid = user.uid
-            uObj.username = username
-            uObj.email = email
-            return uObj
+            return user
         })
         .catch((error) => console.error(error))
 }
