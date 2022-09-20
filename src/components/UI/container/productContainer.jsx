@@ -7,21 +7,17 @@ import Grid from "@components/UI/atoms/grid/grid"
 import Card from "@components/UI/blocks/card/card"
 import Data from "@/dev/data"
 import Theme from "@util/style/theme"
-import { AuthStateContext } from "@/context/auth/authContext"
 
 const ProductContainer = () => {
     const [items, setItems] = useState([])
 
     const { category } = useParams()
     const history = useHistory()
-    const auth = useContext(AuthStateContext)
-    console.log(auth)
 
     useEffect(() => {
-        fetchFoodItems.call(this, category).then((res) => {
-            console.log(res)
-            setItems(res.$_foodItemListType)
-        })
+        fetchFoodItems
+            .call(this, category)
+            .then((res) => setItems(res.$_foodItemListType))
     }, [category])
 
     const handleDetailButtonClick = (item) => () => {
