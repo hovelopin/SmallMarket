@@ -16,7 +16,7 @@ const DetailInfo = ({
     )
 
     const { name, seller, origin, description, price } = detailItem
-    const detailNames = ["seller", "origin", "description", "price"]
+    const detailNames = ["Seller", "Origin", "Description", "Price"]
 
     return (
         <Container width="100%">
