@@ -5,7 +5,7 @@ import {
     signInWithEmailAndPassword,
     signOut,
 } from "firebase/auth"
-import { doc, setDoc } from "firebase/firestore"
+import { doc, setDoc, getDocs, collection } from "firebase/firestore"
 import { firestore } from "@/service/firebaseService"
 
 const AuthService = {}
@@ -61,6 +61,16 @@ AuthService.firebaseCurrentUserReuqest = function () {
 AuthService.firebaseLogoutRequest = async function () {
     const auth = getAuth()
     signOut(auth).then(UserStorage.clear())
+}
+
+AuthService.firebaseEmailCheckRequest = async function (userEmail) {
+    const userDocs = await getDocs(collection(firestore, "user"))
+    const res = []
+    userDocs.forEach((user) => {
+        const { email } = user.data()
+        if (email === userEmail) res.push(email)
+    })
+    return res.length
 }
 
 // TODO: 회원탈퇴 추가
