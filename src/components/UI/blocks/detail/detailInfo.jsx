@@ -11,61 +11,39 @@ const DetailInfo = ({
     onToCartButtonClickEvent,
     onQuntityChangeEvent,
 }) => {
+    const optionsItem = Array.from({ length: detailItem.quantity }).map(
+        (_, i) => i + 1
+    )
+
+    const { name, seller, origin, description, price } = detailItem
+    const detailNames = ["Seller", "Origin", "Description", "Price"]
+
     return (
         <Container width="100%">
             <DetailInfoMainContainer>
                 <DetailInfoHeader>
-                    <Text type="large" context="오렌지 마말레이드" />
-                    <Text type="large" context={`￦ ${detailItem.price}`} />
+                    <Text type="large" context={name} />
                 </DetailInfoHeader>
                 <DetailInfoBody>
-                    <DetailInfoContextContainer>
-                        <DetailInfoContextLeft>
-                            <Text type="default" context="판매자" />
-                        </DetailInfoContextLeft>
-                        <DetailInfoContextRight>
-                            <Text type="default" context={detailItem.seller} />
-                        </DetailInfoContextRight>
-                    </DetailInfoContextContainer>
-                    <DetailInfoContextContainer>
-                        <DetailInfoContextLeft>
-                            <Text type="default" context="원산지" />
-                        </DetailInfoContextLeft>
-                        <DetailInfoContextRight>
-                            <Text type="default" context={detailItem.origin} />
-                        </DetailInfoContextRight>
-                    </DetailInfoContextContainer>
-                    <DetailInfoContextContainer>
-                        <DetailInfoContextLeft>
-                            <Text type="default" context="중량/용량" />
-                        </DetailInfoContextLeft>
-                        <DetailInfoContextRight>
-                            <Text
-                                type="default"
-                                context={detailItem.capacity}
-                            />
-                        </DetailInfoContextRight>
-                    </DetailInfoContextContainer>
-                    <DetailInfoContextContainer>
-                        <DetailInfoContextLeft>
-                            <Text type="default" context="상품설명" />
-                        </DetailInfoContextLeft>
-                        <DetailInfoContextRight>
-                            <Text
-                                type="default"
-                                context={detailItem.description}
-                            />
-                        </DetailInfoContextRight>
-                    </DetailInfoContextContainer>
+                    {[seller, origin, description, price].map((item, i) => (
+                        <DetailInfoContextContainer key={i}>
+                            <DetailInfoContextLeft>
+                                <Text type="default" context={detailNames[i]} />
+                            </DetailInfoContextLeft>
+                            <DetailInfoContextRight>
+                                <Text type="default" context={item} />
+                            </DetailInfoContextRight>
+                        </DetailInfoContextContainer>
+                    ))}
                 </DetailInfoBody>
                 <DetailInfoFooter>
                     <DetailInfoContextLeft>
-                        <Text type="default" context="수량선택" />
+                        <Text type="default" context="Quantity" />
                     </DetailInfoContextLeft>
                     <DetailInfoContextRight>
                         <Select
-                            width="4.5rem"
-                            options={detailItem.quantity}
+                            width="5rem"
+                            options={optionsItem}
                             onChangeEvent={onQuntityChangeEvent}
                         />
                     </DetailInfoContextRight>
@@ -73,13 +51,13 @@ const DetailInfo = ({
             </DetailInfoMainContainer>
             <DetailInfoButton>
                 <Button
-                    type="default"
+                    type="contrast"
                     width="40%"
                     value="PAY"
                     onClickEvent={onPayButtonClickEvent}
                 />
                 <Button
-                    type="default"
+                    type="contrast"
                     width="40%"
                     value="Add to cart"
                     onClickEvent={onToCartButtonClickEvent}
@@ -90,7 +68,7 @@ const DetailInfo = ({
 }
 
 const DetailInfoMainContainer = styled.div`
-    margin-right: 1rem;
+    width: 100%;
 `
 
 const DetailInfoHeader = styled.div`
@@ -100,6 +78,7 @@ const DetailInfoHeader = styled.div`
     padding-bottom: 2rem;
     padding-left: 2rem;
     border-bottom: 2px solid ${Theme.colors.lightGray};
+    font-weight: ${Theme.fontWeight.bold};
 `
 
 const DetailInfoBody = styled.div`
@@ -121,6 +100,7 @@ const DetailInfoContextLeft = styled.div`
     padding-left: 1rem;
     padding-right: 1rem;
     padding-bottom: 1rem;
+    font-weight: ${Theme.fontWeight.bold};
 `
 
 const DetailInfoContextRight = styled.div`
@@ -135,12 +115,11 @@ const DetailInfoFooter = styled.div`
     display: flex;
     width: 100%;
     padding-top: 2rem;
-    padding-bottom: 1rem;
 `
 
 const DetailInfoButton = styled.div`
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     margin-right: 1rem;
     margin-top: 1rem;
 `

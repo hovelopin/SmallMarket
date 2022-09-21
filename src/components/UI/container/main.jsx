@@ -1,11 +1,12 @@
 import React from "react"
-import { Link } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 import styled from "styled-components"
 import Theme from "@util/style/theme"
 import Grid from "@components/UI/atoms/grid/grid"
 import Card from "@components/UI/blocks/card/card"
 
 const Main = () => {
+    const history = useHistory()
     const items = [
         {
             uuid: 1,
@@ -32,6 +33,15 @@ const Main = () => {
             img: "defaultImg.png",
         },
     ]
+
+    const handleDetailButtonClick = (item) => () => {
+        history.push({
+            pathname: `/detail/${item.uuid}`,
+            state: {
+                item: item,
+            },
+        })
+    }
 
     return (
         <React.Fragment>
@@ -85,6 +95,7 @@ const Main = () => {
                             price={item.price}
                             quantity={item.quantity}
                             img={item.img}
+                            onClickEvent={handleDetailButtonClick(item)}
                         />
                     ))}
                 </Grid>

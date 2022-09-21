@@ -34,6 +34,22 @@ const CartContainer = () => {
             quantity: 1,
             price: 15000,
         },
+        {
+            uuid: "abc4",
+            name: "Mongo banana and strawberry",
+            img: `${process.env.PUBLIC_URL}/img/defaultImg.png`,
+            description: "Banana and strawberry",
+            quantity: 1,
+            price: 15000,
+        },
+        {
+            uuid: "abc5",
+            name: "Mongo banana and strawberry",
+            img: `${process.env.PUBLIC_URL}/img/defaultImg.png`,
+            description: "Banana and strawberry",
+            quantity: 1,
+            price: 15000,
+        },
     ])
 
     const totalPrice = cartItems.reduce((acc, cur) => acc + cur.price, 0)
@@ -65,7 +81,7 @@ const CartContainer = () => {
     return (
         <CartMainContainer>
             <CartHeaderContainer>
-                <Text type="large" context="Shopping bag" />
+                <Text type="large" context="Shopping cart" />
             </CartHeaderContainer>
             <DragDropContext onDragEnd={handleDragEnd}>
                 <CartBodyContainer>
@@ -116,7 +132,7 @@ const CartContainer = () => {
 
 const CartMainContainer = styled.div`
     width: 100%;
-    height: 100vh;
+    height: 100%;
 `
 
 const CartHeaderContainer = styled.div`
@@ -130,6 +146,9 @@ const CartHeaderContainer = styled.div`
 
 const CartBodyContainer = styled.div`
     width: 100%;
+    display: flex;
+    justify-content: space-between;
+    overflow: auto;
 `
 
 const CartBarContainer = styled.div`
@@ -138,12 +157,10 @@ const CartBarContainer = styled.div`
 
 const CartBodyItemContainer = styled.div`
     width: 80%;
-    float: left;
 `
 
 const CartBodyPayMentContainer = styled.div`
     width: 20%;
-    float: right;
 `
 
 export default CartContainer

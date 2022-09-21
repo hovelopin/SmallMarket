@@ -3,7 +3,7 @@ import Text from "../../atoms/text/text"
 import Button from "../../atoms/button/button"
 import * as MyCard from "./style"
 
-const Card = ({ name, description, price, img }) => {
+const Card = ({ name, description, price, img, onClickEvent }) => {
     return (
         <Container width="100%">
             <MyCard.StyledCardContainer>
@@ -27,7 +27,8 @@ const Card = ({ name, description, price, img }) => {
                         type="contrast"
                         width="auto"
                         height={100}
-                        value="Button"
+                        value="Detail"
+                        onClickEvent={onClickEvent}
                     />
                 </MyCard.StyledCardFooter>
             </MyCard.StyledCardContainer>

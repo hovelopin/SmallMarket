@@ -5,93 +5,75 @@ import {
     signInWithEmailAndPassword,
     signOut,
 } from "firebase/auth"
-import { doc, setDoc } from "firebase/firestore"
-import { firestore } from "./firebaseService"
-import Data from "../dev/data"
-import UserStorage from "../storage/userStorage"
+import { doc, setDoc, getDocs, collection } from "firebase/firestore"
+import { firestore } from "@/service/firebaseService"
 
 const AuthService = {}
 
 AuthService.type = "AuthServiceType"
 
-AuthService.registerRequest = function (username, password, email) {
-    const newUser = {}
-    newUser.username = username
-    newUser.password = password
-    newUser.email = email
-    newUser.fetchOption = {}
-    newUser.fetchOption.uuid = "DkAHffKD6dlF8EkSD4kaNrJ1sK"
-    newUser.accessToken = "ACCESSTOKEN2"
-    newUser.refreshToken = "REFRESHTOKEN2"
-    Data.newUser = newUser
-    return Data.newUser
-}
-
-AuthService.loginRequest = function (username, password) {
-    const serverData = {}
-    serverData.username = Data.user.username
-    serverData.password = Data.user.password
-    if (username === serverData.username && serverData.password === password) {
-        UserStorage.save(Data.user.accessToken)
-        return Data.user
-    }
-    return null
-}
-
 AuthService.logoutRequest = function () {
     UserStorage.clear()
 }
 
-// TODO: Test 필요
 AuthService.firebaseRegiserRequest = async function (
     username,
     password,
-    email
+    email,
+    customerType
 ) {
-    const auth = getAuth()
-    return createUserWithEmailAndPassword(auth, username, password)
-        .then((userCredential) => {
-            const user = userCredential.user
-            sendEmailVerification(user, {
-                url: process.env.REACT_APP_SMV2,
-                handleCodeInApp: true,
-            })
-            return user
+    try {
+        const auth = getAuth()
+        const userCredential = await createUserWithEmailAndPassword(
+            auth,
+            email,
+            password
+        )
+        const user = userCredential.user
+        await sendEmailVerification(user, {
+            url: process.env.REACT_APP_SMV2,
+            handleCodeInApp: true,
         })
-        .then((user) => {
-            setDoc(doc(firestore, "user", user.uid), {
-                uuid: user.uid,
-                username: username,
-                email: email,
-            })
-            const uObj = {}
-            uObj.uuid = user.uid
-            uObj.username = username
-            uObj.email = email
-            return uObj
+        setDoc(doc(firestore, "user", user.uid), {
+            uuid: user.uid,
+            username: username,
+            email: email,
+            isAdmin: false,
+            isSeller: customerType === "Seller" ? true : false,
         })
-        .catch((error) => console.error(error))
+        return user
+    } catch (e) {
+        return e
+    }
 }
 
 AuthService.firebaseLoginRequest = async function (email, password) {
     const auth = getAuth()
-    return signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            const user = userCredential.user
-            const uObj = {}
-            uObj.uuid = user.uid
-            uObj.accessToken = user.accessToken
-            uObj.refreshToken = user.refreshToken
-            uObj.isEmailVerified = user.emailVerified
-            return uObj.isEmailVerified === false ? null : uObj
-        })
-        .catch((error) => console.error(error))
+    const { user } = await signInWithEmailAndPassword(auth, email, password)
+    return user
+}
+
+AuthService.firebaseCurrentUserReuqest = function () {
+    const auth = getAuth()
+    return auth.currentUser?.uid || null
 }
 
 AuthService.firebaseLogoutRequest = async function () {
     const auth = getAuth()
-    signOut(auth).then(() => UserStorage.clear())
+    signOut(auth).then(UserStorage.clear())
 }
+
+AuthService.firebaseEmailCheckRequest = async function (userEmail) {
+    const userDocs = await getDocs(collection(firestore, "user"))
+    const res = []
+    userDocs.forEach((user) => {
+        const { email } = user.data()
+        if (email === userEmail) res.push(email)
+    })
+    return res.length
+}
+
+// TODO: 회원탈퇴 추가
 
 export default AuthService
 Object.freeze(AuthService)

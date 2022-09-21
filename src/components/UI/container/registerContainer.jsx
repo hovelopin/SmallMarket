@@ -1,4 +1,5 @@
-import { useCallback } from "react"
+import { useState } from "react"
+import { useHistory } from "react-router-dom"
 import useForm from "@/hooks/useForm"
 import useModal from "@/hooks/useModal"
 import styled from "styled-components"
@@ -6,11 +7,15 @@ import Text from "@components/UI/atoms/text/text"
 import Form from "@components/UI/atoms/form/form"
 import Button from "@components/UI/atoms/button/button"
 import LabeledInput from "@components/UI/blocks/labeledInput/labeledInput"
+import Select from "@components/UI/atoms/select/select"
 import Modal from "@components/UI/blocks/modal/modal"
 import Theme from "@util/style/theme"
 import Validation from "@util/validation/validation"
+import AuthService from "@/service/authService"
 
 const RegisterContainer = () => {
+    const [customerType, setCustomertype] = useState("Customer")
+    const [isEmailChecked, setIsEmailChecked] = useState(false)
     const [registerFormValue, handleFormValueChange] = useForm({
         email: "",
         username: "",
@@ -21,13 +26,16 @@ const RegisterContainer = () => {
     const [isOpen, handleOpenButtonClick, handleCloseButtonClick] =
         useModal(false)
 
+    const history = useHistory()
+
+    const options = ["Customer", "Seller"]
     const { email, username, password, confirmPassword } = registerFormValue
     const isValidEmail = Validation.validateEmail(email)
     const isValidUsernme = Validation.validateUsername(username)
     const isValidPassword = Validation.validatePassword(password)
     const isValidConfirmPassword = password === confirmPassword
 
-    const handleRegisterSubmit = useCallback((e) => {
+    const handleRegisterSubmit = async (e) => {
         e.preventDefault()
         const isValidRegisterInformation = Validation.validateAll([
             isValidEmail,
@@ -35,12 +43,34 @@ const RegisterContainer = () => {
             isValidPassword,
             isValidConfirmPassword,
         ])
-
-        if (!isValidRegisterInformation) {
+        if (!isValidRegisterInformation || !isEmailChecked) {
             handleOpenButtonClick(true)
             return
         }
-    }, [])
+        const { email, username, password } = registerFormValue
+        const res = await AuthService.firebaseRegiserRequest(
+            username,
+            password,
+            email,
+            customerType
+        )
+        if (res) history.push("/login")
+    }
+
+    const handleEmailCheckClick = async () => {
+        const { email } = registerFormValue
+        const res = await AuthService.firebaseEmailCheckRequest(email)
+        if (!res) {
+            setIsEmailChecked(true)
+            return
+        }
+        setIsEmailChecked(false)
+    }
+
+    const handleSelectChange = (e) => {
+        const { value } = e.target
+        setCustomertype(value)
+    }
 
     return (
         <StyledWrapper>
@@ -62,6 +92,24 @@ const RegisterContainer = () => {
                         {!isValidEmail && (
                             <StyledErrorText>
                                 Invalid password format
+                            </StyledErrorText>
+                        )}
+                        <StyledEmailButtonContainer>
+                            <Button
+                                type="contrast"
+                                bType="button"
+                                width="100%"
+                                value="EMAIL DUPLICATE CHECK"
+                                onClickEvent={handleEmailCheckClick}
+                            />
+                        </StyledEmailButtonContainer>
+                        {isEmailChecked === false ? (
+                            <StyledErrorText>
+                                Email duplicate check
+                            </StyledErrorText>
+                        ) : (
+                            <StyledErrorText color="green">
+                                Success
                             </StyledErrorText>
                         )}
                     </StyledFormContainer>
@@ -113,6 +161,12 @@ const RegisterContainer = () => {
                             </StyledErrorText>
                         )}
                     </StyledFormContainer>
+                    <StyledFormContainer>
+                        <Select
+                            options={options}
+                            onChangeEvent={handleSelectChange}
+                        />
+                    </StyledFormContainer>
                     <Button
                         type="default"
                         bType="submit"
@@ -122,6 +176,9 @@ const RegisterContainer = () => {
                 </Form>
             </StyledContainer>
             <Modal isOpen={isOpen} onClickEvent={handleCloseButtonClick}>
+                <StyledImgContainer
+                    src={`${process.env.PUBLIC_URL}/img/logo.png`}
+                />
                 <Text context="Please check your information" />
             </Modal>
         </StyledWrapper>
@@ -132,7 +189,7 @@ const StyledWrapper = styled.div`
     display: flex;
     align-items: center;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     padding-top: 2rem;
     padding-bottom: 2rem;
     background-color: ${Theme.colors.lightGray};
@@ -155,8 +212,21 @@ const StyledFormContainer = styled.div`
     margin-bottom: 1.75rem;
 `
 
+const StyledEmailButtonContainer = styled.div`
+    display: inline-block;
+    width: 100%;
+    margin-top: 1.25rem;
+`
+
 const StyledErrorText = styled.p`
-    color: ${Theme.colors.darkRed};
+    color: ${(props) => (props.color ? props.color : Theme.colors.darkRed)};
+`
+
+const StyledImgContainer = styled.img`
+    display: block;
+    width: 70%;
+    margin: 0 auto;
+    padding-bottom: 2rem;
 `
 
 export default RegisterContainer

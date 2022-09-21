@@ -1,7 +1,7 @@
 import { useReducer, createContext, useEffect } from "react"
 import authReducer from "@/context/reducer/authReducer"
 import AuthTypes from "@/context/types/authRequestType"
-import Data from "@/dev/data"
+import AuthService from "@/service/authService"
 
 export const AuthStateContext = createContext(null)
 export const DispatchContext = createContext(null)
@@ -15,15 +15,14 @@ const AuthContext = ({ children }) => {
         fetchUserInformation()
     }, [])
 
-    const fetchUserInformation = async () => {
+    const fetchUserInformation = () => {
         try {
-            const user = await Data.loginRequest()
+            const user = AuthService.firebaseCurrentUserReuqest()
             dispatch({
-                type: AuthTypes.login,
+                type: AuthTypes.current,
                 payload: user,
             })
         } catch (e) {
-            // 에러상황 처리
             console.error(e)
         }
     }
