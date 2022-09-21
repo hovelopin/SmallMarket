@@ -1,7 +1,8 @@
 import PaymentDetail from "@components/UI/blocks/payment/paymentDetail"
 import PaymentInfo from "@components/UI/blocks/payment/paymentInfo"
 import styled from "styled-components"
-const Payment = () => {
+
+const PaymentContainer = () => {
     return (
         <PaymentWapper>
             <PaymentInfo></PaymentInfo>
@@ -16,4 +17,4 @@ const PaymentWapper = styled.div`
     height: 100%;
     margin-left: 5%;
 `
-export default Payment
+export default PaymentContainer
