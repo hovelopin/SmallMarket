@@ -7,6 +7,7 @@ import {
 } from "firebase/auth"
 import { doc, setDoc, getDocs, collection } from "firebase/firestore"
 import { firestore } from "@/service/firebaseService"
+import CookieStorage from "@/storage/cookieStorage"
 
 const AuthService = {}
 
@@ -60,7 +61,7 @@ AuthService.firebaseCurrentUserReuqest = function () {
 
 AuthService.firebaseLogoutRequest = async function () {
     const auth = getAuth()
-    signOut(auth).then(UserStorage.clear())
+    signOut(auth).then(CookieStorage.clear())
 }
 
 AuthService.firebaseEmailCheckRequest = async function (userEmail) {
