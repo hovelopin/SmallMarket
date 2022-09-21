@@ -8,7 +8,7 @@ import Theme from "@/util/style/theme"
 const DetailInfo = ({
     detailItem,
     onPayButtonClickEvent,
-    onToCartButtonClickEvent,
+    onCartButtonClickEvent,
     onQuntityChangeEvent,
 }) => {
     const optionsItem = Array.from({ length: detailItem.quantity }).map(
@@ -60,7 +60,7 @@ const DetailInfo = ({
                     type="contrast"
                     width="40%"
                     value="Add to cart"
-                    onClickEvent={onToCartButtonClickEvent}
+                    onClickEvent={onCartButtonClickEvent}
                 />
             </DetailInfoButton>
         </Container>
