@@ -28,6 +28,8 @@ Data.newUser = {
     refreshToken: "",
 }
 
+Data.cart = {}
+
 Data.loginRequest = async (email, password) => {
     return email === Data.user.email && password === Data.user.password
         ? Data.user
