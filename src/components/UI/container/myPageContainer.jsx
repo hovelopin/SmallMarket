@@ -1,20 +1,61 @@
 import { useState } from "react"
+import { useHistory } from "react-router-dom"
+import useForm from "@/hooks/useForm"
 import styled from "styled-components"
 import Text from "@components/UI/atoms/text/text"
 import MyPageSidebar from "@components/UI/blocks/mypage/myPageSidebar"
 import MyPageOrderList from "@components/UI/blocks/mypage/myPageOrderList"
 import MyPageCoupon from "@components/UI/blocks/mypage/myPageCoupon"
 import MyPageProfile from "@components/UI/blocks/mypage/myPageProfile"
+import MyPageSeller from "@components/UI/blocks/mypage/myPageSeller"
 import Theme from "@util/style/theme"
+import SessionStorage from "@/storage/sessionStorage"
+import ProductService from "@/service/productService"
 import ErrorUtil from "@util/errorUtil"
 
 const MyPageContainer = () => {
     const [selectedMenu, setSelectMenu] = useState("Order list")
+    const [selectCategory, setSelecCategory] = useState("Drink")
+    const [productFormValue, handleProductFormValueChange] = useForm({
+        name: "",
+        description: "",
+        origin: "",
+        price: "",
+        quantity: "",
+    })
 
-    const menuItems = ["Order list", "Coupon", "Profile", "Unregister"]
+    const history = useHistory()
+
+    const menuItems = [
+        "Order list",
+        "Coupon",
+        "Profile",
+        "Unregister",
+        "Seller",
+    ]
 
     const handleSelectedClick = (selectedName) => () => {
         setSelectMenu(selectedName)
+    }
+
+    const handleSelectCategory = (e) => {
+        const { value } = e.target
+        setSelecCategory(value)
+    }
+
+    const handleProductSubmit = async (e) => {
+        e.preventDefault()
+        const userUuid = SessionStorage.getItem().uid
+        const { name, description, origin, price, quantity } = productFormValue
+        await ProductService.firebaseAddProductRequest(
+            userUuid,
+            name,
+            description,
+            origin,
+            price,
+            quantity,
+            selectCategory
+        )
     }
 
     const createRightBodyContainer = () => {
@@ -88,9 +129,26 @@ const MyPageContainer = () => {
                 return <MyPageProfile profile={profileItems} />
             }
 
+            case "Seller": {
+                return (
+                    <MyPageSeller
+                        productFormValue={productFormValue}
+                        onProductFormValueChangeEvent={
+                            handleProductFormValueChange
+                        }
+                        onChangeCategoryEvent={handleSelectCategory}
+                        onProductSubmitEvent={handleProductSubmit}
+                    />
+                )
+            }
+
             default:
                 ErrorUtil.notImplemented()
         }
+    }
+
+    if (!SessionStorage.getItem()) {
+        history.push("/")
     }
 
     return (
