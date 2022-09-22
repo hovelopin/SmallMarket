@@ -64,19 +64,19 @@ const MyPageContainer = () => {
         e.preventDefault()
         const userUuid = SessionStorage.getItem().uid
         const { name, description, origin, price, quantity } = productFormValue
-        const isValid = Validation.validateAll([
-            name,
-            description,
-            origin,
-            price,
-            quantity,
-            imgSrc,
-        ])
-        if (!isValid) {
-            setModalMsg("Please check your product information")
-            handleOpenButtonClick(true)
-            return
-        }
+        // const isValid = Validation.validateAll([
+        //     name,
+        //     description,
+        //     origin,
+        //     price,
+        //     quantity,
+        //     imgSrc,
+        // ])
+        // if (!isValid) {
+        //     setModalMsg("Please check your product information")
+        //     handleOpenButtonClick(true)
+        //     return
+        // }
         const res = await ProductService.firebaseAddProductRequest(
             userUuid,
             name,
