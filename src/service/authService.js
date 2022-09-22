@@ -7,7 +7,7 @@ import {
     signInWithEmailAndPassword,
     signOut,
 } from "firebase/auth"
-import { doc, setDoc, getDocs, collection } from "firebase/firestore"
+import { doc, addDoc, setDoc, getDocs, collection } from "firebase/firestore"
 import { firestore } from "@/service/firebaseService"
 import SessionStorage from "@/storage/sessionStorage"
 
@@ -44,6 +44,23 @@ AuthService.firebaseRegiserRequest = async function (
             isAdmin: false,
             isSeller: customerType === "Seller" ? true : false,
         })
+        if (customerType === "Seller") {
+            const sellerDoc = await addDoc(collection(firestore, "seller"), {
+                sellerUuid: user.uid,
+                companyRegistrationNumber: "",
+                address: "",
+                selledLog: [""],
+                tel: [""],
+            })
+            await setDoc(
+                doc(firestore, "seller", `${sellerDoc.id}`),
+                {
+                    uuid: sellerDoc.id,
+                },
+                { merge: true }
+            )
+        }
+
         return user
     } catch (e) {
         return e
