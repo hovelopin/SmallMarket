@@ -43,7 +43,7 @@ const Header = () => {
     const menuItems = [
         {
             name: "My page",
-            path: "/미정1",
+            path: "/mypage",
         },
         {
             name: "Information",
