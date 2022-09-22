@@ -8,12 +8,10 @@ import Text from "@components/UI/atoms/text/text"
 import Button from "@components/UI/atoms/button/button"
 import LabeledInput from "@/components/UI/blocks/labeledInput/labeledInput"
 import Modal from "@/components/UI/blocks/modal/modal"
-import { DispatchContext } from "@/context/auth/authContext"
-import AuthTypes from "@/context/types/authRequestType"
 import Theme from "@util/style/theme"
 import Validation from "@util/validation/validation"
-import CookieStorage from "@/storage/cookieStorage"
 import AuthService from "@/service/authService"
+import SessionStorage from "@/storage/sessionStorage"
 
 const LoginContainer = () => {
     const [loginFormValue, handleFormValueChange] = useForm({
@@ -24,7 +22,6 @@ const LoginContainer = () => {
     const [isOpen, handleOpenButtonClick, handleCloseButtonClick] =
         useModal(false)
 
-    const authDispatch = useContext(DispatchContext)
     const history = useHistory()
 
     const { email, password } = loginFormValue
@@ -42,29 +39,19 @@ const LoginContainer = () => {
             return
         }
         const res = await AuthService.firebaseLoginRequest(email, password)
-        const { uid, accessToken, emailVerified } = res
+        const { emailVerified } = res
         if (!emailVerified) {
             handleOpenButtonClick(true)
             return
         }
-        if (uid) {
-            authDispatch({
-                type: AuthTypes.login,
-                payload: uid,
-            })
-            CookieStorage.setItem(accessToken)
-            history.push("/")
-        } else {
-            handleOpenButtonClick(true)
-            return
-        }
+        location.replace("/")
     }
 
     const handleRegisterButtonClick = () => {
         history.push("/register")
     }
 
-    if (CookieStorage.getItem()) {
+    if (SessionStorage.getItem()) {
         history.push("/")
     }
 

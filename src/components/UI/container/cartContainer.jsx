@@ -1,59 +1,32 @@
-import { useState, useCallback } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { DragDropContext } from "react-beautiful-dnd"
 import styled from "styled-components"
+import Container from "@components/UI/atoms/container/container"
 import Text from "@components/UI/atoms/text/text"
 import CartBar from "@/components/UI/blocks/cart/cartBar"
 import CartSidebar from "@/components/UI/blocks/cart/cartSidebar"
 import DroppableBox from "@components/UI/blocks/dragdrop/droppableBox"
 import DraggableBox from "@components/UI/blocks/dragdrop/draggableBox"
-import Theme from "@/util/style/theme"
+import Theme from "@util/style/theme"
+import AuthService from "@/service/authService"
+import CartService from "@/service/cartService"
 
 const CartContainer = () => {
-    const [cartItems, setCartItems] = useState([
-        {
-            uuid: "abc1",
-            name: "Mexican Limeade and Orageade",
-            img: `${process.env.PUBLIC_URL}/img/defaultImg.png`,
-            description: "Limeade and Orangeade",
-            quantity: 1,
-            price: 5000,
-        },
-        {
-            uuid: "abc2",
-            name: "Hand made Croatian coffee brew",
-            img: `${process.env.PUBLIC_URL}/img/defaultImg.png`,
-            description: "Hande made Croatian coffe",
-            quantity: 1,
-            price: 6000,
-        },
-        {
-            uuid: "abc3",
-            name: "Mongo banana and strawberry",
-            img: `${process.env.PUBLIC_URL}/img/defaultImg.png`,
-            description: "Banana and strawberry",
-            quantity: 1,
-            price: 15000,
-        },
-        {
-            uuid: "abc4",
-            name: "Mongo banana and strawberry",
-            img: `${process.env.PUBLIC_URL}/img/defaultImg.png`,
-            description: "Banana and strawberry",
-            quantity: 1,
-            price: 15000,
-        },
-        {
-            uuid: "abc5",
-            name: "Mongo banana and strawberry",
-            img: `${process.env.PUBLIC_URL}/img/defaultImg.png`,
-            description: "Banana and strawberry",
-            quantity: 1,
-            price: 15000,
-        },
-    ])
+    const [cartItems, setCartItems] = useState([])
 
-    const totalPrice = cartItems.reduce((acc, cur) => acc + cur.price, 0)
+    const authState = AuthService.firebaseCurrentUserReuqest()
+    const totalPrice = cartItems.length
+        ? cartItems.reduce((acc, cur) => acc + cur.price, 0)
+        : 0
     const discount = 10
+
+    useEffect(async () => {
+        const res = await CartService.firebaseCartInformationRequest(
+            authState.uid
+        )
+        const items = res || []
+        setCartItems(items)
+    }, [])
 
     const handleDragEnd = (result) => {
         const { destination, source } = result
@@ -78,6 +51,14 @@ const CartContainer = () => {
         console.log("Delete")
     }, [])
 
+    if (!cartItems.length) {
+        return (
+            <Container width="100%" height="60vh">
+                <Text type="large" context="Your cart is empty" />
+            </Container>
+        )
+    }
+
     return (
         <CartMainContainer>
             <CartHeaderContainer>
@@ -97,7 +78,7 @@ const CartContainer = () => {
                                         <CartBarContainer>
                                             <CartBar
                                                 name={item.name}
-                                                img={item.img}
+                                                img={`${process.env.PUBLIC_URL}/img/${item.img}`}
                                                 description={item.description}
                                                 quantity={item.quantity}
                                                 price={item.price}

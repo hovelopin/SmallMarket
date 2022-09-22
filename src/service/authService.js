@@ -1,12 +1,15 @@
 import {
     createUserWithEmailAndPassword,
     getAuth,
+    setPersistence,
+    browserSessionPersistence,
     sendEmailVerification,
     signInWithEmailAndPassword,
     signOut,
 } from "firebase/auth"
 import { doc, setDoc, getDocs, collection } from "firebase/firestore"
 import { firestore } from "@/service/firebaseService"
+import SessionStorage from "@/storage/sessionStorage"
 
 const AuthService = {}
 
@@ -49,18 +52,23 @@ AuthService.firebaseRegiserRequest = async function (
 
 AuthService.firebaseLoginRequest = async function (email, password) {
     const auth = getAuth()
-    const { user } = await signInWithEmailAndPassword(auth, email, password)
-    return user
+    await setPersistence(auth, browserSessionPersistence)
+    try {
+        const { user } = await signInWithEmailAndPassword(auth, email, password)
+        return user
+    } catch (e) {
+        return false
+    }
 }
 
 AuthService.firebaseCurrentUserReuqest = function () {
-    const auth = getAuth()
-    return auth.currentUser?.uid || null
+    return SessionStorage.getItem()
 }
 
 AuthService.firebaseLogoutRequest = async function () {
     const auth = getAuth()
-    signOut(auth).then(UserStorage.clear())
+    signOut(auth)
+    SessionStorage.clear()
 }
 
 AuthService.firebaseEmailCheckRequest = async function (userEmail) {

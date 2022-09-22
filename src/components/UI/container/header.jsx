@@ -1,21 +1,20 @@
-import { useState, useEffect, useContext } from "react"
+import { useState } from "react"
 import { useHistory } from "react-router-dom"
 import styled from "styled-components"
 import Container from "@components/UI/atoms/container/container"
 import LinkGroup from "@components/UI/blocks/linkGroup/linkGroup"
 import SearchBar from "@components/UI/blocks/searchBar/searchBar"
 import DropdownList from "@components/UI/blocks/dropdown/dropdownList"
-import { AuthStateContext, DispatchContext } from "@/context/auth/authContext"
-import AuthTypes from "@/context/types/authRequestType"
+import SessionStorage from "@/storage/sessionStorage"
 import Icon from "@/icon/icon"
 import Theme from "@util/style/theme"
-import CookieStorage from "@/storage/cookieStorage"
+import AuthService from "@/service/authService"
 
 const Header = () => {
     const [isMouseOver, setIsMouseOver] = useState(false)
-
-    const authDispatch = useContext(DispatchContext)
-    const authState = useContext(AuthStateContext)
+    const [isLogin, setIsLogin] = useState(
+        SessionStorage.getItem() ? true : false
+    )
 
     const history = useHistory()
 
@@ -27,15 +26,13 @@ const Header = () => {
             },
         },
         {
-            name: authState.user ? "signout" : "user",
+            name: isLogin ? "signout" : "user",
             handleClick: () => {
-                if (CookieStorage.getItem()) {
-                    authDispatch({
-                        type: AuthTypes.logout,
-                        payload: null,
-                    })
-                    CookieStorage.clear()
+                if (isLogin) {
                     history.push("/")
+                    AuthService.firebaseLogoutRequest().then(() => {
+                        setIsLogin(false)
+                    })
                 } else {
                     history.push("/login")
                 }
@@ -82,13 +79,6 @@ const Header = () => {
             path: "/contact",
         },
     ]
-
-    useEffect(() => {
-        authDispatch({
-            type: AuthTypes.login,
-            payload: authState,
-        })
-    }, [authDispatch])
 
     const handleMenuItemsOver = () => {
         setIsMouseOver(true)

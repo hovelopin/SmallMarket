@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react"
+import React, { useState, useEffect } from "react"
 import { useParams, useHistory } from "react-router-dom"
 import styled from "styled-components"
 import Container from "@components/UI/atoms/container/container"
@@ -22,7 +22,7 @@ const ProductContainer = () => {
 
     const handleDetailButtonClick = (item) => () => {
         history.push({
-            pathname: `/detail/${item}`,
+            pathname: `/detail/${item.uuid}`,
             state: {
                 item: item,
             },

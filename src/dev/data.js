@@ -28,6 +28,8 @@ Data.newUser = {
     refreshToken: "",
 }
 
+Data.cart = {}
+
 Data.loginRequest = async (email, password) => {
     return email === Data.user.email && password === Data.user.password
         ? Data.user
@@ -48,7 +50,7 @@ Data.createVegetableItemData = async function () {
         const seller = `FoxMon ${i + 1}`
         const origin = `FoxMon's farm ${i + 1}`
         const vObj = FoodItemType.createVegetable(
-            i + 1,
+            i + 1 + "a",
             name,
             name,
             price,
@@ -70,7 +72,7 @@ Data.createMeatItemData = async function () {
         const seller = `FoxMon ${i + 1}`
         const origin = `FoxMon's farm ${i + 1}`
         const mObj = FoodItemType.createMeat(
-            i + 1,
+            i + 1 + "a",
             name,
             name,
             price,
@@ -92,7 +94,7 @@ Data.createDrinkItemType = async function () {
         const seller = `FoxMon ${i + 1}`
         const origin = `FoxMon's farm ${i + 1}`
         const mObj = FoodItemType.createDrink(
-            i + 1,
+            i + 1 + "a",
             name,
             name,
             price,
@@ -114,7 +116,7 @@ Data.createNormalItemType = async function () {
         const seller = `FoxMon ${i + 1}`
         const origin = `FoxMon's farm ${i + 1}`
         const nObj = FoodItemType.createNormal(
-            i + 1,
+            i + 1 + "a",
             name,
             name,
             price,

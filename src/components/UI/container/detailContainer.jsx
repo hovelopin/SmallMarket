@@ -1,25 +1,62 @@
-import React, { useCallback } from "react"
+import React, { useState, useCallback } from "react"
+import { useHistory, useLocation } from "react-router-dom"
+import useModal from "@/hooks/useModal"
 import styled from "styled-components"
-import { useLocation } from "react-router-dom"
+import Text from "@components/UI/atoms/text/text"
 import DetailInfo from "@components/UI/blocks/detail/detailInfo"
+import Modal from "@components/UI/blocks/modal/modal"
 import Theme from "@util/style/theme"
+import AuthService from "@/service/authService"
+import ProductService from "@/service/productService"
 
 const DetailContainer = () => {
+    const [modalMsg, setModalMsg] = useState("")
+    const [quantity, setQuantity] = useState(0)
+
+    const [isOpen, handleOpenButtonClick, handleCloseButtonClick] =
+        useModal(false)
+
+    const authState = AuthService.firebaseCurrentUserReuqest()
     const location = useLocation()
+    const history = useHistory()
 
     const { item } = location.state
 
     const handlePayButtonClick = useCallback(() => {
-        console.log("pay")
+        if (!authState) {
+            setModalMsg("Login please")
+            handleOpenButtonClick(true)
+            return
+        }
+        history.push({
+            pathname: `/payment/${authState.uid}`,
+            state: {
+                ...item,
+                quantity: !quantity ? 1 : quantity,
+            },
+        })
     }, [])
 
-    const handleToCartButtonClick = useCallback(() => {
-        console.log("toCart")
+    const handleCartButtonClick = useCallback(async () => {
+        if (!authState) {
+            setModalMsg("Login please")
+            handleOpenButtonClick(true)
+            return
+        }
+        const res = await ProductService.firebaseAddToCartRequeset(
+            item,
+            authState.uid
+        )
+        if (!res) {
+            setModalMsg("The item is already exist your cart")
+            handleOpenButtonClick(true)
+            return
+        }
     }, [])
 
     const handleQuntityChange = useCallback((e) => {
-        const quantity = e.target.value
-        console.log(quantity)
+        const quantity = parseInt(e.target.value)
+        setQuantity(quantity)
     }, [])
 
     return (
@@ -40,11 +77,17 @@ const DetailContainer = () => {
                     <DetailInfo
                         detailItem={item}
                         onPayButtonClickEvent={handlePayButtonClick}
-                        onToCartButtonClickEvent={handleToCartButtonClick}
+                        onCartButtonClickEvent={handleCartButtonClick}
                         onQuntityChangeEvent={handleQuntityChange}
                     />
                 </DetailSideContainer>
             </DetailBodyWrapper>
+            <Modal isOpen={isOpen} onClickEvent={handleCloseButtonClick}>
+                <StyledImgContainer
+                    src={`${process.env.PUBLIC_URL}/img/logo.png`}
+                />
+                <Text type="large" context={modalMsg} />
+            </Modal>
         </DetailMainConetainer>
     )
 }
@@ -90,6 +133,13 @@ const DetailImageContainer = styled.img`
 const DetailSideContainer = styled.div`
     width: 40%;
     padding-right: 10rem;
+`
+
+const StyledImgContainer = styled.img`
+    display: block;
+    width: 70%;
+    margin: 0 auto;
+    padding-bottom: 2rem;
 `
 
 export default DetailContainer
