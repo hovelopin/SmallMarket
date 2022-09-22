@@ -1,5 +1,6 @@
 import { doc, addDoc, setDoc, collection } from "firebase/firestore"
 import { firestore } from "@/service/firebaseService"
+import ImageService from "@/service/imageService"
 import Data from "@/dev/data"
 
 const ProductService = {}
@@ -21,14 +22,20 @@ ProductService.firebaseAddProductRequest = async function (
     origin,
     price,
     quantity,
-    category
+    category,
+    imgSrc
 ) {
     try {
+        const productImgUrl = await ImageService.firesotrageImageUploadRequest(
+            userUuid,
+            imgSrc
+        )
         const addedDoc = await addDoc(collection(firestore, "product"), {
             name: name,
             description: description,
             origin: origin,
             price: price,
+            img: productImgUrl,
             quantity: quantity,
             sellerUuid: userUuid,
             category: category,
@@ -40,6 +47,7 @@ ProductService.firebaseAddProductRequest = async function (
             },
             { merge: true }
         )
+        return true
     } catch (e) {
         return false
     }
