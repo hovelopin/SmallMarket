@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useHistory } from "react-router-dom"
 import useForm from "@/hooks/useForm"
+import useModal from "@/hooks/useModal"
 import styled from "styled-components"
 import Text from "@components/UI/atoms/text/text"
 import MyPageSidebar from "@components/UI/blocks/mypage/myPageSidebar"
@@ -8,13 +9,18 @@ import MyPageOrderList from "@components/UI/blocks/mypage/myPageOrderList"
 import MyPageCoupon from "@components/UI/blocks/mypage/myPageCoupon"
 import MyPageProfile from "@components/UI/blocks/mypage/myPageProfile"
 import MyPageSeller from "@components/UI/blocks/mypage/myPageSeller"
-import Theme from "@util/style/theme"
+import Modal from "@components/UI/blocks/modal/modal"
 import SessionStorage from "@/storage/sessionStorage"
 import ProductService from "@/service/productService"
+import Theme from "@util/style/theme"
+import Validation from "@util/validation/validation"
 import ErrorUtil from "@util/errorUtil"
 
 const MyPageContainer = () => {
     const [selectedMenu, setSelectMenu] = useState("Order list")
+    const [imgSrc, setImgSrc] = useState(null)
+    const [imgPreview, setImgPreview] = useState(null)
+    const [modalMsg, setModalMsg] = useState("")
     const [selectCategory, setSelecCategory] = useState("Drink")
     const [productFormValue, handleProductFormValueChange] = useForm({
         name: "",
@@ -23,6 +29,8 @@ const MyPageContainer = () => {
         price: "",
         quantity: "",
     })
+    const [isOpen, handleOpenButtonClick, handleCloseButtonClick] =
+        useModal(false)
 
     const history = useHistory()
 
@@ -43,19 +51,49 @@ const MyPageContainer = () => {
         setSelecCategory(value)
     }
 
+    const handleImgSrcChange = (e) => {
+        setImgSrc(e.target.files[0])
+        const preview = new FileReader()
+        preview.readAsDataURL(e.target.files[0])
+        preview.onload = () => {
+            setImgPreview(preview.result)
+        }
+    }
+
     const handleProductSubmit = async (e) => {
         e.preventDefault()
         const userUuid = SessionStorage.getItem().uid
         const { name, description, origin, price, quantity } = productFormValue
-        await ProductService.firebaseAddProductRequest(
+        const isValid = Validation.validateAll([
+            name,
+            description,
+            origin,
+            price,
+            quantity,
+            imgSrc,
+        ])
+        if (!isValid) {
+            setModalMsg("Please check your product information")
+            handleOpenButtonClick(true)
+            return
+        }
+        const res = await ProductService.firebaseAddProductRequest(
             userUuid,
             name,
             description,
             origin,
             price,
             quantity,
-            selectCategory
+            selectCategory,
+            imgSrc
         )
+        if (res) {
+            setModalMsg("Success")
+            handleOpenButtonClick(true)
+            if (!isOpen) {
+                history.push("/")
+            }
+        }
     }
 
     const createRightBodyContainer = () => {
@@ -132,11 +170,13 @@ const MyPageContainer = () => {
             case "Seller": {
                 return (
                     <MyPageSeller
+                        imgPreview={imgPreview}
                         productFormValue={productFormValue}
                         onProductFormValueChangeEvent={
                             handleProductFormValueChange
                         }
                         onChangeCategoryEvent={handleSelectCategory}
+                        onImgSrcChangeEvent={handleImgSrcChange}
                         onProductSubmitEvent={handleProductSubmit}
                     />
                 )
@@ -165,6 +205,12 @@ const MyPageContainer = () => {
                 </MyPageBodyLeft>
                 <MyPageBodyRight>{createRightBodyContainer()}</MyPageBodyRight>
             </MyPageBodyContainer>
+            <Modal isOpen={isOpen} onClickEvent={handleCloseButtonClick}>
+                <StyledImgContainer
+                    src={`${process.env.PUBLIC_URL}/img/logo.png`}
+                />
+                <Text context={modalMsg} />
+            </Modal>
         </MyPageMainContainer>
     )
 }
@@ -197,6 +243,13 @@ const MyPageBodyLeft = styled.div`
 const MyPageBodyRight = styled.div`
     width: 70%;
     margin-right: 2rem;
+`
+
+const StyledImgContainer = styled.img`
+    display: block;
+    width: 70%;
+    margin: 0 auto;
+    padding-bottom: 2rem;
 `
 
 export default MyPageContainer
