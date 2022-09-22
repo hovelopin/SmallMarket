@@ -10,6 +10,7 @@ import DetailContainer from "@components/UI/container/detailContainer"
 import FairTradeContainer from "@components/UI/container/fairTradeContainer"
 import ContactContainer from "@components/UI/container/contactContainer"
 import PaymentContainer from "@components/UI/container/paymentContainer"
+import MyPageContainer from "@components/UI/container/myPageContainer"
 import NotFound from "@components/UI/container/NotFound"
 
 const CustomRouter = () => {
@@ -35,6 +36,7 @@ const CustomRouter = () => {
                     path="/payment/:userUuid"
                     component={PaymentContainer}
                 />
+                <Route exact path="/mypage" component={MyPageContainer} />
                 <Route component={NotFound} />
             </Switch>
         </Router>
