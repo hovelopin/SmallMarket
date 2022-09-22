@@ -2,14 +2,17 @@ import styled from "styled-components"
 import Text from "@components/UI/atoms/text/text"
 import Form from "@components/UI/atoms/form/form"
 import Button from "@components/UI/atoms/button/button"
+import Input from "@components/UI/atoms/input/input"
 import LabeledInput from "@components/UI/blocks/labeledInput/labeledInput"
 import Select from "@components/UI/atoms/select/select"
 import Theme from "@util/style/theme"
 
 const MyPageSeller = ({
+    imgPreview,
     productFormValue,
     onProductFormValueChangeEvent,
     onChangeCategoryEvent,
+    onImgSrcChangeEvent,
     onProductSubmitEvent,
 }) => {
     return (
@@ -19,6 +22,15 @@ const MyPageSeller = ({
             </MyPageSellerHeader>
             <MyPageSellerCard>
                 <Form onSubmitEvent={onProductSubmitEvent}>
+                    <MyPageSellerPreviewImageContainer src={imgPreview} />
+                    <MyPageSellerImageInputContainer>
+                        <Input
+                            type="file"
+                            name="img"
+                            value={productFormValue.img}
+                            onChangeEvent={onImgSrcChangeEvent}
+                        />
+                    </MyPageSellerImageInputContainer>
                     <MyPageSellerInputWrapper>
                         <LabeledInput
                             width="60%"
@@ -99,12 +111,20 @@ const MyPageSellerHeader = styled.div`
     border-bottom: 3px solid ${Theme.colors.silverGray};
 `
 
+const MyPageSellerImageInputContainer = styled.div`
+    width: 60%;
+`
+
 const MyPageSellerCard = styled.div`
     width: 100%;
     margin-top: 2rem;
     margin-bottom: 2rem;
     display: flex;
     border-radius: ${Theme.card.borderRadius};
+`
+
+const MyPageSellerPreviewImageContainer = styled.img`
+    width: 30%;
 `
 
 const MyPageSellerInputWrapper = styled.div`
