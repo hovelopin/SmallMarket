@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useHistory } from "react-router-dom"
 import useForm from "@/hooks/useForm"
 import useModal from "@/hooks/useModal"
@@ -12,6 +12,8 @@ import MyPageSeller from "@components/UI/blocks/mypage/myPageSeller"
 import Modal from "@components/UI/blocks/modal/modal"
 import SessionStorage from "@/storage/sessionStorage"
 import ProductService from "@/service/productService"
+import Data from "@/dev/data"
+import AuthService from "@/service/authService"
 import Theme from "@util/style/theme"
 import Validation from "@util/validation/validation"
 import ErrorUtil from "@util/errorUtil"
@@ -31,15 +33,20 @@ const MyPageContainer = () => {
     })
     const [isOpen, handleOpenButtonClick, handleCloseButtonClick] =
         useModal(false)
+    const [isSeller, setIsSeller] = useState(false)
 
     const history = useHistory()
+
+    useEffect(async () => {
+        await AuthService.firebaseCurrentUserInfoRequest(setIsSeller)
+    }, [])
 
     const menuItems = [
         "Order list",
         "Coupon",
         "Profile",
         "Unregister",
-        "Seller",
+        isSeller && "Seller",
     ]
 
     const handleSelectedClick = (selectedName) => () => {
@@ -64,19 +71,19 @@ const MyPageContainer = () => {
         e.preventDefault()
         const userUuid = SessionStorage.getItem().uid
         const { name, description, origin, price, quantity } = productFormValue
-        // const isValid = Validation.validateAll([
-        //     name,
-        //     description,
-        //     origin,
-        //     price,
-        //     quantity,
-        //     imgSrc,
-        // ])
-        // if (!isValid) {
-        //     setModalMsg("Please check your product information")
-        //     handleOpenButtonClick(true)
-        //     return
-        // }
+        const isValid = Validation.validateAll([
+            name,
+            description,
+            origin,
+            price,
+            quantity,
+            imgSrc,
+        ])
+        if (!isValid) {
+            setModalMsg("Please check your product information")
+            handleOpenButtonClick(true)
+            return
+        }
         const res = await ProductService.firebaseAddProductRequest(
             userUuid,
             name,
@@ -87,13 +94,7 @@ const MyPageContainer = () => {
             selectCategory,
             imgSrc
         )
-        if (res) {
-            setModalMsg("Success")
-            handleOpenButtonClick(true)
-            if (!isOpen) {
-                history.push("/")
-            }
-        }
+        if (res) history.push("/")
     }
 
     const createRightBodyContainer = () => {
@@ -117,7 +118,8 @@ const MyPageContainer = () => {
                 ]
 
                 const handleRefundButtonClick = () => {
-                    console.log("Refund")
+                    AuthService.firebaseCurrentUserInfoRequest(user.uid)
+                    console.log("refund")
                 }
 
                 return (

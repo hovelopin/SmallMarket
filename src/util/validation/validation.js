@@ -23,7 +23,7 @@ class Validation {
     }
 
     static validateAll(infoArr) {
-        return infoArr.every((info) => info === true)
+        return infoArr.every((info) => info)
     }
 }
 
