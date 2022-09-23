@@ -58,7 +58,7 @@ const Header = () => {
                 }
                 return (
                     <MenuItemsList>
-                        {["Vegetables", "Drink", "Meets", "Normal"].map((c) => (
+                        {["Vegetables", "Drink", "Meats", "Normal"].map((c) => (
                             <ItemCategory
                                 key={c}
                                 onClick={handleCategoryClick(c)}
