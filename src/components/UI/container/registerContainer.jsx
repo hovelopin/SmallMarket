@@ -74,6 +74,10 @@ const RegisterContainer = () => {
         setCustomertype(value)
     }
 
+    const handleLoginButtonClick = () => {
+        history.push("/login")
+    }
+
     return (
         <StyledWrapper>
             <StyledContainer>
@@ -169,12 +173,23 @@ const RegisterContainer = () => {
                             onChangeEvent={handleSelectChange}
                         />
                     </StyledFormContainer>
-                    <Button
-                        type="default"
-                        bType="submit"
-                        width="100%"
-                        value="REGISTER"
-                    />
+                    <StyledButtonContainer>
+                        <Button
+                            type="default"
+                            bType="submit"
+                            width="100%"
+                            value="REGISTER"
+                        />
+                    </StyledButtonContainer>
+                    <StyledButtonContainer>
+                        <Button
+                            type="default"
+                            bType="button"
+                            width="100%"
+                            value="Login"
+                            onClickEvent={handleLoginButtonClick}
+                        />
+                    </StyledButtonContainer>
                 </Form>
             </StyledContainer>
             <Modal isOpen={isOpen} onClickEvent={handleCloseButtonClick}>
@@ -229,6 +244,10 @@ const StyledImgContainer = styled.img`
     width: 70%;
     margin: 0 auto;
     padding-bottom: 2rem;
+`
+
+const StyledButtonContainer = styled.div`
+    margin-bottom: 0.5rem;
 `
 
 export default RegisterContainer
