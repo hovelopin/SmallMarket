@@ -1,6 +1,7 @@
-import { doc, addDoc, setDoc, collection } from "firebase/firestore"
+import { doc, addDoc, setDoc, getDocs, collection } from "firebase/firestore"
 import { firestore } from "@/service/firebaseService"
 import ImageService from "@/service/imageService"
+import FoodItemType from "@/type/foodItemType"
 import Data from "@/dev/data"
 
 const ProductService = {}
@@ -51,6 +52,21 @@ ProductService.firebaseAddProductRequest = async function (
     } catch (e) {
         return false
     }
+}
+
+ProductService.firebaseGetCategoryRequest = async function (categoryType) {
+    const productDocs = await getDocs(collection(firestore, "product"))
+    const toUpper = categoryType.replace(/^[a-z]/, (char) => char.toUpperCase())
+    const categoryItems = []
+
+    productDocs.forEach((p) => {
+        const { category } = p.data()
+        if (category === toUpper) {
+            categoryItems.push(p.data())
+        }
+    })
+
+    return categoryItems
 }
 
 Object.freeze(ProductService)

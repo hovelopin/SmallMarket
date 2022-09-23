@@ -6,14 +6,19 @@ import Carousel from "@components/UI/blocks/carousel/carousel"
 import Grid from "@components/UI/atoms/grid/grid"
 import Card from "@components/UI/blocks/card/card"
 import Data from "@/dev/data"
+import ProductService from "@/service/productService"
 import Theme from "@util/style/theme"
 
 const ProductContainer = () => {
     const [items, setItems] = useState([])
 
     const { category } = useParams()
+
     const history = useHistory()
 
+    const categories = ProductService.firebaseGetCategoryRequest(category)
+
+    console.log(categories)
     useEffect(() => {
         fetchFoodItems
             .call(this, category)
