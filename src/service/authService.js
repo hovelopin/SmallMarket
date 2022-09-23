@@ -52,7 +52,7 @@ AuthService.firebaseRegiserRequest = async function (
                 selledLog: [""],
                 tel: [""],
             })
-            await setDoc(
+            setDoc(
                 doc(firestore, "seller", `${sellerDoc.id}`),
                 {
                     uuid: sellerDoc.id,
