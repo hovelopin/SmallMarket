@@ -118,7 +118,6 @@ const MyPageContainer = () => {
                 ]
 
                 const handleRefundButtonClick = () => {
-                    AuthService.firebaseCurrentUserInfoRequest(user.uid)
                     console.log("refund")
                 }
 
