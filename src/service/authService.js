@@ -52,9 +52,9 @@ AuthService.firebaseRegiserRequest = async function (
 
 AuthService.firebaseLoginRequest = async function (email, password) {
     const auth = getAuth()
-    await setPersistence(auth, browserSessionPersistence)
     try {
         const { user } = await signInWithEmailAndPassword(auth, email, password)
+        await setPersistence(auth, browserSessionPersistence)
         return user
     } catch (e) {
         return false

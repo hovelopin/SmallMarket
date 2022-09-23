@@ -41,6 +41,7 @@ const LoginContainer = () => {
         const res = await AuthService.firebaseLoginRequest(email, password)
         const { emailVerified } = res
         if (!emailVerified) {
+            await AuthService.firebaseLogoutRequest()
             handleOpenButtonClick(true)
             return
         }
