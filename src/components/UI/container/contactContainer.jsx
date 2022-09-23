@@ -29,12 +29,12 @@ const ContactContainer = () => {
             email: "jhpark4884@gmail.com",
         },
         {
-            img: "foxmon.PNG",
-            alt: "foxmon",
-            name: "FoxMon4",
+            img: "HP.jpg",
+            alt: "hp",
+            name: "Hovelopin",
             subtitle: "Frontend developer",
             description: "The Team SmallMarket's Frontend engineer",
-            email: "foxmon1524@gmail.com",
+            email: "cohojin3714@gmail.com",
         },
     ]
 
@@ -136,6 +136,7 @@ const StyledCard = styled.div`
 
 const StyledImg = styled.img`
     width: 100%;
+    height: 368px;
 `
 
 const StyledTitle = styled.h2`
