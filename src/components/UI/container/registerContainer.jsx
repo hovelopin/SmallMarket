@@ -16,6 +16,7 @@ import AuthService from "@/service/authService"
 const RegisterContainer = () => {
     const [customerType, setCustomertype] = useState("Customer")
     const [isEmailChecked, setIsEmailChecked] = useState(false)
+    const [modalMsg, setModalMsg] = useState("")
     const [registerFormValue, handleFormValueChange] = useForm({
         email: "",
         username: "",
@@ -44,6 +45,7 @@ const RegisterContainer = () => {
             isValidConfirmPassword,
         ])
         if (!isValidRegisterInformation || !isEmailChecked) {
+            setModalMsg("Please check your information")
             handleOpenButtonClick(true)
             return
         }
@@ -54,7 +56,10 @@ const RegisterContainer = () => {
             email,
             customerType
         )
-        if (res) history.push("/login")
+        if (res) {
+            setModalMsg("Please verify your email")
+            if (!isOpen) history.push("/login")
+        }
     }
 
     const handleEmailCheckClick = async () => {
@@ -141,7 +146,7 @@ const RegisterContainer = () => {
                         />
                         {!isValidPassword && (
                             <StyledErrorText>
-                                Invalid password format
+                                8 to 15 more special characters
                             </StyledErrorText>
                         )}
                     </StyledFormContainer>
