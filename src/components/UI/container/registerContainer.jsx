@@ -16,6 +16,7 @@ import AuthService from "@/service/authService"
 const RegisterContainer = () => {
     const [customerType, setCustomertype] = useState("Customer")
     const [isEmailChecked, setIsEmailChecked] = useState(false)
+    const [modalMsg, setModalMsg] = useState("")
     const [registerFormValue, handleFormValueChange] = useForm({
         email: "",
         username: "",
@@ -44,6 +45,7 @@ const RegisterContainer = () => {
             isValidConfirmPassword,
         ])
         if (!isValidRegisterInformation || !isEmailChecked) {
+            setModalMsg("Please check your information")
             handleOpenButtonClick(true)
             return
         }
@@ -70,6 +72,10 @@ const RegisterContainer = () => {
     const handleSelectChange = (e) => {
         const { value } = e.target
         setCustomertype(value)
+    }
+
+    const handleLoginButtonClick = () => {
+        history.push("/login")
     }
 
     return (
@@ -141,7 +147,7 @@ const RegisterContainer = () => {
                         />
                         {!isValidPassword && (
                             <StyledErrorText>
-                                Invalid password format
+                                8 to 15 more special characters
                             </StyledErrorText>
                         )}
                     </StyledFormContainer>
@@ -167,19 +173,30 @@ const RegisterContainer = () => {
                             onChangeEvent={handleSelectChange}
                         />
                     </StyledFormContainer>
-                    <Button
-                        type="default"
-                        bType="submit"
-                        width="100%"
-                        value="REGISTER"
-                    />
+                    <StyledButtonContainer>
+                        <Button
+                            type="default"
+                            bType="submit"
+                            width="100%"
+                            value="REGISTER"
+                        />
+                    </StyledButtonContainer>
+                    <StyledButtonContainer>
+                        <Button
+                            type="default"
+                            bType="button"
+                            width="100%"
+                            value="Login"
+                            onClickEvent={handleLoginButtonClick}
+                        />
+                    </StyledButtonContainer>
                 </Form>
             </StyledContainer>
             <Modal isOpen={isOpen} onClickEvent={handleCloseButtonClick}>
                 <StyledImgContainer
                     src={`${process.env.PUBLIC_URL}/img/logo.png`}
                 />
-                <Text context="Please check your information" />
+                <Text context={modalMsg} />
             </Modal>
         </StyledWrapper>
     )
@@ -227,6 +244,10 @@ const StyledImgContainer = styled.img`
     width: 70%;
     margin: 0 auto;
     padding-bottom: 2rem;
+`
+
+const StyledButtonContainer = styled.div`
+    margin-bottom: 0.5rem;
 `
 
 export default RegisterContainer
