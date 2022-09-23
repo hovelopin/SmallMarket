@@ -1,4 +1,4 @@
-import { useContext } from "react"
+import { useState } from "react"
 import { useHistory } from "react-router-dom"
 import useForm from "@/hooks/useForm"
 import useModal from "@/hooks/useModal"
@@ -14,11 +14,12 @@ import AuthService from "@/service/authService"
 import SessionStorage from "@/storage/sessionStorage"
 
 const LoginContainer = () => {
+    const [modalMsg, setModalMsg] = useState("")
+
     const [loginFormValue, handleFormValueChange] = useForm({
         email: "",
         password: "",
     })
-
     const [isOpen, handleOpenButtonClick, handleCloseButtonClick] =
         useModal(false)
 
@@ -35,13 +36,20 @@ const LoginContainer = () => {
             isValidPassword,
         ])
         if (!isValidUserInformation) {
+            setModalMsg("Please check your email or password")
             handleOpenButtonClick(true)
             return
         }
         const res = await AuthService.firebaseLoginRequest(email, password)
+        if (!res) {
+            setModalMsg("Please check your email or password")
+            handleOpenButtonClick(true)
+            return
+        }
         const { emailVerified } = res
         if (!emailVerified) {
             await AuthService.firebaseLogoutRequest()
+            setModalMsg("Please verify your email")
             handleOpenButtonClick(true)
             return
         }
@@ -123,7 +131,7 @@ const LoginContainer = () => {
                 </Form>
             </StyledContainer>
             <Modal isOpen={isOpen} onClickEvent={handleCloseButtonClick}>
-                <Text context="Please check your email or password" />
+                <Text context={modalMsg} />
             </Modal>
         </StyledWrapper>
     )
