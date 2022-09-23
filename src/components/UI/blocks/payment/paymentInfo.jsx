@@ -5,11 +5,12 @@ import Container from "@components/UI/atoms/container/container"
 import Theme from "@/util/style/theme"
 import { useState } from "react"
 
-const PaymentInfo = () => {
+const PaymentInfo = ({ cartItems }) => {
     const [checked, setChecked] = useState(true)
     const checkChangeHandler = () => {
         setChecked((prev) => !prev)
     }
+    console.log(cartItems)
     return (
         <InfoWapper>
             <ProfileContainer>
