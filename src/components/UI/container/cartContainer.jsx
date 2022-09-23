@@ -21,6 +21,7 @@ const CartContainer = () => {
     const discount = 10
 
     useEffect(async () => {
+        if (!authState) return
         const res = await CartService.firebaseCartInformationRequest(
             authState.uid
         )
