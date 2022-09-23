@@ -7,7 +7,15 @@ import {
     signInWithEmailAndPassword,
     signOut,
 } from "firebase/auth"
-import { doc, addDoc, setDoc, getDocs, collection } from "firebase/firestore"
+import {
+    doc,
+    addDoc,
+    setDoc,
+    getDocs,
+    collection,
+    query,
+    where,
+} from "firebase/firestore"
 import { firestore } from "@/service/firebaseService"
 import SessionStorage from "@/storage/sessionStorage"
 
@@ -96,6 +104,20 @@ AuthService.firebaseEmailCheckRequest = async function (userEmail) {
         if (email === userEmail) res.push(email)
     })
     return res.length
+}
+
+AuthService.firebaseCurrentUserInfoRequest = async function (setIsSeller) {
+    const userUuid = SessionStorage.getItem().uid
+
+    const q = query(
+        collection(firestore, "user"),
+        where("uuid", "==", userUuid)
+    )
+
+    const querySnapshot = await getDocs(q)
+    querySnapshot.docs.forEach((item) => {
+        setIsSeller(item.data().isSeller)
+    })
 }
 
 // TODO: 회원탈퇴 추가
