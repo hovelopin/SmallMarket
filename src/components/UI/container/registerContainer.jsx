@@ -56,10 +56,7 @@ const RegisterContainer = () => {
             email,
             customerType
         )
-        if (res) {
-            setModalMsg("Please verify your email")
-            if (!isOpen) history.push("/login")
-        }
+        if (res) history.push("/login")
     }
 
     const handleEmailCheckClick = async () => {
@@ -184,7 +181,7 @@ const RegisterContainer = () => {
                 <StyledImgContainer
                     src={`${process.env.PUBLIC_URL}/img/logo.png`}
                 />
-                <Text context="Please check your information" />
+                <Text context={modalMsg} />
             </Modal>
         </StyledWrapper>
     )
