@@ -1,4 +1,12 @@
-import { doc, addDoc, setDoc, getDocs, collection } from "firebase/firestore"
+import {
+    doc,
+    addDoc,
+    setDoc,
+    getDocs,
+    collection,
+    query,
+    where,
+} from "firebase/firestore"
 import { firestore } from "@/service/firebaseService"
 import ImageService from "@/service/imageService"
 import FoodItemType from "@/type/foodItemType"
@@ -61,6 +69,19 @@ ProductService.firebaseGetCategoryRequest = async function (categoryType) {
     })
     return FoodItemListype.createFoodItemListType(selectedItems)
         .$_foodItemListType
+}
+
+ProductService.firebaseProductInformationByIdReuqest = async function (uuid) {
+    const q = query(
+        collection(firestore, "product"),
+        where("uuid", "==", `${uuid}`)
+    )
+    const queryResult = await getDocs(q)
+    const find = []
+    queryResult.docs.forEach((item) => {
+        find.push(item.data())
+    })
+    return find
 }
 
 Object.freeze(ProductService)
