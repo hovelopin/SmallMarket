@@ -7,7 +7,7 @@ import DetailInfo from "@components/UI/blocks/detail/detailInfo"
 import Modal from "@components/UI/blocks/modal/modal"
 import Theme from "@util/style/theme"
 import AuthService from "@/service/authService"
-import ProductService from "@/service/productService"
+import CartService from "@/service/cartService"
 
 const DetailContainer = () => {
     const [modalMsg, setModalMsg] = useState("")
@@ -43,7 +43,7 @@ const DetailContainer = () => {
             handleOpenButtonClick(true)
             return
         }
-        const res = await ProductService.firebaseAddToCartRequeset(
+        const res = await CartService.firebaseAddToCartRequeset(
             item,
             authState.uid
         )
@@ -69,9 +69,7 @@ const DetailContainer = () => {
             </DetailHeadContainer>
             <DetailBodyWrapper>
                 <DetailBodyContainer>
-                    <DetailImageContainer
-                        src={`${process.env.PUBLIC_URL}/img/${item.img}`}
-                    />
+                    <DetailImageContainer src={item.img} />
                 </DetailBodyContainer>
                 <DetailSideContainer>
                     <DetailInfo

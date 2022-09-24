@@ -68,7 +68,9 @@ AuthService.firebaseRegiserRequest = async function (
                 { merge: true }
             )
         }
-
+        await addDoc(collection(firestore, "cart"), {
+            userUuid: user.uid,
+        })
         return user
     } catch (e) {
         return e
