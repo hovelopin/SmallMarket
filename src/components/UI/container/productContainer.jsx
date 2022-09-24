@@ -5,7 +5,6 @@ import Container from "@components/UI/atoms/container/container"
 import Carousel from "@components/UI/blocks/carousel/carousel"
 import Grid from "@components/UI/atoms/grid/grid"
 import Card from "@components/UI/blocks/card/card"
-import Data from "@/dev/data"
 import ProductService from "@/service/productService"
 import Theme from "@util/style/theme"
 
@@ -16,14 +15,12 @@ const ProductContainer = () => {
 
     const history = useHistory()
 
-    const categories = ProductService.firebaseGetCategoryRequest(category)
-
-    console.log(categories)
-    useEffect(() => {
-        fetchFoodItems
-            .call(this, category)
-            .then((res) => setItems(res.$_foodItemListType))
-    }, [category])
+    useEffect(async () => {
+        const selectedItems = await ProductService.firebaseGetCategoryRequest(
+            category
+        )
+        setItems(selectedItems)
+    }, [])
 
     const handleDetailButtonClick = (item) => () => {
         history.push({
@@ -62,13 +59,6 @@ const ProductContainer = () => {
             </StyledContainer>
         </Container>
     )
-}
-
-function fetchFoodItems(category) {
-    if (category === "vegetables") return Data.createVegetableItemData()
-    else if (category === "drink") return Data.createDrinkItemType()
-    else if (category === "meets") return Data.createMeatItemData()
-    else if (category === "normal") return Data.createNormalItemType()
 }
 
 const StyledContainer = styled.div`
