@@ -7,9 +7,7 @@ const Card = ({ name, description, price, img, onClickEvent }) => {
     return (
         <Container width="100%">
             <MyCard.StyledCardContainer>
-                <MyCard.StyledCardImage
-                    src={`${process.env.PUBLIC_URL}/img/${img}`}
-                />
+                <MyCard.StyledCardImage src={img} />
                 <MyCard.StyledCardBody>
                     <Text type="large" context={name} />
                 </MyCard.StyledCardBody>
