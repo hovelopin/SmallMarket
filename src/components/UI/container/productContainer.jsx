@@ -1,20 +1,28 @@
 import React, { useState, useEffect } from "react"
 import { useParams, useHistory } from "react-router-dom"
+import usePaginate from "@/hooks/usePaginate"
 import styled from "styled-components"
+import Select from "@components/UI/atoms/select/select"
 import Container from "@components/UI/atoms/container/container"
 import Carousel from "@components/UI/blocks/carousel/carousel"
+import Paginate from "@components/UI/blocks/paginate/paginate"
+import ProductService from "@/service/productService"
 import Grid from "@components/UI/atoms/grid/grid"
 import Card from "@components/UI/blocks/card/card"
-import ProductService from "@/service/productService"
 import Theme from "@util/style/theme"
 
 const ProductContainer = () => {
+    const [pageValue, handlePageValueChange] = usePaginate({
+        limit: 12,
+        page: 1,
+    })
+    const { limit, page } = pageValue
+    const options = ["View 12 each", "View 16 each", "View 20 each"]
+    const offset = (page - 1) * limit
+
     const [items, setItems] = useState([])
-
     const { category } = useParams()
-
     const history = useHistory()
-
     useEffect(async () => {
         const selectedItems = await ProductService.firebaseGetCategoryRequest(
             category
@@ -31,6 +39,14 @@ const ProductContainer = () => {
         })
     }
 
+    const handlePageChangeButtonClick = (changePage) => () => {
+        handlePageValueChange(changePage)
+    }
+
+    const handleLimitChange = (e) => {
+        const newLimit = parseInt(e.target.value.replace(/[^0-9]/g, ""))
+        handlePageValueChange({ name: "limit", value: newLimit })
+    }
     return (
         <Container width="100%">
             <StyledItemHeaderContainer>
@@ -42,9 +58,12 @@ const ProductContainer = () => {
             <StyledCarouselContainer>
                 <Carousel />
             </StyledCarouselContainer>
-            <StyledContainer width="100%">
+            <StyledContainer>
+                <Select options={options} onChangeEvent={handleLimitChange} />
+            </StyledContainer>
+            <StyledProductContainer>
                 <Grid repeat={4} axis="column" gap="2rem">
-                    {items.map((item) => (
+                    {items.slice(offset, offset + limit).map((item) => (
                         <Card
                             key={item.uuid}
                             name={item.name}
@@ -55,12 +74,23 @@ const ProductContainer = () => {
                         />
                     ))}
                 </Grid>
-            </StyledContainer>
+            </StyledProductContainer>
+            <Paginate
+                limit={limit}
+                total={items.length}
+                page={page}
+                onPageChangeButtonClick={handlePageChangeButtonClick}
+            />
         </Container>
     )
 }
 
 const StyledContainer = styled.div`
+    width: 10%;
+    margin-top: 3%;
+    margin-left: 80%;
+`
+const StyledProductContainer = styled.div`
     width: 100%;
     display: grid;
     margin-top: 3rem;
