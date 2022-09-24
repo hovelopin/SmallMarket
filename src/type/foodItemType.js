@@ -108,6 +108,7 @@ FoodItemType.craeteType = function (productItemData) {
         price,
         quantity,
         img,
+        seller,
         sellerUuid,
         origin,
     } = productItemData
@@ -120,7 +121,7 @@ FoodItemType.craeteType = function (productItemData) {
                 price,
                 quantity,
                 img,
-                sellerUuid,
+                sellerUuid || seller,
                 origin
             )
 
@@ -132,7 +133,7 @@ FoodItemType.craeteType = function (productItemData) {
                 price,
                 quantity,
                 img,
-                sellerUuid,
+                sellerUuid || seller,
                 origin
             )
 
@@ -144,7 +145,7 @@ FoodItemType.craeteType = function (productItemData) {
                 price,
                 quantity,
                 img,
-                sellerUuid,
+                sellerUuid || seller,
                 origin
             )
 
@@ -156,7 +157,7 @@ FoodItemType.craeteType = function (productItemData) {
                 price,
                 quantity,
                 img,
-                sellerUuid,
+                sellerUuid || seller,
                 origin
             )
 
