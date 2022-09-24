@@ -59,22 +59,17 @@ const ProductContainer = () => {
                 <Carousel />
             </StyledCarouselContainer>
             <StyledContainer>
-                <Select
-                    options={options}
-                    onChangeEvent={handleLimitChange}
-                    selectOption="12개씩 보기"
-                ></Select>
+                <Select options={options} onChangeEvent={handleLimitChange} />
             </StyledContainer>
             <StyledProductContainer>
                 <Grid repeat={4} axis="column" gap="2rem">
                     {items.slice(offset, offset + limit).map((item) => (
                         <Card
                             key={item.uuid}
-                            img={item.img}
-                            uuid={item.uuid}
                             name={item.name}
+                            description={item.description}
                             price={item.price}
-                            quantity={item.quantity}
+                            img={item.img}
                             onClickEvent={handleDetailButtonClick(item)}
                         />
                     ))}
