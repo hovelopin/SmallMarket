@@ -117,7 +117,8 @@ AuthService.firebaseCurrentUserInfoRequest = async function () {
 
     const querySnapshot = await getDocs(q)
     querySnapshot.docs.forEach((item) => {
-        userInfo.push(item.data())
+        const { isSeller } = item.data()
+        userInfo.push(isSeller)
     })
 
     return userInfo
