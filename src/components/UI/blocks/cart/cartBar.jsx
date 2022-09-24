@@ -38,7 +38,7 @@ const CartBar = ({
                         type="black"
                         width="3rem"
                         value="+"
-                        onClickEvent={onAddButtonClickEvent}
+                        onClickEvent={onAddButtonClickEvent(uuid)}
                     />
                     <StyledTextBox>
                         <Text type="default" context={quantity} />
@@ -47,7 +47,7 @@ const CartBar = ({
                         type="black"
                         width="3rem"
                         value="-"
-                        onClickEvent={onMinusButtonClickEvent}
+                        onClickEvent={onMinusButtonClickEvent(uuid)}
                     />
                 </StyledCartQuantity>
                 <StyledCartPrice>

@@ -47,11 +47,10 @@ const ProductContainer = () => {
                     {items.map((item) => (
                         <Card
                             key={item.uuid}
-                            img={item.img}
-                            uuid={item.uuid}
                             name={item.name}
+                            description={item.description}
                             price={item.price}
-                            quantity={item.quantity}
+                            img={item.img}
                             onClickEvent={handleDetailButtonClick(item)}
                         />
                     ))}

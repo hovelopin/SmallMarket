@@ -1,7 +1,7 @@
-import Container from "../../atoms/container/container"
-import Text from "../../atoms/text/text"
-import Button from "../../atoms/button/button"
-import * as MyCard from "./style"
+import Container from "@components/UI/atoms/container/container"
+import Text from "@components/UI/atoms/text/text"
+import Button from "@components/UI/atoms/button/button"
+import * as MyCard from "@components/UI/blocks/card/style"
 
 const Card = ({ name, description, price, img, onClickEvent }) => {
     return (
@@ -10,9 +10,6 @@ const Card = ({ name, description, price, img, onClickEvent }) => {
                 <MyCard.StyledCardImage src={img} />
                 <MyCard.StyledCardBody>
                     <Text type="large" context={name} />
-                </MyCard.StyledCardBody>
-                <MyCard.StyledCardBody>
-                    <Text type="default" context={name} />
                 </MyCard.StyledCardBody>
                 <MyCard.StyledCardBody>
                     <Text type="default" context={description} />

@@ -7,9 +7,12 @@ import {
     query,
     where,
     deleteDoc,
+    updateDoc,
 } from "firebase/firestore"
 import { firestore } from "@/service/firebaseService"
+import ProductService from "@/service/productService"
 import FoodItemType from "@/type/foodItemType"
+import ErrorUtil from "@util/errorUtil"
 
 const CartService = {}
 
@@ -40,7 +43,11 @@ CartService.firebaseCartInformationRequest = async function (userUuid) {
     return cartArr
 }
 
-CartService.firebaseAddToCartRequeset = async function (item, userUuid) {
+CartService.firebaseAddToCartRequeset = async function (
+    item,
+    userUuid,
+    quantity
+) {
     const originCart = await firebaseCartDocsRequest()
     if (!originCart) return false
     if (originCart.filter((oc) => oc.productUuid === item.uuid).length)
@@ -51,7 +58,7 @@ CartService.firebaseAddToCartRequeset = async function (item, userUuid) {
         name: item.name,
         description: item.description,
         price: item.price,
-        quantity: item.quantity,
+        quantity: quantity,
         img: item.img,
         seller: item.seller,
         origin: item.origin,
@@ -84,6 +91,43 @@ CartService.firebaseCartDeleteItemRequest = async function (
     })
     const [uuid] = res
     await deleteDoc(doc(firestore, "cart", `${uuid}`))
+}
+
+CartService.firebaseCartQuantityChangeRequest = async function (
+    userUuid,
+    productUuid,
+    changeName
+) {
+    const q = query(
+        collection(firestore, "cart"),
+        where("userUuid", "==", userUuid),
+        where("productUuid", "==", productUuid)
+    )
+    const qRes = await getDocs(q)
+    const res = []
+    qRes.docs.forEach((item) => {
+        res.push(item.data())
+    })
+    const [target] = res
+    const cartRef = doc(firestore, "cart", `${target.uuid}`)
+    const [find] = await ProductService.firebaseProductInformationByIdReuqest(
+        target.productUuid
+    )
+    if (changeName === "Increment") {
+        if (parseInt(target.quantity) + 1 > parseInt(find.quantity))
+            return false
+        await updateDoc(cartRef, {
+            quantity: parseInt(target.quantity) + 1,
+        })
+    } else if (changeName === "Decrement") {
+        if (parseInt(target.quantity) - 1 < 1) return false
+        await updateDoc(cartRef, {
+            quantity: parseInt(target.quantity) - 1,
+        })
+    } else {
+        ErrorUtil.notImplemented()
+    }
+    return true
 }
 
 async function firebaseCartDocsRequest() {

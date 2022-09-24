@@ -11,7 +11,7 @@ import CartService from "@/service/cartService"
 
 const DetailContainer = () => {
     const [modalMsg, setModalMsg] = useState("")
-    const [quantity, setQuantity] = useState(0)
+    const [quantity, setQuantity] = useState(1)
 
     const [isOpen, handleOpenButtonClick, handleCloseButtonClick] =
         useModal(false)
@@ -32,7 +32,7 @@ const DetailContainer = () => {
             pathname: `/payment/${authState.uid}`,
             state: {
                 ...item,
-                quantity: !quantity ? 1 : quantity,
+                quantity: quantity === 1 ? 1 : quantity,
             },
         })
     }, [])
@@ -45,7 +45,8 @@ const DetailContainer = () => {
         }
         const res = await CartService.firebaseAddToCartRequeset(
             item,
-            authState.uid
+            authState.uid,
+            quantity
         )
         if (!res) {
             setModalMsg("The item is already exist your cart")
