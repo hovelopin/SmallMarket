@@ -1,21 +1,28 @@
 import styled from "styled-components"
-import Grid from "../../atoms/grid/grid"
-import Card from "../card/card"
+import Grid from "@components/UI/atoms/grid/grid"
+import Card from "@components/UI/blocks/card/card"
+
 const Paginate = ({
-    limit,
-    page,
     items,
-    offset,
+    limit,
     total,
-    onClickEvent,
+    onDetailButtonClickEvent,
+    page,
     setPage,
 }) => {
     const numPages = Math.ceil(total / limit)
-    const pageUpChangeHandler = (page) => {
+    const offset = (page - 1) * limit
+    const pageUpButtonClick = () => {
         setPage(page + 1)
     }
-    const pageDownChangeHandler = (page) => {
+    const pageDownButtonClick = () => {
         setPage(page - 1)
+    }
+    const pageButtonClick = (i) => () => {
+        setPage(i + 1)
+    }
+    const handleDetailButtonClick = (item) => () => {
+        onDetailButtonClickEvent(item)
     }
     return (
         <StyledContainer>
@@ -34,7 +41,7 @@ const Paginate = ({
             </Grid>
             <StyledNav>
                 <StyledButton
-                    onClick={pageDownChangeHandler(page)}
+                    onClick={pageDownButtonClick}
                     disabled={page === 1}
                 >
                     &lt;
@@ -44,44 +51,23 @@ const Paginate = ({
                     .map((_, i) => (
                         <StyledButton
                             key={i + 1}
-                            onClick={pageUpChangeHandler(page)}
+                            onClick={pageButtonClick(i)}
                             aria-current={page === i + 1 ? "page" : null}
                         >
                             {i + 1}
                         </StyledButton>
                     ))}
-                <Button
-                    onClick={pageUpChangeHandler(page)}
+                <StyledButton
+                    onClick={pageUpButtonClick}
                     disabled={page === numPages}
                 >
                     &gt;
-                </Button>
+                </StyledButton>
             </StyledNav>
         </StyledContainer>
     )
 }
 
-/*
-<Nav>
-        <Button onClick={() => setPage(page - 1)} disabled={page === 1}>
-          &lt;
-        </Button>
-        {Array(numPages)
-          .fill()
-          .map((_, i) => (
-            <Button
-              key={i + 1}
-              onClick={() => setPage(i + 1)}
-              aria-current={page === i + 1 ? "page" : null}
-            >
-              {i + 1}
-            </Button>
-          ))}
-        <Button onClick={() => setPage(page + 1)} disabled={page === numPages}>
-          &gt;
-        </Button>
-      </Nav>
-*/
 export default Paginate
 
 const StyledContainer = styled.div`
