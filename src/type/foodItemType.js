@@ -88,6 +88,7 @@ FoodItemType.createNormal = function (
     return new Item(
         uuid,
         name,
+        description,
         price,
         quantity,
         img,
