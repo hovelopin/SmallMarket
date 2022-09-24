@@ -79,7 +79,7 @@ const CartContainer = () => {
                                         <CartBarContainer>
                                             <CartBar
                                                 name={item.name}
-                                                img={`${process.env.PUBLIC_URL}/img/${item.img}`}
+                                                img={item.img}
                                                 description={item.description}
                                                 quantity={item.quantity}
                                                 price={item.price}
