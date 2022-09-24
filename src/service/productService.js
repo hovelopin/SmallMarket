@@ -1,12 +1,4 @@
-import {
-    doc,
-    addDoc,
-    setDoc,
-    getDocs,
-    collection,
-    query,
-    where,
-} from "firebase/firestore"
+import { doc, addDoc, setDoc, getDocs, collection } from "firebase/firestore"
 import { firestore } from "@/service/firebaseService"
 import ImageService from "@/service/imageService"
 import FoodItemType from "@/type/foodItemType"
@@ -15,18 +7,6 @@ import FoodItemListype from "@/type/foodItemListType"
 const ProductService = {}
 
 ProductService.type = "ProductServiceType"
-
-ProductService.firebaseAddToCartRequeset = async function (item, userUuid) {
-    const cartDocs = collection(firestore, "cart")
-    const cartQuery = query(cartDocs, where("userUuid", "==", `${userUuid}`))
-    const carts = await getDocs(cartQuery)
-    const cartArray = []
-    carts.docs.forEach((cart) => {
-        cartArray(cart)
-    })
-    const res = cartArray.find((cart) => cart.productUuid === item.uuid)
-    if (res) return false
-}
 
 ProductService.firebaseAddProductRequest = async function (
     userUuid,
