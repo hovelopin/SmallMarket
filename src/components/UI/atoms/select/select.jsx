@@ -1,14 +1,10 @@
 import * as Selector from "@components/UI/atoms/select/syle"
 
-const Select = ({ width, options, defaultSelected, onChangeEvent }) => {
+const Select = ({ width, options, onChangeEvent }) => {
     return (
         <Selector.StyledSelect width={width} onChange={onChangeEvent}>
             {options.map((value) => (
-                <Selector.StyledOption
-                    key={value}
-                    value={value}
-                    selected={value === defaultSelected}
-                >
+                <Selector.StyledOption key={value} value={value}>
                     {value}
                 </Selector.StyledOption>
             ))}
