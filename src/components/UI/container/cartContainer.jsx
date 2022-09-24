@@ -16,7 +16,7 @@ const CartContainer = () => {
 
     const authState = AuthService.firebaseCurrentUserReuqest()
     const totalPrice = cartItems.length
-        ? cartItems.reduce((acc, cur) => acc + cur.price, 0)
+        ? cartItems.reduce((acc, cur) => acc + parseInt(cur.price), 0)
         : 0
     const discount = 10
 
@@ -152,6 +152,7 @@ const CartBodyItemContainer = styled.div`
 
 const CartBodyPayMentContainer = styled.div`
     width: 20%;
+    margin-bottom: 2rem;
 `
 
 export default CartContainer
