@@ -8,6 +8,7 @@ import Theme from "@/util/style/theme"
 
 const CartBar = ({
     checked,
+    uuid,
     name,
     description,
     img,
@@ -57,7 +58,7 @@ const CartBar = ({
                         type="black"
                         width="auto"
                         name="trash"
-                        onClickEvent={onDeleteButtonClickEvent}
+                        onClickEvent={onDeleteButtonClickEvent(uuid)}
                     />
                 </StyledCartIcon>
             </StyledCartContainer>
