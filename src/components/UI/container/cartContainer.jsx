@@ -16,7 +16,10 @@ const CartContainer = () => {
 
     const authState = AuthService.firebaseCurrentUserReuqest()
     const totalPrice = cartItems.length
-        ? cartItems.reduce((acc, cur) => acc + parseInt(cur.price), 0)
+        ? cartItems.reduce(
+              (acc, cur) => acc + parseInt(cur.price) * parseInt(cur.quantity),
+              0
+          )
         : 0
     const discount = 10
 
@@ -40,13 +43,39 @@ const CartContainer = () => {
         setCartItems(currentCartItems)
     }
 
-    const handleAddButtonClick = useCallback(() => {
-        console.log("Add")
-    }, [])
+    const handleAddButtonClick = useCallback(
+        (productUuid) => async () => {
+            const res = await CartService.firebaseCartQuantityChangeRequest(
+                authState.uid,
+                productUuid,
+                "Increment"
+            )
+            if (res) {
+                const items = await CartService.firebaseCartInformationRequest(
+                    authState.uid
+                )
+                setCartItems(items)
+            }
+        },
+        []
+    )
 
-    const handleMinusButtonClick = useCallback(() => {
-        console.log("Minus")
-    }, [])
+    const handleMinusButtonClick = useCallback(
+        (productUuid) => async () => {
+            const res = await CartService.firebaseCartQuantityChangeRequest(
+                authState.uid,
+                productUuid,
+                "Decrement"
+            )
+            if (res) {
+                const items = await CartService.firebaseCartInformationRequest(
+                    authState.uid
+                )
+                setCartItems(items)
+            }
+        },
+        []
+    )
 
     const handleDeleteButtonClick = useCallback(
         (uuid) => async () => {
