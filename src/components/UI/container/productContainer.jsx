@@ -20,7 +20,7 @@ const ProductContainer = () => {
             category
         )
         setItems(selectedItems)
-    }, [])
+    }, [category])
 
     const handleDetailButtonClick = (item) => () => {
         history.push({
