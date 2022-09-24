@@ -106,8 +106,9 @@ AuthService.firebaseEmailCheckRequest = async function (userEmail) {
     return res.length
 }
 
-AuthService.firebaseCurrentUserInfoRequest = async function (setIsSeller) {
+AuthService.firebaseCurrentUserInfoRequest = async function () {
     const userUuid = SessionStorage.getItem().uid
+    const userInfo = []
 
     const q = query(
         collection(firestore, "user"),
@@ -116,8 +117,10 @@ AuthService.firebaseCurrentUserInfoRequest = async function (setIsSeller) {
 
     const querySnapshot = await getDocs(q)
     querySnapshot.docs.forEach((item) => {
-        setIsSeller(item.data().isSeller)
+        userInfo.push(item.data())
     })
+
+    return userInfo
 }
 
 // TODO: 회원탈퇴 추가

@@ -37,7 +37,9 @@ const MyPageContainer = () => {
     const history = useHistory()
 
     useEffect(async () => {
-        await AuthService.firebaseCurrentUserInfoRequest(setIsSeller)
+        const userInfo = await AuthService.firebaseCurrentUserInfoRequest()
+
+        setIsSeller(userInfo[0].isSeller)
     }, [])
 
     const menuItems = [
