@@ -17,7 +17,7 @@ class Category extends NameUtil {
     }
 }
 
-Category.V = new Category("Vegatable")
+Category.V = new Category("Vegetable")
 Category.M = new Category("Meat")
 Category.D = new Category("Drink")
 Category.N = new Category("Normal")
