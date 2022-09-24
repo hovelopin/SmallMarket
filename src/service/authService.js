@@ -6,18 +6,21 @@ import {
     sendEmailVerification,
     signInWithEmailAndPassword,
     signOut,
+    deleteUser,
 } from "firebase/auth"
 import {
     doc,
     addDoc,
     setDoc,
     getDocs,
+    deleteDoc,
     collection,
     query,
     where,
 } from "firebase/firestore"
 import { firestore } from "@/service/firebaseService"
 import SessionStorage from "@/storage/sessionStorage"
+import ErrorUtil from "@util/errorUtil"
 
 const AuthService = {}
 
@@ -126,7 +129,32 @@ AuthService.firebaseCurrentUserInfoRequest = async function () {
     return userInfo
 }
 
-// TODO: 회원탈퇴 추가
+AuthService.firebaseAllUserInformationRequest = async function () {
+    const docs = await getDocs(collection(firestore, "user"))
+    const users = []
+    docs.forEach((user) => {
+        users.push(user.data())
+    })
+    return users
+}
+
+AuthService.firebaseUserDeleteRequest = async function (uuid) {
+    const auth = getAuth()
+    const user = auth.currentUser
+    await deleteDoc(doc(firestore, "user", `${uuid}`))
+    deleteUser(user).then(() => {
+        signOut()
+        SessionStorage.clear()
+    })
+}
+
+AuthService.firebaseAdminUserRequest = async function (status) {
+    switch (status) {
+        case "Delete":
+        default:
+            ErrorUtil.notImplemented()
+    }
+}
 
 export default AuthService
 Object.freeze(AuthService)
