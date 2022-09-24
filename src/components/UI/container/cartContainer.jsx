@@ -48,9 +48,17 @@ const CartContainer = () => {
         console.log("Minus")
     }, [])
 
-    const handleDeleteButtonClick = useCallback(() => {
-        console.log("Delete")
-    }, [])
+    const handleDeleteButtonClick = useCallback(
+        (uuid) => async () => {
+            await CartService.firebaseCartDeleteItemRequest(authState.uid, uuid)
+            const res = await CartService.firebaseCartInformationRequest(
+                authState.uid
+            )
+            const items = res || []
+            setCartItems(items)
+        },
+        []
+    )
 
     if (!cartItems.length) {
         return (
@@ -78,6 +86,7 @@ const CartContainer = () => {
                                     >
                                         <CartBarContainer>
                                             <CartBar
+                                                uuid={item.uuid}
                                                 name={item.name}
                                                 img={item.img}
                                                 description={item.description}
