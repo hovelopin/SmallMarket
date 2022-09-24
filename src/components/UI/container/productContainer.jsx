@@ -1,20 +1,28 @@
 import React, { useState, useEffect } from "react"
 import { useParams, useHistory } from "react-router-dom"
+import usePaginate from "@/hooks/usePaginate"
 import styled from "styled-components"
 import Select from "@components/UI/atoms/select/select"
 import Container from "@components/UI/atoms/container/container"
 import Carousel from "@components/UI/blocks/carousel/carousel"
 import Paginate from "@components/UI/blocks/paginate/paginate"
 import ProductService from "@/service/productService"
+import Grid from "@components/UI/atoms/grid/grid"
+import Card from "@components/UI/blocks/card/card"
 import Theme from "@util/style/theme"
 
 const ProductContainer = () => {
+    const [pageValue, handlePageValueChange] = usePaginate({
+        limit: 12,
+        page: 1,
+    })
+    const { limit, page } = pageValue
+    const options = ["View 12 each", "View 16 each", "View 20 each"]
+    const offset = (page - 1) * limit
+
     const [items, setItems] = useState([])
-    const [limit, setLimit] = useState(12)
-    const [page, setPage] = useState(1)
     const { category } = useParams()
     const history = useHistory()
-    const options = ["8개씩 보기", "12개씩 보기", "16개씩 보기"]
     useEffect(async () => {
         const selectedItems = await ProductService.firebaseGetCategoryRequest(
             category
@@ -22,7 +30,7 @@ const ProductContainer = () => {
         setItems(selectedItems)
     }, [category])
 
-    const handleDetailButtonClick = (item) => {
+    const handleDetailButtonClick = (item) => () => {
         history.push({
             pathname: `/detail/${item.uuid}`,
             state: {
@@ -31,9 +39,13 @@ const ProductContainer = () => {
         })
     }
 
+    const handlePageChangeButtonClick = (changePage) => () => {
+        handlePageValueChange(changePage)
+    }
+
     const handleLimitChange = (e) => {
         const newLimit = parseInt(e.target.value.replace(/[^0-9]/g, ""))
-        setLimit(newLimit)
+        handlePageValueChange({ name: "limit", value: newLimit })
     }
     return (
         <Container width="100%">
@@ -50,17 +62,30 @@ const ProductContainer = () => {
                 <Select
                     options={options}
                     onChangeEvent={handleLimitChange}
-                    defaultSelected="12개씩 보기"
+                    selectOption="12개씩 보기"
                 ></Select>
             </StyledContainer>
+            <StyledProductContainer>
+                <Grid repeat={4} axis="column" gap="2rem">
+                    {items.slice(offset, offset + limit).map((item) => (
+                        <Card
+                            key={item.uuid}
+                            img={item.img}
+                            uuid={item.uuid}
+                            name={item.name}
+                            price={item.price}
+                            quantity={item.quantity}
+                            onClickEvent={handleDetailButtonClick(item)}
+                        />
+                    ))}
+                </Grid>
+            </StyledProductContainer>
             <Paginate
-                items={items}
                 limit={limit}
                 total={items.length}
-                onDetailButtonClickEvent={handleDetailButtonClick}
                 page={page}
-                setPage={setPage}
-            ></Paginate>
+                onPageChangeButtonClick={handlePageChangeButtonClick}
+            />
         </Container>
     )
 }
@@ -69,6 +94,12 @@ const StyledContainer = styled.div`
     width: 10%;
     margin-top: 3%;
     margin-left: 80%;
+`
+const StyledProductContainer = styled.div`
+    width: 100%;
+    display: grid;
+    margin-top: 3rem;
+    place-items: center;
 `
 
 const StyledItemHeaderContainer = styled.div`

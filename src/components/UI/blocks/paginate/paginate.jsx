@@ -1,47 +1,15 @@
 import styled from "styled-components"
-import Grid from "@components/UI/atoms/grid/grid"
-import Card from "@components/UI/blocks/card/card"
 
-const Paginate = ({
-    items,
-    limit,
-    total,
-    onDetailButtonClickEvent,
-    page,
-    setPage,
-}) => {
+const Paginate = ({ limit, total, page, onPageChangeButtonClick }) => {
     const numPages = Math.ceil(total / limit)
-    const offset = (page - 1) * limit
-    const pageUpButtonClick = () => {
-        setPage(page + 1)
-    }
-    const pageDownButtonClick = () => {
-        setPage(page - 1)
-    }
-    const pageButtonClick = (i) => () => {
-        setPage(i + 1)
-    }
-    const handleDetailButtonClick = (item) => () => {
-        onDetailButtonClickEvent(item)
-    }
     return (
         <StyledContainer>
-            <Grid repeat={4} axis="column" gap="2rem">
-                {items.slice(offset, offset + limit).map((item) => (
-                    <Card
-                        key={item.uuid}
-                        img={item.img}
-                        uuid={item.uuid}
-                        name={item.name}
-                        price={item.price}
-                        quantity={item.quantity}
-                        onClickEvent={handleDetailButtonClick(item)}
-                    />
-                ))}
-            </Grid>
             <StyledNav>
                 <StyledButton
-                    onClick={pageDownButtonClick}
+                    onClick={onPageChangeButtonClick({
+                        name: "page",
+                        value: page - 1,
+                    })}
                     disabled={page === 1}
                 >
                     &lt;
@@ -51,14 +19,20 @@ const Paginate = ({
                     .map((_, i) => (
                         <StyledButton
                             key={i + 1}
-                            onClick={pageButtonClick(i)}
+                            onClick={onPageChangeButtonClick({
+                                name: "page",
+                                value: i + 1,
+                            })}
                             aria-current={page === i + 1 ? "page" : null}
                         >
                             {i + 1}
                         </StyledButton>
                     ))}
                 <StyledButton
-                    onClick={pageUpButtonClick}
+                    onClick={onPageChangeButtonClick({
+                        name: "page",
+                        value: page + 1,
+                    })}
                     disabled={page === numPages}
                 >
                     &gt;
