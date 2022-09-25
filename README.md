@@ -22,6 +22,12 @@ SmallMarket V2: 2022.09.05 ~ 진행중
 ## Release: 아직...
 ```
 
+# Team
+
+```
+FrontEnd: FoxMon(김준호), Leo(이상원), Velo(박재현), hovelopin(김호진)
+```
+
 # :mag: Thchnical Skills
 
 -   Library: React.js ( React hook )
