@@ -3,7 +3,7 @@ import Text from "@components/UI/atoms/text/text"
 import Button from "@components/UI/atoms/button/button"
 import Theme from "@util/style/theme"
 
-const MyPageOrderList = ({ productItem, onClickRefundEvnet }) => {
+const MyPageOrderList = ({ productItem, onClickDetailEvnet }) => {
     return (
         <MyPageInfoMain>
             <MyPageInfoHeader>
@@ -13,28 +13,31 @@ const MyPageOrderList = ({ productItem, onClickRefundEvnet }) => {
                 {productItem.map((p) => {
                     return (
                         <StyledBodyBar key={p.name}>
-                            <StyledBodyImg
-                                src={`${process.env.PUBLIC_URL}/img/${p.img}`}
-                            />
+                            <StyledBodyImg src={p.img} />
                             <StyledBodyContent>
                                 <StyledBodyContentTitle>
                                     <Text type="default" context={p.name} />
                                 </StyledBodyContentTitle>
                                 <StyledBodyContentDesc>
-                                    <Text type="default" context={p.date} />
-                                    <Text type="default" context={p.price} />
+                                    <Text
+                                        type="default"
+                                        context={`${p.price} ￦`}
+                                    />
                                 </StyledBodyContentDesc>
                                 <StyledBodyContentState>
-                                    <Text type="default" context={p.payState} />
+                                    <Text
+                                        type="default"
+                                        context="Payment completion"
+                                    />
                                 </StyledBodyContentState>
                             </StyledBodyContent>
-                            <StyledBodyRefund>
+                            <StyledBodyDetail>
                                 <Button
                                     type="default"
-                                    value="Refund"
-                                    onClickEvent={onClickRefundEvnet}
+                                    value="Detail"
+                                    onClickEvent={onClickDetailEvnet(p)}
                                 />
-                            </StyledBodyRefund>
+                            </StyledBodyDetail>
                         </StyledBodyBar>
                     )
                 })}
@@ -67,28 +70,29 @@ const StyledBodyBar = styled.div`
     border: 3px solid ${Theme.colors.silverGray};
 `
 const StyledBodyImg = styled.img`
-    width: 10%;
+    width: 20%;
 `
 
 const StyledBodyContent = styled.div`
-    width: 40%;
+    width: 100%;
 `
 
 const StyledBodyContentTitle = styled.div`
     width: 100%;
+    padding-left: 1rem;
 `
 
 const StyledBodyContentDesc = styled.div`
     width: 100%;
-    display: flex;
-    justify-content: space-between;
+    padding-left: 1rem;
 `
 
 const StyledBodyContentState = styled.div`
     width: 100%;
+    padding-left: 1rem;
 `
 
-const StyledBodyRefund = styled.div`
+const StyledBodyDetail = styled.div`
     width: 20%;
 `
 

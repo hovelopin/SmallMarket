@@ -14,12 +14,13 @@ import Validation from "@util/validation/validation"
 
 const PaymentContainer = () => {
     const [userState, setUserState] = useState(null)
+    const [isPostOpen, setIsPostOpen] = useState(false)
+    const [address, setAddress] = useState("")
+    const [zoneCode, setZoneCode] = useState("")
 
     const [userInfoFormValue, handleFormValueChange] = useForm({
         phoneNumber: "",
-        address: "",
         detailAddress: "",
-        zoneCode: "",
     })
     const [isOpen, handleOpenButtonClick, handleCloseButtonClick] =
         useModal(false)
@@ -36,7 +37,7 @@ const PaymentContainer = () => {
         phoneNumber: "",
         address: "",
     }
-    const { phoneNumber, address, detailAddress, zoneCode } = userInfoFormValue
+    const { phoneNumber, detailAddress } = userInfoFormValue
     const isValidPhoneNumber = Validation.validatePhoneNumber(phoneNumber)
     errorMsg.phoneNumber = isValidPhoneNumber
         ? ""
@@ -55,6 +56,18 @@ const PaymentContainer = () => {
         const res = await AuthService.firebaseCurrentUserInfoRequest()
         setUserState(res)
     }, [])
+
+    const handlePostButtonClick = () => {
+        console.log(isPostOpen)
+        setIsPostOpen(true)
+    }
+
+    const handlePostComplete = (data) => {
+        const { address, zonecode } = data
+        setAddress(address)
+        setZoneCode(zonecode)
+        setIsPostOpen(false)
+    }
 
     const handlePaymentSubmit = async (e) => {
         e.preventDefault()
@@ -80,9 +93,16 @@ const PaymentContainer = () => {
                 fail_url: `${process.env.REACT_APP_SMV2}`,
                 cancel_url: `${process.env.REACT_APP_SMV2}`,
             }
-            const res = await PayService.paymentRequest(requestParams)
+            const res = await PayService.paymentRequest(
+                "/v1/payment/ready",
+                requestParams
+            )
             const { next_redirect_pc_url } = res.data
             window.open(next_redirect_pc_url)
+            await PayService.firebaseAddPaymentRequest(
+                cartItems,
+                userState.uuid
+            )
         } catch (e) {
             if (e) {
                 handleOpenButtonClick(true)
@@ -104,9 +124,14 @@ const PaymentContainer = () => {
                 <PaymentInfo userState={userState} cartItems={cartItems} />
                 <PaymentDetail
                     totalPrice={totalPrice}
+                    isPostOpen={isPostOpen}
+                    address={address}
+                    zoneCode={zoneCode}
                     errorMsg={errorMsg}
                     userInfoFormValue={userInfoFormValue}
                     onChangeFormValueEvent={handleFormValueChange}
+                    onClickPostButtonEvent={handlePostButtonClick}
+                    onPostCompleteEvent={handlePostComplete}
                     onPaymentSubmitEvent={handlePaymentSubmit}
                 />
             </PaymentWapper>

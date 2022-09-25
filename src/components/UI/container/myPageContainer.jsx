@@ -16,6 +16,7 @@ import Modal from "@components/UI/blocks/modal/modal"
 import SessionStorage from "@/storage/sessionStorage"
 import ProductService from "@/service/productService"
 import AuthService from "@/service/authService"
+import PayService from "@/service/payService"
 import Theme from "@util/style/theme"
 import Validation from "@util/validation/validation"
 import ErrorUtil from "@util/errorUtil"
@@ -26,6 +27,8 @@ const MyPageContainer = () => {
     const [imgPreview, setImgPreview] = useState(null)
     const [modalMsg, setModalMsg] = useState("")
     const [selectCategory, setSelecCategory] = useState("Drink")
+    const [isSeller, setIsSeller] = useState(false)
+    const [orderList, setOrderList] = useState([])
     const [productFormValue, handleProductFormValueChange] = useForm({
         name: "",
         description: "",
@@ -35,7 +38,6 @@ const MyPageContainer = () => {
     })
     const [isOpen, handleOpenButtonClick, handleCloseButtonClick] =
         useModal(false)
-    const [isSeller, setIsSeller] = useState(false)
     const [unRegisterEmail, setUnRegisterEmail] = useState("")
 
     const history = useHistory()
@@ -43,6 +45,10 @@ const MyPageContainer = () => {
     useEffect(async () => {
         const userInfo = await AuthService.firebaseCurrentUserInfoRequest()
         if (!userInfo) return
+        const orderRes = await PayService.firebaseGetPaymentRequest(
+            userInfo.uuid
+        )
+        setOrderList(orderRes)
         setIsSeller(userInfo.isSeller ? true : false)
     }, [])
 
@@ -105,31 +111,26 @@ const MyPageContainer = () => {
     const createRightBodyContainer = () => {
         switch (selectedMenu) {
             case "Order list": {
-                const productItems = [
-                    {
-                        img: "defaultimg.png",
-                        name: "Orange Mamalade",
-                        date: "2022-09-21",
-                        price: "13.000",
-                        payState: "Complete payment",
-                    },
-                    {
-                        img: "defaultimg.png",
-                        name: "Hand made Croatian coffe brew",
-                        date: "2022-09-22",
-                        price: "6000",
-                        payState: "Uncomplete payment",
-                    },
-                ]
-
-                const handleRefundButtonClick = () => {
-                    console.log("refund")
+                const handleDetailButtonClick = (product) => async () => {
+                    const findUser =
+                        await AuthService.firebaseGetUserInformationById(
+                            product.userUuid
+                        )
+                    history.push({
+                        pathname: `/detail/${product.productUuid}`,
+                        state: {
+                            item: {
+                                ...product,
+                                seller: findUser.username,
+                            },
+                        },
+                    })
                 }
 
                 return (
                     <MyPageOrderList
-                        productItem={productItems}
-                        onClickRefundEvnet={handleRefundButtonClick}
+                        productItem={orderList}
+                        onClickDetailEvnet={handleDetailButtonClick}
                     />
                 )
             }

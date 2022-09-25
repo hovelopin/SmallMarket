@@ -1,38 +1,20 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { Link, useHistory } from "react-router-dom"
 import styled from "styled-components"
 import Theme from "@util/style/theme"
 import Grid from "@components/UI/atoms/grid/grid"
 import Card from "@components/UI/blocks/card/card"
+import ProductService from "@/service/productService"
 
 const Main = () => {
+    const [items, setItems] = useState([])
+
     const history = useHistory()
-    const items = [
-        {
-            uuid: 1,
-            name: "Apple",
-            description: "Fresh apple",
-            price: 5120,
-            quantity: 30,
-            img: "defaultImg.png",
-        },
-        {
-            uuid: 2,
-            name: "Cherry",
-            description: "Fresh cherry",
-            price: 4720,
-            quantity: 30,
-            img: "defaultImg.png",
-        },
-        {
-            uuid: 3,
-            name: "Banana",
-            description: "Fresh banana",
-            price: 7250,
-            quantity: 30,
-            img: "defaultImg.png",
-        },
-    ]
+
+    useEffect(async () => {
+        const res = await ProductService.firebaseGetCategoryRequest(null)
+        setItems(res.slice(0, 3))
+    }, [])
 
     const handleDetailButtonClick = (item) => () => {
         history.push({
