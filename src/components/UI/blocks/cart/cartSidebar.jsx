@@ -4,27 +4,16 @@ import Text from "@components/UI/atoms/text/text"
 import Theme from "@/util/style/theme"
 import Button from "@components/UI/atoms/button/button"
 import AuthService from "@/service/authService"
-import { useHistory } from "react-router-dom"
 import CartService from "@/service/cartService"
 
-const CartSidebar = ({ totalPrice, discount, totalQuantity }) => {
+const CartSidebar = ({
+    totalPrice,
+    discount,
+    totalQuantity,
+    onPayButtonClickEvent,
+}) => {
     const discountedPrice = Math.floor(totalPrice / discount)
-    const userAuth = AuthService.firebaseCurrentUserReuqest()
-    const history = useHistory()
 
-    const handlePayBtnClick = async () => {
-        // cart 정보 불러오기
-        const cartItems = await CartService.firebaseCartInformationRequest(
-            userAuth.uid
-        )
-        // 페이지 이동 시켜주기 카트 데이터 담아서
-        history.push({
-            pathname: `/payment/${userAuth.uid}`,
-            state: {
-                ...cartItems,
-            },
-        })
-    }
     return (
         <Container width="100%">
             <CartSidebarMainContainer>
@@ -80,7 +69,7 @@ const CartSidebar = ({ totalPrice, discount, totalQuantity }) => {
                     type="default"
                     width="100%"
                     value="PAYMENT"
-                    onClickEvent={handlePayBtnClick}
+                    onClickEvent={onPayButtonClickEvent}
                 />
             </CartSidebarButton>
         </Container>

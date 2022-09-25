@@ -13,7 +13,7 @@ const InfoCard = ({
     onSelectChangeEvent,
     onSelectButtonClickEvent,
 }) => {
-    const { uuid, created, name } = user
+    const { email, username, isSeller } = user
 
     return (
         <StyledWrapper>
@@ -26,13 +26,16 @@ const InfoCard = ({
                 shadow={true}
             >
                 <Container display="flex">
-                    <Text type="default" context={uuid} />
+                    <Text type="default" context={email} />
                 </Container>
                 <Container display="flex">
-                    <Text type="default" context={created} />
+                    <Text type="default" context={username} />
                 </Container>
                 <Container display="flex">
-                    <Text type="default" context={name} />
+                    <Text
+                        type="default"
+                        context={isSeller ? "Seller" : "Customer"}
+                    />
                 </Container>
                 <Container>
                     <Button

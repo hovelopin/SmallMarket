@@ -1,22 +1,38 @@
-import { useCallback } from "react"
+import { useEffect, useState, useCallback } from "react"
 import styled from "styled-components"
+import useModal from "@/hooks/useModal"
+import Container from "@components/UI/atoms/container/container"
+import Text from "@components/UI/atoms/text/text"
 import InfoHeader from "@components/UI/blocks/info/infoHeader"
 import InfoCard from "@components/UI/blocks/info/infoCard"
-import Container from "@components/UI/atoms/container/container"
+import Modal from "@components/UI/blocks/modal/modal"
+import AuthService from "@/service/authService"
+import Theme from "@util/style/theme"
+import Validation from "@util/validation/validation"
 
 const AdminContainer = () => {
+    const [users, setUsers] = useState([])
+    const [serchUserEmail, setSerchUserEmail] = useState("")
+    const [userStatus, setUserStatus] = useState("")
+    const [modalMsg, setModalMsg] = useState("")
+    const [errMsg, setErrMsg] = useState("")
+
+    const [isOpen, handleOpenButtonClick, handleCloseButtonClick] =
+        useModal(false)
+
+    const options = ["Delete"]
     const headerItems = [
         {
             type: "default",
-            context: "User ID",
+            context: "Email",
         },
         {
             type: "default",
-            context: "Created",
+            context: "Username",
         },
         {
             type: "default",
-            context: "Customer",
+            context: "IsSeller",
         },
         {
             type: "default",
@@ -28,73 +44,53 @@ const AdminContainer = () => {
         },
     ]
 
-    const users = [
-        {
-            uuid: "foxmon1234!@#$!",
-            created: "2022-09-08",
-            name: "FoxMon",
-        },
-        {
-            uuid: "123foxmon1234!@#$!aa",
-            created: "2022-09-09",
-            name: "FoxMon2",
-        },
-        {
-            uuid: "foxmon1234!@#$!bbb",
-            created: "2022-02-08",
-            name: "FoxMon3",
-        },
-        {
-            uuid: "123foxmon1234!@#$!!",
-            created: "2022-01-09",
-            name: "FoxMon4",
-        },
-        {
-            uuid: "foxmon1234!@#$!!!",
-            created: "2022-09-18",
-            name: "FoxMon5",
-        },
-        {
-            uuid: "123foxmon1234!@#$",
-            created: "2022-04-29",
-            name: "FoxMon6",
-        },
-        {
-            uuid: "foxmon1234!@#$!12",
-            created: "2022-11-08",
-            name: "FoxMon7",
-        },
-        {
-            uuid: "123foxmon1234!@#$!34",
-            created: "2022-01-01",
-            name: "FoxMon8",
-        },
-    ]
+    useEffect(async () => {
+        const res = await AuthService.firebaseAllUserInformationRequest()
+        setUsers(res)
+    }, [])
 
-    const options = ["ONLINE", "OFF"]
+    const handleHistoryButtonClick = async () => {
+        const res = await AuthService.firebaseAllUserInformationRequest()
+        setUsers(res)
+    }
 
     const handleSearchChange = useCallback((e) => {
         const { value } = e.target
-        console.log(value)
+        setSerchUserEmail(value)
+        const isValidEamil = Validation.validateEmail(value)
+        isValidEamil ? setErrMsg("") : setErrMsg("Invalid email format")
     }, [])
 
-    const handleSearchClick = useCallback(() => {
-        console.log("click!")
-    }, [])
+    const handleSearchClick = () => {
+        if (errMsg) {
+            setModalMsg("Invalid email foramt")
+            handleOpenButtonClick(true)
+            return
+        }
+        if (serchUserEmail) {
+            const find = users.find((u) => u.email === serchUserEmail)
+            !find ? setUsers([]) : setUsers([find])
+        }
+    }
 
     const handleStatusChange = useCallback((e) => {
         const { value } = e.target
-        console.log(value)
+        setUserStatus(value)
     }, [])
 
-    const handleStatusButtonClick = useCallback(() => {
-        console.log("click!")
+    const handleStatusButtonClick = useCallback(async () => {
+        await AuthService.firebaseAdminUserRequest(userStatus)
     }, [])
 
     return (
-        <Container width="100%" height="100vh">
+        <Container width="100%" height="100%">
+            <StyeldAdminInfoHeader>
+                <Text type="large" context="SmallMarket'S Admin page" />
+            </StyeldAdminInfoHeader>
             <InfoHeader
                 headerItems={headerItems}
+                errMsg={errMsg}
+                onHistoryButtonClickEvent={handleHistoryButtonClick}
                 onSearchChangeEvent={handleSearchChange}
                 onSearchClickEvent={handleSearchClick}
             />
@@ -109,6 +105,12 @@ const AdminContainer = () => {
                     />
                 ))}
             </StyledCardContainer>
+            <Modal isOpen={isOpen} onClickEvent={handleCloseButtonClick}>
+                <StyledImgContainer
+                    src={`${process.env.PUBLIC_URL}/img/logo.png`}
+                />
+                <Text context={modalMsg} />
+            </Modal>
         </Container>
     )
 }
@@ -119,6 +121,20 @@ const StyledCardContainer = styled.div`
     height: 75%;
     overflow: auto;
     margin-bottom: 5rem;
+`
+
+const StyeldAdminInfoHeader = styled.div`
+    background-color: ${Theme.colors.darkBlack};
+    color: ${Theme.colors.white};
+    text-align: left;
+    padding: 3rem;
+`
+
+const StyledImgContainer = styled.img`
+    display: block;
+    width: 70%;
+    margin: 0 auto;
+    padding-bottom: 2rem;
 `
 
 export default AdminContainer

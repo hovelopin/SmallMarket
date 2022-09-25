@@ -39,7 +39,7 @@ const MyPageContainer = () => {
     useEffect(async () => {
         const userInfo = await AuthService.firebaseCurrentUserInfoRequest()
 
-        setIsSeller(userInfo)
+        setIsSeller(userInfo.isSeller ? true : false)
     }, [])
 
     const menuItems = [

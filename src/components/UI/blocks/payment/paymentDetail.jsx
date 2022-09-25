@@ -1,22 +1,16 @@
 import styled from "styled-components"
-import Button from "@components/UI/atoms/button/button"
-import LabeledInput from "@components/UI/blocks/labeledInput/labeledInput"
 import Container from "@components/UI/atoms/container/container"
-import Theme from "@util/style/theme"
-import useForm from "@/hooks/useForm"
+import Button from "@components/UI/atoms/button/button"
 import Form from "@components/UI/atoms/form/form"
+import LabeledInput from "@components/UI/blocks/labeledInput/labeledInput"
+import Theme from "@util/style/theme"
 
-const PaymentDetail = () => {
-    const [deliveryValue, valueChangeHandler] = useForm({
-        email: "",
-        name: "",
-        phoneNumber: "",
-        address: "",
-        detailAddress: "",
-        zoneCode: "",
-        order: "",
-        price: "700$",
-    })
+const PaymentDetail = ({
+    userState,
+    totalPrice,
+    userInfoFormValue,
+    onChangeFormValueEvent,
+}) => {
     const handlePaySubmit = (e) => {
         e.preventDefault()
     }
@@ -30,28 +24,28 @@ const PaymentDetail = () => {
                     Complete your purchase by providing your payment details
                 </DetailHeadText>
             </DetailHeadContainer>
-            <Container width="60%">
+            <Container width="100%">
                 <Form onSubmitEvent={handlePaySubmit}>
                     <FormContainer>
                         <LabeledInput
+                            readOnly={true}
                             width="100%"
                             labelText="Enter your email"
                             inputType="text"
                             name="email"
-                            value={deliveryValue.email}
+                            value={userState?.email}
                             placeholder="email@domain.topDomain"
-                            onChangeEvent={valueChangeHandler}
                         />
                     </FormContainer>
                     <FormContainer>
                         <LabeledInput
+                            readOnly={true}
                             width="100%"
                             labelText="Enter your name"
                             inputType="text"
                             name="name"
-                            value={deliveryValue.name}
+                            value={userState?.username}
                             placeholder="Hong Gil Dong"
-                            onChangeEvent={valueChangeHandler}
                         />
                     </FormContainer>
                     <FormContainer>
@@ -60,9 +54,9 @@ const PaymentDetail = () => {
                             labelText="Enter your phone number"
                             inputType="text"
                             name="phoneNumber"
-                            value={deliveryValue.phoneNumber}
+                            value={userInfoFormValue.phoneNumber}
                             placeholder="하이픈(-)을 입력하세요"
-                            onChangeEvent={valueChangeHandler}
+                            onChangeEvent={onChangeFormValueEvent}
                         />
                     </FormContainer>
                     <AddressContainer>
@@ -72,9 +66,9 @@ const PaymentDetail = () => {
                                 labelText="Address to be delivered"
                                 inputType="text"
                                 name="address"
-                                value={deliveryValue.address}
+                                value={userInfoFormValue.address}
                                 placeholder="Click the button to find the address"
-                                onChangeEvent={valueChangeHandler}
+                                onChangeEvent={onChangeFormValueEvent}
                             />
                         </Container>
                         <AddressSubContainer marginTop="20px">
@@ -94,9 +88,9 @@ const PaymentDetail = () => {
                                 labelText="Enter your Detailed Address"
                                 inputType="text"
                                 name="detailAddress"
-                                value={deliveryValue.detailAddress}
+                                value={userInfoFormValue.detailAddress}
                                 placeholder="104-305"
-                                onChangeEvent={valueChangeHandler}
+                                onChangeEvent={onChangeFormValueEvent}
                             />
                         </Container>
                         <AddressSubContainer>
@@ -105,9 +99,9 @@ const PaymentDetail = () => {
                                 labelText="Zone Code"
                                 inputType="text"
                                 name="zoneCode"
-                                value={deliveryValue.zoneCode}
+                                value={userInfoFormValue.zoneCode}
                                 placeholder="11741"
-                                onChangeEvent={valueChangeHandler}
+                                onChangeEvent={onChangeFormValueEvent}
                             />
                         </AddressSubContainer>
                     </AddressContainer>
@@ -117,7 +111,7 @@ const PaymentDetail = () => {
                                 TOTAL PRICE
                             </DetailHeadText>
                             <DetailHeadText fontSize="1.4rem" textAlign="right">
-                                {deliveryValue.price}
+                                {totalPrice}
                             </DetailHeadText>
                         </GridContainer>
                     </Container>
@@ -127,7 +121,7 @@ const PaymentDetail = () => {
                             bType="submit"
                             width="100%"
                             height="4rem"
-                            value={`Pay $${deliveryValue.price}`}
+                            value={`Pay $${totalPrice}`}
                         />
                     </Container>
                 </Form>
@@ -135,6 +129,17 @@ const PaymentDetail = () => {
         </DetailWapper>
     )
 }
+
+const DetailWapper = styled.div`
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+    padding: 1rem;
+`
+
 const GridContainer = styled.div`
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -164,15 +169,6 @@ const DetailHeadText = styled.p`
     font-size: ${(props) => props.fontSize || Theme.fontSizes.default};
     font-weight: ${(props) => props.fontWeight || Theme.fontWeight.medium};
     text-align: ${(props) => props.textAlign || "left"};
-`
-const DetailWapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-    height: 100%;
-    align-items: flex-start;
-    margin-bottom: 5%;
-    margin-top: 1%;
 `
 
 export default PaymentDetail
