@@ -155,5 +155,18 @@ AuthService.firebaseAdminUserRequest = async function (status) {
     }
 }
 
+AuthService.firebaseGetUserInformationById = async function (uuid) {
+    const q = query(
+        collection(firestore, "user"),
+        where("uuid", "==", `${uuid}`)
+    )
+    const qeuryRes = await getDocs(q)
+    const find = []
+    qeuryRes.docs.forEach((user) => {
+        find.push(user.data())
+    })
+    return find[0]
+}
+
 export default AuthService
 Object.freeze(AuthService)
