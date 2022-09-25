@@ -22,6 +22,13 @@ class Validation {
         return true
     }
 
+    static validatePhoneNumber(phone) {
+        if (phone.includes(" ")) return false
+        const isValid = phone.match(/^[0-9]{3}[-]+[0-9]{4}[-]+[0-9]{4}$/)
+        if (!isValid) return false
+        return true
+    }
+
     static validateAll(infoArr) {
         return infoArr.every((info) => info)
     }
