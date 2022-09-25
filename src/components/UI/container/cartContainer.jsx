@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from "react"
+import { useHistory } from "react-router-dom"
 import { DragDropContext } from "react-beautiful-dnd"
 import styled from "styled-components"
 import Container from "@components/UI/atoms/container/container"
@@ -22,6 +23,8 @@ const CartContainer = () => {
           )
         : 0
     const discount = 10
+
+    const history = useHistory()
 
     useEffect(async () => {
         if (!authState) return
@@ -89,6 +92,16 @@ const CartContainer = () => {
         []
     )
 
+    const handlePayButtonClick = async () => {
+        const cartItems = await CartService.firebaseCartInformationRequest(
+            authState.uid
+        )
+        history.push({
+            pathname: `/payment/${authState.uid}`,
+            state: cartItems,
+        })
+    }
+
     if (!cartItems.length) {
         return (
             <Container width="100%" height="60vh">
@@ -142,6 +155,7 @@ const CartContainer = () => {
                             totalPrice={totalPrice}
                             discount={discount}
                             totalQuantity={cartItems.length}
+                            onPayButtonClickEvent={handlePayButtonClick}
                         />
                     </CartBodyPayMentContainer>
                 </CartBodyContainer>
