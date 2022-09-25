@@ -59,11 +59,14 @@ const ProductContainer = () => {
                 </StyledItemSmallFont>
             </StyledItemHeaderContainer>
             <StyledCarouselContainer>
-                <Carousel width="60" height="100%" items={items.slice(0, 8)} />
+                <Carousel width="60%" height="100%" items={items.slice(0, 8)} />
+                <StyledContainer>
+                    <Select
+                        options={options}
+                        onChangeEvent={handleLimitChange}
+                    />
+                </StyledContainer>
             </StyledCarouselContainer>
-            <StyledContainer>
-                <Select options={options} onChangeEvent={handleLimitChange} />
-            </StyledContainer>
             <StyledProductContainer>
                 <Grid repeat={4} axis="column" gap="2rem">
                     {items.slice(offset, offset + limit).map((item) => (
@@ -82,17 +85,12 @@ const ProductContainer = () => {
                 limit={limit}
                 total={items.length}
                 page={page}
-                onPageChangeButtonClick={handlePageChangeButtonClick}
+                onPageChangeButtonClickEvent={handlePageChangeButtonClick}
             />
         </Container>
     )
 }
 
-const StyledContainer = styled.div`
-    width: 10%;
-    margin-top: 3%;
-    margin-left: 80%;
-`
 const StyledProductContainer = styled.div`
     width: 100%;
     display: grid;
@@ -120,8 +118,14 @@ const StyledItemSmallFont = styled.p`
 `
 
 const StyledCarouselContainer = styled.div`
-    width: 90%;
+    width: 80%;
     margin: 0 auto;
+    margin-top: 2rem;
+`
+
+const StyledContainer = styled.div`
+    width: 20%;
+    height: 100%;
     margin-top: 2rem;
 `
 

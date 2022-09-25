@@ -56,16 +56,16 @@ ProductService.firebaseAddProductRequest = async function (
 
 ProductService.firebaseGetCategoryRequest = async function (categoryType) {
     const productDocs = await getDocs(collection(firestore, "product"))
-    const toUpper = categoryType.replace(/^[a-z]/, (char) => char.toUpperCase())
     const categoryItems = []
-
     productDocs.forEach((p) => {
         categoryItems.push(FoodItemType.craeteType(p.data()))
     })
+    if (!categoryType)
+        return FoodItemListype.createFoodItemListType(categoryItems)
+            .$_foodItemListType
     const selectedItems = categoryItems.filter((c) => {
-        if (c.category.category.toUpperCase() === toUpper.toUpperCase()) {
+        if (c.category.category.toUpperCase() === categoryType.toUpperCase())
             return c
-        }
     })
     return FoodItemListype.createFoodItemListType(selectedItems)
         .$_foodItemListType
