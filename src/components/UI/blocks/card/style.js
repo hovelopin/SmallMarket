@@ -13,7 +13,8 @@ export const StyledCardContainer = styled.div`
     text-align: center;
 `
 export const StyledCardImage = styled.img`
-    width: 100%;
+    width: 300px;
+    height: 200px;
     align-items: center;
     object-fit: cover;
     vertical-align: middle;
