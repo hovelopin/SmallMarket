@@ -3,7 +3,10 @@ import { useHistory } from "react-router-dom"
 import useForm from "@/hooks/useForm"
 import useModal from "@/hooks/useModal"
 import styled from "styled-components"
+import Container from "@components/UI/atoms/container/container"
 import Text from "@components/UI/atoms/text/text"
+import Button from "@components/UI/atoms/button/button"
+import Input from "@components/UI/atoms/input/input"
 import MyPageSidebar from "@components/UI/blocks/mypage/myPageSidebar"
 import MyPageOrderList from "@components/UI/blocks/mypage/myPageOrderList"
 import MyPageCoupon from "@components/UI/blocks/mypage/myPageCoupon"
@@ -33,6 +36,7 @@ const MyPageContainer = () => {
     const [isOpen, handleOpenButtonClick, handleCloseButtonClick] =
         useModal(false)
     const [isSeller, setIsSeller] = useState(false)
+    const [unRegisterEmail, setUnRegisterEmail] = useState("")
 
     const history = useHistory()
 
@@ -158,6 +162,49 @@ const MyPageContainer = () => {
                 return <MyPageCoupon couponItems={couponItems} />
             }
 
+            case "Unregister": {
+                const { uid, email } = SessionStorage.getItem()
+
+                const handleUnregisterEmailSubmit = (e) => {
+                    setUnRegisterEmail(e.target.value)
+                }
+
+                const handleUnregisterClick = async () => {
+                    if (unRegisterEmail === email) {
+                        await AuthService.firebaseUserDeleteRequest(uid)
+                        location.replace("/register")
+                    }
+                }
+
+                return (
+                    <Container>
+                        <Text
+                            type="large"
+                            context="Please enter your email to delete"
+                        />
+                        <MyPageUserEmailContainer>
+                            {email}
+                        </MyPageUserEmailContainer>
+                        <MyPageUnregisterContainer>
+                            <MyPageUnregisterInput>
+                                <Input
+                                    type="text"
+                                    placeholder={email}
+                                    onChangeEvent={handleUnregisterEmailSubmit}
+                                />
+                            </MyPageUnregisterInput>
+                            <MyPageUnregisterButton>
+                                <Button
+                                    type="contrast"
+                                    value="OK"
+                                    onClickEvent={handleUnregisterClick}
+                                />
+                            </MyPageUnregisterButton>
+                        </MyPageUnregisterContainer>
+                    </Container>
+                )
+            }
+
             case "Profile": {
                 const profileItems = [
                     "Name",
@@ -239,6 +286,10 @@ const MyPageBodyContainer = styled.div`
     margin-bottom: 2rem;
 `
 
+const MyPageUserEmailContainer = styled.p`
+    font-weight: bold;
+`
+
 const MyPageBodyLeft = styled.div`
     width: 20%;
 `
@@ -253,6 +304,20 @@ const StyledImgContainer = styled.img`
     width: 70%;
     margin: 0 auto;
     padding-bottom: 2rem;
+`
+
+const MyPageUnregisterContainer = styled.div`
+    display: flex;
+    width: 100%;
+    margin-top: 1rem;
+`
+
+const MyPageUnregisterInput = styled.div`
+    width: 100%;
+`
+
+const MyPageUnregisterButton = styled.div`
+    width: 100%;
 `
 
 export default MyPageContainer
