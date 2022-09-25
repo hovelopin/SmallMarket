@@ -10,7 +10,7 @@ const PaymentInfo = ({ userState, cartItems }) => {
             <Container width="100%">
                 <Text type="large" context="Click slide to go product detail" />
                 <CarouselContainer>
-                    <Carousel width="60%" height="100%" items={cartItems} />
+                    <Carousel width="80%" height="100%" items={cartItems} />
                 </CarouselContainer>
             </Container>
             <CheckedboxContainer>

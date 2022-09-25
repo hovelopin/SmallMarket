@@ -131,6 +131,9 @@ const LoginContainer = () => {
                 </Form>
             </StyledContainer>
             <Modal isOpen={isOpen} onClickEvent={handleCloseButtonClick}>
+                <StyledImgContainer
+                    src={`${process.env.PUBLIC_URL}/img/logo.png`}
+                />
                 <Text context={modalMsg} />
             </Modal>
         </StyledWrapper>
@@ -178,6 +181,13 @@ const StyledFormContainer = styled.div`
 
 const StyledButtonContainer = styled.div`
     margin-bottom: 0.5rem;
+`
+
+const StyledImgContainer = styled.img`
+    display: block;
+    width: 70%;
+    margin: 0 auto;
+    padding-bottom: 2rem;
 `
 
 const StyledErrorText = styled.p`

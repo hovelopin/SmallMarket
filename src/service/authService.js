@@ -112,6 +112,7 @@ AuthService.firebaseEmailCheckRequest = async function (userEmail) {
 }
 
 AuthService.firebaseCurrentUserInfoRequest = async function () {
+    if (!SessionStorage.getItem()) return false
     const userUuid = SessionStorage.getItem().uid
     const userInfo = []
 

@@ -38,7 +38,7 @@ const MyPageContainer = () => {
 
     useEffect(async () => {
         const userInfo = await AuthService.firebaseCurrentUserInfoRequest()
-
+        if (!userInfo) return
         setIsSeller(userInfo.isSeller ? true : false)
     }, [])
 
@@ -191,6 +191,7 @@ const MyPageContainer = () => {
 
     if (!SessionStorage.getItem()) {
         history.push("/")
+        console.clear()
     }
 
     return (
