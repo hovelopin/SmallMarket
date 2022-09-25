@@ -1,7 +1,9 @@
 import styled from "styled-components"
+import Theme from "@util/style/theme"
 
 const Paginate = ({ limit, total, page, onPageChangeButtonClick }) => {
     const numPages = Math.ceil(total / limit)
+
     return (
         <StyledContainer>
             <StyledNav>
@@ -51,31 +53,34 @@ const StyledContainer = styled.div`
     place-items: center;
 `
 const StyledButton = styled.button`
-    border: none;
+    background: ${Theme.colors.black};
+    border: 2px solid ${Theme.colors.darkBlack};
     border-radius: 8px;
     padding: 8px;
     margin: 0;
-    background: black;
-    color: white;
+    color: ${Theme.colors.white};
     font-size: 1rem;
 
     &:hover {
-        background: tomato;
+        background: ${Theme.colors.white};
+        color: ${Theme.colors.black};
+        font-weight: ${Theme.fontWeight.bold};
         cursor: pointer;
-        transform: translateY(-2px);
+        transition: 0.3s;
     }
 
     &[disabled] {
-        background: grey;
-        cursor: revert;
-        transform: revert;
+        background: ${Theme.colors.darkBlack};
+        color: ${Theme.colors.white};
+        cursor: pointer;
     }
 
     &[aria-current] {
-        background: deeppink;
-        font-weight: bold;
-        cursor: revert;
-        transform: revert;
+        background: ${Theme.colors.white};
+        color: ${Theme.colors.black};
+        border: 2px solid ${Theme.colors.black};
+        font-weight: ${Theme.fontWeight.bold};
+        cursor: pointer;
     }
 `
 const StyledNav = styled.nav`
