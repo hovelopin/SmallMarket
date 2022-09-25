@@ -6,8 +6,8 @@ import LabeledInput from "@components/UI/blocks/labeledInput/labeledInput"
 import Theme from "@util/style/theme"
 
 const PaymentDetail = ({
-    userState,
     totalPrice,
+    errorMsg,
     userInfoFormValue,
     onChangeFormValueEvent,
     onPaymentSubmitEvent,
@@ -34,6 +34,11 @@ const PaymentDetail = ({
                             placeholder="010-1234-1234"
                             onChangeEvent={onChangeFormValueEvent}
                         />
+                        {errorMsg.phoneNumber && (
+                            <StyledErrorText>
+                                {errorMsg.phoneNumber}
+                            </StyledErrorText>
+                        )}
                     </FormContainer>
                     <AddressContainer>
                         <Container width="60%">
@@ -46,6 +51,11 @@ const PaymentDetail = ({
                                 placeholder="Click the button to find the address"
                                 onChangeEvent={onChangeFormValueEvent}
                             />
+                            {errorMsg.address && (
+                                <StyledErrorText>
+                                    {errorMsg.address}
+                                </StyledErrorText>
+                            )}
                         </Container>
                         <AddressSubContainer marginTop="20px">
                             <Button
@@ -68,6 +78,11 @@ const PaymentDetail = ({
                                 placeholder="104-305"
                                 onChangeEvent={onChangeFormValueEvent}
                             />
+                            {errorMsg.address && (
+                                <StyledErrorText>
+                                    {errorMsg.address}
+                                </StyledErrorText>
+                            )}
                         </Container>
                         <AddressSubContainer>
                             <LabeledInput
@@ -79,6 +94,11 @@ const PaymentDetail = ({
                                 placeholder="11741"
                                 onChangeEvent={onChangeFormValueEvent}
                             />
+                            {errorMsg.address && (
+                                <StyledErrorText>
+                                    {errorMsg.address}
+                                </StyledErrorText>
+                            )}
                         </AddressSubContainer>
                     </AddressContainer>
                     <Container width="100%">
@@ -145,6 +165,10 @@ const DetailHeadText = styled.p`
     font-size: ${(props) => props.fontSize || Theme.fontSizes.default};
     font-weight: ${(props) => props.fontWeight || Theme.fontWeight.medium};
     text-align: ${(props) => props.textAlign || "left"};
+`
+
+const StyledErrorText = styled.p`
+    color: ${Theme.colors.darkRed};
 `
 
 export default PaymentDetail
