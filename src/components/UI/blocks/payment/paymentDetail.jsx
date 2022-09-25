@@ -1,3 +1,4 @@
+import DaumPostcodeEmbed from "react-daum-postcode"
 import styled from "styled-components"
 import Container from "@components/UI/atoms/container/container"
 import Button from "@components/UI/atoms/button/button"
@@ -7,9 +8,14 @@ import Theme from "@util/style/theme"
 
 const PaymentDetail = ({
     totalPrice,
+    isPostOpen,
+    address,
+    zoneCode,
     errorMsg,
     userInfoFormValue,
     onChangeFormValueEvent,
+    onClickPostButtonEvent,
+    onPostCompleteEvent,
     onPaymentSubmitEvent,
 }) => {
     return (
@@ -47,10 +53,16 @@ const PaymentDetail = ({
                                 labelText="Address to be delivered"
                                 inputType="text"
                                 name="address"
-                                value={userInfoFormValue?.address}
+                                value={address}
+                                readOnly
                                 placeholder="Click the button to find the address"
                                 onChangeEvent={onChangeFormValueEvent}
                             />
+                            {isPostOpen && (
+                                <DaumPostcodeEmbed
+                                    onComplete={onPostCompleteEvent}
+                                />
+                            )}
                             {errorMsg.address && (
                                 <StyledErrorText>
                                     {errorMsg.address}
@@ -64,6 +76,7 @@ const PaymentDetail = ({
                                 height="100%"
                                 width="100%"
                                 value="FIND ADDRESS"
+                                onClickEvent={onClickPostButtonEvent}
                             />
                         </AddressSubContainer>
                     </AddressContainer>
@@ -90,7 +103,8 @@ const PaymentDetail = ({
                                 labelText="Zone code"
                                 inputType="text"
                                 name="zoneCode"
-                                value={userInfoFormValue.zoneCode}
+                                value={zoneCode}
+                                readOnly
                                 placeholder="11741"
                                 onChangeEvent={onChangeFormValueEvent}
                             />
