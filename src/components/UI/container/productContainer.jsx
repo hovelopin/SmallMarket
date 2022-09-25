@@ -10,6 +10,7 @@ import Grid from "@components/UI/atoms/grid/grid"
 import Card from "@components/UI/blocks/card/card"
 import Theme from "@util/style/theme"
 import ProductService from "@/service/productService"
+import AuthService from "@/service/authService"
 
 const ProductContainer = () => {
     const [items, setItems] = useState([])
@@ -33,11 +34,17 @@ const ProductContainer = () => {
         setItems(selectedItems)
     }, [category])
 
-    const handleDetailButtonClick = (item) => () => {
+    const handleDetailButtonClick = (item) => async () => {
+        const seller = await AuthService.firebaseGetUserInformationById(
+            item.seller
+        )
         history.push({
             pathname: `/detail/${item.uuid}`,
             state: {
-                item: item,
+                item: {
+                    ...item,
+                    seller: seller.username,
+                },
             },
         })
     }
