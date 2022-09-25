@@ -6,17 +6,16 @@ import {
     sendEmailVerification,
     signInWithEmailAndPassword,
     signOut,
-    deleteUser,
 } from "firebase/auth"
 import {
     doc,
     addDoc,
     setDoc,
     getDocs,
-    deleteDoc,
     collection,
     query,
     where,
+    updateDoc,
 } from "firebase/firestore"
 import { firestore } from "@/service/firebaseService"
 import SessionStorage from "@/storage/sessionStorage"
@@ -81,9 +80,11 @@ AuthService.firebaseRegiserRequest = async function (
 }
 
 AuthService.firebaseLoginRequest = async function (email, password) {
-    const auth = getAuth()
     try {
+        const auth = getAuth()
         const { user } = await signInWithEmailAndPassword(auth, email, password)
+        const find = await AuthService.firebaseGetUserInformationById(user.uid)
+        if (find.isUnregister) return false
         await setPersistence(auth, browserSessionPersistence)
         return user
     } catch (e) {
@@ -140,11 +141,11 @@ AuthService.firebaseAllUserInformationRequest = async function () {
 
 AuthService.firebaseUserDeleteRequest = async function (uuid) {
     const auth = getAuth()
-    const user = auth.currentUser
-    await deleteDoc(doc(firestore, "user", `${uuid}`))
-    deleteUser(user).then(() => {
-        signOut()
-        SessionStorage.clear()
+    await signOut(auth)
+    SessionStorage.clear()
+    const userRef = doc(firestore, "user", `${uuid}`)
+    await updateDoc(userRef, {
+        isUnregister: true,
     })
 }
 

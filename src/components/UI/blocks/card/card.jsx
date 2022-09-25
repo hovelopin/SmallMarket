@@ -12,7 +12,14 @@ const Card = ({ name, description, price, img, onClickEvent }) => {
                     <Text type="large" context={name.substring(0, 16)} />
                 </MyCard.StyledCardBody>
                 <MyCard.StyledCardBody>
-                    <Text type="default" context={name} />
+                    <Text
+                        type="small"
+                        context={
+                            description.length > 20
+                                ? `${description.substring(0, 18)}...`
+                                : description
+                        }
+                    />
                 </MyCard.StyledCardBody>
                 <MyCard.StyledCardBody>
                     <Text type="default" context={`${price} ￦`} />
