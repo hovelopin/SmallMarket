@@ -27,7 +27,7 @@ PayService.paymentRequest = async function (url, params) {
 PayService.firebaseGetPaymentRequest = async function (userUuid) {
     const q = query(
         collection(firestore, "payment"),
-        where("uesrUuid", "==", userUuid)
+        where("userUuid", "==", userUuid)
     )
     const queryResult = await getDocs(q)
     const payments = []
