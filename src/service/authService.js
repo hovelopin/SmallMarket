@@ -6,6 +6,7 @@ import {
     sendEmailVerification,
     signInWithEmailAndPassword,
     signOut,
+    updatePassword,
 } from "firebase/auth"
 import {
     doc,
@@ -168,6 +169,19 @@ AuthService.firebaseGetUserInformationById = async function (uuid) {
         find.push(user.data())
     })
     return find[0]
+}
+
+AuthService.firebaseEditInfoRequest = async function (username, password) {
+    const auth = getAuth()
+    const user = auth.currentUser
+
+    await setDoc(doc(firestore, "user", user.uid), {
+        username: username,
+    })
+
+    await updatePassword(user, password).then(() => {
+        signOut(user)
+    })
 }
 
 export default AuthService

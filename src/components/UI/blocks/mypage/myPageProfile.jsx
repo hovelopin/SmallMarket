@@ -1,10 +1,11 @@
 import React from "react"
 import styled from "styled-components"
 import Text from "@components/UI/atoms/text/text"
+import Button from "@components/UI/atoms/button/button"
 import LabeledInput from "@components/UI/blocks/labeledInput/labeledInput"
 import Theme from "@util/style/theme"
 
-const MyPageProfile = ({ profile }) => {
+const MyPageProfile = ({ editInfoSubmitEvent, editInfoClickEvent }) => {
     return (
         <MyPageProfileMainContainer>
             <MyPageProfileHeader>
@@ -12,17 +13,35 @@ const MyPageProfile = ({ profile }) => {
             </MyPageProfileHeader>
             <MyPageProfileCard>
                 <StyledInputContainer>
-                    {profile.map((p) => {
-                        return (
-                            <StyledProfileInput key={p}>
-                                <LabeledInput
-                                    type="text"
-                                    labelText={`* ${p}`}
-                                    name={p}
-                                />
-                            </StyledProfileInput>
-                        )
-                    })}
+                    <StyledProfileInput>
+                        <LabeledInput
+                            inputType="tet"
+                            labelText="* Username"
+                            name="username"
+                            onChangeEvent={editInfoSubmitEvent}
+                        />
+                    </StyledProfileInput>
+                    <StyledProfileInput>
+                        <LabeledInput
+                            inputType="password"
+                            labelText="* Password"
+                            name="password"
+                            onChangeEvent={editInfoSubmitEvent}
+                        />
+                    </StyledProfileInput>
+                    <StyledProfileInput>
+                        <LabeledInput
+                            inputType="password"
+                            labelText="* Password Check"
+                            name="passwordCheck"
+                            onChangeEvent={editInfoSubmitEvent}
+                        />
+                    </StyledProfileInput>
+                    <Button
+                        width="100%"
+                        value="Edit"
+                        onClickEvent={editInfoClickEvent}
+                    />
                 </StyledInputContainer>
             </MyPageProfileCard>
         </MyPageProfileMainContainer>

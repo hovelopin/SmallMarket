@@ -39,6 +39,11 @@ const MyPageContainer = () => {
     const [isOpen, handleOpenButtonClick, handleCloseButtonClick] =
         useModal(false)
     const [unRegisterEmail, setUnRegisterEmail] = useState("")
+    const [userEditFormValue, setUserEditFormValue] = useState({
+        username: "",
+        password: "",
+        passwordCheck: "",
+    })
 
     const history = useHistory()
 
@@ -207,14 +212,43 @@ const MyPageContainer = () => {
             }
 
             case "Profile": {
-                const profileItems = [
-                    "Name",
-                    "Password",
-                    "Password check",
-                    "Email",
-                ]
+                const handleEditInfoSubmit = (e) => {
+                    setUserEditFormValue({
+                        ...userEditFormValue,
+                        [e.target.name]: e.target.value,
+                    })
+                }
 
-                return <MyPageProfile profile={profileItems} />
+                const { username, password, passwordCheck } = userEditFormValue
+
+                const isValidUsernme = Validation.validateUsername(username)
+                const isValidPassword = Validation.validatePassword(password)
+                const isValidPasswordChekc = password === passwordCheck
+
+                const handleEditInfoClick = () => {
+                    const isValidEditInfo = Validation.validateAll([
+                        isValidUsernme,
+                        isValidPassword,
+                        isValidPasswordChekc,
+                    ])
+                    if (!isValidEditInfo) {
+                        window.alert("Please Check your again")
+                        return
+                    }
+
+                    const { username, password } = userEditFormValue
+                    AuthService.firebaseEditInfoRequest(
+                        username,
+                        password
+                    ).then(history.push("/"))
+                }
+
+                return (
+                    <MyPageProfile
+                        editInfoSubmitEvent={handleEditInfoSubmit}
+                        editInfoClickEvent={handleEditInfoClick}
+                    />
+                )
             }
 
             case "Seller": {
