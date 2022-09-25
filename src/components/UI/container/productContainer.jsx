@@ -1,28 +1,31 @@
 import React, { useState, useEffect } from "react"
 import { useParams, useHistory } from "react-router-dom"
-import usePaginate from "@/hooks/usePaginate"
 import styled from "styled-components"
+import usePaginate from "@/hooks/usePaginate"
 import Select from "@components/UI/atoms/select/select"
 import Container from "@components/UI/atoms/container/container"
 import Carousel from "@components/UI/blocks/carousel/carousel"
 import Paginate from "@components/UI/blocks/paginate/paginate"
-import ProductService from "@/service/productService"
 import Grid from "@components/UI/atoms/grid/grid"
 import Card from "@components/UI/blocks/card/card"
 import Theme from "@util/style/theme"
+import ProductService from "@/service/productService"
 
 const ProductContainer = () => {
+    const [items, setItems] = useState([])
+
     const [pageValue, handlePageValueChange] = usePaginate({
         limit: 12,
         page: 1,
     })
+
+    const { category } = useParams()
+    const history = useHistory()
+
     const { limit, page } = pageValue
     const options = ["View 12 each", "View 16 each", "View 20 each"]
     const offset = (page - 1) * limit
 
-    const [items, setItems] = useState([])
-    const { category } = useParams()
-    const history = useHistory()
     useEffect(async () => {
         const selectedItems = await ProductService.firebaseGetCategoryRequest(
             category
@@ -56,7 +59,7 @@ const ProductContainer = () => {
                 </StyledItemSmallFont>
             </StyledItemHeaderContainer>
             <StyledCarouselContainer>
-                <Carousel />
+                <Carousel width="60" height="100%" items={items.slice(0, 8)} />
             </StyledCarouselContainer>
             <StyledContainer>
                 <Select options={options} onChangeEvent={handleLimitChange} />
