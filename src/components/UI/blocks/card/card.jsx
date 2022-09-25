@@ -9,10 +9,10 @@ const Card = ({ name, description, price, img, onClickEvent }) => {
             <MyCard.StyledCardContainer>
                 <MyCard.StyledCardImage src={img} />
                 <MyCard.StyledCardBody>
-                    <Text type="large" context={name} />
+                    <Text type="large" context={name.substring(0, 16)} />
                 </MyCard.StyledCardBody>
                 <MyCard.StyledCardBody>
-                    <Text type="default" context={description} />
+                    <Text type="default" context={name} />
                 </MyCard.StyledCardBody>
                 <MyCard.StyledCardBody>
                     <Text type="default" context={`${price} ￦`} />

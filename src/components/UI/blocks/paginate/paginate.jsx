@@ -1,14 +1,14 @@
 import styled from "styled-components"
 import Theme from "@util/style/theme"
 
-const Paginate = ({ limit, total, page, onPageChangeButtonClick }) => {
+const Paginate = ({ limit, total, page, onPageChangeButtonClickEvent }) => {
     const numPages = Math.ceil(total / limit)
 
     return (
         <StyledContainer>
             <StyledNav>
                 <StyledButton
-                    onClick={onPageChangeButtonClick({
+                    onClick={onPageChangeButtonClickEvent({
                         name: "page",
                         value: page - 1,
                     })}
@@ -21,7 +21,7 @@ const Paginate = ({ limit, total, page, onPageChangeButtonClick }) => {
                     .map((_, i) => (
                         <StyledButton
                             key={i + 1}
-                            onClick={onPageChangeButtonClick({
+                            onClick={onPageChangeButtonClickEvent({
                                 name: "page",
                                 value: i + 1,
                             })}
@@ -31,7 +31,7 @@ const Paginate = ({ limit, total, page, onPageChangeButtonClick }) => {
                         </StyledButton>
                     ))}
                 <StyledButton
-                    onClick={onPageChangeButtonClick({
+                    onClick={onPageChangeButtonClickEvent({
                         name: "page",
                         value: page + 1,
                     })}
