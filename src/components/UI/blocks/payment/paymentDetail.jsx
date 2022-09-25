@@ -6,14 +6,12 @@ import LabeledInput from "@components/UI/blocks/labeledInput/labeledInput"
 import Theme from "@util/style/theme"
 
 const PaymentDetail = ({
-    userState,
     totalPrice,
+    errorMsg,
     userInfoFormValue,
     onChangeFormValueEvent,
+    onPaymentSubmitEvent,
 }) => {
-    const handlePaySubmit = (e) => {
-        e.preventDefault()
-    }
     return (
         <DetailWapper>
             <DetailHeadContainer>
@@ -25,39 +23,22 @@ const PaymentDetail = ({
                 </DetailHeadText>
             </DetailHeadContainer>
             <Container width="100%">
-                <Form onSubmitEvent={handlePaySubmit}>
-                    <FormContainer>
-                        <LabeledInput
-                            readOnly={true}
-                            width="100%"
-                            labelText="Enter your email"
-                            inputType="text"
-                            name="email"
-                            value={userState?.email}
-                            placeholder="email@domain.topDomain"
-                        />
-                    </FormContainer>
-                    <FormContainer>
-                        <LabeledInput
-                            readOnly={true}
-                            width="100%"
-                            labelText="Enter your name"
-                            inputType="text"
-                            name="name"
-                            value={userState?.username}
-                            placeholder="Hong Gil Dong"
-                        />
-                    </FormContainer>
+                <Form onSubmitEvent={onPaymentSubmitEvent}>
                     <FormContainer>
                         <LabeledInput
                             width="100%"
                             labelText="Enter your phone number"
-                            inputType="text"
+                            inputType="tel"
                             name="phoneNumber"
                             value={userInfoFormValue.phoneNumber}
-                            placeholder="하이픈(-)을 입력하세요"
+                            placeholder="010-1234-1234"
                             onChangeEvent={onChangeFormValueEvent}
                         />
+                        {errorMsg.phoneNumber && (
+                            <StyledErrorText>
+                                {errorMsg.phoneNumber}
+                            </StyledErrorText>
+                        )}
                     </FormContainer>
                     <AddressContainer>
                         <Container width="60%">
@@ -66,10 +47,15 @@ const PaymentDetail = ({
                                 labelText="Address to be delivered"
                                 inputType="text"
                                 name="address"
-                                value={userInfoFormValue.address}
+                                value={userInfoFormValue?.address}
                                 placeholder="Click the button to find the address"
                                 onChangeEvent={onChangeFormValueEvent}
                             />
+                            {errorMsg.address && (
+                                <StyledErrorText>
+                                    {errorMsg.address}
+                                </StyledErrorText>
+                            )}
                         </Container>
                         <AddressSubContainer marginTop="20px">
                             <Button
@@ -85,24 +71,34 @@ const PaymentDetail = ({
                         <Container width="60%">
                             <LabeledInput
                                 width="100%"
-                                labelText="Enter your Detailed Address"
+                                labelText="Enter your detail address"
                                 inputType="text"
                                 name="detailAddress"
                                 value={userInfoFormValue.detailAddress}
                                 placeholder="104-305"
                                 onChangeEvent={onChangeFormValueEvent}
                             />
+                            {errorMsg.address && (
+                                <StyledErrorText>
+                                    {errorMsg.address}
+                                </StyledErrorText>
+                            )}
                         </Container>
                         <AddressSubContainer>
                             <LabeledInput
                                 width="100%"
-                                labelText="Zone Code"
+                                labelText="Zone code"
                                 inputType="text"
                                 name="zoneCode"
                                 value={userInfoFormValue.zoneCode}
                                 placeholder="11741"
                                 onChangeEvent={onChangeFormValueEvent}
                             />
+                            {errorMsg.address && (
+                                <StyledErrorText>
+                                    {errorMsg.address}
+                                </StyledErrorText>
+                            )}
                         </AddressSubContainer>
                     </AddressContainer>
                     <Container width="100%">
@@ -111,7 +107,7 @@ const PaymentDetail = ({
                                 TOTAL PRICE
                             </DetailHeadText>
                             <DetailHeadText fontSize="1.4rem" textAlign="right">
-                                {totalPrice}
+                                {`${totalPrice} ￦`}
                             </DetailHeadText>
                         </GridContainer>
                     </Container>
@@ -121,7 +117,7 @@ const PaymentDetail = ({
                             bType="submit"
                             width="100%"
                             height="4rem"
-                            value={`Pay $${totalPrice}`}
+                            value={`Pay ${totalPrice} ￦`}
                         />
                     </Container>
                 </Form>
@@ -169,6 +165,10 @@ const DetailHeadText = styled.p`
     font-size: ${(props) => props.fontSize || Theme.fontSizes.default};
     font-weight: ${(props) => props.fontWeight || Theme.fontWeight.medium};
     text-align: ${(props) => props.textAlign || "left"};
+`
+
+const StyledErrorText = styled.p`
+    color: ${Theme.colors.darkRed};
 `
 
 export default PaymentDetail
