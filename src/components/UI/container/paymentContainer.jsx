@@ -97,11 +97,12 @@ const PaymentContainer = () => {
                 "/v1/payment/ready",
                 requestParams
             )
-            const { next_redirect_pc_url } = res.data
+            const { next_redirect_pc_url, created_at } = res.data
             window.open(next_redirect_pc_url)
             await PayService.firebaseAddPaymentRequest(
                 cartItems,
-                userState.uuid
+                userState.uuid,
+                created_at
             )
         } catch (e) {
             if (e) {
