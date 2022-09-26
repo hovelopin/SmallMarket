@@ -57,10 +57,12 @@ const ContactContainer = () => {
                     {contactItems.map((c) => (
                         <StyledColumnContainer key={c.name}>
                             <StyledCard>
-                                <StyledImg
-                                    src={`${process.env.PUBLIC_URL}/img/${c.img}`}
-                                    alt={c.alt}
-                                />
+                                <StyledImgContainer>
+                                    <StyledImg
+                                        src={`${process.env.PUBLIC_URL}/img/${c.img}`}
+                                        alt={c.alt}
+                                    />
+                                </StyledImgContainer>
                                 <StyledCardContainer>
                                     <StyledTitle>{c.name}</StyledTitle>
                                     <StyledSubtitle>
@@ -134,9 +136,13 @@ const StyledCard = styled.div`
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 `
 
+const StyledImgContainer = styled.div`
+    text-align: center;
+`
+
 const StyledImg = styled.img`
-    width: 100%;
-    height: 368px;
+    width: 240px;
+    height: 248px;
 `
 
 const StyledTitle = styled.h2`
