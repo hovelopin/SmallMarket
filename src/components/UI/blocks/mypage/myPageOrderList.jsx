@@ -18,6 +18,14 @@ const MyPageOrderList = ({ productItem, onClickDetailEvnet }) => {
                                 <StyledBodyContentTitle>
                                     <Text type="default" context={p.name} />
                                 </StyledBodyContentTitle>
+                                <StyledBodyContentTitle>
+                                    <Text
+                                        type="default"
+                                        context={p.createdAt
+                                            .split("T")
+                                            .join(" ")}
+                                    />
+                                </StyledBodyContentTitle>
                                 <StyledBodyContentDesc>
                                     <Text
                                         type="default"
