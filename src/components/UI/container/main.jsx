@@ -13,7 +13,7 @@ const Main = () => {
 
     useEffect(async () => {
         const res = await ProductService.firebaseGetCategoryRequest(null)
-        setItems(res.slice(0, 3))
+        setItems(res.slice(0, 6))
     }, [])
 
     const handleDetailButtonClick = (item) => () => {
@@ -39,9 +39,9 @@ const Main = () => {
                     <InformationTitle>01</InformationTitle>
                     <InformationSubTitle>High Quality</InformationSubTitle>
                     <InformationContent>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Quisque dignissim magna et consectetur bibendum. Integer
-                        auctor feugiat posuere.
+                        Fairtrade gives you deep satisfaction with its high
+                        quality and freshness. Feel free to browse around and
+                        try it out!
                     </InformationContent>
                     <MoreButton to="/">More</MoreButton>
                 </InformationContentContainer>
@@ -49,9 +49,8 @@ const Main = () => {
                     <InformationTitle>02</InformationTitle>
                     <InformationSubTitle>Innovations</InformationSubTitle>
                     <InformationContent>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Quisque dignissim magna et consectetur bibendum. Integer
-                        auctor feugiat posuere.
+                        Find the product you want without unnecessary shipping
+                        costs. Shop right now! Try it!
                     </InformationContent>
                     <MoreButton to="/">More</MoreButton>
                 </InformationContentContainer>
@@ -59,15 +58,15 @@ const Main = () => {
                     <InformationTitle>03</InformationTitle>
                     <InformationSubTitle>Best Pricing</InformationSubTitle>
                     <InformationContent>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Quisque dignissim magna et consectetur bibendum. Integer
-                        auctor feugiat posuere.
+                        Locally assessed prices allow you to trade at a fair
+                        price. No need to think about unnecessary shipping
+                        costs.
                     </InformationContent>
                     <MoreButton to="/">More</MoreButton>
                 </InformationContentContainer>
             </InformationContainer>
             <ProductContainer>
-                <SubTitleText>BEST ITEMS</SubTitleText>
+                <SubTitleText>RECOMMEND</SubTitleText>
                 <Grid repeat={3} axis="column">
                     {items.map((item) => (
                         <Card
