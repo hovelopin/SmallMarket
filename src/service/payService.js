@@ -37,7 +37,11 @@ PayService.firebaseGetPaymentRequest = async function (userUuid) {
     return payments
 }
 
-PayService.firebaseAddPaymentRequest = async function (items, userUuid) {
+PayService.firebaseAddPaymentRequest = async function (
+    items,
+    userUuid,
+    createdAt
+) {
     items.forEach(async (item) => {
         const addedPayment = await addDoc(collection(firestore, "payment"), {
             userUuid: userUuid,
@@ -50,6 +54,7 @@ PayService.firebaseAddPaymentRequest = async function (items, userUuid) {
             seller: item.seller,
             origin: item.origin,
             category: item.category.category,
+            createdAt: createdAt,
         })
         setDoc(
             doc(firestore, "payment", `${addedPayment.id}`),
