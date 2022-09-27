@@ -18,22 +18,7 @@ const MyPageProfile = ({ editInfoSubmitEvent, editInfoClickEvent }) => {
                             inputType="tet"
                             labelText="* Username"
                             name="username"
-                            onChangeEvent={editInfoSubmitEvent}
-                        />
-                    </StyledProfileInput>
-                    <StyledProfileInput>
-                        <LabeledInput
-                            inputType="password"
-                            labelText="* Password"
-                            name="password"
-                            onChangeEvent={editInfoSubmitEvent}
-                        />
-                    </StyledProfileInput>
-                    <StyledProfileInput>
-                        <LabeledInput
-                            inputType="password"
-                            labelText="* Password Check"
-                            name="passwordCheck"
+                            placeholder="4 or more letters"
                             onChangeEvent={editInfoSubmitEvent}
                         />
                     </StyledProfileInput>
