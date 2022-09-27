@@ -6,7 +6,6 @@ import {
     sendEmailVerification,
     signInWithEmailAndPassword,
     signOut,
-    updatePassword,
 } from "firebase/auth"
 import {
     doc,
