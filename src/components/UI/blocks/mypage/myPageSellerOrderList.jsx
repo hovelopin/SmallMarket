@@ -3,7 +3,7 @@ import styled from "styled-components"
 import Text from "@/components/UI/atoms/text/text"
 import Theme from "@/util/style/theme"
 
-const MyPageSellerOrderList = ({ sellerMenuMove, sellerMenuClickEvent }) => {
+const MyPageSellerOrderList = ({ sellerMenuMove, onSellerMenuClickEvent }) => {
     return (
         <MyPageSellerMainContainer>
             <MyPageSellerHeader>
@@ -15,7 +15,7 @@ const MyPageSellerOrderList = ({ sellerMenuMove, sellerMenuClickEvent }) => {
                         return (
                             <MyPageSellerMenuList
                                 key={m}
-                                onClick={sellerMenuClickEvent(m)}
+                                onClick={onSellerMenuClickEvent(m)}
                             >
                                 <Text type="default" context={m} />
                             </MyPageSellerMenuList>

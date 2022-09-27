@@ -31,6 +31,13 @@ const MyPageContainer = () => {
     const [selectCategory, setSelecCategory] = useState("Drink")
     const [isSeller, setIsSeller] = useState(false)
     const [orderList, setOrderList] = useState([])
+    const [unRegisterEmail, setUnRegisterEmail] = useState("")
+    const [userEditFormValue, setUserEditFormValue] = useState({
+        username: "",
+    })
+    const [sellerSelectMenu, setSellerSelectMenu] = useState("Sales list")
+    const [sellerItem, setSellerItem] = useState([])
+    const [saleItems, setSaleItems] = useState([])
     const [productFormValue, handleProductFormValueChange] = useForm({
         name: "",
         description: "",
@@ -44,13 +51,6 @@ const MyPageContainer = () => {
         limit: 12,
         page: 1,
     })
-    const [unRegisterEmail, setUnRegisterEmail] = useState("")
-    const [userEditFormValue, setUserEditFormValue] = useState({
-        username: "",
-    })
-    const [sellerSelectMenu, setSellerSelectMenu] = useState("Sales list")
-    const [sellerItem, setSellerItem] = useState([])
-    const [saleItems, setSaleItems] = useState([])
 
     const history = useHistory()
 
@@ -215,11 +215,9 @@ const MyPageContainer = () => {
                 const isValidUsernme = Validation.validateUsername(username)
 
                 const handleEditInfoClick = async () => {
-                    const isValidEditInfo = Validation.validateAll([
-                        isValidUsernme,
-                    ])
-                    if (!isValidEditInfo) {
-                        window.alert("Please Check your again")
+                    if (!isValidUsernme) {
+                        setModalMsg("Please check your information")
+                        handleOpenButtonClick(true)
                         return
                     }
 
@@ -232,8 +230,8 @@ const MyPageContainer = () => {
 
                 return (
                     <MyPageProfile
-                        editInfoSubmitEvent={handleEditInfoSubmit}
-                        editInfoClickEvent={handleEditInfoClick}
+                        onEditInfoSubmitEvent={handleEditInfoSubmit}
+                        onEditInfoClickEvent={handleEditInfoClick}
                     />
                 )
             }
@@ -298,7 +296,7 @@ const MyPageContainer = () => {
                 return (
                     <MyPageSellerOrderList
                         sellerMenuMove={sellerMenuMove}
-                        sellerMenuClickEvent={handleSellerMenuClick}
+                        onSellerMenuClickEvent={handleSellerMenuClick}
                     />
                 )
             }

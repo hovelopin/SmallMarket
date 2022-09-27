@@ -177,6 +177,8 @@ AuthService.firebaseEditInfoRequest = async function (username) {
             username: username,
         })
     }
+
+    return auth
 }
 
 export default AuthService

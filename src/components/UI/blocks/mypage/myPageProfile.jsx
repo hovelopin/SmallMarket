@@ -5,7 +5,7 @@ import Button from "@components/UI/atoms/button/button"
 import LabeledInput from "@components/UI/blocks/labeledInput/labeledInput"
 import Theme from "@util/style/theme"
 
-const MyPageProfile = ({ editInfoSubmitEvent, editInfoClickEvent }) => {
+const MyPageProfile = ({ onEditInfoSubmitEvent, onEditInfoClickEvent }) => {
     return (
         <MyPageProfileMainContainer>
             <MyPageProfileHeader>
@@ -19,13 +19,13 @@ const MyPageProfile = ({ editInfoSubmitEvent, editInfoClickEvent }) => {
                             labelText="* Username"
                             name="username"
                             placeholder="4 or more letters"
-                            onChangeEvent={editInfoSubmitEvent}
+                            onChangeEvent={onEditInfoSubmitEvent}
                         />
                     </StyledProfileInput>
                     <Button
                         width="100%"
                         value="Edit"
-                        onClickEvent={editInfoClickEvent}
+                        onClickEvent={onEditInfoClickEvent}
                     />
                 </StyledInputContainer>
             </MyPageProfileCard>
