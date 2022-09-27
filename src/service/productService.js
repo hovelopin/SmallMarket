@@ -84,5 +84,18 @@ ProductService.firebaseProductInformationByIdReuqest = async function (uuid) {
     return find
 }
 
+ProductService.firebaseGetSellerProductItemRequest = async function (uuid) {
+    const q = query(
+        collection(firestore, "product"),
+        where("sellerUuid", "==", `${uuid}`)
+    )
+    const querySnapshot = await getDocs(q)
+    const sellerItem = []
+    querySnapshot.docs.forEach((item) => {
+        sellerItem.push(item.data())
+    })
+    return sellerItem
+}
+
 Object.freeze(ProductService)
 export default ProductService

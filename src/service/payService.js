@@ -61,5 +61,18 @@ PayService.firebaseAddPaymentRequest = async function (items, userUuid) {
     })
 }
 
+PayService.firebaseGetSellerProductsRequest = async function (uuid) {
+    const q = query(
+        collection(firestore, "payment"),
+        where("seller", "==", `${uuid}`)
+    )
+    const querySnapshot = await getDocs(q)
+    const saleItems = []
+    querySnapshot.forEach((item) => {
+        saleItems.push(item.data())
+    })
+    return saleItems
+}
+
 Object.freeze(PayService)
 export default PayService

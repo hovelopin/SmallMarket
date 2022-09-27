@@ -58,10 +58,6 @@ AuthService.firebaseRegiserRequest = async function (
         if (customerType === "Seller") {
             const sellerDoc = await addDoc(collection(firestore, "seller"), {
                 sellerUuid: user.uid,
-                companyRegistrationNumber: "",
-                address: "",
-                selledLog: [""],
-                tel: [""],
             })
             setDoc(
                 doc(firestore, "seller", `${sellerDoc.id}`),
@@ -171,17 +167,17 @@ AuthService.firebaseGetUserInformationById = async function (uuid) {
     return find[0]
 }
 
-AuthService.firebaseEditInfoRequest = async function (username, password) {
+AuthService.firebaseEditInfoRequest = async function (username) {
     const auth = getAuth()
     const user = auth.currentUser
 
-    await setDoc(doc(firestore, "user", user.uid), {
-        username: username,
-    })
+    if (user) {
+        const userRef = doc(firestore, "user", user.uid)
 
-    await updatePassword(user, password).then(() => {
-        signOut(user)
-    })
+        await updateDoc(userRef, {
+            username: username,
+        })
+    }
 }
 
 export default AuthService

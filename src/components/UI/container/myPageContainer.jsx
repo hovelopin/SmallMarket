@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import { useHistory } from "react-router-dom"
 import useForm from "@/hooks/useForm"
 import useModal from "@/hooks/useModal"
+import usePaginate from "@/hooks/usePaginate"
 import styled from "styled-components"
 import Container from "@components/UI/atoms/container/container"
 import Text from "@components/UI/atoms/text/text"
@@ -9,9 +10,10 @@ import Button from "@components/UI/atoms/button/button"
 import Input from "@components/UI/atoms/input/input"
 import MyPageSidebar from "@components/UI/blocks/mypage/myPageSidebar"
 import MyPageOrderList from "@components/UI/blocks/mypage/myPageOrderList"
-import MyPageCoupon from "@components/UI/blocks/mypage/myPageCoupon"
 import MyPageProfile from "@components/UI/blocks/mypage/myPageProfile"
 import MyPageSeller from "@components/UI/blocks/mypage/myPageSeller"
+import MyPageSellerOrderList from "@/components/UI/blocks/mypage/myPageSellerOrderList"
+import MyPageMenuBar from "@/components/UI/blocks/mypage/myPageMenuBar"
 import Modal from "@components/UI/blocks/modal/modal"
 import SessionStorage from "@/storage/sessionStorage"
 import ProductService from "@/service/productService"
@@ -38,14 +40,22 @@ const MyPageContainer = () => {
     })
     const [isOpen, handleOpenButtonClick, handleCloseButtonClick] =
         useModal(false)
+    const [pageValue, handlePageValueChange] = usePaginate({
+        limit: 12,
+        page: 1,
+    })
     const [unRegisterEmail, setUnRegisterEmail] = useState("")
     const [userEditFormValue, setUserEditFormValue] = useState({
         username: "",
-        password: "",
-        passwordCheck: "",
     })
+    const [sellerSelectMenu, setSellerSelectMenu] = useState("Sales list")
+    const [sellerItem, setSellerItem] = useState([])
+    const [saleItems, setSaleItems] = useState([])
 
     const history = useHistory()
+
+    const { limit, page } = pageValue
+    const offset = (page - 1) * limit
 
     useEffect(async () => {
         const userInfo = await AuthService.firebaseCurrentUserInfoRequest()
@@ -53,16 +63,25 @@ const MyPageContainer = () => {
         const orderRes = await PayService.firebaseGetPaymentRequest(
             userInfo.uuid
         )
+        const sellerItemRes =
+            await ProductService.firebaseGetSellerProductItemRequest(
+                userInfo.uuid
+            )
+        const saleItemRes = await PayService.firebaseGetSellerProductsRequest(
+            userInfo.uuid
+        )
         setOrderList(orderRes)
         setIsSeller(userInfo.isSeller ? true : false)
+        setSellerItem(sellerItemRes)
+        setSaleItems(saleItemRes)
     }, [])
 
     const menuItems = [
         "Order list",
-        "Coupon",
         "Profile",
         "Unregister",
         isSeller && "Seller",
+        isSeller && "Seller Order list",
     ]
 
     const handleSelectedClick = (selectedName) => () => {
@@ -140,34 +159,6 @@ const MyPageContainer = () => {
                 )
             }
 
-            case "Coupon": {
-                const couponItems = [
-                    {
-                        img: "discounts.png",
-                        name: "20% Coupon",
-                        description:
-                            "Discounts are available excluding electronics.",
-                        price: "-20%",
-                    },
-                    {
-                        img: "discounts.png",
-                        name: "15% Coupon",
-                        description:
-                            "Discounts are available excluding electronics.",
-                        price: "-15%",
-                    },
-                    {
-                        img: "discounts.png",
-                        name: "50% Coupon",
-                        description:
-                            "Discounts are available excluding electronics.",
-                        price: "-50%",
-                    },
-                ]
-
-                return <MyPageCoupon couponItems={couponItems} />
-            }
-
             case "Unregister": {
                 const { uid, email } = SessionStorage.getItem()
 
@@ -219,28 +210,24 @@ const MyPageContainer = () => {
                     })
                 }
 
-                const { username, password, passwordCheck } = userEditFormValue
+                const { username } = userEditFormValue
 
                 const isValidUsernme = Validation.validateUsername(username)
-                const isValidPassword = Validation.validatePassword(password)
-                const isValidPasswordChekc = password === passwordCheck
 
-                const handleEditInfoClick = () => {
+                const handleEditInfoClick = async () => {
                     const isValidEditInfo = Validation.validateAll([
                         isValidUsernme,
-                        isValidPassword,
-                        isValidPasswordChekc,
                     ])
                     if (!isValidEditInfo) {
                         window.alert("Please Check your again")
                         return
                     }
 
-                    const { username, password } = userEditFormValue
-                    AuthService.firebaseEditInfoRequest(
-                        username,
-                        password
-                    ).then(history.push("/"))
+                    const { username } = userEditFormValue
+                    const res = await AuthService.firebaseEditInfoRequest(
+                        username
+                    )
+                    if (res) history.push("/")
                 }
 
                 return (
@@ -262,6 +249,56 @@ const MyPageContainer = () => {
                         onChangeCategoryEvent={handleSelectCategory}
                         onImgSrcChangeEvent={handleImgSrcChange}
                         onProductSubmitEvent={handleProductSubmit}
+                    />
+                )
+            }
+
+            case "Seller Order list": {
+                const handleSellerMenuClick = (selectedMenu) => () => {
+                    setSellerSelectMenu(selectedMenu)
+                }
+
+                const sellerMenuMove = () => {
+                    switch (sellerSelectMenu) {
+                        case "Sales list":
+                            return (
+                                <MyPageMenuBar
+                                    sellerItems={sellerItem}
+                                    limit={limit}
+                                    page={page}
+                                    offset={offset}
+                                    PageChangeButtonClickEvent={
+                                        handlePageChangeButtonClick
+                                    }
+                                />
+                            )
+
+                        case "Sold list":
+                            return (
+                                <MyPageMenuBar
+                                    sellerItems={saleItems}
+                                    limit={limit}
+                                    page={page}
+                                    offset={offset}
+                                    PageChangeButtonClickEvent={
+                                        handlePageChangeButtonClick
+                                    }
+                                />
+                            )
+
+                        default:
+                            ErrorUtil.notImplemented()
+                    }
+                }
+
+                const handlePageChangeButtonClick = (changePage) => () => {
+                    handlePageValueChange(changePage)
+                }
+
+                return (
+                    <MyPageSellerOrderList
+                        sellerMenuMove={sellerMenuMove}
+                        sellerMenuClickEvent={handleSellerMenuClick}
                     />
                 )
             }
