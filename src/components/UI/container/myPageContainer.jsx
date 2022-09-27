@@ -225,7 +225,7 @@ const MyPageContainer = () => {
                     const res = await AuthService.firebaseEditInfoRequest(
                         username
                     )
-                    if (res) history.push("/")
+                    if (res) location.replace("/")
                 }
 
                 return (
