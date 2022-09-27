@@ -265,7 +265,7 @@ const MyPageContainer = () => {
                                     limit={limit}
                                     page={page}
                                     offset={offset}
-                                    PageChangeButtonClickEvent={
+                                    onPageChangeButtonClickEvent={
                                         handlePageChangeButtonClick
                                     }
                                 />

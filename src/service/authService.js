@@ -167,18 +167,16 @@ AuthService.firebaseGetUserInformationById = async function (uuid) {
 }
 
 AuthService.firebaseEditInfoRequest = async function (username) {
-    const auth = getAuth()
-    const user = auth.currentUser
+    const user = SessionStorage.getItem().uid
 
     if (user) {
-        const userRef = doc(firestore, "user", user.uid)
+        const userRef = doc(firestore, "user", user)
 
         await updateDoc(userRef, {
             username: username,
         })
-    }
-
-    return auth
+        return true
+    } else if (!user) return
 }
 
 export default AuthService
