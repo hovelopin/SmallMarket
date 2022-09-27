@@ -46,10 +46,6 @@ const Header = () => {
             path: "/mypage",
         },
         {
-            name: "Information",
-            path: "/미정2",
-        },
-        {
             name: "Item category",
             path: "/items",
             items: () => {

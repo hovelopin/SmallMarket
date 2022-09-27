@@ -13,10 +13,10 @@ const MyPageSidebar = ({ menuItem, onClickSelectedClick }) => {
             <MyPageSidebarBody>
                 <Text type="large" context="Information" />
                 <MyPageSidebarUl>
-                    {menuItem.map((n) => {
+                    {menuItem.map((n, i) => {
                         return (
                             <MyPageSidebarList
-                                key={n}
+                                key={i}
                                 onClick={onClickSelectedClick(n)}
                             >
                                 <Text type="default" context={n} />
