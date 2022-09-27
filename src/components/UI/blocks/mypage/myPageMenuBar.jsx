@@ -11,7 +11,7 @@ const MyPageMenuBar = ({
     page,
     offset,
     sellerItems,
-    PageChangeButtonClickEvent,
+    onPageChangeButtonClickEvent,
 }) => {
     return (
         <Container width="100%">
@@ -49,7 +49,7 @@ const MyPageMenuBar = ({
                 limit={limit}
                 page={page}
                 total={sellerItems.length}
-                onPageChangeButtonClickEvent={PageChangeButtonClickEvent}
+                onPageChangeButtonClickEvent={onPageChangeButtonClickEvent}
             />
         </Container>
     )
