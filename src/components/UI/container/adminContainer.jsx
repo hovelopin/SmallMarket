@@ -14,11 +14,18 @@ const AdminContainer = () => {
     const [users, setUsers] = useState([])
     const [serchUserEmail, setSerchUserEmail] = useState("")
     const [userStatus, setUserStatus] = useState("Delete")
+    const [userDetail, setUserDetail] = useState(null)
     const [modalMsg, setModalMsg] = useState("")
     const [errMsg, setErrMsg] = useState("")
 
     const [isOpen, handleOpenButtonClick, handleCloseButtonClick] =
         useModal(false)
+
+    const [
+        isDetailModalOpen,
+        handleDetailOpenButtonClick,
+        handleDetailCloseButtonClick,
+    ] = useModal(false)
 
     const options = ["Delete"]
     const headerItems = [
@@ -52,6 +59,11 @@ const AdminContainer = () => {
     const handleHistoryButtonClick = async () => {
         const res = await AuthService.firebaseAllUserInformationRequest()
         setUsers(res)
+    }
+
+    const handleDetailButtonClick = (userInfo) => () => {
+        setUserDetail(userInfo)
+        handleDetailOpenButtonClick(true)
     }
 
     const handleSearchChange = useCallback((e) => {
@@ -105,6 +117,7 @@ const AdminContainer = () => {
                         key={u.uuid}
                         user={u}
                         options={options}
+                        onDetailButtonClickEvent={handleDetailButtonClick}
                         onSelectChangeEvent={handleStatusChange}
                         onSelectButtonClickEvent={handleStatusButtonClick}
                     />
@@ -115,6 +128,26 @@ const AdminContainer = () => {
                     src={`${process.env.PUBLIC_URL}/img/logo.png`}
                 />
                 <Text context={modalMsg} />
+            </Modal>
+            <Modal
+                isOpen={isDetailModalOpen}
+                onClickEvent={handleDetailCloseButtonClick}
+            >
+                <StyledImgContainer
+                    src={`${process.env.PUBLIC_URL}/img/logo.png`}
+                />
+                <Container>
+                    <Text type="large" context={userDetail?.username} />
+                </Container>
+                <Container>
+                    <Text type="default" context={userDetail?.email} />
+                </Container>
+                <Container>
+                    <Text
+                        type="default"
+                        context={userDetail?.isSeller ? "Seller" : "Customer"}
+                    />
+                </Container>
             </Modal>
         </Container>
     )
