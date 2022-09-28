@@ -145,12 +145,15 @@ AuthService.firebaseUserDeleteRequest = async function (uuid) {
     })
 }
 
-AuthService.firebaseAdminUserRequest = async function (status) {
+AuthService.firebaseAdminUserRequest = async function (status, uuid) {
     switch (status) {
         case "Delete":
+            await AuthService.firebaseUserDeleteRequest(uuid)
+            return true
         default:
             ErrorUtil.notImplemented()
     }
+    return false
 }
 
 AuthService.firebaseGetUserInformationById = async function (uuid) {
