@@ -13,7 +13,7 @@ const InfoCard = ({
     onSelectChangeEvent,
     onSelectButtonClickEvent,
 }) => {
-    const { email, username, isSeller } = user
+    const { email, username, isSeller, uuid } = user
 
     return (
         <StyledWrapper>
@@ -52,7 +52,7 @@ const InfoCard = ({
                     options={options}
                     value="OK"
                     onChangeEvent={onSelectChangeEvent}
-                    onClickEvent={onSelectButtonClickEvent}
+                    onClickEvent={onSelectButtonClickEvent(uuid)}
                 />
             </Grid>
         </StyledWrapper>

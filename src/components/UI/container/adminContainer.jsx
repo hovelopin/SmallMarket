@@ -13,7 +13,7 @@ import Validation from "@util/validation/validation"
 const AdminContainer = () => {
     const [users, setUsers] = useState([])
     const [serchUserEmail, setSerchUserEmail] = useState("")
-    const [userStatus, setUserStatus] = useState("")
+    const [userStatus, setUserStatus] = useState("Delete")
     const [modalMsg, setModalMsg] = useState("")
     const [errMsg, setErrMsg] = useState("")
 
@@ -78,9 +78,14 @@ const AdminContainer = () => {
         setUserStatus(value)
     }, [])
 
-    const handleStatusButtonClick = useCallback(async () => {
-        await AuthService.firebaseAdminUserRequest(userStatus)
-    }, [])
+    const handleStatusButtonClick = useCallback(
+        (uuid) => async () => {
+            await AuthService.firebaseAdminUserRequest(userStatus, uuid)
+            setModalMsg("Success!")
+            handleOpenButtonClick(true)
+        },
+        []
+    )
 
     return (
         <Container width="100%" height="100%">
