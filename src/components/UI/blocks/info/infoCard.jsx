@@ -43,7 +43,7 @@ const InfoCard = ({
                         height="100%"
                         width="100%"
                         value="Detail"
-                        onClickEvent={onDetailButtonClickEvent}
+                        onClickEvent={onDetailButtonClickEvent(user)}
                     />
                 </Container>
                 <SelectButton
