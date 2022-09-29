@@ -12,6 +12,7 @@ import AuthService from "@/service/authService"
 
 const Header = () => {
     const [isMouseOver, setIsMouseOver] = useState(false)
+    const [search, setSearch] = useState("")
     const [isLogin, setIsLogin] = useState(
         SessionStorage.getItem() ? true : false
     )
@@ -75,6 +76,13 @@ const Header = () => {
             path: "/contact",
         },
     ]
+    const handleSearchChange = (e) => {
+        setSearch(e.target.value)
+    }
+
+    const handleSearchClick = () => {
+        history.push(`/items/search/${search}`)
+    }
 
     const handleMenuItemsOver = () => {
         setIsMouseOver(true)
@@ -100,6 +108,8 @@ const Header = () => {
                         width="40rem"
                         placeholder="Please enter your content"
                         value="Search"
+                        onChangeEvent={handleSearchChange}
+                        onClickEvent={handleSearchClick}
                     />
                 </SearchItemSection>
                 <SearchItemSection>
