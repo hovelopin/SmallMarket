@@ -20,7 +20,7 @@ const ProductContainer = () => {
         page: 1,
     })
 
-    const { category } = useParams()
+    const { category, searched } = useParams()
     const history = useHistory()
 
     const { limit, page } = pageValue
@@ -29,10 +29,11 @@ const ProductContainer = () => {
 
     useEffect(async () => {
         const selectedItems = await ProductService.firebaseGetCategoryRequest(
-            category
+            category,
+            searched
         )
         setItems(selectedItems)
-    }, [category])
+    }, [category, searched])
 
     const handleDetailButtonClick = (item) => async () => {
         const seller = await AuthService.firebaseGetUserInformationById(
@@ -75,18 +76,39 @@ const ProductContainer = () => {
                 </StyledContainer>
             </StyledCarouselContainer>
             <StyledProductContainer>
-                <Grid repeat={4} axis="column" gap="2rem">
-                    {items.slice(offset, offset + limit).map((item) => (
-                        <Card
-                            key={item.uuid}
-                            name={item.name}
-                            description={item.description}
-                            price={item.price}
-                            img={item.img}
-                            onClickEvent={handleDetailButtonClick(item)}
-                        />
-                    ))}
-                </Grid>
+                {items.length ? (
+                    <Grid repeat={4} axis="column" gap="2rem">
+                        {items.slice(offset, offset + limit).map((item) => (
+                            <Card
+                                key={item.uuid}
+                                name={item.name}
+                                description={item.description}
+                                price={item.price}
+                                img={item.img}
+                                onClickEvent={handleDetailButtonClick(item)}
+                            />
+                        ))}
+                    </Grid>
+                ) : (
+                    <StyledNoItemContainer>
+                        <Container>
+                            <StyledFont>
+                                <StyledSpan>O</StyledSpan>
+                                <StyledSpan>O</StyledSpan>
+                                <StyledSpan>P</StyledSpan>
+                                <StyledSpan>S</StyledSpan>
+                            </StyledFont>
+                            <StyledItemSmallFont color={Theme.colors.black}>
+                                We tried our best to find it, but we couldn't
+                                find the search results.
+                            </StyledItemSmallFont>
+                            <StyledItemSmallFont color={Theme.colors.black}>
+                                Try to search with different keywords or use
+                                categories
+                            </StyledItemSmallFont>
+                        </Container>
+                    </StyledNoItemContainer>
+                )}
             </StyledProductContainer>
             <Paginate
                 limit={limit}
@@ -105,6 +127,11 @@ const StyledProductContainer = styled.div`
     place-items: center;
 `
 
+const StyledNoItemContainer = styled.div`
+    width: 100%;
+    text-align: center;
+`
+
 const StyledItemHeaderContainer = styled.div`
     color: ${Theme.colors.white};
     background-color: ${Theme.colors.darkBlack};
@@ -121,7 +148,7 @@ const StyledItemFont = styled.span`
 const StyledItemSmallFont = styled.p`
     font-weight: bold;
     font-size: 1.55rem;
-    color: ${Theme.colors.silverGray};
+    color: ${(props) => props.color || Theme.colors.silverGray};
 `
 
 const StyledCarouselContainer = styled.div`
@@ -134,6 +161,20 @@ const StyledContainer = styled.div`
     width: 20%;
     height: 100%;
     margin-top: 2rem;
+`
+
+const StyledFont = styled.h1`
+    margin-top: -2rem;
+    margin-bottom: 2rem;
+    color: #262626;
+    letter-spacing: -40px;
+    margin-left: -20px;
+    font-size: 260px;
+    font-weight: 900;
+`
+
+const StyledSpan = styled.span`
+    text-shadow: -8px 0px 0px #fff;
 `
 
 export default ProductContainer
