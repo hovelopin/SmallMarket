@@ -29,6 +29,11 @@ const CustomRouter = () => {
                     path="/items/:category"
                     component={ProductContainer}
                 />
+                <Route
+                    exact
+                    path="/items/search/:searched"
+                    component={ProductContainer}
+                />
                 <Route exact path="/detail/:id" component={DetailContainer} />
                 <Route exact path="/about" component={FairTradeContainer} />
                 <Route exact path="/contact" component={ContactContainer} />
