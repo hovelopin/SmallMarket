@@ -30,7 +30,7 @@ class _FoodItemListType extends NameUtil {
 
 // input: array
 FoodItemListType.createFoodItemListType = function (arr) {
-    ErrorUtil.assert(arr.length > 1, "Array size > 1")
+    ErrorUtil.assert(arr.length >= 1, "Array size >= 1")
     arr.every((a) => ErrorUtil.instanceCheck(a, ItemType))
     return new _FoodItemListType(arr)
 }
