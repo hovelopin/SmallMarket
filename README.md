@@ -7,19 +7,19 @@ SmallMarket은 소상공인이 직접 직거래를 할 수 있는 쇼핑몰 입�
 ## :clock3: First project Period
 
 Smallmarket V1: 2021.09.17 ~ 2021.10.14
-SmallMarket V2: 2022.09.05 ~ 진행중
+SmallMarket V2: 2022.09.05 ~ 2022.09.29
 
 ## Refactoring Period
 
 `SmallMarket V2`
 
-2022.09.05 ~ ...?
+2022.09.05 ~ 2022.09.29
 
 # Proejct Start
 
 ```
 ## npm start
-## Release: 아직...
+## Release: Firebase 예정
 ```
 
 # Team
@@ -79,6 +79,7 @@ Seller page ✔
 My page ✔
 Admin page => Check user list and block user ✔
 Item list & detail & divide item category ✔
+Item Search ✔
 Pagination ✔
 Add to cart, remove cart, cart drag drop ✔
 Payment page, Kakao pay api ✔
