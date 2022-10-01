@@ -9,3 +9,4 @@ node_modules/
 
 # Deploy
 /build
+netlify.toml
