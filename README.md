@@ -19,7 +19,7 @@ SmallMarket V2: 2022.09.05 ~ 2022.09.29
 
 ```
 ## npm start
-## Release: Firebase 예정
+## Release: https://smallmarket.netlify.app
 ```
 
 # Team
@@ -36,7 +36,7 @@ FrontEnd: FoxMon(김준호), Leo(이상원), Velo(박재현), hovelopin(김호�
 -   Server & Database: firebase
 -   Style: Styled Component
 -   Design pattern: Atomic design pattern > 3 단계로 분리 ( atoms, blocks, container )
--   Deploy: firebase 예정
+-   Deploy: netlify
 
 # Directory
 
