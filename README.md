@@ -19,7 +19,6 @@ SmallMarket V2: 2022.09.05 ~ 2022.09.29
 
 ```
 ## npm start
-## Release: https://smallmarket.netlify.app
 ```
 
 # Team
